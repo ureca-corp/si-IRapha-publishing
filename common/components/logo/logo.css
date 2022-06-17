@@ -1,0 +1,59 @@
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+* {
+  box-sizing: border-box;
+}
+
+.irm-logo .irm-logo__container {
+  position: relative;
+  width: 240px;
+  aspect-ratio: 16/9;
+  background-color: #35455e;
+}
+.irm-logo .irm-logo__container .irm-logo__logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.irm-logo .irm-logo__container .irm-logo__menus {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  padding: 8px;
+}
+.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__maximize-icon-wrapper {
+  position: relative;
+  width: 24px;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__maximize-icon-wrapper .irm-logo__maximize-icon {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+}
+.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__network-status-wrapper {
+  position: relative;
+  width: 24px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+
+.irm-logo__network-status-wrapper .irm-logo__network-status, .irm-logo__network-status-wrapper .irm-logo__network-status--green, .irm-logo__network-status-wrapper .irm-logo__network-status--yellow, .irm-logo__network-status-wrapper .irm-logo__network-status--red {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.irm-logo__network-status-wrapper .irm-logo__network-status--red {
+  background-color: red;
+}
+.irm-logo__network-status-wrapper .irm-logo__network-status--yellow {
+  background-color: yellow;
+}
+.irm-logo__network-status-wrapper .irm-logo__network-status--green {
+  background-color: green;
+}
