@@ -1,0 +1,67 @@
+@use "../../styles/common";
+@use "../../themes/colors" as colors;
+@use "../../themes/shape" as shapes;
+@use "../../themes/typography" as typography;
+
+// 뷰어 정보 팝업
+.irm-viewer-info {
+  width: 280px;
+  aspect-ratio: 0.912;
+
+  padding: 20px;
+
+  background-color: colors.$bg-black;
+  border-radius: shapes.$medium;
+
+  .irm-viewer-info__title {
+    @include typography.title-medium;
+
+    color: colors.$font-white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .irm-viewer-info__content {
+    @include typography.body-small;
+
+    color: colors.$font-white;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 16px;
+
+    .irm-viewer-info__help {
+      margin-top: 8px;
+    }
+
+    .irm-viewer-info__divider {
+      width: 100%;
+      height: 1px;
+      background-color: #eeeeee33;
+
+      margin: 8px 0;
+    }
+  }
+
+  .irm-viewer-info__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 24px;
+
+    .irm-viewer-info__barcode {
+      width: 100%;
+    }
+
+    .irm-viewer-info__logo {
+      width: 40%;
+      aspect-ratio: 16/9;
+
+      margin-top: 8px;
+    }
+  }
+}

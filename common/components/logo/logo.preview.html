@@ -20,9 +20,49 @@
   <body>
     <div class="irm-logo">
       <div class="irm-logo__container">
-        <img class="irm-logo__logo" src="/assets/images/logo.png" alt="logo" />
+        <div class="irm-logo__wrapper uk-inline">
+          <img
+            class="irm-logo__logo uk-button-default"
+            src="/assets/images/logo.png"
+            alt="logo"
+          />
+
+          <div uk-drop="mode: click">
+            <!-- 뷰어 정보 팝업 -->
+            <div class="irm-viewer-info">
+              <h1 class="irm-viewer-info__title">I-Rapha View v2.0.1</h1>
+
+              <address class="irm-viewer-info__content">
+                <p class="irm-viewer-info__help">Help <b>bizinfo@irm.kr</b></p>
+
+                <div class="irm-viewer-info__divider"></div>
+
+                <div>
+                  <div><b>IRM Inc.</b>8th-2, HongWoo Bldg,</div>
+                  <div>15, Yeoksam-ro 8-gil, Gangnam-gu,</div>
+                  <div>Seoul,</div>
+                  <div>06250, Republic of Korea</div>
+                </div>
+              </address>
+
+              <div class="irm-viewer-info__footer">
+                <img
+                  class="irm-viewer-info__barcode"
+                  src="/assets/images/img_barcode.jpg"
+                  alt="barcode"
+                />
+                <img
+                  class="irm-viewer-info__logo"
+                  src="/assets/images/logo.png"
+                  alt="logo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
         <ul class="irm-logo__menus">
+          <!-- 최대화 버튼 -->
           <li class="irm-logo__maximize-icon-wrapper">
             <img
               class="irm-logo__maximize-icon"
@@ -30,8 +70,9 @@
               alt="toggle-fullscreen"
             />
           </li>
-          <li class="irm-logo__network-status-wrapper" uk-tooltip="18msec">
-            <div class="irm-logo__network-status--green" />
+
+          <li class="irm-network-status" uk-tooltip="18msec">
+            <div class="irm-network-status__icon--green" />
           </li>
         </ul>
       </div>

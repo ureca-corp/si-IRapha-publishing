@@ -1,0 +1,96 @@
+// 타이포그래피 계층
+
+// Display
+@mixin display-large {
+  font-size: 57px;
+  line-height: 74px;
+  font-weight: 400;
+}
+
+@mixin display-medium {
+  font-size: 45px;
+  line-height: 58px;
+  font-weight: 400;
+}
+
+@mixin display-small {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+// Headline
+@mixin headline-large {
+  font-size: 32px;
+  line-height: 42px;
+  font-weight: 400;
+}
+
+@mixin headline-medium {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+@mixin headline-small {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+// Title
+@mixin title-large {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+@mixin title-medium {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+@mixin title-small {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+// Body
+@mixin body-large {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+@mixin body-medium {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@mixin body-small {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+// Label
+@mixin label-large {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+@mixin label-medium {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+@mixin label-small {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+}

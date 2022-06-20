@@ -3,17 +3,77 @@
   box-sizing: border-box;
 }
 
+b {
+  font-weight: bold;
+}
+
+.irm-viewer-info {
+  width: 280px;
+  aspect-ratio: 0.912;
+  padding: 20px;
+  background-color: #000;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+.irm-viewer-info .irm-viewer-info__title {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.irm-viewer-info .irm-viewer-info__content {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+.irm-viewer-info .irm-viewer-info__content .irm-viewer-info__help {
+  margin-top: 8px;
+}
+.irm-viewer-info .irm-viewer-info__content .irm-viewer-info__divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(238, 238, 238, 0.2);
+  margin: 8px 0;
+}
+.irm-viewer-info .irm-viewer-info__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+.irm-viewer-info .irm-viewer-info__footer .irm-viewer-info__barcode {
+  width: 100%;
+}
+.irm-viewer-info .irm-viewer-info__footer .irm-viewer-info__logo {
+  width: 40%;
+  aspect-ratio: 16/9;
+  margin-top: 8px;
+}
+
 .irm-logo .irm-logo__container {
   position: relative;
   width: 240px;
   aspect-ratio: 16/9;
   background-color: #35455e;
 }
-.irm-logo .irm-logo__container .irm-logo__logo {
+.irm-logo .irm-logo__container .irm-logo__wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.irm-logo .irm-logo__container .irm-logo__wrapper .irm-logo__logo {
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0.6;
+  border: none;
   cursor: pointer;
 }
 .irm-logo .irm-logo__container .irm-logo__menus {
@@ -33,7 +93,8 @@
   width: 100%;
   aspect-ratio: 1;
 }
-.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__network-status-wrapper {
+
+.irm-network-status {
   position: relative;
   width: 24px;
   aspect-ratio: 1;
@@ -42,18 +103,17 @@
   align-items: center;
   padding: 4px;
 }
-
-.irm-logo__network-status-wrapper .irm-logo__network-status, .irm-logo__network-status-wrapper .irm-logo__network-status--green, .irm-logo__network-status-wrapper .irm-logo__network-status--yellow, .irm-logo__network-status-wrapper .irm-logo__network-status--red {
+.irm-network-status .irm-network-status__icon, .irm-network-status .irm-network-status__icon--green, .irm-network-status .irm-network-status__icon--yellow, .irm-network-status .irm-network-status__icon--red {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
 }
-.irm-logo__network-status-wrapper .irm-logo__network-status--red {
+.irm-network-status .irm-network-status__icon--red {
   background-color: red;
 }
-.irm-logo__network-status-wrapper .irm-logo__network-status--yellow {
+.irm-network-status .irm-network-status__icon--yellow {
   background-color: yellow;
 }
-.irm-logo__network-status-wrapper .irm-logo__network-status--green {
+.irm-network-status .irm-network-status__icon--green {
   background-color: green;
 }

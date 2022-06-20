@@ -1,5 +1,6 @@
 @use "../../styles/common";
 @use "../../themes/colors" as colors;
+@use "../viewer-info/viewer-info.scss";
 
 @mixin logo-icon-wrapper {
   position: relative;
@@ -17,14 +18,22 @@
 
     background-color: #35455e;
 
-    .irm-logo__logo {
+    .irm-logo__wrapper {
       position: absolute;
       width: 100%;
       height: 100%;
 
-      opacity: 0.6;
+      .irm-logo__logo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
 
-      cursor: pointer;
+        opacity: 0.6;
+
+        border: none;
+
+        cursor: pointer;
+      }
     }
 
     .irm-logo__menus {
@@ -44,37 +53,37 @@
           aspect-ratio: 1;
         }
       }
-
-      .irm-logo__network-status-wrapper {
-        @include logo-icon-wrapper;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 4px;
-      }
     }
   }
 }
 
 // 네트워크 상태 표시 아이콘
-.irm-logo__network-status-wrapper .irm-logo__network-status {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+.irm-network-status {
+  @include logo-icon-wrapper;
 
-  &--red {
-    @extend .irm-logo__network-status;
-    background-color: colors.$status-danger;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
 
-  &--yellow {
-    @extend .irm-logo__network-status;
-    background-color: colors.$status-warning;
-  }
+  .irm-network-status__icon {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
 
-  &--green {
-    @extend .irm-logo__network-status;
-    background-color: colors.$status-normal;
+    &--red {
+      @extend .irm-network-status__icon;
+      background-color: colors.$status-danger;
+    }
+
+    &--yellow {
+      @extend .irm-network-status__icon;
+      background-color: colors.$status-warning;
+    }
+
+    &--green {
+      @extend .irm-network-status__icon;
+      background-color: colors.$status-normal;
+    }
   }
 }
