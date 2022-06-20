@@ -1,0 +1,84 @@
+@use "../../styles/common";
+@use "../../themes/colors" as colors;
+@use "../../themes/shape" as shapes;
+@use "../../themes/typography" as typography;
+
+.irm-toolbox {
+  display: flex;
+
+  &.--type-column {
+    flex-direction: column;
+  }
+
+  &:hover {
+    .irm-toolbox__menu {
+      opacity: 1;
+    }
+  }
+}
+
+.irm-toolbox__drag-area {
+  .irm-toolbox__folding-icon {
+    width: 16px;
+    aspect-ratio: 1;
+
+    cursor: pointer;
+  }
+}
+
+.irm-toolbox__menu-wrapper {
+  transition: all 0.3s ease-in-out;
+
+  &.--hide {
+    opacity: 0;
+    overflow: hidden;
+  }
+}
+
+.irm-toolbox__menu {
+  display: grid;
+  grid-auto-flow: column;
+
+  width: fit-content;
+
+  &.--row {
+    grid-auto-flow: row;
+  }
+
+  &.--column-two {
+    grid-auto-flow: unset;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.irm-toolbox__item__content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 0 8px;
+
+  border: none;
+
+  .irm-toolbox__item__name {
+    @include typography.label-small;
+  }
+
+  &.--more {
+    position: relative;
+
+    &::after {
+      content: "▼";
+
+      position: absolute;
+      top: 30%;
+      right: 25%;
+
+      font-size: 10px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+* {
+  box-sizing: border-box;
+}
+
+b {
+  font-weight: bold;
+}
+
+.irm-toolbox {
+  display: flex;
+}
+.irm-toolbox.--type-column {
+  flex-direction: column;
+}
+.irm-toolbox:hover .irm-toolbox__menu {
+  opacity: 1;
+}
+
+.irm-toolbox__drag-area .irm-toolbox__folding-icon {
+  width: 16px;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.irm-toolbox__menu-wrapper {
+  transition: all 0.3s ease-in-out;
+}
+.irm-toolbox__menu-wrapper.--hide {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.irm-toolbox__menu {
+  display: grid;
+  grid-auto-flow: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irm-toolbox__menu.--row {
+  grid-auto-flow: row;
+}
+.irm-toolbox__menu.--column-two {
+  grid-auto-flow: unset;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.irm-toolbox__item__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 8px;
+  border: none;
+}
+.irm-toolbox__item__content .irm-toolbox__item__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+}
+.irm-toolbox__item__content.--more {
+  position: relative;
+}
+.irm-toolbox__item__content.--more::after {
+  content: "▼";
+  position: absolute;
+  top: 30%;
+  right: 25%;
+  font-size: 10px;
+}
