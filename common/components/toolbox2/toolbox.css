@@ -121,3 +121,109 @@ b {
 .irm-network-status .irm-network-status__icon.--green {
   background-color: green;
 }
+
+.irm-toolbox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  transition: all 0.3s ease-in-out;
+  background-color: #35455e;
+}
+.irm-toolbox.is-state--shrink {
+  height: 28px;
+  overflow: hidden;
+}
+
+.irm-toolbox__drag-area {
+  height: 100%;
+  padding: 4px;
+  align-self: flex-start;
+  border-left: 1px;
+  border-right: 1px;
+  border-style: solid;
+  border-color: rgba(238, 238, 238, 0.2);
+  box-shadow: 0px 0px 4px rgba(238, 238, 238, 0.2);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.irm-folding-toggle-button {
+  width: 16px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  color: #fff;
+}
+
+.irm-toolbox__menu-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  transition: all 0.3s ease-in-out;
+}
+
+.irm-toolbox__menu {
+  padding: 0 16px;
+  transition: all 0.3s ease-in-out;
+}
+.irm-toolbox__menu__inner {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irm-toolbox__menu__inner.is-layout--single-row {
+  grid-auto-flow: row;
+}
+.irm-toolbox__menu__inner.is-layout--column-two {
+  grid-auto-flow: unset;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.irm-toolbox__item__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 50px;
+  border: none;
+}
+.irm-toolbox__item__content.is-name--hide .irm-toolbox__item__content__name {
+  display: none;
+}
+.irm-toolbox__item__content__icon {
+  border-radius: 4px;
+  width: 36px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.irm-toolbox__item__content__icon img {
+  width: 100%;
+  height: 100%;
+}
+.irm-toolbox__item__content__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.irm-toolbox__divider {
+  width: 2px;
+  min-width: 2px;
+  height: 30%;
+  align-self: flex-start;
+  margin-top: 16px;
+  background-color: rgba(238, 238, 238, 0.2);
+}

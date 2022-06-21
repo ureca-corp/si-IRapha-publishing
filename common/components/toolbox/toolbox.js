@@ -34,6 +34,6 @@ foldingIcon.getDomElement().addEventListener("click", () => {
     toolboxMenu.visible();
   } else {
     foldingIcon.expand();
-    toolboxMenu.hide();
+    toolboxMenu.hide(toolbox.isTypeColumn());
   }
 });

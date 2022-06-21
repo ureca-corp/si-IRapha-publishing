@@ -8,11 +8,15 @@
 
   &.--type-column {
     flex-direction: column;
+    width: fit-content;
   }
 
   &:hover {
-    .irm-toolbox__menu {
+    .irm-toolbox__menu-wrapper {
+      width: unset;
+      height: unset;
       opacity: 1;
+      overflow: unset;
     }
   }
 }
@@ -30,6 +34,13 @@
   transition: all 0.3s ease-in-out;
 
   &.--hide {
+    height: 24px;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  &.--hide-horizontal {
+    width: 24px;
     opacity: 0;
     overflow: hidden;
   }

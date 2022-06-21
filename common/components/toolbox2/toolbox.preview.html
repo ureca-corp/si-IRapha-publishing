@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toolbox Preview</title>
+
+    <!-- UIkit -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" href="./toolbox.css" />
+    <script defer type="module" src="./toolbox.js"></script>
+  </head>
+
+  <body>
+    <!-- Toolbox -->
+    <div class="irm-toolbox">
+      <!-- 로고 영역 -->
+      <div class="irm-logo">
+        <div class="irm-logo__container">
+          <div class="irm-logo__wrapper">
+            <img
+              class="irm-logo__logo"
+              src="/assets/images/logo.svg"
+              alt="logo"
+            />
+
+            <div class="irm-viewer-info__popup">
+              <!-- 뷰어 정보 팝업 -->
+              <div class="irm-viewer-info">
+                <h1 class="irm-viewer-info__title">I-Rapha View v2.0.1</h1>
+
+                <address class="irm-viewer-info__content">
+                  <p class="irm-viewer-info__help">
+                    Help <b>bizinfo@irm.kr</b>
+                  </p>
+
+                  <div class="irm-viewer-info__divider"></div>
+
+                  <div>
+                    <div><b>IRM Inc.</b>8th-2, HongWoo Bldg,</div>
+                    <div>15, Yeoksam-ro 8-gil, Gangnam-gu,</div>
+                    <div>Seoul,</div>
+                    <div>06250, Republic of Korea</div>
+                  </div>
+                </address>
+
+                <div class="irm-viewer-info__footer">
+                  <img
+                    class="irm-viewer-info__barcode"
+                    src="/assets/images/img_barcode.jpg"
+                    alt="barcode"
+                  />
+                  <img
+                    class="irm-viewer-info__logo"
+                    src="/assets/images/logo.svg"
+                    alt="logo"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="irm-logo__menus">
+            <!-- 최대화 버튼 -->
+            <li class="irm-logo__maximize-icon-wrapper">
+              <img
+                class="irm-logo__maximize-icon"
+                src="/assets/icons/ic_fullscreen.svg"
+                alt="toggle-fullscreen"
+              />
+            </li>
+
+            <!-- 네트워크 연결 상태 -->
+            <li class="irm-network-status" uk-tooltip="18msec">
+              <div class="irm-network-status__icon --green" />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 드래그 가능 영역  -->
+      <div class="irm-toolbox__drag-area">
+        <span class="irm-folding-toggle-button"></span>
+      </div>
+
+      <div class="irm-toolbox__menu-container">
+        <!-- 메뉴 - 첫 번째 섹션 -->
+        <div class="irm-toolbox__menu">
+          <ul class="irm-toolbox__menu__inner">
+            <!-- WorkList -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Worklist">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Worklist"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Worklist</dd>
+              </dl>
+            </li>
+
+            <!-- Report -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Report">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Report"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Report</dd>
+              </dl>
+            </li>
+
+            <!-- Prev Study -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Prev Study">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Prev Study"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Prev</dd>
+              </dl>
+            </li>
+
+            <!-- Next Study -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Next Study">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Next Study"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Next</dd>
+              </dl>
+            </li>
+
+            <!-- Virtual Layout -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Virtual Layout">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="VL" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">VL</dd>
+              </dl>
+            </li>
+
+            <!-- Window Mode -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Window Mode">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Mode" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Mode</dd>
+              </dl>
+            </li>
+
+            <!-- Display Layout -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Display Layout">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Layout"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Layout</dd>
+              </dl>
+            </li>
+
+            <!-- Combine Series -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Combine Series">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Navi" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Navi</dd>
+              </dl>
+            </li>
+
+            <!-- Apply to All -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Apply to All">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Cine" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Cine</dd>
+              </dl>
+            </li>
+
+            <!-- Display Info -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Display Info">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Info" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Info</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 메뉴 구분선 -->
+        <div class="irm-toolbox__divider"></div>
+
+        <!-- 메뉴 - 두 번째 섹션 -->
+        <div class="irm-toolbox__menu">
+          <ul class="irm-toolbox__menu__inner">
+            <!-- Key Image Note -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Key Image Note">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Key Image Note"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Key Image Note</dd>
+              </dl>
+            </li>
+
+            <!-- Selector -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Selector">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Selector"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Selector</dd>
+              </dl>
+            </li>
+
+            <!-- Window Level -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Window Level">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Window Level"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Window Level</dd>
+              </dl>
+            </li>
+
+            <!-- Zoom -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Zoom">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Zoom" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Zoom</dd>
+              </dl>
+            </li>
+
+            <!-- Panning -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Panning">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Panning"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Panning</dd>
+              </dl>
+            </li>
+
+            <!-- Fit -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Fit">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Fit" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Fit</dd>
+              </dl>
+            </li>
+
+            <!-- Rotate Left -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Rotate Left">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Rotate Left"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Rotate Left</dd>
+              </dl>
+            </li>
+
+            <!-- Rotate Right -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Rotate Right">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Rotate Right"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Rotate Right</dd>
+              </dl>
+            </li>
+
+            <!-- Length -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Length">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Length"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Length</dd>
+              </dl>
+            </li>
+
+            <!-- Angle -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Angle">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Angle" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Angle</dd>
+              </dl>
+            </li>
+
+            <!-- Transformations -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Transformations">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Transformations"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">
+                  Transformations
+                </dd>
+              </dl>
+            </li>
+
+            <!-- Measurements -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Measurements">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Measurements"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Measurements</dd>
+              </dl>
+            </li>
+
+            <!-- Annotations -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Annotations">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Annotations"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Annotations</dd>
+              </dl>
+            </li>
+
+            <!-- Refresh -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Refresh">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Refresh"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Refresh</dd>
+              </dl>
+            </li>
+
+            <!-- Undo -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Undo">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img src="https://dummyimage.com/36x36/000/fff" alt="Undo" />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Undo</dd>
+              </dl>
+            </li>
+
+            <!-- Secondary Captured Image -->
+            <li class="irm-toolbox__item">
+              <dl
+                class="irm-toolbox__item__content"
+                title="Secondary Captured Image"
+              >
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Secondary Captured Image"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">
+                  Secondary Captured Image
+                </dd>
+              </dl>
+            </li>
+
+            <!-- Revise -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Revise">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Revise"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Revise</dd>
+              </dl>
+            </li>
+
+            <!-- Utility -->
+            <li class="irm-toolbox__item">
+              <dl class="irm-toolbox__item__content" title="Utility">
+                <dt class="irm-toolbox__item__content__icon">
+                  <img
+                    src="https://dummyimage.com/36x36/000/fff"
+                    alt="Utility"
+                  />
+                </dt>
+
+                <dd class="irm-toolbox__item__content__name">Utility</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

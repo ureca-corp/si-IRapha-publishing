@@ -15,19 +15,21 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
 
     <link rel="stylesheet" href="./logo.css" />
-    <script defer src="./logo.js"></script>
+    <script defer type="module" src="./logo.js"></script>
   </head>
+
   <body>
+    <!-- 로고 영역 -->
     <div class="irm-logo">
       <div class="irm-logo__container">
         <div class="irm-logo__wrapper">
           <img
-            class="irm-logo__logo uk-button-default"
-            src="/assets/images/logo.png"
+            class="irm-logo__logo"
+            src="/assets/images/logo.svg"
             alt="logo"
           />
 
-          <div uk-drop="mode: click">
+          <div class="irm-viewer-info__popup">
             <!-- 뷰어 정보 팝업 -->
             <div class="irm-viewer-info">
               <h1 class="irm-viewer-info__title">I-Rapha View v2.0.1</h1>
@@ -53,7 +55,7 @@
                 />
                 <img
                   class="irm-viewer-info__logo"
-                  src="/assets/images/logo.png"
+                  src="/assets/images/logo.svg"
                   alt="logo"
                 />
               </div>
@@ -71,8 +73,9 @@
             />
           </li>
 
+          <!-- 네트워크 연결 상태 -->
           <li class="irm-network-status" uk-tooltip="18msec">
-            <div class="irm-network-status__icon--green" />
+            <div class="irm-network-status__icon --green" />
           </li>
         </ul>
       </div>

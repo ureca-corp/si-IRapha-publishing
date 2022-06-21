@@ -1,0 +1,168 @@
+@use "../../styles/common";
+@use "../../themes/colors" as colors;
+@use "../../themes/shape" as shapes;
+@use "../../themes/typography" as typography;
+@use "../../components/logo/logo.scss";
+
+$bg: #35455e;
+$border-color: #eeeeee33;
+
+.irm-toolbox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+
+  transition: all 0.3s ease-in-out;
+
+  background-color: $bg;
+
+  // 툴 박스 - 상태
+  &.is-state {
+    // 축소
+    &--shrink {
+      height: 28px;
+      overflow: hidden;
+    }
+  }
+}
+
+.irm-toolbox__drag-area {
+  height: 100%;
+  padding: 4px;
+
+  align-self: flex-start;
+
+  border-left: 1px;
+  border-right: 1px;
+  border-style: solid;
+  border-color: $border-color;
+
+  box-shadow: 0px 0px 4px $border-color;
+
+  cursor: grab;
+}
+
+.irm-folding-toggle-button {
+  width: 16px;
+  aspect-ratio: 1;
+
+  cursor: pointer;
+
+  color: colors.$font-white;
+}
+
+.irm-toolbox__menu-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.irm-toolbox__menu {
+  padding: 0 16px;
+
+  transition: all 0.3s ease-in-out;
+
+  &__inner {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 8px;
+
+    width: fit-content;
+
+    // 메뉴 - 배열 방식 전환
+    &.is-layout {
+      // 가로 1열 배치.
+      &--single-row {
+        grid-auto-flow: row;
+      }
+
+      // 세로 2열 배치.
+      &--column-two {
+        grid-auto-flow: unset;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+.irm-toolbox__item__content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  width: 50px;
+
+  border: none;
+
+  // 메뉴 아이템 - 이름 숨기기
+  &.is-name {
+    &--hide {
+      .irm-toolbox__item__content__name {
+        display: none;
+      }
+    }
+  }
+
+  &__icon {
+    border-radius: shapes.$small;
+
+    width: 36px;
+    aspect-ratio: 1;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__name {
+    @include typography.label-small;
+    color: colors.$font-white;
+
+    text-align: center;
+
+    width: 100%;
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // &.--more {
+  //   position: relative;
+
+  //   &::after {
+  //     content: "▼";
+
+  //     position: absolute;
+  //     top: 30%;
+  //     right: 25%;
+
+  //     font-size: 10px;
+  //   }
+  // }
+}
+
+// 메뉴 구분선
+.irm-toolbox__divider {
+  width: 2px;
+  min-width: 2px;
+  height: 30%;
+
+  align-self: flex-start;
+
+  margin-top: 16px;
+
+  background-color: $border-color;
+}

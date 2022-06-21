@@ -12,24 +12,28 @@ export class ToolboxMenu {
     this._element.classList.remove("--hide");
   }
 
-  hide() {
+  hide(horizontal) {
+    if (!!horizontal) return this._element.classList.add("--hide-horizontal");
+
     this._element.classList.add("--hide");
   }
 
+  hideItemName() {}
+
   setContainerTypeColumn() {
-    document.querySelectorAll(".irm-toolbox__menu").forEach((it) => {
+    this._element.querySelectorAll(".irm-toolbox__menu").forEach((it) => {
       it.classList.add("--column-two");
     });
   }
 
   removeContainerTypeColumn() {
-    document.querySelectorAll(".irm-toolbox__menu").forEach((it) => {
+    this._element.querySelectorAll(".irm-toolbox__menu").forEach((it) => {
       it.classList.remove("--column-two");
     });
   }
 
   initMenu() {
-    document.querySelectorAll(".irm-toolbox__menu").forEach((menu) => {
+    this._element.querySelectorAll(".irm-toolbox__menu").forEach((menu) => {
       menu.querySelectorAll(".irm-toolbox__item").forEach(($li) => {
         const $content = $li.querySelector(".irm-toolbox__item__content");
         const $popup = $li.querySelector(".irm-toolbox__popup");
