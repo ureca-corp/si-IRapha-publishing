@@ -1,0 +1,79 @@
+@use "../../../styles/common";
+@use "../../../themes/colors" as colors;
+@use "./maximize-button";
+@use "./network-status";
+@use "../../viewer-info/style";
+
+@mixin logo-icon-wrapper {
+  position: relative;
+
+  width: 20px;
+  aspect-ratio: 1;
+}
+
+@mixin s-logo-container {
+  &.is-state {
+    &--shrink-horizontal {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+  }
+}
+
+// logo
+.irm-logo {
+  z-index: 1;
+
+  width: 128px;
+  height: 80px;
+
+  &__container {
+    position: relative;
+
+    height: 100%;
+    aspect-ratio: 16/10;
+
+    @include s-logo-container;
+  }
+
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 82%;
+    height: 100%;
+  }
+
+  &__logo-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: all 0.3 ease-in-out;
+  }
+
+  &__menus {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    padding: 4px;
+  }
+}
+
+// components
+.irm-maximize__icon {
+  @include logo-icon-wrapper;
+}
+
+.irm-network-status {
+  @include logo-icon-wrapper;
+}

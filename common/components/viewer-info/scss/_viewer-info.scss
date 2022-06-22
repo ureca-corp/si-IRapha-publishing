@@ -1,9 +1,9 @@
-@use "../../styles/common";
-@use "../../themes/colors" as colors;
-@use "../../themes/shape" as shapes;
-@use "../../themes/typography" as typography;
+@use "../../../styles/common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/shape" as shapes;
+@use "../../../themes/typography" as typography;
 
-// 뷰어 정보 팝업
+// 뷰어 정보
 .irm-viewer-info {
   width: 280px;
   aspect-ratio: 0.912;
@@ -13,7 +13,7 @@
   background-color: colors.$bg-black;
   border-radius: shapes.$medium;
 
-  .irm-viewer-info__title {
+  &__title {
     @include typography.title-medium;
 
     color: colors.$font-white;
@@ -23,7 +23,7 @@
     align-items: center;
   }
 
-  .irm-viewer-info__content {
+  &__content {
     @include typography.body-small;
 
     color: colors.$font-white;
@@ -33,11 +33,11 @@
 
     margin-top: 16px;
 
-    .irm-viewer-info__help {
+    &__help {
       margin-top: 8px;
     }
 
-    .irm-viewer-info__divider {
+    &__divider {
       width: 100%;
       height: 1px;
       background-color: #eeeeee33;
@@ -46,18 +46,18 @@
     }
   }
 
-  .irm-viewer-info__footer {
+  &__footer {
     display: flex;
     flex-direction: column;
     align-items: center;
 
     margin-top: 24px;
 
-    .irm-viewer-info__barcode {
+    &__barcode {
       width: 100%;
     }
 
-    .irm-viewer-info__logo {
+    &__logo {
       width: 40%;
       aspect-ratio: 16/9;
 

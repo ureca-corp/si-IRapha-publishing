@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toolbox Preview</title>
 
+    <!-- RxJS -->
+    <script
+      defer
+      src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"
+    ></script>
+
     <!-- UIkit -->
     <link
       rel="stylesheet"
@@ -26,22 +32,22 @@
         <div class="irm-logo__container">
           <div class="irm-logo__wrapper">
             <img
-              class="irm-logo__logo"
+              class="irm-logo__logo-image"
               src="/assets/images/logo.svg"
               alt="logo"
             />
 
-            <div class="irm-viewer-info__popup">
+            <div class="irm-viewer-info-popup">
               <!-- 뷰어 정보 팝업 -->
               <div class="irm-viewer-info">
                 <h1 class="irm-viewer-info__title">I-Rapha View v2.0.1</h1>
 
                 <address class="irm-viewer-info__content">
-                  <p class="irm-viewer-info__help">
+                  <p class="irm-viewer-info__content__help">
                     Help <b>bizinfo@irm.kr</b>
                   </p>
 
-                  <div class="irm-viewer-info__divider"></div>
+                  <div class="irm-viewer-info__content__divider"></div>
 
                   <div>
                     <div><b>IRM Inc.</b>8th-2, HongWoo Bldg,</div>
@@ -53,12 +59,12 @@
 
                 <div class="irm-viewer-info__footer">
                   <img
-                    class="irm-viewer-info__barcode"
+                    class="irm-viewer-info__footer__barcode"
                     src="/assets/images/img_barcode.jpg"
                     alt="barcode"
                   />
                   <img
-                    class="irm-viewer-info__logo"
+                    class="irm-viewer-info__footer__logo"
                     src="/assets/images/logo.svg"
                     alt="logo"
                   />
@@ -69,9 +75,9 @@
 
           <ul class="irm-logo__menus">
             <!-- 최대화 버튼 -->
-            <li class="irm-logo__maximize-icon-wrapper">
+            <li class="irm-maximize__icon">
               <img
-                class="irm-logo__maximize-icon"
+                class="irm-maximize__icon__image"
                 src="/assets/icons/ic_fullscreen.svg"
                 alt="toggle-fullscreen"
               />
@@ -79,14 +85,14 @@
 
             <!-- 네트워크 연결 상태 -->
             <li class="irm-network-status" uk-tooltip="18msec">
-              <div class="irm-network-status__icon --green" />
+              <div class="irm-network-status__icon is-state--green" />
             </li>
           </ul>
         </div>
       </div>
 
       <!-- 드래그 가능 영역  -->
-      <div class="irm-toolbox__drag-area">
+      <div class="irm-toolbox__drag-point">
         <span class="irm-folding-toggle-button"></span>
       </div>
 

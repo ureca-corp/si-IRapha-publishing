@@ -1,0 +1,9 @@
+.irm-maximize__icon {
+  cursor: pointer;
+
+  &__image {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+}

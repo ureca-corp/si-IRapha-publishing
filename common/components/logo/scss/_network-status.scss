@@ -1,0 +1,34 @@
+@use "../../../themes/colors" as colors;
+
+// 네트워크 상태 아이콘 - 상태
+@mixin s-network {
+  &.is-state {
+    &--red {
+      background-color: colors.$status-danger;
+    }
+
+    &--yellow {
+      background-color: colors.$status-warning;
+    }
+
+    &--green {
+      background-color: colors.$status-normal;
+    }
+  }
+}
+
+// 네트워크 상태 표시 아이콘
+.irm-network-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+
+  &__icon {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    @include s-network;
+  }
+}

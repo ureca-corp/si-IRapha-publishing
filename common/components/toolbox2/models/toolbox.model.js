@@ -8,12 +8,24 @@ export class Toolbox {
   }
 
   init() {
+    this.initDragPoint();
     this.initFoldingBtn();
     this.initMenuContainer();
     this.initLogo();
 
     this._subscribeHover();
     this._subscribeHoverExit();
+  }
+
+  initDragPoint() {
+    const className = ".irm-toolbox__drag-point";
+
+    const dragPoint = this._element.querySelector(className);
+
+    if (this.isLayoutColumn())
+      dragPoint.classList.add("is-direction--horizontal");
+
+    this._dragPoint = dragPoint;
   }
 
   initFoldingBtn() {
@@ -25,7 +37,7 @@ export class Toolbox {
     foldingBtn.init();
 
     foldingBtn.getDomElement().addEventListener("click", () => {
-      if (foldingBtn.isIconExpand()) return this.shrink();
+      if (foldingBtn.isExpanded()) return this.shrink();
 
       return this.expand();
     });
@@ -55,30 +67,91 @@ export class Toolbox {
     });
   }
 
+  isLayoutColumn() {
+    return this._element.classList.contains("is-layout--column");
+  }
+
   isExpand() {
-    return !this._foldingToggleBtn.isIconExpand();
+    return !this._foldingToggleBtn.isExpanded();
   }
 
   _shrinkWithoutState() {
+    if (this.isLayoutColumn()) return this._shrinkHorizontalWithoutState();
+
+    return this._shrinkVerticalWithoutState();
+  }
+
+  _shrinkVerticalWithoutState() {
     this._menuContainer.visible();
     this._logo.visible();
     this._element.classList.remove("is-state--shrink");
   }
 
+  _shrinkHorizontalWithoutState() {
+    this._menuContainer.visible();
+    this._logo.removeShrinkHorizontal();
+    this._element.classList.remove("is-state--shrink-horizontal");
+  }
+
   _expandWithoutState() {
+    if (this.isLayoutColumn()) return this._expandHorizontalWithoutState();
+
+    return this._expandVerticalWithoutState();
+  }
+
+  _expandVerticalWithoutState() {
     this._menuContainer.hide();
     this._logo.hide();
+
     this._element.classList.add("is-state--shrink");
+  }
+
+  _expandHorizontalWithoutState() {
+    this._menuContainer.hide();
+    this._logo.setShrinkHorizontal();
+
+    this._element.classList.add("is-state--shrink-horizontal");
   }
 
   // actions
   shrink() {
-    this._foldingToggleBtn.setIconShrink();
-    this._shrinkWithoutState();
+    if (this.isLayoutColumn()) return this.shrinkHorizontal();
+
+    return this.shrinkVertical();
   }
 
   expand() {
+    if (this.isLayoutColumn()) return this.expandHorizontal();
+
+    return this.expandVertical();
+  }
+
+  shrinkVertical() {
+    this._foldingToggleBtn.setIconShrink();
+    this._shrinkVerticalWithoutState();
+  }
+
+  expandVertical() {
     this._foldingToggleBtn.setIconExpand();
-    this._expandWithoutState();
+    this._expandVerticalWithoutState();
+  }
+
+  shrinkHorizontal() {
+    this._foldingToggleBtn.setIconShrink();
+    this._shrinkHorizontalWithoutState();
+  }
+
+  expandHorizontal() {
+    this._foldingToggleBtn.setIconExpand();
+    this._expandHorizontalWithoutState();
+  }
+
+  // 툴박스 배치 레이아웃 - 세로형
+  replaceLayoutColumn() {
+    this._element.classList.add("is-layout--column");
+    this._dragPoint.classList.add("is-direction--horizontal");
+
+    this._menuContainer.replaceLayoutColumn();
+    this._menuContainer.replaceAllMenuLayoutColumnTwo();
   }
 }

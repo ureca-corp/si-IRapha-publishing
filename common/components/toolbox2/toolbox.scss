@@ -2,10 +2,100 @@
 @use "../../themes/colors" as colors;
 @use "../../themes/shape" as shapes;
 @use "../../themes/typography" as typography;
-@use "../../components/logo/logo.scss";
+@use "../../components/logo/scss/logo";
 
 $bg: #35455e;
 $border-color: #eeeeee33;
+
+// 툴 박스 - 상태
+@mixin s-toolbox {
+  &.is-state {
+    // 축소
+    &--shrink {
+      height: 30px;
+      overflow: hidden;
+    }
+
+    &--shrink-horizontal {
+      width: 48px !important;
+      overflow: hidden;
+    }
+  }
+}
+
+// 툴 박스 - 레이아웃
+@mixin l-toolbox {
+  &.is-layout {
+    &--column {
+      flex-direction: column;
+      width: fit-content;
+      height: 100%;
+
+      &:hover {
+        width: fit-content;
+        height: 100%;
+      }
+    }
+  }
+}
+
+// 메뉴 컨테이너 - 상태
+@mixin s-menu-container {
+  &.is-state {
+    // 비활성화 상태 시 - 바로 아래 자식 요소들 투명 + 커서 무시
+    &--disabled {
+      & > * {
+        display: none;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+// 메뉴 컨테이너 - 레이아웃
+@mixin l-menu-container {
+  &.is-layout {
+    &--column {
+      flex-direction: column;
+      padding: 24px 0;
+    }
+  }
+}
+
+// 메뉴 inner - 레이아웃
+@mixin l-menu-inner {
+  &.is-layout {
+    // 세로 2 배치.
+    &--column-two {
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+// 메뉴 아이템 - 이름 숨기기
+@mixin s-menu-item-name {
+  &.is-name {
+    &--hide {
+      .irm-toolbox__item__content__name {
+        display: none;
+      }
+    }
+  }
+}
+
+// 드래그 영역 - 레이아웃
+@mixin l-drag-point {
+  &.is-direction {
+    &--horizontal {
+      display: flex;
+      justify-content: flex-end;
+
+      width: 100%;
+      height: fit-content;
+    }
+  }
+}
 
 .irm-toolbox {
   display: flex;
@@ -17,156 +107,129 @@ $border-color: #eeeeee33;
 
   background-color: $bg;
 
-  // 툴 박스 - 상태
-  &.is-state {
-    // 축소
-    &--shrink {
-      height: 30px;
-      overflow: hidden;
-    }
-  }
-
   &:hover {
     height: 80px;
     overflow: visible;
   }
+
+  @include s-toolbox;
+  @include l-toolbox;
 }
 
-.irm-toolbox__drag-area {
-  height: 100%;
-  padding: 4px;
+.irm-toolbox {
+  &__drag-point {
+    height: 100%;
+    padding: 4px;
 
-  align-self: flex-start;
+    align-self: flex-start;
 
-  border-left: 1px;
-  border-right: 1px;
-  border-style: solid;
-  border-color: $border-color;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: $border-color;
 
-  box-shadow: 0px 0px 2px $border-color;
+    box-shadow: 0px 0px 2px $border-color;
 
-  cursor: grab;
+    cursor: grab;
+
+    @include l-drag-point;
+  }
+
+  &__menu-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+
+    transition: all 0.3s ease-in-out;
+
+    @include s-menu-container;
+    @include l-menu-container;
+  }
+
+  &__menu {
+    padding: 0 16px;
+
+    transition: all 0.3s ease-in-out;
+
+    &__inner {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 8px;
+
+      width: fit-content;
+
+      @include l-menu-inner;
+    }
+  }
+
+  &__item__content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    width: 50px;
+
+    border: none;
+
+    @include s-menu-item-name;
+
+    &__icon {
+      border-radius: shapes.$small;
+
+      width: 36px;
+      aspect-ratio: 1;
+
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__name {
+      @include typography.label-small;
+      color: colors.$font-white;
+
+      text-align: center;
+
+      width: 100%;
+      white-space: nowrap;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    // &.--more {
+    //   position: relative;
+
+    //   &::after {
+    //     content: "▼";
+
+    //     position: absolute;
+    //     top: 30%;
+    //     right: 25%;
+
+    //     font-size: 10px;
+    //   }
+    // }
+  }
 }
 
 .irm-folding-toggle-button {
-  width: 16px;
+  display: flex;
+  width: 12px;
   aspect-ratio: 1;
 
   cursor: pointer;
 
   color: colors.$font-white;
-}
-
-.irm-toolbox__menu-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
-
-  transition: all 0.3s ease-in-out;
-
-  &.is-state {
-    // 비활성화 상태 시 - 바로 아래 자식 요소들 투명 + 커서 무시
-    &--disabled {
-      & > * {
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
-.irm-toolbox__menu {
-  padding: 0 16px;
-
-  transition: all 0.3s ease-in-out;
-
-  &__inner {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 8px;
-
-    width: fit-content;
-
-    // 메뉴 - 배열 방식 전환
-    &.is-layout {
-      // 가로 1열 배치.
-      &--single-row {
-        grid-auto-flow: row;
-      }
-
-      // 세로 2열 배치.
-      &--column-two {
-        grid-auto-flow: unset;
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  }
-}
-
-.irm-toolbox__item__content {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-
-  width: 50px;
-
-  border: none;
-
-  // 메뉴 아이템 - 이름 숨기기
-  &.is-name {
-    &--hide {
-      .irm-toolbox__item__content__name {
-        display: none;
-      }
-    }
-  }
-
-  &__icon {
-    border-radius: shapes.$small;
-
-    width: 36px;
-    aspect-ratio: 1;
-
-    overflow: hidden;
-    cursor: pointer;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__name {
-    @include typography.label-small;
-    color: colors.$font-white;
-
-    text-align: center;
-
-    width: 100%;
-    white-space: nowrap;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  // &.--more {
-  //   position: relative;
-
-  //   &::after {
-  //     content: "▼";
-
-  //     position: absolute;
-  //     top: 30%;
-  //     right: 25%;
-
-  //     font-size: 10px;
-  //   }
-  // }
 }
 
 // 메뉴 구분선

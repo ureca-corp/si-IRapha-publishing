@@ -1,10 +1,47 @@
 @import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 * {
   box-sizing: border-box;
 }
 
 b {
   font-weight: bold;
+}
+
+.irm-maximize__icon {
+  cursor: pointer;
+}
+.irm-maximize__icon__image {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.irm-network-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+.irm-network-status__icon {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.irm-network-status__icon.is-state--red {
+  background-color: red;
+}
+.irm-network-status__icon.is-state--yellow {
+  background-color: yellow;
+}
+.irm-network-status__icon.is-state--green {
+  background-color: green;
 }
 
 .irm-viewer-info {
@@ -14,7 +51,7 @@ b {
   background-color: #000;
   border-radius: 8px;
 }
-.irm-viewer-info .irm-viewer-info__title {
+.irm-viewer-info__title {
   font-size: 16px;
   line-height: 22px;
   font-weight: 700;
@@ -23,7 +60,7 @@ b {
   justify-content: center;
   align-items: center;
 }
-.irm-viewer-info .irm-viewer-info__content {
+.irm-viewer-info__content {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -32,39 +69,47 @@ b {
   flex-direction: column;
   margin-top: 16px;
 }
-.irm-viewer-info .irm-viewer-info__content .irm-viewer-info__help {
+.irm-viewer-info__content__help {
   margin-top: 8px;
 }
-.irm-viewer-info .irm-viewer-info__content .irm-viewer-info__divider {
+.irm-viewer-info__content__divider {
   width: 100%;
   height: 1px;
   background-color: rgba(238, 238, 238, 0.2);
   margin: 8px 0;
 }
-.irm-viewer-info .irm-viewer-info__footer {
+.irm-viewer-info__footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
 }
-.irm-viewer-info .irm-viewer-info__footer .irm-viewer-info__barcode {
+.irm-viewer-info__footer__barcode {
   width: 100%;
 }
-.irm-viewer-info .irm-viewer-info__footer .irm-viewer-info__logo {
+.irm-viewer-info__footer__logo {
   width: 40%;
   aspect-ratio: 16/9;
   margin-top: 8px;
 }
 
 .irm-logo {
-  height: 100%;
+  z-index: 1;
+  width: 128px;
+  height: 80px;
 }
-.irm-logo .irm-logo__container {
+.irm-logo__container {
   position: relative;
   height: 100%;
   aspect-ratio: 16/10;
 }
-.irm-logo .irm-logo__container .irm-logo__wrapper {
+.irm-logo__container.is-state--shrink-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+.irm-logo__wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,7 +117,7 @@ b {
   width: 82%;
   height: 100%;
 }
-.irm-logo .irm-logo__container .irm-logo__wrapper .irm-logo__logo {
+.irm-logo__logo-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -80,21 +125,16 @@ b {
   cursor: pointer;
   transition: all 0.3 ease-in-out;
 }
-.irm-logo .irm-logo__container .irm-logo__menus {
+.irm-logo__menus {
   position: relative;
   z-index: 2;
   display: flex;
   padding: 4px;
 }
-.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__maximize-icon-wrapper {
+
+.irm-maximize__icon {
   position: relative;
   width: 20px;
-  aspect-ratio: 1;
-  cursor: pointer;
-}
-.irm-logo .irm-logo__container .irm-logo__menus .irm-logo__maximize-icon-wrapper .irm-logo__maximize-icon {
-  position: absolute;
-  width: 100%;
   aspect-ratio: 1;
 }
 
@@ -102,24 +142,6 @@ b {
   position: relative;
   width: 20px;
   aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px;
-}
-.irm-network-status .irm-network-status__icon {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-.irm-network-status .irm-network-status__icon.--red {
-  background-color: red;
-}
-.irm-network-status .irm-network-status__icon.--yellow {
-  background-color: yellow;
-}
-.irm-network-status .irm-network-status__icon.--green {
-  background-color: green;
 }
 
 .irm-toolbox {
@@ -130,16 +152,33 @@ b {
   transition: all 0.3s ease-in-out;
   background-color: #35455e;
 }
-.irm-toolbox.is-state--shrink {
-  height: 30px;
-  overflow: hidden;
-}
 .irm-toolbox:hover {
   height: 80px;
   overflow: visible;
 }
+.irm-toolbox.is-state--shrink {
+  height: 30px;
+  overflow: hidden;
+}
+.irm-toolbox.is-state--shrink-horizontal {
+  width: 48px !important;
+  overflow: hidden;
+}
+.irm-toolbox.is-layout--column {
+  flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+}
+.irm-toolbox.is-layout--column:hover {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+}
 
-.irm-toolbox__drag-area {
+.irm-toolbox__drag-point {
   height: 100%;
   padding: 4px;
   align-self: flex-start;
@@ -151,14 +190,14 @@ b {
   cursor: -webkit-grab;
   cursor: grab;
 }
-
-.irm-folding-toggle-button {
-  width: 16px;
-  aspect-ratio: 1;
-  cursor: pointer;
-  color: #fff;
+.irm-toolbox__drag-point.is-direction--horizontal {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
-
 .irm-toolbox__menu-container {
   display: flex;
   align-items: center;
@@ -168,10 +207,13 @@ b {
   transition: all 0.3s ease-in-out;
 }
 .irm-toolbox__menu-container.is-state--disabled > * {
-  opacity: 0;
+  display: none;
   pointer-events: none;
 }
-
+.irm-toolbox__menu-container.is-layout--column {
+  flex-direction: column;
+  padding: 24px 0;
+}
 .irm-toolbox__menu {
   padding: 0 16px;
   transition: all 0.3s ease-in-out;
@@ -184,14 +226,10 @@ b {
   width: -moz-fit-content;
   width: fit-content;
 }
-.irm-toolbox__menu__inner.is-layout--single-row {
-  grid-auto-flow: row;
-}
 .irm-toolbox__menu__inner.is-layout--column-two {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-
 .irm-toolbox__item__content {
   position: relative;
   display: flex;
@@ -225,6 +263,14 @@ b {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.irm-folding-toggle-button {
+  display: flex;
+  width: 12px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  color: #fff;
 }
 
 .irm-toolbox__divider {
