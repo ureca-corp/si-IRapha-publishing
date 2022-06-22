@@ -11,6 +11,9 @@ export class Toolbox {
     this.initFoldingBtn();
     this.initMenuContainer();
     this.initLogo();
+
+    this._subscribeHover();
+    this._subscribeHoverExit();
   }
 
   initFoldingBtn() {
@@ -22,11 +25,9 @@ export class Toolbox {
     foldingBtn.init();
 
     foldingBtn.getDomElement().addEventListener("click", () => {
-      if (foldingBtn.isExpand()) {
-        this.shrink();
-      } else {
-        this.expand();
-      }
+      if (foldingBtn.isIconExpand()) return this.shrink();
+
+      return this.expand();
     });
   }
 
@@ -39,22 +40,45 @@ export class Toolbox {
   initLogo() {
     this._logo = new Logo();
 
-    const logo = this._logo;
-    logo.init();
+    this._logo.init();
   }
 
-  // actions
-  shrink() {
-    this._foldingToggleBtn.shrink();
+  _subscribeHover() {
+    this._element.addEventListener("mouseover", () => {
+      if (!this.isExpand()) this._shrinkWithoutState();
+    });
+  }
+
+  _subscribeHoverExit() {
+    this._element.addEventListener("mouseout", () => {
+      if (!this.isExpand()) this._expandWithoutState();
+    });
+  }
+
+  isExpand() {
+    return !this._foldingToggleBtn.isIconExpand();
+  }
+
+  _shrinkWithoutState() {
     this._menuContainer.visible();
     this._logo.visible();
     this._element.classList.remove("is-state--shrink");
   }
 
-  expand() {
-    this._foldingToggleBtn.expand();
+  _expandWithoutState() {
     this._menuContainer.hide();
     this._logo.hide();
     this._element.classList.add("is-state--shrink");
+  }
+
+  // actions
+  shrink() {
+    this._foldingToggleBtn.setIconShrink();
+    this._shrinkWithoutState();
+  }
+
+  expand() {
+    this._foldingToggleBtn.setIconExpand();
+    this._expandWithoutState();
   }
 }

@@ -5,22 +5,22 @@ export class FoldingToggleButton {
   }
 
   init() {
-    this.shrink();
+    this.setIconShrink();
   }
 
   getDomElement() {
     return this._element;
   }
 
-  isExpand() {
+  isIconExpand() {
     return this._element.getAttribute("uk-icon") === "icon: expand";
   }
 
-  expand() {
+  setIconExpand() {
     return this._element.setAttribute("uk-icon", "icon: expand");
   }
 
-  shrink() {
+  setIconShrink() {
     return this._element.setAttribute("uk-icon", "icon: shrink");
   }
 }

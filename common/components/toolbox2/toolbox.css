@@ -131,8 +131,12 @@ b {
   background-color: #35455e;
 }
 .irm-toolbox.is-state--shrink {
-  height: 28px;
+  height: 30px;
   overflow: hidden;
+}
+.irm-toolbox:hover {
+  height: 80px;
+  overflow: visible;
 }
 
 .irm-toolbox__drag-area {
@@ -143,7 +147,7 @@ b {
   border-right: 1px;
   border-style: solid;
   border-color: rgba(238, 238, 238, 0.2);
-  box-shadow: 0px 0px 4px rgba(238, 238, 238, 0.2);
+  box-shadow: 0px 0px 2px rgba(238, 238, 238, 0.2);
   cursor: -webkit-grab;
   cursor: grab;
 }
@@ -162,6 +166,10 @@ b {
   height: 100%;
   overflow: scroll;
   transition: all 0.3s ease-in-out;
+}
+.irm-toolbox__menu-container.is-state--disabled > * {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .irm-toolbox__menu {

@@ -21,9 +21,14 @@ $border-color: #eeeeee33;
   &.is-state {
     // 축소
     &--shrink {
-      height: 28px;
+      height: 30px;
       overflow: hidden;
     }
+  }
+
+  &:hover {
+    height: 80px;
+    overflow: visible;
   }
 }
 
@@ -38,7 +43,7 @@ $border-color: #eeeeee33;
   border-style: solid;
   border-color: $border-color;
 
-  box-shadow: 0px 0px 4px $border-color;
+  box-shadow: 0px 0px 2px $border-color;
 
   cursor: grab;
 }
@@ -60,6 +65,16 @@ $border-color: #eeeeee33;
   overflow: scroll;
 
   transition: all 0.3s ease-in-out;
+
+  &.is-state {
+    // 비활성화 상태 시 - 바로 아래 자식 요소들 투명 + 커서 무시
+    &--disabled {
+      & > * {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
 }
 
 .irm-toolbox__menu {

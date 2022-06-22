@@ -4,10 +4,10 @@ export class MenuContainer {
   }
 
   hide() {
-    this._element.style.opacity = 0;
+    this._element.classList.add("is-state--disabled");
   }
 
   visible() {
-    this._element.style.opacity = 1;
+    this._element.classList.remove("is-state--disabled");
   }
 }
