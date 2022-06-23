@@ -1,0 +1,71 @@
+@use "../../../styles/common";
+@use "../../../themes/theme" as theme;
+
+$bg: #35455e;
+
+$toolbox: (
+  width: 130px,
+  height: 80px,
+);
+
+$drag-point: (
+  size: 24px,
+);
+
+@mixin l-toolbox {
+  &.is-layout {
+    &--column {
+      &.irm-toolbox {
+        flex-direction: column;
+        height: 100%;
+        width: map-get($toolbox, "width");
+      }
+
+      .irm-toolbox {
+        &__logo {
+          height: fit-content;
+        }
+
+        &__drag-point {
+          width: 100%;
+          height: map-get($drag-point, "size");
+        }
+
+        &__menus {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+.irm-toolbox {
+  display: flex;
+  width: 100%;
+  height: map-get($toolbox, "height");
+
+  transition: all 0.3s ease-in-out;
+
+  background-color: $bg;
+
+  @include l-toolbox;
+
+  &__logo {
+    width: map-get($toolbox, "width");
+    aspect-ratio: 16/10;
+
+    background-color: red;
+  }
+
+  &__drag-point {
+    width: map-get($drag-point, "size");
+    height: 100%;
+    background-color: aqua;
+  }
+
+  &__menus {
+    width: 100%;
+    height: 100%;
+    background-color: blueviolet;
+  }
+}

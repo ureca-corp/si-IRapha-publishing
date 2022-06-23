@@ -11,13 +11,39 @@
   aspect-ratio: 1;
 }
 
-@mixin s-logo-container {
+@mixin s-logo {
   &.is-state {
+    // 상하 축소 상태
+    &--shrink-vertical {
+      &.irm-logo {
+        width: fit-content;
+        height: 30px;
+
+        &__container {
+          width: fit-content;
+          align-self: flex-start;
+        }
+
+        .irm-logo__logo-image {
+          display: none;
+        }
+      }
+    }
+
+    // 좌우 축소 상태
     &--shrink-horizontal {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
+      &.irm-logo {
+        &__container {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+        }
+
+        .irm-logo__logo-image {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -26,16 +52,16 @@
 .irm-logo {
   z-index: 1;
 
-  width: 128px;
+  width: 130px;
   height: 80px;
+
+  @include s-logo;
 
   &__container {
     position: relative;
 
     height: 100%;
     aspect-ratio: 16/10;
-
-    @include s-logo-container;
   }
 
   &__wrapper {

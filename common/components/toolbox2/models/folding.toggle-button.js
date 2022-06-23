@@ -12,12 +12,12 @@ export class FoldingToggleButton {
 
     const isExpanded$ = new rx.BehaviorSubject(initialIconState);
     isExpanded$.subscribe((isExpanded) =>
-      this.handleChangeExpanded(isExpanded)
+      this._handleChangeExpanded(isExpanded)
     );
 
     this._isExpanded$ = isExpanded$;
 
-    this.setIconShrink();
+    this.setExpand(false);
   }
 
   // private
@@ -30,7 +30,7 @@ export class FoldingToggleButton {
   }
 
   // handler
-  handleChangeExpanded(isExpanded) {
+  _handleChangeExpanded(isExpanded) {
     if (isExpanded) return this._setAttributeToExpandIcon();
 
     return this._setAttributeToShrinkIcon();
@@ -45,11 +45,7 @@ export class FoldingToggleButton {
     return this._isExpanded$.getValue();
   }
 
-  setIconExpand() {
-    this._isExpanded$.next(true);
-  }
-
-  setIconShrink() {
-    this._isExpanded$.next(false);
+  setExpand(isExpand) {
+    this._isExpanded$.next(!!isExpand);
   }
 }

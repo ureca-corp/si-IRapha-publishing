@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>I-Rapha Viewer</title>
+
+    <!-- RxJS -->
+    <script
+      defer
+      src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"
+    ></script>
+
+    <!-- UIkit -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" href="/viewer/css/index.css" />
+    <script defer type="module" src="/viewer/js/index.js"></script>
   </head>
-  <body></body>
+  <body style="background-color: #999">
+    <!-- Toolbox -->
+    <div class="irm-toolbox is-layout--column">
+      <div class="irm-toolbox__logo"></div>
+      <div class="irm-toolbox__drag-point"></div>
+      <div class="irm-toolbox__menus"></div>
+    </div>
+  </body>
 </html>
