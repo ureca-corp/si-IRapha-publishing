@@ -13,14 +13,32 @@
   }
 }
 
+@mixin s-menu {
+  &.is-state {
+    // 아이콘 제목 숨기기
+    &--name-hide {
+      .irm-toolbox__menu {
+        &__item__content {
+          width: fit-content;
+
+          &__name {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 .irm-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
-  gap: 8px;
+  gap: 12px;
 
   width: fit-content;
 
   @include l-menu;
+  @include s-menu;
 
   &__item {
     &__content {
@@ -66,14 +84,23 @@
   }
 }
 
-@mixin s-divider {
+@mixin l-divider {
   &.is-layout {
     &--column {
-      width: 75%;
+      width: 65%;
       min-height: 4px;
       padding: 0;
       margin: 16px 0;
       align-self: unset;
+    }
+  }
+}
+
+@mixin s-divider {
+  &.is-state {
+    &--align-self-center {
+      align-self: center;
+      margin: 16px;
     }
   }
 }
@@ -90,5 +117,6 @@
 
   background-color: #000;
 
+  @include l-divider;
   @include s-divider;
 }

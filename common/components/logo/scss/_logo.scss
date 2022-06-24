@@ -54,6 +54,7 @@
 
 // logo
 .irm-logo {
+  position: relative;
   z-index: 1;
 
   @include s-logo;

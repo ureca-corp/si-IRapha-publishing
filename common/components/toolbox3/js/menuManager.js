@@ -9,6 +9,7 @@ const SelectorClasses = {
 
 const MutationClasses = {
   dividerLayoutColumn: "is-layout--column",
+  dividerAlignSelfCenter: "is-state--align-self-center",
 };
 
 export class ToolboxMenusManager {
@@ -38,6 +39,21 @@ export class ToolboxMenusManager {
     return this._divider.classList.remove(MutationClasses.dividerLayoutColumn);
   }
 
+  _setDividerAlignSelfCenter(isAlignSelfCenter) {
+    if (isAlignSelfCenter)
+      return this._divider.classList.add(
+        MutationClasses.dividerAlignSelfCenter
+      );
+
+    return this._divider.classList.remove(
+      MutationClasses.dividerAlignSelfCenter
+    );
+  }
+
+  _setHideIconName(isHideIconName) {
+    this._menus.forEach((it) => it.setHideIconName(isHideIconName));
+  }
+
   // public
   setLayoutColumn(isLayoutColumn) {
     if (isLayoutColumn) {
@@ -47,5 +63,10 @@ export class ToolboxMenusManager {
 
     this._setDividerLayout(null);
     return this._setMenusLayout(null);
+  }
+
+  setHideIconName(isHideIconName) {
+    this._setHideIconName(isHideIconName);
+    this._setDividerAlignSelfCenter(isHideIconName);
   }
 }

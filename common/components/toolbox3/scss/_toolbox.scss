@@ -4,6 +4,7 @@
 @use "./menu" as menu;
 
 $bg: #35455e;
+$border-color: #eeeeee33;
 
 $toolbox: (
   width: 130px,
@@ -31,6 +32,17 @@ $toolbox: (
           height: map-get($toolbox, "min-size");
 
           justify-content: flex-start;
+
+          border-top: 1px;
+          border-bottom: 1px;
+          border-left: 0;
+          border-right: 0;
+          border-style: dashed;
+          border-color: $border-color;
+
+          box-shadow: 0px 0px 2px $border-color;
+
+          margin: 2px 0;
         }
 
         &__menus {
@@ -90,8 +102,6 @@ $toolbox: (
   &__logo {
     width: map-get($toolbox, "width");
     aspect-ratio: 16/10;
-
-    background-color: red;
   }
 
   &__drag-point {
@@ -103,7 +113,12 @@ $toolbox: (
 
     padding: 4px;
 
-    background-color: aqua;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: dashed;
+    border-color: $border-color;
+
+    box-shadow: 0px 0px 2px $border-color;
   }
 
   &__menus {
@@ -116,7 +131,5 @@ $toolbox: (
     padding: 0 24px;
 
     overflow: scroll;
-
-    background-color: blueviolet;
   }
 }

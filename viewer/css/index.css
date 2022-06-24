@@ -101,6 +101,7 @@ img {
 }
 
 .irm-logo {
+  position: relative;
   z-index: 1;
 }
 .irm-logo.is-state--shrink-vertical.irm-logo {
@@ -176,13 +177,14 @@ img {
   height: fit-content;
   aspect-ratio: 1;
   margin: 2px;
+  color: #fff;
   cursor: pointer;
 }
 
 .irm-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
-  gap: 8px;
+  gap: 12px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -190,6 +192,14 @@ img {
 .irm-toolbox__menu.is-layout--column-two {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
+}
+.irm-toolbox__menu.is-state--name-hide .irm-toolbox__menu__item__content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irm-toolbox__menu.is-state--name-hide .irm-toolbox__menu__item__content__name {
+  display: none;
 }
 .irm-toolbox__menu__item__content {
   position: relative;
@@ -233,11 +243,15 @@ img {
   background-color: #000;
 }
 .irm-toolbox__divider.is-layout--column {
-  width: 75%;
+  width: 65%;
   min-height: 4px;
   padding: 0;
   margin: 16px 0;
   align-self: unset;
+}
+.irm-toolbox__divider.is-state--align-self-center {
+  align-self: center;
+  margin: 16px;
 }
 
 .irm-toolbox {
@@ -262,6 +276,14 @@ img {
   width: 100%;
   height: 28px;
   justify-content: flex-start;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-left: 0;
+  border-right: 0;
+  border-style: dashed;
+  border-color: rgba(238, 238, 238, 0.2);
+  box-shadow: 0px 0px 2px rgba(238, 238, 238, 0.2);
+  margin: 2px 0;
 }
 .irm-toolbox.is-layout--column .irm-toolbox__menus {
   flex: 1;
@@ -289,7 +311,6 @@ img {
 .irm-toolbox__logo {
   width: 130px;
   aspect-ratio: 16/10;
-  background-color: red;
 }
 .irm-toolbox__drag-point {
   display: flex;
@@ -297,7 +318,11 @@ img {
   width: 28px;
   height: 100%;
   padding: 4px;
-  background-color: aqua;
+  border-left: 1px;
+  border-right: 1px;
+  border-style: dashed;
+  border-color: rgba(238, 238, 238, 0.2);
+  box-shadow: 0px 0px 2px rgba(238, 238, 238, 0.2);
 }
 .irm-toolbox__menus {
   display: flex;
@@ -306,7 +331,6 @@ img {
   height: 100%;
   padding: 0 24px;
   overflow: scroll;
-  background-color: blueviolet;
 }
 
 .irm-sticky-menu {

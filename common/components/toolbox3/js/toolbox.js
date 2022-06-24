@@ -42,6 +42,7 @@ export class Toolbox {
 
   _initMenusManager() {
     this._menusManager = new ToolboxMenusManager();
+    this._menusManager.setHideIconName(true);
   }
 
   _initStates() {
@@ -143,5 +144,9 @@ export class Toolbox {
 
   setExpand(isExpanded) {
     this._isExpanded$.next(isExpanded);
+  }
+
+  setHideIconName(isHideIconName) {
+    this._menusManager.setHideIconName(isHideIconName);
   }
 }
