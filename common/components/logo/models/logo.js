@@ -25,14 +25,21 @@ const ShrinkDirection = {
 export class Logo {
   constructor() {
     this._element = document.querySelector(ClassSelectors.Logo);
+    console.log("ok");
+    this._init();
   }
 
-  init() {
+  // private
+  _init() {
     this._initLogoContainer();
     this._initLogoImage();
     this._initViewerInfoPopup();
     this._initMaximizeBtn();
 
+    this._initStates();
+  }
+
+  _initStates() {
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
       this._handleShrinkChange(shrinkDirection)
@@ -41,7 +48,6 @@ export class Logo {
     this._shrinkDirection$ = shrinkDirection$;
   }
 
-  // private
   _initLogoContainer() {
     this._logoContainer = this._element.querySelector(
       ClassSelectors.LogoContainer

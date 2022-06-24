@@ -24,11 +24,87 @@
     <script defer type="module" src="/viewer/js/index.js"></script>
   </head>
   <body style="background-color: #999">
-    <!-- Toolbox -->
-    <div class="irm-toolbox is-layout--column">
-      <div class="irm-toolbox__logo"></div>
-      <div class="irm-toolbox__drag-point"></div>
-      <div class="irm-toolbox__menus"></div>
+    <!-- Sticky Menu  -->
+    <div class="irm-sticky-menu">
+      <div class="irm-sticky-menu__dropzone dropzone-top">
+        <!-- Toolbox -->
+        <div class="irm-toolbox" draggable="true">
+          <div class="irm-toolbox__logo">
+            <!-- 로고 영역 -->
+            <div class="irm-logo">
+              <div class="irm-logo__container">
+                <div class="irm-logo__wrapper">
+                  <img
+                    class="irm-logo__logo-image"
+                    src="/assets/images/logo.svg"
+                    alt="logo"
+                  />
+
+                  <div class="irm-viewer-info-popup">
+                    <!-- 뷰어 정보 팝업 -->
+                    <div class="irm-viewer-info">
+                      <h1 class="irm-viewer-info__title">
+                        I-Rapha View v2.0.1
+                      </h1>
+
+                      <address class="irm-viewer-info__content">
+                        <p class="irm-viewer-info__content__help">
+                          Help <b>bizinfo@irm.kr</b>
+                        </p>
+
+                        <div class="irm-viewer-info__content__divider"></div>
+
+                        <div>
+                          <div><b>IRM Inc.</b>8th-2, HongWoo Bldg,</div>
+                          <div>15, Yeoksam-ro 8-gil, Gangnam-gu,</div>
+                          <div>Seoul,</div>
+                          <div>06250, Republic of Korea</div>
+                        </div>
+                      </address>
+
+                      <div class="irm-viewer-info__footer">
+                        <img
+                          class="irm-viewer-info__footer__barcode"
+                          src="/assets/images/img_barcode.jpg"
+                          alt="barcode"
+                        />
+                        <img
+                          class="irm-viewer-info__footer__logo"
+                          src="/assets/images/logo.svg"
+                          alt="logo"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul class="irm-logo__menus">
+                  <!-- 최대화 버튼 -->
+                  <li class="irm-maximize__icon">
+                    <img
+                      class="irm-maximize__icon__image"
+                      src="/assets/icons/ic_fullscreen.svg"
+                      alt="toggle-fullscreen"
+                    />
+                  </li>
+
+                  <!-- 네트워크 연결 상태 -->
+                  <li class="irm-network-status" uk-tooltip="18msec">
+                    <div class="irm-network-status__icon is-state--green" />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="irm-toolbox__drag-point">
+            <span class="irm-toggle-expand" uk-icon="icon: expand"></span>
+          </div>
+          <div class="irm-toolbox__menus"></div>
+        </div>
+      </div>
+      <div class="irm-sticky-menu__dropzone dropzone-left"></div>
+      <div class="irm-sticky-menu__dropzone dropzone-right"></div>
+      <div class="irm-sticky-menu__dropzone dropzone-bottom"></div>
     </div>
   </body>
 </html>

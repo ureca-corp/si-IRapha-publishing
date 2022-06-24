@@ -1,15 +1,13 @@
 @use "../../../styles/common";
 @use "../../../themes/theme" as theme;
+@use "../../../components/toggle-expand-icon/style" as toggle-expand-icon;
 
 $bg: #35455e;
 
 $toolbox: (
   width: 130px,
   height: 80px,
-);
-
-$drag-point: (
-  size: 24px,
+  min-size: 28px,
 );
 
 @mixin l-toolbox {
@@ -23,16 +21,40 @@ $drag-point: (
 
       .irm-toolbox {
         &__logo {
+          width: 100%;
           height: fit-content;
         }
 
         &__drag-point {
           width: 100%;
-          height: map-get($drag-point, "size");
+          height: map-get($toolbox, "min-size");
         }
 
         &__menus {
           flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@mixin s-toolbox {
+  &.is-shrink {
+    &--horizontal {
+      &.irm-toolbox {
+        width: map-get($toolbox, "min-size");
+      }
+    }
+
+    &--vertical {
+      &.irm-toolbox {
+        height: map-get($toolbox, "min-size");
+      }
+
+      .irm-toolbox {
+        &__logo {
+          width: fit-content;
+          aspect-ratio: unset;
         }
       }
     }
@@ -49,6 +71,7 @@ $drag-point: (
   background-color: $bg;
 
   @include l-toolbox;
+  @include s-toolbox;
 
   &__logo {
     width: map-get($toolbox, "width");
@@ -58,8 +81,14 @@ $drag-point: (
   }
 
   &__drag-point {
-    width: map-get($drag-point, "size");
+    display: flex;
+    justify-content: center;
+
+    width: map-get($toolbox, "min-size");
     height: 100%;
+
+    padding: 4px;
+
     background-color: aqua;
   }
 

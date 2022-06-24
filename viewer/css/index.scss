@@ -1,2 +1,3 @@
 @use "../../common/components/logo/scss/logo";
-@use "../../common/components/toolbox3/style";
+@use "../../common/components/toolbox3/style" as toolbox;
+@use "../../common/components/sticky-menu/style" as sticky-menu;

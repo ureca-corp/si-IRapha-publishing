@@ -33,15 +33,20 @@
     // 좌우 축소 상태
     &--shrink-horizontal {
       &.irm-logo {
-        &__container {
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          width: 100%;
-        }
+        .irm-logo {
+          &__container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
 
-        .irm-logo__logo-image {
-          display: none;
+          &__menus {
+            flex-direction: column;
+          }
+
+          &__logo-image {
+            display: none;
+          }
         }
       }
     }
@@ -52,8 +57,8 @@
 .irm-logo {
   z-index: 1;
 
-  width: 130px;
-  height: 80px;
+  // width: 130px;
+  // height: 80px;
 
   @include s-logo;
 

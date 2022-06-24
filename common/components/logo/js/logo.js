@@ -3,7 +3,7 @@ import { ViewerInfoPopup } from "/common/components/viewer-info/index.js";
 
 const rx = rxjs;
 
-const ClassSelectors = {
+const SelectorClasses = {
   Logo: ".irm-logo",
   LogoContainer: ".irm-logo__container",
   LogoImage: ".irm-logo__logo-image",
@@ -11,7 +11,7 @@ const ClassSelectors = {
   MaximizeButton: ".irm-maximize__icon",
 };
 
-const Classes = {
+const MutationClasses = {
   UkButton: "uk-button-default",
   ShrinkVertical: "is-state--shrink-vertical",
   ShrinkHorizontal: "is-state--shrink-horizontal",
@@ -24,15 +24,21 @@ const ShrinkDirection = {
 
 export class Logo {
   constructor() {
-    this._element = document.querySelector(ClassSelectors.Logo);
+    this._element = document.querySelector(SelectorClasses.Logo);
+    this._init();
   }
 
-  init() {
+  // private
+  _init() {
     this._initLogoContainer();
     this._initLogoImage();
     this._initViewerInfoPopup();
     this._initMaximizeBtn();
 
+    this._initStates();
+  }
+
+  _initStates() {
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
       this._handleShrinkChange(shrinkDirection)
@@ -41,23 +47,22 @@ export class Logo {
     this._shrinkDirection$ = shrinkDirection$;
   }
 
-  // private
   _initLogoContainer() {
     this._logoContainer = this._element.querySelector(
-      ClassSelectors.LogoContainer
+      SelectorClasses.LogoContainer
     );
   }
 
   _initLogoImage() {
-    const logoImage = this._element.querySelector(ClassSelectors.LogoImage);
-    logoImage.classList.add(Classes.UkButton);
+    const logoImage = this._element.querySelector(SelectorClasses.LogoImage);
+    logoImage.classList.add(MutationClasses.UkButton);
 
     this._logoImage = logoImage;
   }
 
   _initViewerInfoPopup() {
     const viewerInfoPopup = new ViewerInfoPopup(
-      this._element.querySelector(ClassSelectors.ViewerInfoPopup)
+      this._element.querySelector(SelectorClasses.ViewerInfoPopup)
     );
     viewerInfoPopup.init();
 
@@ -66,7 +71,7 @@ export class Logo {
 
   _initMaximizeBtn() {
     const maximizeBtn = new MaximizeButton(
-      this._element.querySelector(ClassSelectors.MaximizeButton)
+      this._element.querySelector(SelectorClasses.MaximizeButton)
     );
     maximizeBtn.init();
 
@@ -75,19 +80,21 @@ export class Logo {
 
   // actions
   _shrinkVertical() {
-    this._element.classList.add(Classes.ShrinkVertical);
+    this._unshrinkHorizontal();
+    this._element.classList.add(MutationClasses.ShrinkVertical);
   }
 
   _unshrinkVertical() {
-    this._element.classList.remove(Classes.ShrinkVertical);
+    this._element.classList.remove(MutationClasses.ShrinkVertical);
   }
 
   _shrinkHorizontal() {
-    this._element.classList.add(Classes.ShrinkHorizontal);
+    this._unshrinkVertical();
+    this._element.classList.add(MutationClasses.ShrinkHorizontal);
   }
 
   _unshrinkHorizontal() {
-    this._element.classList.remove(Classes.ShrinkHorizontal);
+    this._element.classList.remove(MutationClasses.ShrinkHorizontal);
   }
 
   _removeAllShrink() {
@@ -118,7 +125,7 @@ export class Logo {
     return this._removeAllShrink();
   }
 
-  // props
+  // public
   setShrinkDirection(shrinkDirection) {
     this._shrinkDirection$.next(shrinkDirection);
   }

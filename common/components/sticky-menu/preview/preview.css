@@ -1,0 +1,68 @@
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css");
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+b {
+  font-weight: bold;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+.irm-sticky-menu {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.dropzone-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 48px;
+}
+
+.dropzone-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  min-width: 48px;
+  height: 100%;
+}
+
+.dropzone-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 48px;
+  height: 100%;
+}
+
+.dropzone-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 48px;
+}

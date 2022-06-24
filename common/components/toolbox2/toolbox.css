@@ -14,6 +14,13 @@ b {
   font-weight: bold;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
 .irm-maximize__icon {
   cursor: pointer;
 }
@@ -95,8 +102,6 @@ b {
 
 .irm-logo {
   z-index: 1;
-  width: 130px;
-  height: 80px;
 }
 .irm-logo.is-state--shrink-vertical.irm-logo {
   width: -webkit-fit-content;
@@ -113,11 +118,13 @@ b {
 .irm-logo.is-state--shrink-vertical.irm-logo .irm-logo__logo-image {
   display: none;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo__container {
+.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+}
+.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__menus {
+  flex-direction: column;
 }
 .irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__logo-image {
   display: none;

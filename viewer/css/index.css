@@ -14,6 +14,13 @@ b {
   font-weight: bold;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
 .irm-maximize__icon {
   cursor: pointer;
 }
@@ -95,8 +102,6 @@ b {
 
 .irm-logo {
   z-index: 1;
-  width: 130px;
-  height: 80px;
 }
 .irm-logo.is-state--shrink-vertical.irm-logo {
   width: -webkit-fit-content;
@@ -113,11 +118,13 @@ b {
 .irm-logo.is-state--shrink-vertical.irm-logo .irm-logo__logo-image {
   display: none;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo__container {
+.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+}
+.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__menus {
+  flex-direction: column;
 }
 .irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__logo-image {
   display: none;
@@ -162,6 +169,13 @@ b {
   aspect-ratio: 1;
 }
 
+.irm-toggle-expand {
+  width: 12px;
+  aspect-ratio: 1;
+  margin: 2px;
+  cursor: pointer;
+}
+
 .irm-toolbox {
   display: flex;
   width: 100%;
@@ -175,16 +189,29 @@ b {
   width: 130px;
 }
 .irm-toolbox.is-layout--column .irm-toolbox__logo {
+  width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
 .irm-toolbox.is-layout--column .irm-toolbox__drag-point {
   width: 100%;
-  height: 24px;
+  height: 28px;
 }
 .irm-toolbox.is-layout--column .irm-toolbox__menus {
   flex: 1;
+}
+.irm-toolbox.is-shrink--horizontal.irm-toolbox {
+  width: 28px;
+}
+.irm-toolbox.is-shrink--vertical.irm-toolbox {
+  height: 28px;
+}
+.irm-toolbox.is-shrink--vertical .irm-toolbox__logo {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  aspect-ratio: unset;
 }
 .irm-toolbox__logo {
   width: 130px;
@@ -192,12 +219,61 @@ b {
   background-color: red;
 }
 .irm-toolbox__drag-point {
-  width: 24px;
+  display: flex;
+  justify-content: center;
+  width: 28px;
   height: 100%;
+  padding: 4px;
   background-color: aqua;
 }
 .irm-toolbox__menus {
   width: 100%;
   height: 100%;
   background-color: blueviolet;
+}
+
+.irm-sticky-menu {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.dropzone-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 48px;
+}
+
+.dropzone-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  min-width: 48px;
+  height: 100%;
+}
+
+.dropzone-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 48px;
+  height: 100%;
+}
+
+.dropzone-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 48px;
 }
