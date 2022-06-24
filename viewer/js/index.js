@@ -1,6 +1,6 @@
 // import { Logo } from "/common/components/logo/models/index.js";
-import { Toolbox } from "/common/components/toolbox3/index.js";
-import { StickyMenu } from "/common/components/sticky-menu/index.js";
+import { Toolbox } from "../../common/components/toolbox3/index.js";
+import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 
 // const logo = new Logo();
 // logo.setShrinkDirection("horizontal");
