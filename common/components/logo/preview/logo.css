@@ -148,7 +148,7 @@ img {
   height: 100%;
   border: none;
   cursor: pointer;
-  transition: all 0.3 ease-in-out;
+  transition: all 0.1 ease-in-out;
 }
 .irm-logo__menus {
   position: relative;

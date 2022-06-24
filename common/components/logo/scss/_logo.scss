@@ -1,5 +1,4 @@
 @use "../../../styles/common";
-@use "../../../themes/colors" as colors;
 @use "./maximize-button";
 @use "./network-status";
 @use "../../viewer-info/style";
@@ -57,9 +56,6 @@
 .irm-logo {
   z-index: 1;
 
-  // width: 130px;
-  // height: 80px;
-
   @include s-logo;
 
   &__container {
@@ -88,7 +84,7 @@
 
     cursor: pointer;
 
-    transition: all 0.3 ease-in-out;
+    transition: all 0.1 ease-in-out;
   }
 
   &__menus {

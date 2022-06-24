@@ -1,10 +1,12 @@
 import { Logo } from "/common/components/logo/index.js";
 import { ToggleExpandIcon } from "/common/components/toggle-expand-icon/index.js";
+import { ToolboxMenusManager } from "./menuManager.js";
 
 const rx = rxjs;
 
 const SelectorClasses = {
   Toolbox: ".irm-toolbox",
+  Menu: ".irm-toolbox__menu",
 };
 
 const MutationClasses = {
@@ -23,19 +25,10 @@ export class Toolbox {
     this._element = document.querySelector(SelectorClasses.Toolbox);
     this._initLogo();
     this._initToggleExpandButton();
+    this._initMenusManager();
 
     this._initStates();
-
-    //
-    this._element.addEventListener("mouseover", () => {
-      if (this._isExpanded$.getValue()) return this._resetShrinkState();
-    });
-
-    this._element.addEventListener("mouseout", () => {
-      const isExpanded = this._isExpanded$.getValue();
-
-      if (isExpanded) return this.setExpand(isExpanded);
-    });
+    this._initMouseEvent();
   }
 
   // private
@@ -44,15 +37,11 @@ export class Toolbox {
   }
 
   _initToggleExpandButton() {
-    this._toggleExpandButton = new ToggleExpandIcon(() => {
-      const old = this._isExpanded$.getValue();
-      this.setExpand(!old);
-    });
+    this._toggleExpandButton = new ToggleExpandIcon(() => this._toggleExpand());
+  }
 
-    // rx.fromEvent(this._toggleExpandButton, "click").subscribe((e) => {
-    //   const old = this._isExpanded$.getValue();
-    //   this._isExpanded$.next(!old);
-    // });
+  _initMenusManager() {
+    this._menusManager = new ToolboxMenusManager();
   }
 
   _initStates() {
@@ -73,6 +62,20 @@ export class Toolbox {
     this._shrinkDirection$ = shrinkDirection$;
   }
 
+  _initMouseEvent() {
+    // 마우스 호버 시 임시로 보이기
+    rx.fromEvent(this._element, "mouseover").subscribe(() => {
+      if (this._isExpanded$.getValue()) return this._resetShrinkState();
+    });
+
+    // 마우스 호버 벗어나면 원상태 복귀
+    rx.fromEvent(this._element, "mouseout").subscribe(() => {
+      const isExpanded = this._isExpanded$.getValue();
+
+      if (isExpanded) return this.setExpand(isExpanded);
+    });
+  }
+
   _setShrinkDirection(shrinkDirection) {
     this._shrinkDirection$.next(shrinkDirection);
   }
@@ -89,16 +92,24 @@ export class Toolbox {
   }
 
   _resetShrinkState() {
+    this._logo.setShrinkDirection(null);
     this._element.classList.remove(MutationClasses.ShrinkVertical);
     this._element.classList.remove(MutationClasses.ShrinkHorizontal);
+  }
+
+  _toggleExpand() {
+    const old = this._isExpanded$.getValue();
+    this.setExpand(!old);
   }
 
   // handler
   _handleLayoutChange(isLayoutColumn) {
     if (isLayoutColumn) {
+      this._menusManager.setLayoutColumn(true);
       return this._element.classList.add(MutationClasses.LayoutColumn);
     }
 
+    this._menusManager.setLayoutColumn(null);
     return this._element.classList.remove(MutationClasses.LayoutColumn);
   }
 

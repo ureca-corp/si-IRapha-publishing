@@ -1,0 +1,94 @@
+@use "../../../styles/common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/typography" as typography;
+@use "../../../themes/shape" as shapes;
+
+@mixin l-menu {
+  &.is-layout {
+    // 세로 2 배치.
+    &--column-two {
+      grid-auto-flow: unset;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.irm-toolbox__menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+
+  width: fit-content;
+
+  @include l-menu;
+
+  &__item {
+    &__content {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+
+      width: 50px;
+
+      border: none;
+
+      &__icon {
+        border-radius: shapes.$small;
+
+        width: 36px;
+        aspect-ratio: 1;
+
+        overflow: hidden;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &__name {
+        @include typography.label-small;
+        color: colors.$font-white;
+
+        text-align: center;
+
+        width: 100%;
+        white-space: nowrap;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+@mixin s-divider {
+  &.is-layout {
+    &--column {
+      width: 75%;
+      min-height: 4px;
+      padding: 0;
+      margin: 16px 0;
+      align-self: unset;
+    }
+  }
+}
+
+.irm-toolbox__divider {
+  border-radius: 36px;
+  align-self: flex-start;
+
+  min-width: 4px;
+  height: auto;
+
+  padding: 16px 0;
+  margin: 14px 16px 0 16px;
+
+  background-color: #000;
+
+  @include s-divider;
+}

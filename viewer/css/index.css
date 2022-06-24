@@ -148,7 +148,7 @@ img {
   height: 100%;
   border: none;
   cursor: pointer;
-  transition: all 0.3 ease-in-out;
+  transition: all 0.1 ease-in-out;
 }
 .irm-logo__menus {
   position: relative;
@@ -171,16 +171,80 @@ img {
 
 .irm-toggle-expand {
   width: 12px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   aspect-ratio: 1;
   margin: 2px;
   cursor: pointer;
+}
+
+.irm-toolbox__menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irm-toolbox__menu.is-layout--column-two {
+  grid-auto-flow: unset;
+  grid-template-columns: repeat(2, 1fr);
+}
+.irm-toolbox__menu__item__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 50px;
+  border: none;
+}
+.irm-toolbox__menu__item__content__icon {
+  border-radius: 4px;
+  width: 36px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.irm-toolbox__menu__item__content__icon img {
+  width: 100%;
+  height: 100%;
+}
+.irm-toolbox__menu__item__content__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.irm-toolbox__divider {
+  border-radius: 36px;
+  align-self: flex-start;
+  min-width: 4px;
+  height: auto;
+  padding: 16px 0;
+  margin: 14px 16px 0 16px;
+  background-color: #000;
+}
+.irm-toolbox__divider.is-layout--column {
+  width: 75%;
+  min-height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  align-self: unset;
 }
 
 .irm-toolbox {
   display: flex;
   width: 100%;
   height: 80px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   background-color: #35455e;
 }
 .irm-toolbox.is-layout--column.irm-toolbox {
@@ -197,12 +261,18 @@ img {
 .irm-toolbox.is-layout--column .irm-toolbox__drag-point {
   width: 100%;
   height: 28px;
+  justify-content: flex-start;
 }
 .irm-toolbox.is-layout--column .irm-toolbox__menus {
   flex: 1;
+  flex-direction: column;
+  padding: 24px 0;
 }
 .irm-toolbox.is-shrink--horizontal.irm-toolbox {
   width: 28px;
+}
+.irm-toolbox.is-shrink--horizontal .irm-toolbox__menus {
+  display: none;
 }
 .irm-toolbox.is-shrink--vertical.irm-toolbox {
   height: 28px;
@@ -212,6 +282,9 @@ img {
   width: -moz-fit-content;
   width: fit-content;
   aspect-ratio: unset;
+}
+.irm-toolbox.is-shrink--vertical .irm-toolbox__menus {
+  display: none;
 }
 .irm-toolbox__logo {
   width: 130px;
@@ -227,8 +300,12 @@ img {
   background-color: aqua;
 }
 .irm-toolbox__menus {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0 24px;
+  overflow: scroll;
   background-color: blueviolet;
 }
 
