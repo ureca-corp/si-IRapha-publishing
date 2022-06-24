@@ -1,5 +1,5 @@
-import { Logo } from "/common/components/logo/index.js";
-import { ToggleExpandIcon } from "/common/components/toggle-expand-icon/index.js";
+import { Logo } from "../../logo/index.js";
+import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
 import { ToolboxMenusManager } from "./menuManager.js";
 
 const rx = rxjs;

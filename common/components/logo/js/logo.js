@@ -1,5 +1,5 @@
 import { MaximizeButton } from "./maximize-button.js";
-import { ViewerInfoPopup } from "/common/components/viewer-info/index.js";
+import { ViewerInfoPopup } from "../../viewer-info/index.js";
 
 const rx = rxjs;
 
