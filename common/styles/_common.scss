@@ -21,3 +21,18 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
 }
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background-color: #ffffff33;
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
