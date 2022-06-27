@@ -103,9 +103,6 @@ export class StickyMenu {
         isVertical: true,
       });
 
-      // const menus = e.target.querySelectorAll("[draggable='true']");
-      // menus.forEach((it) => (it.style.flexDirection = "column"));
-
       return;
     }
 
@@ -114,9 +111,6 @@ export class StickyMenu {
       this._dropSuccessCallback({
         isVertical: false,
       });
-
-      // const menus = e.target.querySelectorAll("[draggable='true']");
-      // menus.forEach((it) => (it.style.flexDirection = "row"));
 
       return;
     }
