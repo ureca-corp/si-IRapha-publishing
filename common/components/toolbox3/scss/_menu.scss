@@ -17,7 +17,7 @@
   &.is-state {
     // 아이콘 제목 숨기기
     &--name-hide {
-      .irm-toolbox__menu {
+      .irapha-toolbox__menu {
         &__item__content {
           width: fit-content;
 
@@ -30,7 +30,7 @@
   }
 }
 
-.irm-toolbox__menu {
+.irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
   gap: 12px;
@@ -105,7 +105,7 @@
   }
 }
 
-.irm-toolbox__divider {
+.irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
 

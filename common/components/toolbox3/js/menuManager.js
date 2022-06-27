@@ -3,8 +3,8 @@ import { ToolboxMenu } from "./menu.js";
 const rx = rxjs;
 
 const SelectorClasses = {
-  Menu: ".irm-toolbox__menu",
-  Divider: ".irm-toolbox__divider",
+  Menu: ".irapha-toolbox__menu",
+  Divider: ".irapha-toolbox__divider",
 };
 
 const MutationClasses = {
@@ -24,7 +24,7 @@ export class ToolboxMenusManager {
     );
     this._menus = menus;
 
-    this._divider = document.querySelector(".irm-toolbox__divider");
+    this._divider = document.querySelector(SelectorClasses.Divider);
   }
 
   _setMenusLayout(layout) {

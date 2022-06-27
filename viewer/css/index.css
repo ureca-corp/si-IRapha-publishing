@@ -36,44 +36,44 @@ img {
   background-color: transparent;
 }
 
-.irm-maximize__icon {
+.irapha-maximize__icon {
   cursor: pointer;
 }
-.irm-maximize__icon__image {
+.irapha-maximize__icon__image {
   position: absolute;
   width: 100%;
   aspect-ratio: 1;
 }
 
-.irm-network-status {
+.irapha-network-status {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4px;
 }
-.irm-network-status__icon {
+.irapha-network-status__icon {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
 }
-.irm-network-status__icon.is-state--red {
+.irapha-network-status__icon.is-state--red {
   background-color: red;
 }
-.irm-network-status__icon.is-state--yellow {
+.irapha-network-status__icon.is-state--yellow {
   background-color: yellow;
 }
-.irm-network-status__icon.is-state--green {
+.irapha-network-status__icon.is-state--green {
   background-color: green;
 }
 
-.irm-viewer-info {
+.irapha-viewer-info {
   width: 280px;
   aspect-ratio: 0.912;
   padding: 20px;
   background-color: #000;
   border-radius: 8px;
 }
-.irm-viewer-info__title {
+.irapha-viewer-info__title {
   font-size: 16px;
   line-height: 22px;
   font-weight: 700;
@@ -82,7 +82,7 @@ img {
   justify-content: center;
   align-items: center;
 }
-.irm-viewer-info__content {
+.irapha-viewer-info__content {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -91,66 +91,66 @@ img {
   flex-direction: column;
   margin-top: 16px;
 }
-.irm-viewer-info__content__help {
+.irapha-viewer-info__content__help {
   margin-top: 8px;
 }
-.irm-viewer-info__content__divider {
+.irapha-viewer-info__content__divider {
   width: 100%;
   height: 1px;
   background-color: rgba(238, 238, 238, 0.2);
   margin: 8px 0;
 }
-.irm-viewer-info__footer {
+.irapha-viewer-info__footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
 }
-.irm-viewer-info__footer__barcode {
+.irapha-viewer-info__footer__barcode {
   width: 100%;
 }
-.irm-viewer-info__footer__logo {
+.irapha-viewer-info__footer__logo {
   width: 40%;
   aspect-ratio: 16/9;
   margin-top: 8px;
 }
 
-.irm-logo {
+.irapha-logo {
   position: relative;
   z-index: 1;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo {
+.irapha-logo.is-state--shrink-vertical.irapha-logo {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 30px;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo__container {
+.irapha-logo.is-state--shrink-vertical.irapha-logo__container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-start;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo .irm-logo__logo-image {
+.irapha-logo.is-state--shrink-vertical.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__container {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__menus {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__menus {
   flex-direction: column;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__logo-image {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
-.irm-logo__container {
+.irapha-logo__container {
   position: relative;
   height: 100%;
   aspect-ratio: 16/10;
 }
-.irm-logo__wrapper {
+.irapha-logo__wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -158,7 +158,7 @@ img {
   width: 82%;
   height: 100%;
 }
-.irm-logo__logo-image {
+.irapha-logo__logo-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -166,26 +166,26 @@ img {
   cursor: pointer;
   transition: all 0.1 ease-in-out;
 }
-.irm-logo__menus {
+.irapha-logo__menus {
   position: relative;
   z-index: 2;
   display: flex;
   padding: 4px;
 }
 
-.irm-maximize__icon {
+.irapha-maximize__icon {
   position: relative;
   width: 20px;
   aspect-ratio: 1;
 }
 
-.irm-network-status {
+.irapha-network-status {
   position: relative;
   width: 20px;
   aspect-ratio: 1;
 }
 
-.irm-toggle-expand {
+.irapha-toggle-expand {
   width: 12px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -196,7 +196,7 @@ img {
   cursor: pointer;
 }
 
-.irm-toolbox__menu {
+.irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
   gap: 12px;
@@ -204,19 +204,19 @@ img {
   width: -moz-fit-content;
   width: fit-content;
 }
-.irm-toolbox__menu.is-layout--column-two {
+.irapha-toolbox__menu.is-layout--column-two {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irm-toolbox__menu.is-state--name-hide .irm-toolbox__menu__item__content {
+.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
-.irm-toolbox__menu.is-state--name-hide .irm-toolbox__menu__item__content__name {
+.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content__name {
   display: none;
 }
-.irm-toolbox__menu__item__content {
+.irapha-toolbox__menu__item__content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -225,18 +225,18 @@ img {
   width: 50px;
   border: none;
 }
-.irm-toolbox__menu__item__content__icon {
+.irapha-toolbox__menu__item__content__icon {
   border-radius: 4px;
   width: 36px;
   aspect-ratio: 1;
   overflow: hidden;
   cursor: pointer;
 }
-.irm-toolbox__menu__item__content__icon img {
+.irapha-toolbox__menu__item__content__icon img {
   width: 100%;
   height: 100%;
 }
-.irm-toolbox__menu__item__content__name {
+.irapha-toolbox__menu__item__content__name {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -248,7 +248,7 @@ img {
   text-overflow: ellipsis;
 }
 
-.irm-toolbox__divider {
+.irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
   min-width: 4px;
@@ -257,37 +257,37 @@ img {
   margin: 14px 16px 0 16px;
   background-color: #000;
 }
-.irm-toolbox__divider.is-layout--column {
+.irapha-toolbox__divider.is-layout--column {
   width: 65%;
   min-height: 4px;
   padding: 0;
   margin: 16px 0;
   align-self: unset;
 }
-.irm-toolbox__divider.is-state--align-self-center {
+.irapha-toolbox__divider.is-state--align-self-center {
   align-self: center;
   margin: 16px;
 }
 
-.irm-toolbox {
+.irapha-toolbox {
   display: flex;
   width: 100%;
   height: 80px;
   transition: all 0.2s ease-in-out;
   background-color: #35455e;
 }
-.irm-toolbox.is-layout--column.irm-toolbox {
+.irapha-toolbox.is-layout--column.irapha-toolbox {
   flex-direction: column;
   height: 100%;
   width: 130px;
 }
-.irm-toolbox.is-layout--column .irm-toolbox__logo {
+.irapha-toolbox.is-layout--column .irapha-toolbox__logo {
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
-.irm-toolbox.is-layout--column .irm-toolbox__drag-point {
+.irapha-toolbox.is-layout--column .irapha-toolbox__drag-point {
   width: 100%;
   height: 28px;
   justify-content: flex-start;
@@ -300,34 +300,34 @@ img {
   box-shadow: 0px 0px 2px rgba(238, 238, 238, 0.2);
   margin: 2px 0;
 }
-.irm-toolbox.is-layout--column .irm-toolbox__menus {
+.irapha-toolbox.is-layout--column .irapha-toolbox__menus {
   flex: 1;
   flex-direction: column;
   padding: 24px 0;
 }
-.irm-toolbox.is-shrink--horizontal.irm-toolbox {
+.irapha-toolbox.is-shrink--horizontal.irapha-toolbox {
   width: 28px;
 }
-.irm-toolbox.is-shrink--horizontal .irm-toolbox__menus {
+.irapha-toolbox.is-shrink--horizontal .irapha-toolbox__menus {
   display: none;
 }
-.irm-toolbox.is-shrink--vertical.irm-toolbox {
+.irapha-toolbox.is-shrink--vertical.irapha-toolbox {
   height: 28px;
 }
-.irm-toolbox.is-shrink--vertical .irm-toolbox__logo {
+.irapha-toolbox.is-shrink--vertical .irapha-toolbox__logo {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   aspect-ratio: unset;
 }
-.irm-toolbox.is-shrink--vertical .irm-toolbox__menus {
+.irapha-toolbox.is-shrink--vertical .irapha-toolbox__menus {
   display: none;
 }
-.irm-toolbox__logo {
+.irapha-toolbox__logo {
   width: 130px;
   aspect-ratio: 16/10;
 }
-.irm-toolbox__drag-point {
+.irapha-toolbox__drag-point {
   display: flex;
   justify-content: center;
   width: 28px;
@@ -339,7 +339,7 @@ img {
   border-color: rgba(238, 238, 238, 0.2);
   box-shadow: 0px 0px 2px rgba(238, 238, 238, 0.2);
 }
-.irm-toolbox__menus {
+.irapha-toolbox__menus {
   display: flex;
   align-items: center;
   width: 100%;
@@ -349,7 +349,7 @@ img {
   overflow-x: auto;
 }
 
-.irm-sticky-menu {
+.irapha-sticky-menu {
   position: relative;
   width: 100%;
   height: 100%;

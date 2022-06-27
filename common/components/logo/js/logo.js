@@ -4,11 +4,11 @@ import { ViewerInfoPopup } from "../../viewer-info/index.js";
 const rx = rxjs;
 
 const SelectorClasses = {
-  Logo: ".irm-logo",
-  LogoContainer: ".irm-logo__container",
-  LogoImage: ".irm-logo__logo-image",
-  ViewerInfoPopup: ".irm-viewer-info-popup",
-  MaximizeButton: ".irm-maximize__icon",
+  Logo: ".irapha-logo",
+  LogoContainer: ".irapha-logo__container",
+  LogoImage: ".irapha-logo__logo-image",
+  ViewerInfoPopup: ".irapha-viewer-info-popup",
+  MaximizeButton: ".irapha-maximize__icon",
 };
 
 const MutationClasses = {

@@ -1,7 +1,7 @@
 const rx = rxjs;
 
 const SelectorClasses = {
-  ToggleExpandButton: ".irm-toggle-expand",
+  ToggleExpandButton: ".irapha-toggle-expand",
 };
 
 export class ToggleExpandIcon {

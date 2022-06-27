@@ -5,8 +5,8 @@ import { ToolboxMenusManager } from "./menuManager.js";
 const rx = rxjs;
 
 const SelectorClasses = {
-  Toolbox: ".irm-toolbox",
-  Menu: ".irm-toolbox__menu",
+  Toolbox: ".irapha-toolbox",
+  Menu: ".irapha-toolbox__menu",
 };
 
 const MutationClasses = {

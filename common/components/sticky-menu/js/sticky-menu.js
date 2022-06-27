@@ -1,12 +1,12 @@
 const rx = rxjs;
 
 const SelectorClasses = {
-  StickyMenu: ".irm-sticky-menu",
-  DropZone: ".irm-sticky-menu__dropzone",
+  StickyMenu: ".irapha-sticky-menu",
+  DropZone: ".irapha-sticky-menu__dropzone",
 };
 
 const ClassNames = {
-  DropZone: "irm-sticky-menu__dropzone",
+  DropZone: "irapha-sticky-menu__dropzone",
 };
 
 export class StickyMenu {

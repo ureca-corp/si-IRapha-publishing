@@ -14,7 +14,7 @@
   &.is-state {
     // 상하 축소 상태
     &--shrink-vertical {
-      &.irm-logo {
+      &.irapha-logo {
         width: fit-content;
         height: 30px;
 
@@ -23,7 +23,7 @@
           align-self: flex-start;
         }
 
-        .irm-logo__logo-image {
+        .irapha-logo__logo-image {
           display: none;
         }
       }
@@ -31,8 +31,8 @@
 
     // 좌우 축소 상태
     &--shrink-horizontal {
-      &.irm-logo {
-        .irm-logo {
+      &.irapha-logo {
+        .irapha-logo {
           &__container {
             display: flex;
             justify-content: flex-start;
@@ -53,7 +53,7 @@
 }
 
 // logo
-.irm-logo {
+.irapha-logo {
   position: relative;
   z-index: 1;
 
@@ -98,10 +98,10 @@
 }
 
 // components
-.irm-maximize__icon {
+.irapha-maximize__icon {
   @include logo-icon-wrapper;
 }
 
-.irm-network-status {
+.irapha-network-status {
   @include logo-icon-wrapper;
 }

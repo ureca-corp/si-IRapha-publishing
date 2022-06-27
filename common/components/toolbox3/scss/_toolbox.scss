@@ -15,13 +15,13 @@ $toolbox: (
 @mixin l-toolbox {
   &.is-layout {
     &--column {
-      &.irm-toolbox {
+      &.irapha-toolbox {
         flex-direction: column;
         height: 100%;
         width: map-get($toolbox, "width");
       }
 
-      .irm-toolbox {
+      .irapha-toolbox {
         &__logo {
           width: 100%;
           height: fit-content;
@@ -58,10 +58,10 @@ $toolbox: (
 @mixin s-toolbox {
   &.is-shrink {
     &--horizontal {
-      &.irm-toolbox {
+      &.irapha-toolbox {
         width: map-get($toolbox, "min-size");
       }
-      .irm-toolbox {
+      .irapha-toolbox {
         &__menus {
           display: none;
         }
@@ -69,11 +69,11 @@ $toolbox: (
     }
 
     &--vertical {
-      &.irm-toolbox {
+      &.irapha-toolbox {
         height: map-get($toolbox, "min-size");
       }
 
-      .irm-toolbox {
+      .irapha-toolbox {
         &__logo {
           width: fit-content;
           aspect-ratio: unset;
@@ -87,7 +87,7 @@ $toolbox: (
   }
 }
 
-.irm-toolbox {
+.irapha-toolbox {
   display: flex;
   width: 100%;
   height: map-get($toolbox, "height");

@@ -36,44 +36,44 @@ img {
   background-color: transparent;
 }
 
-.irm-maximize__icon {
+.irapha-maximize__icon {
   cursor: pointer;
 }
-.irm-maximize__icon__image {
+.irapha-maximize__icon__image {
   position: absolute;
   width: 100%;
   aspect-ratio: 1;
 }
 
-.irm-network-status {
+.irapha-network-status {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4px;
 }
-.irm-network-status__icon {
+.irapha-network-status__icon {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
 }
-.irm-network-status__icon.is-state--red {
+.irapha-network-status__icon.is-state--red {
   background-color: red;
 }
-.irm-network-status__icon.is-state--yellow {
+.irapha-network-status__icon.is-state--yellow {
   background-color: yellow;
 }
-.irm-network-status__icon.is-state--green {
+.irapha-network-status__icon.is-state--green {
   background-color: green;
 }
 
-.irm-viewer-info {
+.irapha-viewer-info {
   width: 280px;
   aspect-ratio: 0.912;
   padding: 20px;
   background-color: #000;
   border-radius: 8px;
 }
-.irm-viewer-info__title {
+.irapha-viewer-info__title {
   font-size: 16px;
   line-height: 22px;
   font-weight: 700;
@@ -82,7 +82,7 @@ img {
   justify-content: center;
   align-items: center;
 }
-.irm-viewer-info__content {
+.irapha-viewer-info__content {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -91,66 +91,66 @@ img {
   flex-direction: column;
   margin-top: 16px;
 }
-.irm-viewer-info__content__help {
+.irapha-viewer-info__content__help {
   margin-top: 8px;
 }
-.irm-viewer-info__content__divider {
+.irapha-viewer-info__content__divider {
   width: 100%;
   height: 1px;
   background-color: rgba(238, 238, 238, 0.2);
   margin: 8px 0;
 }
-.irm-viewer-info__footer {
+.irapha-viewer-info__footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
 }
-.irm-viewer-info__footer__barcode {
+.irapha-viewer-info__footer__barcode {
   width: 100%;
 }
-.irm-viewer-info__footer__logo {
+.irapha-viewer-info__footer__logo {
   width: 40%;
   aspect-ratio: 16/9;
   margin-top: 8px;
 }
 
-.irm-logo {
+.irapha-logo {
   position: relative;
   z-index: 1;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo {
+.irapha-logo.is-state--shrink-vertical.irapha-logo {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 30px;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo__container {
+.irapha-logo.is-state--shrink-vertical.irapha-logo__container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-start;
 }
-.irm-logo.is-state--shrink-vertical.irm-logo .irm-logo__logo-image {
+.irapha-logo.is-state--shrink-vertical.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__container {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__menus {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__menus {
   flex-direction: column;
 }
-.irm-logo.is-state--shrink-horizontal.irm-logo .irm-logo__logo-image {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
-.irm-logo__container {
+.irapha-logo__container {
   position: relative;
   height: 100%;
   aspect-ratio: 16/10;
 }
-.irm-logo__wrapper {
+.irapha-logo__wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -158,7 +158,7 @@ img {
   width: 82%;
   height: 100%;
 }
-.irm-logo__logo-image {
+.irapha-logo__logo-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -166,20 +166,20 @@ img {
   cursor: pointer;
   transition: all 0.1 ease-in-out;
 }
-.irm-logo__menus {
+.irapha-logo__menus {
   position: relative;
   z-index: 2;
   display: flex;
   padding: 4px;
 }
 
-.irm-maximize__icon {
+.irapha-maximize__icon {
   position: relative;
   width: 20px;
   aspect-ratio: 1;
 }
 
-.irm-network-status {
+.irapha-network-status {
   position: relative;
   width: 20px;
   aspect-ratio: 1;
