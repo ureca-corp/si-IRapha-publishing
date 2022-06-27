@@ -1,6 +1,6 @@
 import { Logo } from "../../logo/index.js";
 import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
-import { ToolboxMenusManager } from "./menuManager.js";
+import { ToolboxMenusManager } from "./menu-manager.js";
 
 const rx = rxjs;
 

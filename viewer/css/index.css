@@ -8500,6 +8500,12 @@ img {
   background-color: transparent;
 }
 
+.uk-drop {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .irapha-maximize__icon {
   cursor: pointer;
 }
@@ -8660,6 +8666,19 @@ img {
   cursor: pointer;
 }
 
+.irapha-menu-icon {
+  border-radius: 4px;
+  width: 36px;
+  min-width: 24px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.irapha-menu-icon img {
+  width: 100%;
+  height: 100%;
+}
+
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
@@ -8689,27 +8708,16 @@ img {
   width: 50px;
   border: none;
 }
-.irapha-toolbox__menu__item__content__icon {
-  border-radius: 4px;
-  width: 36px;
-  aspect-ratio: 1;
-  overflow: hidden;
-  cursor: pointer;
-}
-.irapha-toolbox__menu__item__content__icon img {
-  width: 100%;
-  height: 100%;
-}
 .irapha-toolbox__menu__item__content__name {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
-  color: #fff;
   text-align: center;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fff;
 }
 
 .irapha-toolbox__divider {
@@ -8731,6 +8739,42 @@ img {
 .irapha-toolbox__divider.is-state--align-self-center {
   align-self: center;
   margin: 16px;
+}
+
+.irapha-menu__dropdown__container {
+  background-color: rgba(238, 238, 238, 0.9215686275);
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px #666;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 12px 16px;
+}
+.irapha-menu__dropdown__container__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.irapha-menu__dropdown__item__dl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.irapha-menu__dropdown__item__dl:hover {
+  opacity: 0.6;
+}
+.irapha-menu__dropdown__item__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
 }
 
 .irapha-toolbox {
@@ -8809,8 +8853,7 @@ img {
   width: 100%;
   height: 100%;
   padding: 0 24px;
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow: overlay;
 }
 
 .irapha-sticky-menu {

@@ -16,3 +16,9 @@ const stickyMenu = new StickyMenu(({ isVertical }) => {
     toolbox.setLayoutColumn(false);
   }
 });
+
+//
+
+// const virtualLayoutMenu2 = new Popover(
+//   document.querySelector("#irapha-menu__vl2")
+// );

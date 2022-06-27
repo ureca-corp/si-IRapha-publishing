@@ -103,7 +103,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Worklist"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Worklist"
@@ -119,7 +119,7 @@
               <!-- Report -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Report">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Report"
@@ -138,7 +138,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Prev Study"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Prev Study"
@@ -157,7 +157,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Next Study"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Next Study"
@@ -171,17 +171,100 @@
               </li>
 
               <!-- Virtual Layout -->
-              <li class="irapha-toolbox__menu__item">
+              <li id="irapha-menu__vl" class="irapha-toolbox__menu__item">
                 <dl
                   class="irapha-toolbox__menu__item__content"
                   title="Virtual Layout"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img src="https://dummyimage.com/36x36/000/fff" alt="VL" />
                   </dt>
 
                   <dd class="irapha-toolbox__menu__item__content__name">VL</dd>
                 </dl>
+
+                <div
+                  id="irapha-menu__vl__dropdown"
+                  class="irapha-menu__dropdown"
+                >
+                  <div class="irapha-menu__dropdown__container">
+                    <ul class="irapha-menu__dropdown__container__inner">
+                      <!-- Virtual Layout - Normal -->
+                      <li
+                        id="irapha-menu__vl__layout-normal"
+                        class="irapha-menu__dropdown__item"
+                      >
+                        <dl
+                          class="irapha-menu__dropdown__item__dl"
+                          title="Normal Layout"
+                        >
+                          <dt class="irapha-menu-icon">
+                            <img
+                              src="https://dummyimage.com/36x36/000/fff"
+                              alt="Normal Layout"
+                            />
+                          </dt>
+
+                          <dd class="irapha-menu__dropdown__item__name">
+                            Normal
+                          </dd>
+                        </dl>
+
+                        <!-- Test Sub Tree, 나중에 지울 태그 -->
+                        <div id="irapha-menu__vl__layout-normal__dropdown">
+                          <div class="uk-card uk-card-body uk-card-default">
+                            test sub tree
+                          </div>
+                        </div>
+                        <!-- /Test Sub Tree, 나중에 지울 태그 -->
+                      </li>
+
+                      <!-- Virtual Layout - Vertical -->
+                      <li
+                        id="irapha-menu__vl__layout-vertical"
+                        class="irapha-menu__dropdown__item"
+                      >
+                        <dl
+                          class="irapha-menu__dropdown__item__dl"
+                          title="Vertical Layout"
+                        >
+                          <dt class="irapha-menu-icon">
+                            <img
+                              src="https://dummyimage.com/36x36/000/fff"
+                              alt="Vertical Layout"
+                            />
+                          </dt>
+
+                          <dd class="irapha-menu__dropdown__item__name">
+                            Vertical
+                          </dd>
+                        </dl>
+                      </li>
+
+                      <!-- Virtual Layout - Horizontal -->
+                      <li
+                        id="irapha-menu__vl__layout-horizontal"
+                        class="irapha-menu__dropdown__item"
+                      >
+                        <dl
+                          class="irapha-menu__dropdown__item__dl"
+                          title="Horizontal Layout"
+                        >
+                          <dt class="irapha-menu-icon">
+                            <img
+                              src="https://dummyimage.com/36x36/000/fff"
+                              alt="Horizontal Layout"
+                            />
+                          </dt>
+
+                          <dd class="irapha-menu__dropdown__item__name">
+                            Horizontal
+                          </dd>
+                        </dl>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </li>
 
               <!-- Window Mode -->
@@ -190,7 +273,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Window Mode"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Mode"
@@ -209,7 +292,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Display Layout"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Layout"
@@ -228,7 +311,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Combine Series"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Navi"
@@ -247,7 +330,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Apply to All"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Cine"
@@ -266,7 +349,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Display Info"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Info"
@@ -291,7 +374,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Key Image Note"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Key Image Note"
@@ -310,7 +393,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Selector"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Selector"
@@ -329,7 +412,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Window Level"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Window Level"
@@ -345,7 +428,7 @@
               <!-- Zoom -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Zoom">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Zoom"
@@ -361,7 +444,7 @@
               <!-- Panning -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Panning">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Panning"
@@ -377,7 +460,7 @@
               <!-- Fit -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Fit">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img src="https://dummyimage.com/36x36/000/fff" alt="Fit" />
                   </dt>
 
@@ -391,7 +474,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Rotate Left"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Rotate Left"
@@ -410,7 +493,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Rotate Right"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Rotate Right"
@@ -426,7 +509,7 @@
               <!-- Length -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Length">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Length"
@@ -442,7 +525,7 @@
               <!-- Angle -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Angle">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Angle"
@@ -461,7 +544,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Transformations"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Transformations"
@@ -480,7 +563,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Measurements"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Measurements"
@@ -499,7 +582,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Annotations"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Annotations"
@@ -515,7 +598,7 @@
               <!-- Refresh -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Refresh">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Refresh"
@@ -531,7 +614,7 @@
               <!-- Undo -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Undo">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Undo"
@@ -550,7 +633,7 @@
                   class="irapha-toolbox__menu__item__content"
                   title="Secondary Captured Image"
                 >
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Secondary Captured Image"
@@ -566,7 +649,7 @@
               <!-- Revise -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Revise">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Revise"
@@ -582,7 +665,7 @@
               <!-- Utility -->
               <li class="irapha-toolbox__menu__item">
                 <dl class="irapha-toolbox__menu__item__content" title="Utility">
-                  <dt class="irapha-toolbox__menu__item__content__icon">
+                  <dt class="irapha-menu-icon">
                     <img
                       src="https://dummyimage.com/36x36/000/fff"
                       alt="Utility"
@@ -598,6 +681,7 @@
           </div>
         </div>
       </div>
+
       <div class="irapha-sticky-menu__dropzone dropzone-left"></div>
       <div class="irapha-sticky-menu__dropzone dropzone-right"></div>
       <div class="irapha-sticky-menu__dropzone dropzone-bottom"></div>

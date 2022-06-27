@@ -35,6 +35,12 @@ img {
   background-color: transparent;
 }
 
+.uk-drop {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .irapha-maximize__icon {
   cursor: pointer;
 }

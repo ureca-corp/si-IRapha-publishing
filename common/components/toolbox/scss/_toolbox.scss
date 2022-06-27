@@ -130,7 +130,6 @@ $toolbox: (
 
     padding: 0 24px;
 
-    overflow-y: hidden;
-    overflow-x: auto;
+    overflow: overlay;
   }
 }
