@@ -1,13 +1,9 @@
-// import { Logo } from "/common/components/logo/models/index.js";
 import { Toolbox } from "../../common/components/toolbox/index.js";
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 
-// const logo = new Logo();
-// logo.setShrinkDirection("horizontal");
+import { GridSelector } from "../../common/components/grid-selector/index.js";
 
 const toolbox = new Toolbox();
-// toolbox.setLayoutColumn(true);
-// toolbox.setExpand(true);
 
 const stickyMenu = new StickyMenu(({ isVertical }) => {
   if (isVertical) {
@@ -17,8 +13,4 @@ const stickyMenu = new StickyMenu(({ isVertical }) => {
   }
 });
 
-//
-
-// const virtualLayoutMenu2 = new Popover(
-//   document.querySelector("#irapha-menu__vl2")
-// );
+new GridSelector();

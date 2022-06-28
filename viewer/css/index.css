@@ -8506,6 +8506,138 @@ img {
   width: fit-content;
 }
 
+.irapha-toggle-expand {
+  width: 12px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  aspect-ratio: 1;
+  margin: 2px;
+  color: #fff;
+  cursor: pointer;
+}
+
+:root {
+  --color__secondary: #5e6a7f;
+  --color__secondary-container: #424a5b;
+  --color__teriary: #4b8eca;
+}
+
+.irapha-menu-icon {
+  border-radius: 4px;
+  width: 36px;
+  min-width: 24px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+.irapha-menu-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.irapha-toolbox__menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irapha-toolbox__menu.is-layout--column-two {
+  grid-auto-flow: unset;
+  grid-template-columns: repeat(2, 1fr);
+}
+.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content__name {
+  display: none;
+}
+.irapha-toolbox__menu__item__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 50px;
+  border: none;
+}
+.irapha-toolbox__menu__item__content__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+}
+
+.irapha-toolbox__divider {
+  border-radius: 36px;
+  align-self: flex-start;
+  min-width: 4px;
+  height: auto;
+  padding: 16px 0;
+  margin: 14px 16px 0 16px;
+  background-color: #000;
+}
+.irapha-toolbox__divider.is-layout--column {
+  width: 65%;
+  min-height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  align-self: unset;
+}
+.irapha-toolbox__divider.is-state--align-self-center {
+  align-self: center;
+  margin: 16px;
+}
+
+.irapha-menu__dropdown[irm-dropdown*=is-layout--column-two] .irapha-menu__dropdown__container__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.irapha-menu__dropdown__container {
+  background-color: rgba(238, 238, 238, 0.9215686275);
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px #666;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irapha-menu__dropdown__container__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.irapha-menu__dropdown__item__dl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.irapha-menu__dropdown__item__dl:hover {
+  opacity: 0.6;
+}
+.irapha-menu__dropdown__item__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
 .irapha-maximize__icon {
   cursor: pointer;
 }
@@ -8655,132 +8787,6 @@ img {
   aspect-ratio: 1;
 }
 
-.irapha-toggle-expand {
-  width: 12px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  aspect-ratio: 1;
-  margin: 2px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.irapha-menu-icon {
-  border-radius: 4px;
-  width: 36px;
-  min-width: 24px;
-  aspect-ratio: 1;
-  overflow: hidden;
-  cursor: pointer;
-}
-.irapha-menu-icon img {
-  width: 100%;
-  height: 100%;
-}
-
-.irapha-toolbox__menu {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.irapha-toolbox__menu.is-layout--column-two {
-  grid-auto-flow: unset;
-  grid-template-columns: repeat(2, 1fr);
-}
-.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.irapha-toolbox__menu.is-state--name-hide .irapha-toolbox__menu__item__content__name {
-  display: none;
-}
-.irapha-toolbox__menu__item__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  width: 50px;
-  border: none;
-}
-.irapha-toolbox__menu__item__content__name {
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 700;
-  text-align: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #fff;
-}
-
-.irapha-toolbox__divider {
-  border-radius: 36px;
-  align-self: flex-start;
-  min-width: 4px;
-  height: auto;
-  padding: 16px 0;
-  margin: 14px 16px 0 16px;
-  background-color: #000;
-}
-.irapha-toolbox__divider.is-layout--column {
-  width: 65%;
-  min-height: 4px;
-  padding: 0;
-  margin: 16px 0;
-  align-self: unset;
-}
-.irapha-toolbox__divider.is-state--align-self-center {
-  align-self: center;
-  margin: 16px;
-}
-
-.irapha-menu__dropdown[irm-dropdown*=is-layout--column-two] .irapha-menu__dropdown__container__inner {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.irapha-menu__dropdown__container {
-  background-color: rgba(238, 238, 238, 0.9215686275);
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px #666;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 12px 16px;
-}
-.irapha-menu__dropdown__container__inner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.irapha-menu__dropdown__item__dl {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.irapha-menu__dropdown__item__dl:hover {
-  opacity: 0.6;
-}
-.irapha-menu__dropdown__item__name {
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 700;
-  text-align: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: start;
-}
-
 .irapha-toolbox {
   display: flex;
   width: 100%;
@@ -8904,4 +8910,23 @@ img {
   justify-content: flex-end;
   width: 100%;
   min-height: 48px;
+}
+
+.irapha-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3%;
+  width: 160px;
+  aspect-ratio: 1;
+  padding: 3%;
+  border-radius: 4px;
+  background-color: var(--color__secondary-container);
+}
+
+.irapha-grid-selector__item {
+  border-radius: 4px;
+  background-color: var(--color__secondary);
+}
+.irapha-grid-selector__item[irapha-grid-selector*="active: true"] {
+  background-color: var(--color__teriary);
 }

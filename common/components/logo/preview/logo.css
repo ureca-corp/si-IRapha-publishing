@@ -50,6 +50,12 @@ img {
   aspect-ratio: 1;
 }
 
+:root {
+  --color__secondary: #5e6a7f;
+  --color__secondary-container: #424a5b;
+  --color__teriary: #4b8eca;
+}
+
 .irapha-network-status {
   display: flex;
   justify-content: center;

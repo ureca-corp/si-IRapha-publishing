@@ -1,6 +1,7 @@
 @use "../../libs/uikit-3.14.3/css/uikit.min.css" as uikit;
 @use "../../libs//reset-5.0.1/reset.css" as reset;
 
-@use "../../common/components/logo/scss/logo";
 @use "../../common/components/toolbox/style" as toolbox;
 @use "../../common/components/sticky-menu/style" as sticky-menu;
+
+@use "../../common/components/grid-selector/style" as grid-selector;

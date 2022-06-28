@@ -1,4 +1,5 @@
 import { DisplayLayoutMenu } from "./display-layout.menu.js";
+import { DisplayLayoutConfigMenu } from "./display-layout-config.menu.js";
 
 const SelectorIds = {
   dlMenu: "#irapha-menu__display-layout",
@@ -14,5 +15,8 @@ export class DisplayLayoutController {
     const displayLayoutMenu = document.querySelector(SelectorIds.dlMenu);
 
     new DisplayLayoutMenu(displayLayoutMenu);
+    new DisplayLayoutConfigMenu(
+      displayLayoutMenu.querySelector(SelectorIds.dlConfigMenu)
+    );
   }
 }

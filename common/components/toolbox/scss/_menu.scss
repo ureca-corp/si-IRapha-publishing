@@ -163,12 +163,13 @@
     box-shadow: 0px 0px 10px #666;
 
     width: fit-content;
-    padding: 12px 16px;
 
     &__inner {
       display: flex;
       flex-direction: column;
       gap: 12px;
+
+      padding: 12px 16px;
     }
   }
 
