@@ -6,7 +6,7 @@
 
 // Variables
 // =========================================================================
-$bg: #35455e;
+$bg: var(--color__teriary-container);
 $border-color: #eeeeee33;
 
 $toolbox: (

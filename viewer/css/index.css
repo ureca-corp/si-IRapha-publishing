@@ -8521,6 +8521,8 @@ img {
   --color__secondary: #5e6a7f;
   --color__secondary-container: #424a5b;
   --color__teriary: #4b8eca;
+  --color__teriary-container: #142f56;
+  --color__font-primary: #ddd;
 }
 
 .irapha-menu-icon {
@@ -8528,12 +8530,21 @@ img {
   width: 36px;
   min-width: 24px;
   aspect-ratio: 1;
+  transition: all 0.3s ease-in-out;
   overflow: hidden;
   cursor: pointer;
 }
 .irapha-menu-icon img {
   width: 100%;
   height: 100%;
+}
+.irapha-menu-icon:hover {
+  opacity: 0.7;
+  transform: scale(1.2);
+}
+.irapha-menu-icon.--wrapped {
+  padding: 4px;
+  border: 2px solid rgba(238, 238, 238, 0.1333333333);
 }
 
 .irapha-toolbox__menu {
@@ -8569,12 +8580,12 @@ img {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
+  color: var(--color__font-primary);
   text-align: center;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #fff;
 }
 
 .irapha-toolbox__divider {
@@ -8603,7 +8614,7 @@ img {
   grid-template-columns: repeat(2, 1fr);
 }
 .irapha-menu__dropdown__container {
-  background-color: rgba(238, 238, 238, 0.9215686275);
+  background-color: var(--color__teriary-container);
   border-radius: 4px;
   box-shadow: 0px 0px 10px #666;
   width: -webkit-fit-content;
@@ -8630,6 +8641,7 @@ img {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
+  color: var(--color__font-primary);
   text-align: center;
   width: 100%;
   white-space: nowrap;
@@ -8792,7 +8804,7 @@ img {
   width: 100%;
   height: 80px;
   transition: all 0.2s ease-in-out;
-  background-color: #35455e;
+  background-color: var(--color__teriary-container);
 }
 .irapha-toolbox.is-layout--column.irapha-toolbox {
   flex-direction: column;
