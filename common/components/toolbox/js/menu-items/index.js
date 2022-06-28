@@ -1,1 +1,1 @@
-export { VirtualLayoutController } from "./virtual-layout/index.js";
+export { ToolboxMenuItemsController } from "./menu-items.controller.js";

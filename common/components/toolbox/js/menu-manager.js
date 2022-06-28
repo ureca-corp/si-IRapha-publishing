@@ -1,5 +1,5 @@
+import { ToolboxMenuItemsController } from "./menu-items/index.js";
 import { ToolboxMenu } from "./menu.js";
-import { VirtualLayoutController } from "./menu-items/index.js";
 
 const SelectorClasses = {
   Menu: ".irapha-toolbox__menu",
@@ -14,7 +14,7 @@ const MutationClasses = {
 export class ToolboxMenusManager {
   constructor() {
     this._init();
-    this._initMenu();
+    this._initMenuItemsController();
   }
 
   // private
@@ -27,8 +27,8 @@ export class ToolboxMenusManager {
     this._divider = document.querySelector(SelectorClasses.Divider);
   }
 
-  _initMenu() {
-    new VirtualLayoutController();
+  _initMenuItemsController() {
+    new ToolboxMenuItemsController();
   }
 
   _setMenusLayout(layout) {

@@ -3,6 +3,8 @@
 @use "../../../components/toggle-expand-icon/style" as toggle-expand-icon;
 @use "./menu" as menu;
 
+// Variables
+// =========================================================================
 $bg: #35455e;
 $border-color: #eeeeee33;
 
@@ -12,6 +14,8 @@ $toolbox: (
   min-size: 28px,
 );
 
+// Mixins
+// =========================================================================
 @mixin l-toolbox {
   &.is-layout {
     &--column {
@@ -87,6 +91,8 @@ $toolbox: (
   }
 }
 
+// Styles
+// =================================================================
 .irapha-toolbox {
   display: flex;
   width: 100%;

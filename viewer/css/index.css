@@ -8741,6 +8741,10 @@ img {
   margin: 16px;
 }
 
+.irapha-menu__dropdown[irm-dropdown*=is-layout--column-two] .irapha-menu__dropdown__container__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 .irapha-menu__dropdown__container {
   background-color: rgba(238, 238, 238, 0.9215686275);
   border-radius: 4px;

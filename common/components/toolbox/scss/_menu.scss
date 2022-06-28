@@ -3,6 +3,8 @@
 @use "../../../themes/typography" as typography;
 @use "../../../themes/shape" as shapes;
 
+// Mixins
+// =========================================================================
 @mixin l-menu {
   &.is-layout {
     // 세로 2 배치.
@@ -42,6 +44,8 @@
   text-overflow: ellipsis;
 }
 
+// Styles
+// =================================================================
 .irapha-menu-icon {
   border-radius: shapes.$small;
 
@@ -90,6 +94,8 @@
 }
 
 // divider
+// Mixins
+// =========================================================================
 @mixin l-divider {
   &.is-layout {
     &--column {
@@ -111,6 +117,8 @@
   }
 }
 
+// Styles
+// =================================================================
 .irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
@@ -128,7 +136,26 @@
 }
 
 // menu drop down
+// Mixins
+// =========================================================================
+@mixin l-dropdown {
+  &[irm-dropdown*="is-layout--column-two"] {
+    .irapha-menu__dropdown {
+      &__container {
+        &__inner {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+}
+
+// Styles
+// =================================================================
 .irapha-menu__dropdown {
+  @include l-dropdown;
+
   &__container {
     background-color: #eeeeeeeb;
 
