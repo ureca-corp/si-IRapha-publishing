@@ -10,51 +10,56 @@ const LayoutTypes = {
 };
 
 export class ToolboxMenu {
-  constructor(element) {
-    this._element = element;
+  #element;
 
-    this._initStates();
+  #layout$;
+  #isHideIconName$;
+
+  constructor(element) {
+    this.#element = element;
+
+    this.#initStates();
   }
 
   // private
-  _initStates() {
+  #initStates() {
     const layout$ = new rx.BehaviorSubject();
-    layout$.subscribe((layout) => this._handleLayoutChange(layout));
-    this._layout$ = layout$;
+    layout$.subscribe((layout) => this.#handleLayoutChange(layout));
+    this.#layout$ = layout$;
 
     const isHideIconName$ = new rx.BehaviorSubject();
-    isHideIconName$.subscribe((hide) => this._handleHideIconNameChange(hide));
-    this._isHideIconName$ = isHideIconName$;
+    isHideIconName$.subscribe((hide) => this.#handleHideIconNameChange(hide));
+    this.#isHideIconName$ = isHideIconName$;
   }
 
-  _setLayoutColumnTwo() {
-    this._element.classList.add(MutationClasses.LayoutColumnTwo);
+  #setLayoutColumnTwo() {
+    this.#element.classList.add(MutationClasses.LayoutColumnTwo);
   }
 
-  _resetLayout() {
-    this._element.classList.remove(MutationClasses.LayoutColumnTwo);
+  #resetLayout() {
+    this.#element.classList.remove(MutationClasses.LayoutColumnTwo);
   }
 
   // handler
-  _handleLayoutChange(layout) {
-    if (layout === LayoutTypes.ColumnTwo) return this._setLayoutColumnTwo();
+  #handleLayoutChange(layout) {
+    if (layout === LayoutTypes.ColumnTwo) return this.#setLayoutColumnTwo();
 
-    return this._resetLayout();
+    return this.#resetLayout();
   }
 
-  _handleHideIconNameChange(isHideIconName) {
+  #handleHideIconNameChange(isHideIconName) {
     if (isHideIconName)
-      return this._element.classList.add(MutationClasses.HideIconName);
+      return this.#element.classList.add(MutationClasses.HideIconName);
 
-    return this._element.classList.remove(MutationClasses.HideIconName);
+    return this.#element.classList.remove(MutationClasses.HideIconName);
   }
 
   // public
   setLayout(layout) {
-    this._layout$.next(layout);
+    this.#layout$.next(layout);
   }
 
   setHideIconName(isHideIconName) {
-    this._isHideIconName$.next(isHideIconName);
+    this.#isHideIconName$.next(isHideIconName);
   }
 }

@@ -2,12 +2,14 @@ const rx = rxjs;
 
 // 최대화/최소화 토글 아이콘 버튼
 export class MaximizeButton {
+  #element;
+
   constructor(element) {
-    this._element = element;
+    this.#element = element;
   }
 
   init() {
-    rx.fromEvent(this._element, "click").subscribe(() =>
+    rx.fromEvent(this.#element, "click").subscribe(() =>
       this.toggleFullScreen()
     );
   }

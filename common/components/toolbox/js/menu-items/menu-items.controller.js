@@ -12,10 +12,10 @@ import { UtilityController } from "./utility/index.js";
 
 export class ToolboxMenuItemsController {
   constructor() {
-    this._init();
+    this.#init();
   }
 
-  _init() {
+  #init() {
     new VirtualLayoutController();
     new DisplayLayoutController();
     new NaviController();

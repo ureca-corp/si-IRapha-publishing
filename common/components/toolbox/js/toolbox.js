@@ -21,132 +21,141 @@ const ShrinkDirection = {
 };
 
 export class Toolbox {
-  constructor() {
-    this._element = document.querySelector(SelectorClasses.Toolbox);
-    this._initLogo();
-    this._initToggleExpandButton();
-    this._initMenusManager();
+  #element;
+  #logo;
+  #toggleExpandButton;
+  #menusManager;
 
-    this._initStates();
-    this._initMouseEvent();
+  #isLayoutColumn$;
+  #isExpanded$;
+  #shrinkDirection$;
+
+  constructor() {
+    this.#element = document.querySelector(SelectorClasses.Toolbox);
+    this.#initLogo();
+    this.#initToggleExpandButton();
+    this.#initMenusManager();
+
+    this.#initStates();
+    this.#initMouseEvent();
   }
 
   // private
-  _initLogo() {
-    this._logo = new Logo();
+  #initLogo() {
+    this.#logo = new Logo();
   }
 
-  _initToggleExpandButton() {
-    this._toggleExpandButton = new ToggleExpandIcon(() => this._toggleExpand());
+  #initToggleExpandButton() {
+    this.#toggleExpandButton = new ToggleExpandIcon(() => this.#toggleExpand());
   }
 
-  _initMenusManager() {
-    this._menusManager = new ToolboxMenusManager();
-    this._menusManager.setHideIconName(true);
+  #initMenusManager() {
+    this.#menusManager = new ToolboxMenusManager();
+    this.#menusManager.setHideIconName(true);
   }
 
-  _initStates() {
+  #initStates() {
     const isLayoutColumn$ = new rx.BehaviorSubject();
     isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this._handleLayoutChange(isLayoutColumn)
+      this.#handleLayoutChange(isLayoutColumn)
     );
-    this._isLayoutColumn$ = isLayoutColumn$;
+    this.#isLayoutColumn$ = isLayoutColumn$;
 
     const isExpanded$ = new rx.BehaviorSubject();
-    isExpanded$.subscribe((isExpanded) => this._handleExpanded(isExpanded));
-    this._isExpanded$ = isExpanded$;
+    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
+    this.#isExpanded$ = isExpanded$;
 
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
-      this._handleShrinkDirectionChange(shrinkDirection)
+      this.#handleShrinkDirectionChange(shrinkDirection)
     );
-    this._shrinkDirection$ = shrinkDirection$;
+    this.#shrinkDirection$ = shrinkDirection$;
   }
 
-  _initMouseEvent() {
+  #initMouseEvent() {
     // 마우스 호버 시 임시로 보이기
-    rx.fromEvent(this._element, "mouseover").subscribe(() => {
-      if (this._isExpanded$.getValue()) return this._resetShrinkState();
+    rx.fromEvent(this.#element, "mouseover").subscribe(() => {
+      if (this.#isExpanded$.getValue()) return this.#resetShrinkState();
     });
 
     // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent(this._element, "mouseout").subscribe(() => {
-      const isExpanded = this._isExpanded$.getValue();
+    rx.fromEvent(this.#element, "mouseout").subscribe(() => {
+      const isExpanded = this.#isExpanded$.getValue();
 
       if (isExpanded) return this.setExpand(isExpanded);
     });
   }
 
-  _setShrinkDirection(shrinkDirection) {
-    this._shrinkDirection$.next(shrinkDirection);
+  #setShrinkDirection(shrinkDirection) {
+    this.#shrinkDirection$.next(shrinkDirection);
   }
 
   // actions
-  _shrinkVertical() {
-    this._logo.setShrinkDirection("vertical");
-    this._element.classList.add(MutationClasses.ShrinkVertical);
+  #shrinkVertical() {
+    this.#logo.setShrinkDirection("vertical");
+    this.#element.classList.add(MutationClasses.ShrinkVertical);
   }
 
-  _shrinkHorizontal() {
-    this._logo.setShrinkDirection("horizontal");
-    this._element.classList.add(MutationClasses.ShrinkHorizontal);
+  #shrinkHorizontal() {
+    this.#logo.setShrinkDirection("horizontal");
+    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
   }
 
-  _resetShrinkState() {
-    this._logo.setShrinkDirection(null);
-    this._element.classList.remove(MutationClasses.ShrinkVertical);
-    this._element.classList.remove(MutationClasses.ShrinkHorizontal);
+  #resetShrinkState() {
+    this.#logo.setShrinkDirection(null);
+    this.#element.classList.remove(MutationClasses.ShrinkVertical);
+    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
   }
 
-  _toggleExpand() {
-    const old = this._isExpanded$.getValue();
+  #toggleExpand() {
+    const old = this.#isExpanded$.getValue();
     this.setExpand(!old);
   }
 
   // handler
-  _handleLayoutChange(isLayoutColumn) {
+  #handleLayoutChange(isLayoutColumn) {
     if (isLayoutColumn) {
-      this._menusManager.setLayoutColumn(true);
-      return this._element.classList.add(MutationClasses.LayoutColumn);
+      this.#menusManager.setLayoutColumn(true);
+      return this.#element.classList.add(MutationClasses.LayoutColumn);
     }
 
-    this._menusManager.setLayoutColumn(null);
-    return this._element.classList.remove(MutationClasses.LayoutColumn);
+    this.#menusManager.setLayoutColumn(null);
+    return this.#element.classList.remove(MutationClasses.LayoutColumn);
   }
 
-  _handleExpanded(isExpanded) {
+  #handleExpanded(isExpanded) {
     if (!isExpanded) {
-      this._toggleExpandButton.setExpandIcon();
-      return this._resetShrinkState();
+      this.#toggleExpandButton.setExpandIcon();
+      return this.#resetShrinkState();
     }
 
-    this._toggleExpandButton.setShrinkIcon();
-    if (!this._isLayoutColumn$.getValue())
-      return this._setShrinkDirection("vertical");
+    this.#toggleExpandButton.setShrinkIcon();
+    if (!this.#isLayoutColumn$.getValue())
+      return this.#setShrinkDirection("vertical");
 
-    return this._setShrinkDirection("horizontal");
+    return this.#setShrinkDirection("horizontal");
   }
 
-  _handleShrinkDirectionChange(shrinkDirection) {
+  #handleShrinkDirectionChange(shrinkDirection) {
     if (shrinkDirection === ShrinkDirection.vertical)
-      return this._shrinkVertical();
+      return this.#shrinkVertical();
 
     if (shrinkDirection === ShrinkDirection.horizontal)
-      return this._shrinkHorizontal();
+      return this.#shrinkHorizontal();
 
-    return this._resetShrinkState();
+    return this.#resetShrinkState();
   }
 
   // public
   setLayoutColumn(isLayoutColumn) {
-    this._isLayoutColumn$.next(isLayoutColumn);
+    this.#isLayoutColumn$.next(isLayoutColumn);
   }
 
   setExpand(isExpanded) {
-    this._isExpanded$.next(isExpanded);
+    this.#isExpanded$.next(isExpanded);
   }
 
   setHideIconName(isHideIconName) {
-    this._menusManager.setHideIconName(isHideIconName);
+    this.#menusManager.setHideIconName(isHideIconName);
   }
 }

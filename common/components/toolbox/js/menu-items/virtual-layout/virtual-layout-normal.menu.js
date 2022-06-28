@@ -3,11 +3,14 @@ const SelectorIds = {
 };
 
 export class VirtualLayoutNormalMenu {
-  constructor(element) {
-    this._element = element;
+  #element;
+  #ukDrop;
 
-    this._ukDrop = UIkit.drop(
-      this._element.querySelector(SelectorIds.dropDown),
+  constructor(element) {
+    this.#element = element;
+
+    this.#ukDrop = UIkit.drop(
+      this.#element.querySelector(SelectorIds.dropDown),
       {
         mode: "click",
       }

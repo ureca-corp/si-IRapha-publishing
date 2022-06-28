@@ -12,65 +12,68 @@ const MutationClasses = {
 };
 
 export class ToolboxMenusManager {
+  #menus;
+  #divider;
+
   constructor() {
-    this._init();
-    this._initMenuItemsController();
+    this.#init();
+    this.#initMenuItemsController();
   }
 
   // private
-  _init() {
+  #init() {
     const menus = [...document.querySelectorAll(SelectorClasses.Menu)].map(
       (it) => new ToolboxMenu(it)
     );
-    this._menus = menus;
+    this.#menus = menus;
 
-    this._divider = document.querySelector(SelectorClasses.Divider);
+    this.#divider = document.querySelector(SelectorClasses.Divider);
   }
 
-  _initMenuItemsController() {
+  #initMenuItemsController() {
     new ToolboxMenuItemsController();
   }
 
-  _setMenusLayout(layout) {
-    this._menus.forEach((it) => it.setLayout(layout));
+  #setMenusLayout(layout) {
+    this.#menus.forEach((it) => it.setLayout(layout));
   }
 
-  _setDividerLayout(isLayoutColumn) {
+  #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
-      return this._divider.classList.add(MutationClasses.dividerLayoutColumn);
+      return this.#divider.classList.add(MutationClasses.dividerLayoutColumn);
     }
 
-    return this._divider.classList.remove(MutationClasses.dividerLayoutColumn);
+    return this.#divider.classList.remove(MutationClasses.dividerLayoutColumn);
   }
 
-  _setDividerAlignSelfCenter(isAlignSelfCenter) {
+  #setDividerAlignSelfCenter(isAlignSelfCenter) {
     if (isAlignSelfCenter)
-      return this._divider.classList.add(
+      return this.#divider.classList.add(
         MutationClasses.dividerAlignSelfCenter
       );
 
-    return this._divider.classList.remove(
+    return this.#divider.classList.remove(
       MutationClasses.dividerAlignSelfCenter
     );
   }
 
-  _setHideIconName(isHideIconName) {
-    this._menus.forEach((it) => it.setHideIconName(isHideIconName));
+  #setHideIconName(isHideIconName) {
+    this.#menus.forEach((it) => it.setHideIconName(isHideIconName));
   }
 
   // public
   setLayoutColumn(isLayoutColumn) {
     if (isLayoutColumn) {
-      this._setDividerLayout(true);
-      return this._setMenusLayout("columnTwo");
+      this.#setDividerLayout(true);
+      return this.#setMenusLayout("columnTwo");
     }
 
-    this._setDividerLayout(null);
-    return this._setMenusLayout(null);
+    this.#setDividerLayout(null);
+    return this.#setMenusLayout(null);
   }
 
   setHideIconName(isHideIconName) {
-    this._setHideIconName(isHideIconName);
-    this._setDividerAlignSelfCenter(isHideIconName);
+    this.#setHideIconName(isHideIconName);
+    this.#setDividerAlignSelfCenter(isHideIconName);
   }
 }

@@ -1,9 +1,11 @@
 export class ViewerInfoPopup {
+  #element;
+
   constructor(element) {
-    this._element = element;
+    this.#element = element;
   }
 
   init() {
-    this._element.setAttribute("uk-drop", "mode: click");
+    this.#element.setAttribute("uk-drop", "mode: click");
   }
 }

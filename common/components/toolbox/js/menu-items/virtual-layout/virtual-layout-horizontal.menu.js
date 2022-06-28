@@ -1,5 +1,7 @@
 export class VirtualLayoutHorizontalMenu {
+  #element;
+
   constructor(element) {
-    this._element = element;
+    this.#element = element;
   }
 }

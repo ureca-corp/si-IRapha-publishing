@@ -23,110 +23,118 @@ const ShrinkDirection = {
 };
 
 export class Logo {
+  #element;
+  #logoContainer;
+  #logoImage;
+  #viewerInfoPopup;
+  #maximizeBtn;
+
+  #shrinkDirection$;
+
   constructor() {
-    this._element = document.querySelector(SelectorClasses.Logo);
-    this._init();
+    this.#element = document.querySelector(SelectorClasses.Logo);
+    this.#init();
   }
 
   // private
-  _init() {
-    this._initLogoContainer();
-    this._initLogoImage();
-    this._initViewerInfoPopup();
-    this._initMaximizeBtn();
+  #init() {
+    this.#initLogoContainer();
+    this.#initLogoImage();
+    this.#initViewerInfoPopup();
+    this.#initMaximizeBtn();
 
-    this._initStates();
+    this.#initStates();
   }
 
-  _initStates() {
+  #initStates() {
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
-      this._handleShrinkChange(shrinkDirection)
+      this.#handleShrinkChange(shrinkDirection)
     );
 
-    this._shrinkDirection$ = shrinkDirection$;
+    this.#shrinkDirection$ = shrinkDirection$;
   }
 
-  _initLogoContainer() {
-    this._logoContainer = this._element.querySelector(
+  #initLogoContainer() {
+    this.#logoContainer = this.#element.querySelector(
       SelectorClasses.LogoContainer
     );
   }
 
-  _initLogoImage() {
-    const logoImage = this._element.querySelector(SelectorClasses.LogoImage);
+  #initLogoImage() {
+    const logoImage = this.#element.querySelector(SelectorClasses.LogoImage);
     logoImage.classList.add(MutationClasses.UkButton);
 
-    this._logoImage = logoImage;
+    this.#logoImage = logoImage;
   }
 
-  _initViewerInfoPopup() {
+  #initViewerInfoPopup() {
     const viewerInfoPopup = new ViewerInfoPopup(
-      this._element.querySelector(SelectorClasses.ViewerInfoPopup)
+      this.#element.querySelector(SelectorClasses.ViewerInfoPopup)
     );
     viewerInfoPopup.init();
 
-    this._viewerInfoPopup = viewerInfoPopup;
+    this.#viewerInfoPopup = viewerInfoPopup;
   }
 
-  _initMaximizeBtn() {
+  #initMaximizeBtn() {
     const maximizeBtn = new MaximizeButton(
-      this._element.querySelector(SelectorClasses.MaximizeButton)
+      this.#element.querySelector(SelectorClasses.MaximizeButton)
     );
     maximizeBtn.init();
 
-    this._maximizeBtn = maximizeBtn;
+    this.#maximizeBtn = maximizeBtn;
   }
 
   // actions
-  _shrinkVertical() {
-    this._unshrinkHorizontal();
-    this._element.classList.add(MutationClasses.ShrinkVertical);
+  #shrinkVertical() {
+    this.#unshrinkHorizontal();
+    this.#element.classList.add(MutationClasses.ShrinkVertical);
   }
 
-  _unshrinkVertical() {
-    this._element.classList.remove(MutationClasses.ShrinkVertical);
+  #unshrinkVertical() {
+    this.#element.classList.remove(MutationClasses.ShrinkVertical);
   }
 
-  _shrinkHorizontal() {
-    this._unshrinkVertical();
-    this._element.classList.add(MutationClasses.ShrinkHorizontal);
+  #shrinkHorizontal() {
+    this.#unshrinkVertical();
+    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
   }
 
-  _unshrinkHorizontal() {
-    this._element.classList.remove(MutationClasses.ShrinkHorizontal);
+  #unshrinkHorizontal() {
+    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
   }
 
-  _removeAllShrink() {
-    this._unshrinkVertical();
-    this._unshrinkHorizontal();
+  #removeAllShrink() {
+    this.#unshrinkVertical();
+    this.#unshrinkHorizontal();
   }
 
   // handler
-  _handleShrinkHorizontalChange(isShrinkHorizontal) {
-    if (!isShrinkHorizontal) return this._unshrinkHorizontal();
+  #handleShrinkHorizontalChange(isShrinkHorizontal) {
+    if (!isShrinkHorizontal) return this.#unshrinkHorizontal();
 
-    return this._shrinkHorizontal();
+    return this.#shrinkHorizontal();
   }
 
-  _handleShrinkVerticalChange(isShrinkVertical) {
-    if (!isShrinkVertical) return this._unshrinkVertical();
+  #handleShrinkVerticalChange(isShrinkVertical) {
+    if (!isShrinkVertical) return this.#unshrinkVertical();
 
-    return this._shrinkVertical();
+    return this.#shrinkVertical();
   }
 
-  _handleShrinkChange(shrinkDirection) {
+  #handleShrinkChange(shrinkDirection) {
     if (shrinkDirection === ShrinkDirection.vertical)
-      return this._handleShrinkVerticalChange(shrinkDirection);
+      return this.#handleShrinkVerticalChange(shrinkDirection);
 
     if (shrinkDirection === ShrinkDirection.horizontal)
-      return this._handleShrinkHorizontalChange(shrinkDirection);
+      return this.#handleShrinkHorizontalChange(shrinkDirection);
 
-    return this._removeAllShrink();
+    return this.#removeAllShrink();
   }
 
   // public
   setShrinkDirection(shrinkDirection) {
-    this._shrinkDirection$.next(shrinkDirection);
+    this.#shrinkDirection$.next(shrinkDirection);
   }
 }
