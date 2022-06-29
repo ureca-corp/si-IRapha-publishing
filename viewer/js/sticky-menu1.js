@@ -1,22 +1,20 @@
 const rx = rxjs;
 
 const SelectorClasses = {
-  StickyMenu: ".irapha-sticky-menu",
-  DropZone: ".irapha-sticky-menu__dropzone",
+  StickyMenu: ".irapha-sticky-menu1",
+  DropZone: ".irapha-sticky-menu1__dropzone",
 };
 
 const ClassNames = {
-  DropZone: "irapha-sticky-menu__dropzone",
+  DropZone: "irapha-sticky-menu1__dropzone",
 };
 
-export class StickyMenu {
+export class StickyMenu1 {
   #element;
   #draggedTarget;
-  #dropSuccessCallback;
 
-  constructor(dropSuccessCallback) {
+  constructor() {
     this.#element = document.querySelector(SelectorClasses.StickyMenu);
-    this.#dropSuccessCallback = dropSuccessCallback;
 
     this.#init();
   }
@@ -95,10 +93,6 @@ export class StickyMenu {
     const targetMoveToDropzone = () => {
       e.target.style.background = "";
 
-      // 드랍존 우선 순위 변경
-      e.target.style.zIndex = 3;
-      draggedTarget.parentNode.style.zIndex = "unset";
-
       // 드래그 타겟 드랍존 안으로 이동
       draggedTarget.parentNode.removeChild(draggedTarget);
       e.target.appendChild(draggedTarget);
@@ -107,18 +101,12 @@ export class StickyMenu {
     const veticalDropzoneClasses = ["dropzone-left", "dropzone-right"];
     if (veticalDropzoneClasses.some((it) => e.target.className.includes(it))) {
       targetMoveToDropzone();
-      // this.#dropSuccessCallback({
-      //   isVertical: true,
-      // });
 
       return;
     }
 
     if (e.target.className.includes("dropzone")) {
       targetMoveToDropzone();
-      // this.#dropSuccessCallback({
-      //   isVertical: false,
-      // });
 
       return;
     }

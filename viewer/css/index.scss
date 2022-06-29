@@ -5,3 +5,137 @@
 @use "../../common/components/sticky-menu/style" as sticky-menu;
 
 @use "../../common/components/grid-selector/style" as grid-selector;
+
+// sticky
+// =================================================================
+@mixin s-sticky-menu1 {
+  // layout: vertical-first
+  &[irapha-sticky-menu*="layout: vertical-first"] {
+    grid-template-rows: fit-content(0) auto auto fit-content(0);
+    grid-template-areas:
+      "top top top top"
+      "left . . right"
+      "left . . right"
+      "bottom bottom bottom bottom";
+  }
+
+  // layout: horizontal-first
+  &[irapha-sticky-menu*="layout: horizontal-first"] {
+    grid-template-rows: fit-content(0) auto auto fit-content(0);
+    grid-template-columns: fit-content(0) auto auto fit-content(0);
+    grid-template-areas:
+      "left top top right"
+      "left . . right"
+      "left . . right"
+      "left bottom bottom right";
+  }
+}
+
+.irapha-sticky-menu1 {
+  display: grid;
+  width: 100%;
+  height: 100%;
+
+  grid-template-rows: fit-content(0) auto auto fit-content(0);
+  grid-template-areas:
+    "top top top top"
+    "left . . right"
+    "left . . right"
+    "bottom bottom bottom bottom";
+
+  background-color: #333;
+
+  @include s-sticky-menu1;
+}
+
+@mixin box {
+  width: 48px;
+  aspect-ratio: 1;
+}
+
+// dropzone
+// =================================================================
+$dropzone-min-size: 48px;
+
+@mixin s-dropzone {
+  &.--active {
+    position: static;
+    z-index: 3;
+  }
+}
+
+.irapha-sticky-menu1__dropzone {
+  &.--top {
+    grid-area: top;
+    align-self: flex-start;
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    padding-bottom: $dropzone-min-size;
+    background-color: #eeeeee33;
+
+    @include s-dropzone;
+  }
+
+  &.--left {
+    grid-area: left;
+    justify-self: flex-start;
+
+    position: absolute;
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    padding-right: $dropzone-min-size;
+    background-color: #eeeeee;
+
+    @include s-dropzone;
+  }
+
+  &.--right {
+    grid-area: right;
+    justify-self: flex-end;
+
+    position: absolute;
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    padding-left: $dropzone-min-size;
+    background-color: #eeeeee;
+
+    @include s-dropzone;
+  }
+
+  &.--bottom {
+    grid-area: bottom;
+    align-self: flex-end;
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    padding-top: $dropzone-min-size;
+    background-color: #eeeeee33;
+
+    @include s-dropzone;
+  }
+}
+
+// =================================================================
+.bar1 {
+  @include box;
+  background-color: red;
+}
+
+.bar2 {
+  @include box;
+  background-color: blue;
+}
+
+.content {
+  @include box;
+  background-color: gold;
+}
