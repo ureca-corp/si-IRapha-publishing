@@ -51,6 +51,7 @@ img {
 }
 
 :root {
+  --color__primary: #5a9600;
   --color__secondary: #5e6a7f;
   --color__secondary-container: #424a5b;
   --color__teriary: #4b8eca;

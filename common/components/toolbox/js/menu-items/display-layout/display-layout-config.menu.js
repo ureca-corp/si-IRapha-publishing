@@ -9,8 +9,6 @@ export class DisplayLayoutConfigMenu {
   constructor(element) {
     this.#element = element;
 
-    this.#ukDrop = UIkit.drop(element.querySelector(SelectorIds.dropDown), {
-      mode: "click",
-    });
+    this.#ukDrop = UIkit.drop(element.querySelector(SelectorIds.dropDown));
   }
 }

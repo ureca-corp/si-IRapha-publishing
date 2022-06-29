@@ -3,7 +3,7 @@
 @use "../../../themes/typography" as typography;
 @use "../../../themes/shape" as shapes;
 
-// Mixins
+// Menu
 // =========================================================================
 @mixin l-menu {
   &.is-layout {
@@ -45,36 +45,6 @@
   text-overflow: ellipsis;
 }
 
-// Styles
-// =================================================================
-.irapha-menu-icon {
-  border-radius: shapes.$small;
-
-  width: 36px;
-  min-width: 24px;
-  aspect-ratio: 1;
-
-  transition: all 0.3s ease-in-out;
-
-  overflow: hidden;
-  cursor: pointer;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-
-  &:hover {
-    opacity: 0.7;
-    transform: scale(1.2);
-  }
-
-  &.--wrapped {
-    padding: 4px;
-    border: 2px solid #eeeeee22;
-  }
-}
-
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
@@ -105,8 +75,58 @@
   }
 }
 
+// menu icon
+// =================================================================
+
+@mixin s-menu-icon {
+  &.--wrapped {
+    padding: 4px;
+    border: 2px solid #eeeeee22;
+  }
+
+  &.--more {
+    &::after {
+      content: "▼";
+      position: absolute;
+      bottom: -4px;
+      right: -2px;
+
+      font-size: 14px;
+
+      color: var(--color__primary);
+
+      transform: scale(0.4);
+    }
+  }
+}
+
+.irapha-menu-icon {
+  position: relative;
+  border-radius: shapes.$small;
+
+  width: 36px;
+  min-width: 24px;
+  aspect-ratio: 1;
+
+  transition: all 0.3s ease-in-out;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+
+  @include s-menu-icon;
+}
+
 // divider
-// Mixins
 // =========================================================================
 @mixin l-divider {
   &.is-layout {
@@ -129,8 +149,6 @@
   }
 }
 
-// Styles
-// =================================================================
 .irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
@@ -141,14 +159,13 @@
   padding: 16px 0;
   margin: 14px 16px 0 16px;
 
-  background-color: #000;
+  background-color: #eeeeee22;
 
   @include l-divider;
   @include s-divider;
 }
 
 // menu drop down
-// Mixins
 // =========================================================================
 @mixin l-dropdown {
   &[irm-dropdown*="is-layout--column-two"] {
@@ -163,8 +180,6 @@
   }
 }
 
-// Styles
-// =================================================================
 .irapha-menu__dropdown {
   @include l-dropdown;
 

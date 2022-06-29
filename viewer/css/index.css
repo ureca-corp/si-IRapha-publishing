@@ -8518,33 +8518,12 @@ img {
 }
 
 :root {
+  --color__primary: #5a9600;
   --color__secondary: #5e6a7f;
   --color__secondary-container: #424a5b;
   --color__teriary: #4b8eca;
   --color__teriary-container: #142f56;
   --color__font-primary: #ddd;
-}
-
-.irapha-menu-icon {
-  border-radius: 4px;
-  width: 36px;
-  min-width: 24px;
-  aspect-ratio: 1;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  cursor: pointer;
-}
-.irapha-menu-icon img {
-  width: 100%;
-  height: 100%;
-}
-.irapha-menu-icon:hover {
-  opacity: 0.7;
-  transform: scale(1.2);
-}
-.irapha-menu-icon.--wrapped {
-  padding: 4px;
-  border: 2px solid rgba(238, 238, 238, 0.1333333333);
 }
 
 .irapha-toolbox__menu {
@@ -8588,6 +8567,38 @@ img {
   text-overflow: ellipsis;
 }
 
+.irapha-menu-icon {
+  position: relative;
+  border-radius: 4px;
+  width: 36px;
+  min-width: 24px;
+  aspect-ratio: 1;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  cursor: pointer;
+}
+.irapha-menu-icon img {
+  width: 100%;
+  height: 100%;
+}
+.irapha-menu-icon:hover {
+  opacity: 0.7;
+  transform: scale(1.2);
+}
+.irapha-menu-icon.--wrapped {
+  padding: 4px;
+  border: 2px solid rgba(238, 238, 238, 0.1333333333);
+}
+.irapha-menu-icon.--more::after {
+  content: "▼";
+  position: absolute;
+  bottom: -4px;
+  right: -2px;
+  font-size: 14px;
+  color: var(--color__primary);
+  transform: scale(0.4);
+}
+
 .irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
@@ -8595,7 +8606,7 @@ img {
   height: auto;
   padding: 16px 0;
   margin: 14px 16px 0 16px;
-  background-color: #000;
+  background-color: rgba(238, 238, 238, 0.1333333333);
 }
 .irapha-toolbox__divider.is-layout--column {
   width: 65%;
@@ -8892,6 +8903,7 @@ img {
   flex-direction: column;
   width: 100%;
   min-height: 48px;
+  z-index: 3;
 }
 
 .dropzone-left {

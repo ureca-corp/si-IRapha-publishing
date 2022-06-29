@@ -94,6 +94,12 @@ export class StickyMenu {
     // 드래그한 요소를 드롭 대상으로 이동
     const targetMoveToDropzone = () => {
       e.target.style.background = "";
+
+      // 드랍존 우선 순위 변경
+      e.target.style.zIndex = 3;
+      draggedTarget.parentNode.style.zIndex = "unset";
+
+      // 드래그 타겟 드랍존 안으로 이동
       draggedTarget.parentNode.removeChild(draggedTarget);
       e.target.appendChild(draggedTarget);
     };
