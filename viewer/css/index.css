@@ -8959,18 +8959,28 @@ img {
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-rows: fit-content(0) auto auto fit-content(0);
-  grid-template-areas: "top top top top" "left . . right" "left . . right" "bottom bottom bottom bottom";
+  grid-template-rows: fit-content(0) 1fr 1fr fit-content(0);
+  grid-template-columns: fit-content(0) 1fr 1fr fit-content(0);
   background-color: #333;
+  grid-template-areas: "top top top top" "left content content right" "left content content right" "bottom bottom bottom bottom";
 }
-.irapha-sticky-menu1[irapha-sticky-menu*="layout: vertical-first"] {
-  grid-template-rows: fit-content(0) auto auto fit-content(0);
-  grid-template-areas: "top top top top" "left . . right" "left . . right" "bottom bottom bottom bottom";
+.irapha-sticky-menu1[sticky-menu*="layout: column-first"] {
+  grid-template-areas: "top top top top" "left content content right" "left content content right" "bottom bottom bottom bottom";
 }
-.irapha-sticky-menu1[irapha-sticky-menu*="layout: horizontal-first"] {
-  grid-template-rows: fit-content(0) auto auto fit-content(0);
-  grid-template-columns: fit-content(0) auto auto fit-content(0);
-  grid-template-areas: "left top top right" "left . . right" "left . . right" "left bottom bottom right";
+.irapha-sticky-menu1[sticky-menu*="layout: column-first"] .irapha-sticky-menu1__dropzone.--left {
+  z-index: 4;
+}
+.irapha-sticky-menu1[sticky-menu*="layout: column-first"] .irapha-sticky-menu1__dropzone.--right {
+  z-index: 4;
+}
+.irapha-sticky-menu1[sticky-menu*="layout: row-first"] {
+  grid-template-areas: "left top top right" "left content content right" "left content content right" "left bottom bottom right";
+}
+.irapha-sticky-menu1[sticky-menu*="layout: row-first"] .irapha-sticky-menu1__dropzone.--top {
+  z-index: 4;
+}
+.irapha-sticky-menu1[sticky-menu*="layout: row-first"] .irapha-sticky-menu1__dropzone.--bottom {
+  z-index: 4;
 }
 
 .irapha-sticky-menu1__dropzone.--top {
@@ -8983,8 +8993,6 @@ img {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding-bottom: 48px;
-  background-color: rgba(238, 238, 238, 0.2);
 }
 .irapha-sticky-menu1__dropzone.--top.--active {
   position: static;
@@ -8999,8 +9007,6 @@ img {
   width: -moz-fit-content;
   width: fit-content;
   height: 100%;
-  padding-right: 48px;
-  background-color: #eeeeee;
 }
 .irapha-sticky-menu1__dropzone.--left.--active {
   position: static;
@@ -9011,12 +9017,11 @@ img {
   justify-self: flex-end;
   position: absolute;
   display: flex;
+  flex-direction: row-reverse;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 100%;
-  padding-left: 48px;
-  background-color: #eeeeee;
 }
 .irapha-sticky-menu1__dropzone.--right.--active {
   position: static;
@@ -9027,13 +9032,11 @@ img {
   align-self: flex-end;
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  padding-top: 48px;
-  background-color: rgba(238, 238, 238, 0.2);
 }
 .irapha-sticky-menu1__dropzone.--bottom.--active {
   position: static;
@@ -9041,19 +9044,24 @@ img {
 }
 
 .bar1 {
-  width: 48px;
+  width: 60px;
   aspect-ratio: 1;
+  cursor: pointer;
   background-color: red;
+  z-index: 4;
 }
 
 .bar2 {
-  width: 48px;
+  width: 60px;
   aspect-ratio: 1;
+  cursor: pointer;
   background-color: blue;
+  z-index: 4;
 }
 
 .content {
-  width: 48px;
-  aspect-ratio: 1;
+  grid-area: content;
+  width: 100%;
+  height: 100%;
   background-color: gold;
 }

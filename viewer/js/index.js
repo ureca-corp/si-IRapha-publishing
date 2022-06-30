@@ -16,4 +16,4 @@ import { StickyMenu1 } from "./sticky-menu1.js";
 
 // new GridSelector();
 
-new StickyMenu1();
+new StickyMenu1({ dropSuccessCallback: () => console.log("drop ok") });
