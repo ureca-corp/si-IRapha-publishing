@@ -31,15 +31,15 @@ export class FoldingBar {
     );
     this.#isLayoutColumn$ = isLayoutColumn$;
 
-    const isExpanded$ = new rx.BehaviorSubject();
-    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
-    this.#isExpanded$ = isExpanded$;
-
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
     this.#shrinkDirection$ = shrinkDirection$;
+
+    const isExpanded$ = new rx.BehaviorSubject();
+    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
+    this.#isExpanded$ = isExpanded$;
   }
 
   // handler
