@@ -1,28 +1,23 @@
-// import { Toolbox } from "../../common/components/toolbox/index.js";
-// import { StickyMenu } from "../../common/components/sticky-menu/index.js";
+import { Toolbox } from "../../common/components/toolbox/index.js";
+const toolbox = new Toolbox();
 
-// import { GridSelector } from "../../common/components/grid-selector/index.js";
+import { StickyMenu } from "../../common/components/sticky-menu/index.js";
+new StickyMenu({
+  dropSuccessCallback: ({ isVertical, hasChildClassName }) => {
+    if (hasChildClassName("irapha-toolbox")) {
+      toolbox.setLayoutColumn(isVertical);
+    }
 
-// const toolbox = new Toolbox();
-
-// new GridSelector();
-
-// new StickyMenu({
-//   dropSuccessCallback: ({ isVertical, hasChildClassName }) => {
-//     if (hasChildClassName("irapha-toolbox")) {
-//       toolbox.setLayoutColumn(isVertical);
-//     }
-
-//     if (hasChildClassName("irapha-thumbnail-box")) {
-//       alert(isVertical);
-//     }
-//   },
-// });
-
-import { FoldingBar } from "../../common/components/folding-bar/index.js";
-const foldingbar = new FoldingBar({
-  element: document.querySelector(".irapha-folding-bar"),
+    if (hasChildClassName("irapha-thumbnail-box")) {
+      console.log("thumbnail");
+    }
+  },
 });
 
-foldingbar.setLayoutColumn(true);
-foldingbar.setExpand(true);
+// import { FoldingBar } from "../../common/components/folding-bar/index.js";
+// const foldingbar = new FoldingBar({
+//   element: document.querySelector(".irapha-folding-bar"),
+// });
+
+// foldingbar.setLayoutColumn(true);
+// foldingbar.setExpand(true);

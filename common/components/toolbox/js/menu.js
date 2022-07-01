@@ -1,8 +1,8 @@
 const rx = rxjs;
 
-const MutationClasses = {
-  LayoutColumnTwo: "is-layout--column-two",
-  HideIconName: "is-state--name-hide",
+const Selectors = {
+  LayoutColumnTwo: "--layout--column-two",
+  HideIconName: "--name-hide",
 };
 
 const LayoutTypes = {
@@ -33,11 +33,11 @@ export class ToolboxMenu {
   }
 
   #setLayoutColumnTwo() {
-    this.#element.classList.add(MutationClasses.LayoutColumnTwo);
+    this.#element.classList.add(Selectors.LayoutColumnTwo);
   }
 
   #resetLayout() {
-    this.#element.classList.remove(MutationClasses.LayoutColumnTwo);
+    this.#element.classList.remove(Selectors.LayoutColumnTwo);
   }
 
   // handler
@@ -49,9 +49,9 @@ export class ToolboxMenu {
 
   #handleHideIconNameChange(isHideIconName) {
     if (isHideIconName)
-      return this.#element.classList.add(MutationClasses.HideIconName);
+      return this.#element.classList.add(Selectors.HideIconName);
 
-    return this.#element.classList.remove(MutationClasses.HideIconName);
+    return this.#element.classList.remove(Selectors.HideIconName);
   }
 
   // public

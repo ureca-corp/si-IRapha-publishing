@@ -5,6 +5,10 @@ const rx = rxjs;
 const Classes = {
   StickyMenu: "irapha-sticky-menu",
   DropZone: "irapha-sticky-menu__dropzone",
+  DropZoneDummy: "dropzone-dummy",
+
+  LayoutColumnFirst: "--layout--column-first",
+  LayoutRowFirst: "--layout--row-first",
 };
 
 export class StickyMenu {
@@ -53,13 +57,17 @@ export class StickyMenu {
     );
   }
 
+  #targetIncludesDropZoneDummy(target) {
+    return target.className.includes(Classes.DropZoneDummy);
+  }
+
   // 레이아웃 컨트롤
   #setLayoutRowFirst() {
-    this.#root.setAttribute("sticky-menu", "layout: row-first;");
+    this.#root.classList.add(Classes.LayoutRowFirst);
   }
 
   #resetLayout() {
-    this.#root.removeAttribute("sticky-menu");
+    this.#root.classList.remove(Classes.LayoutRowFirst);
   }
 
   #updateLayout({ dropzone }) {
@@ -108,20 +116,22 @@ export class StickyMenu {
   // 드래그 대상이 드랍존에 진입시
   #handleDragEnter(e) {
     // 요소를 드롭하려는 대상 위로 드래그했을 때 대상의 배경색 변경
-    if (e.target.className.includes("dropzone-dummy"))
+    if (this.#targetIncludesDropZoneDummy(e.target))
       e.target.style.background = "#eeeeee33";
   }
 
   // 드래그 대상이 드랍존에서 탈출 시
   #handleDragLeave(e) {
     // 요소를 드래그하여 드롭하려던 대상으로부터 벗어났을 때 배경색 리셋
-    if (e.target.className.includes("dropzone-dummy"))
+    if (this.#targetIncludesDropZoneDummy(e.target))
       e.target.style.background = "";
   }
 
   // 드래그 대상을 드랍존에 드랍 시
   #handleItemDrop(e) {
     e.preventDefault();
+
+    if (!this.#targetIncludesDropZoneDummy(e.target)) return;
 
     const draggedTarget = this.#draggedTarget;
     const dummyDropzone = e.target;

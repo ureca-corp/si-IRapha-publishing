@@ -1,8 +1,10 @@
 @use "../../../styles/common";
 @use "../../../themes/theme" as theme;
+
 @use "../../../components/toggle-expand-icon/style" as toggle-expand-icon;
 @use "./menu" as menu;
 @use "../../logo/style" as logo;
+@use "../../grid-selector/style" as grid-selector;
 
 // Variables
 // =========================================================================

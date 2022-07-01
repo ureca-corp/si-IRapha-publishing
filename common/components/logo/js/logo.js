@@ -3,15 +3,13 @@ import { ViewerInfoPopup } from "../../viewer-info/index.js";
 
 const rx = rxjs;
 
-const SelectorClasses = {
-  Logo: ".irapha-logo",
-  LogoContainer: ".irapha-logo__container",
-  LogoImage: ".irapha-logo__logo-image",
-  ViewerInfoPopup: ".irapha-viewer-info-popup",
-  MaximizeButton: ".irapha-maximize__icon",
-};
+const Selectors = {
+  Logo: "irapha-logo",
+  LogoContainer: "irapha-logo__container",
+  LogoImage: "irapha-logo__logo-image",
+  ViewerInfoPopup: "irapha-viewer-info-popup",
+  MaximizeButton: "irapha-maximize__icon",
 
-const MutationClasses = {
   UkButton: "uk-button-default",
   ShrinkVertical: "is-state--shrink-vertical",
   ShrinkHorizontal: "is-state--shrink-horizontal",
@@ -32,7 +30,7 @@ export class Logo {
   #shrinkDirection$;
 
   constructor() {
-    this.#element = document.querySelector(SelectorClasses.Logo);
+    this.#element = document.querySelector(`.${Selectors.Logo}`);
     this.#init();
   }
 
@@ -57,20 +55,20 @@ export class Logo {
 
   #initLogoContainer() {
     this.#logoContainer = this.#element.querySelector(
-      SelectorClasses.LogoContainer
+      `.${Selectors.LogoContainer}`
     );
   }
 
   #initLogoImage() {
-    const logoImage = this.#element.querySelector(SelectorClasses.LogoImage);
-    logoImage.classList.add(MutationClasses.UkButton);
+    const logoImage = this.#element.querySelector(`.${Selectors.LogoImage}`);
+    logoImage.classList.add(Selectors.UkButton);
 
     this.#logoImage = logoImage;
   }
 
   #initViewerInfoPopup() {
     const viewerInfoPopup = new ViewerInfoPopup(
-      this.#element.querySelector(SelectorClasses.ViewerInfoPopup)
+      this.#element.querySelector(`.${Selectors.ViewerInfoPopup}`)
     );
     viewerInfoPopup.init();
 
@@ -79,7 +77,7 @@ export class Logo {
 
   #initMaximizeBtn() {
     const maximizeBtn = new MaximizeButton(
-      this.#element.querySelector(SelectorClasses.MaximizeButton)
+      this.#element.querySelector(`.${Selectors.MaximizeButton}`)
     );
     maximizeBtn.init();
 
@@ -89,20 +87,20 @@ export class Logo {
   // actions
   #shrinkVertical() {
     this.#unshrinkHorizontal();
-    this.#element.classList.add(MutationClasses.ShrinkVertical);
+    this.#element.classList.add(Selectors.ShrinkVertical);
   }
 
   #unshrinkVertical() {
-    this.#element.classList.remove(MutationClasses.ShrinkVertical);
+    this.#element.classList.remove(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
     this.#unshrinkVertical();
-    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
+    this.#element.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #unshrinkHorizontal() {
-    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
+    this.#element.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   #removeAllShrink() {

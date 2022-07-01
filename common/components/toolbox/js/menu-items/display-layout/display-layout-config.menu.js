@@ -1,14 +1,21 @@
-const SelectorIds = {
+import { GridSelector } from "../../../../grid-selector/index.js";
+
+const Selectors = {
   dropDown: "#irapha-menu__display-layout__config__dropdown",
+  GridSelector: "irapha-grid-selector",
 };
 
 export class DisplayLayoutConfigMenu {
-  #element;
+  #root;
   #ukDrop;
+  #gridSelector;
 
   constructor(element) {
-    this.#element = element;
+    this.#root = element;
 
-    this.#ukDrop = UIkit.drop(element.querySelector(SelectorIds.dropDown));
+    this.#ukDrop = UIkit.drop(element.querySelector(Selectors.dropDown));
+    this.#gridSelector = new GridSelector({
+      element: element.querySelector(`.${Selectors.GridSelector}`),
+    });
   }
 }

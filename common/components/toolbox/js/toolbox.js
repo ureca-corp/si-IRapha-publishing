@@ -4,12 +4,9 @@ import { ToolboxMenusManager } from "./menu-manager.js";
 
 const rx = rxjs;
 
-const SelectorClasses = {
-  Toolbox: ".irapha-toolbox",
-  Menu: ".irapha-toolbox__menu",
-};
+const Selectors = {
+  Toolbox: "irapha-toolbox",
 
-const MutationClasses = {
   LayoutColumn: "is-layout--column",
   ShrinkHorizontal: "is-shrink--horizontal",
   ShrinkVertical: "is-shrink--vertical",
@@ -31,7 +28,7 @@ export class Toolbox {
   #shrinkDirection$;
 
   constructor() {
-    this.#element = document.querySelector(SelectorClasses.Toolbox);
+    this.#element = document.querySelector(`.${Selectors.Toolbox}`);
     this.#initLogo();
     this.#initToggleExpandButton();
     this.#initMenusManager();
@@ -90,21 +87,20 @@ export class Toolbox {
     this.#shrinkDirection$.next(shrinkDirection);
   }
 
-  // actions
   #shrinkVertical() {
     this.#logo.setShrinkDirection("vertical");
-    this.#element.classList.add(MutationClasses.ShrinkVertical);
+    this.#element.classList.add(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
     this.#logo.setShrinkDirection("horizontal");
-    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
+    this.#element.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #resetShrinkState() {
     this.#logo.setShrinkDirection(null);
-    this.#element.classList.remove(MutationClasses.ShrinkVertical);
-    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
+    this.#element.classList.remove(Selectors.ShrinkVertical);
+    this.#element.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   #toggleExpand() {
@@ -116,11 +112,11 @@ export class Toolbox {
   #handleLayoutChange(isLayoutColumn) {
     if (isLayoutColumn) {
       this.#menusManager.setLayoutColumn(true);
-      return this.#element.classList.add(MutationClasses.LayoutColumn);
+      return this.#element.classList.add(Selectors.LayoutColumn);
     }
 
     this.#menusManager.setLayoutColumn(null);
-    return this.#element.classList.remove(MutationClasses.LayoutColumn);
+    return this.#element.classList.remove(Selectors.LayoutColumn);
   }
 
   #handleExpanded(isExpanded) {

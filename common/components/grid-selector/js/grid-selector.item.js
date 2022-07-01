@@ -1,6 +1,6 @@
 const rx = rxjs;
 
-const ClassNames = {
+const Selectors = {
   GridSelectorItem: "irapha-grid-selector__item",
 };
 
@@ -53,7 +53,7 @@ export class GridSelectorItem {
   // 원시 객체 (Dom) 생성
   static createGridSelectorItemElement({ row, col }) {
     const gridItem = document.createElement("div");
-    gridItem.classList.add(ClassNames.GridSelectorItem);
+    gridItem.classList.add(Selectors.GridSelectorItem);
     gridItem.setAttribute(Attributes.Row, row);
     gridItem.setAttribute(Attributes.Column, col);
 

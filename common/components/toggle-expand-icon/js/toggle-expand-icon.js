@@ -1,14 +1,14 @@
 const rx = rxjs;
 
-const SelectorClasses = {
-  ToggleExpandButton: ".irapha-toggle-expand",
+const Selectors = {
+  ToggleExpandButton: "irapha-toggle-expand",
 };
 
 export class ToggleExpandIcon {
   #element;
 
   constructor(onClick) {
-    this.#element = document.querySelector(SelectorClasses.ToggleExpandButton);
+    this.#element = document.querySelector(`.${Selectors.ToggleExpandButton}`);
 
     rx.fromEvent(this.#element, "click").subscribe(() => onClick());
   }

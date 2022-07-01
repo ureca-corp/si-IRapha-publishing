@@ -1,6 +1,6 @@
 const rx = rxjs;
 
-const Classes = {
+const Selectors = {
   LayoutColumn: "--layout-column",
   ShrinkVertical: "--shrink-v",
   ShrinkHorizontal: "--shrink-h",
@@ -75,25 +75,25 @@ export class FoldingBar {
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(Classes.LayoutColumn);
+    this.#root.classList.add(Selectors.LayoutColumn);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Classes.LayoutColumn);
+    this.#root.classList.remove(Selectors.LayoutColumn);
   }
 
   // shrink control
   #shrinkVertical() {
-    this.#root.classList.add(Classes.ShrinkVertical);
+    this.#root.classList.add(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
-    this.#root.classList.add(Classes.ShrinkHorizontal);
+    this.#root.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #resetShrinkState() {
-    this.#root.classList.remove(Classes.ShrinkVertical);
-    this.#root.classList.remove(Classes.ShrinkHorizontal);
+    this.#root.classList.remove(Selectors.ShrinkVertical);
+    this.#root.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   #setShrinkDirection(shrinkDirection) {

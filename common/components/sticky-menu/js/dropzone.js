@@ -1,4 +1,4 @@
-const Classes = {
+const Selectors = {
   Dropzone: "irapha-sticky-menu__dropzone",
   DropzoneDummy: "dropzone-dummy",
 
@@ -11,7 +11,7 @@ const Attributes = {
   Priority: "priority",
 };
 
-const VeticalDropzoneClasses = [Classes.StatusLeft, Classes.StatusRight];
+const VeticalDropzoneClasses = [Selectors.StatusLeft, Selectors.StatusRight];
 
 export class Dropzone {
   #root;
@@ -26,7 +26,7 @@ export class Dropzone {
     const space = 48;
 
     const dropzoneDummy = document.createElement("div");
-    dropzoneDummy.className = Classes.DropzoneDummy;
+    dropzoneDummy.className = Selectors.DropzoneDummy;
     dropzoneDummy.style.cssText = `
         position: absolute;
         min-width: ${space}px;
@@ -50,12 +50,12 @@ export class Dropzone {
   }
 
   #active() {
-    this.#root.classList.add(Classes.StatusActive);
+    this.#root.classList.add(Selectors.StatusActive);
   }
 
   #inactiveTargetIfNotHaveChild(formerParent) {
     if (!formerParent.children[0])
-      formerParent.classList.remove(Classes.StatusActive);
+      formerParent.classList.remove(Selectors.StatusActive);
   }
 
   #getPriorityInElement({ element }) {
@@ -92,7 +92,9 @@ export class Dropzone {
   }
 
   removeDummy() {
-    const dropzoneDummy = this.#root.querySelector(`.${Classes.DropzoneDummy}`);
+    const dropzoneDummy = this.#root.querySelector(
+      `.${Selectors.DropzoneDummy}`
+    );
     this.#root.removeChild(dropzoneDummy);
   }
 

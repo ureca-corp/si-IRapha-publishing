@@ -1,14 +1,12 @@
 import { ToolboxMenuItemsController } from "./menu-items/index.js";
 import { ToolboxMenu } from "./menu.js";
 
-const SelectorClasses = {
-  Menu: ".irapha-toolbox__menu",
-  Divider: ".irapha-toolbox__divider",
-};
+const Selectors = {
+  Menu: "irapha-toolbox__menu",
+  Divider: "irapha-toolbox__divider",
 
-const MutationClasses = {
-  dividerLayoutColumn: "is-layout--column",
-  dividerAlignSelfCenter: "is-state--align-self-center",
+  dividerLayoutColumn: "--layout--column",
+  dividerAlignSelfCenter: "--align--self-center",
 };
 
 export class ToolboxMenusManager {
@@ -22,12 +20,12 @@ export class ToolboxMenusManager {
 
   // private
   #init() {
-    const menus = [...document.querySelectorAll(SelectorClasses.Menu)].map(
+    const menus = [...document.querySelectorAll(`.${Selectors.Menu}`)].map(
       (it) => new ToolboxMenu(it)
     );
     this.#menus = menus;
 
-    this.#divider = document.querySelector(SelectorClasses.Divider);
+    this.#divider = document.querySelector(`.${Selectors.Divider}`);
   }
 
   #initMenuItemsController() {
@@ -40,21 +38,17 @@ export class ToolboxMenusManager {
 
   #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
-      return this.#divider.classList.add(MutationClasses.dividerLayoutColumn);
+      return this.#divider.classList.add(Selectors.dividerLayoutColumn);
     }
 
-    return this.#divider.classList.remove(MutationClasses.dividerLayoutColumn);
+    return this.#divider.classList.remove(Selectors.dividerLayoutColumn);
   }
 
   #setDividerAlignSelfCenter(isAlignSelfCenter) {
     if (isAlignSelfCenter)
-      return this.#divider.classList.add(
-        MutationClasses.dividerAlignSelfCenter
-      );
+      return this.#divider.classList.add(Selectors.dividerAlignSelfCenter);
 
-    return this.#divider.classList.remove(
-      MutationClasses.dividerAlignSelfCenter
-    );
+    return this.#divider.classList.remove(Selectors.dividerAlignSelfCenter);
   }
 
   #setHideIconName(isHideIconName) {

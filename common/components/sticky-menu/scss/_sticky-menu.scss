@@ -18,9 +18,8 @@
     "left bottom bottom right";
 }
 
-@mixin s-sticky-menu {
-  // layout: 상하 요소 우선 레이아웃
-  &[sticky-menu*="layout: column-first"] {
+@mixin l-sticky-menu {
+  &.--layout--column-first {
     @include l-column-first;
 
     .irapha-sticky-menu__dropzone {
@@ -33,8 +32,7 @@
     }
   }
 
-  // layout: 좌우 요소 우선 레이아웃
-  &[sticky-menu*="layout: row-first"] {
+  &.--layout--row-first {
     @include l-row-first;
 
     .irapha-sticky-menu__dropzone {
@@ -59,7 +57,7 @@
   background-color: #333;
 
   @include l-column-first;
-  @include s-sticky-menu;
+  @include l-sticky-menu;
 }
 
 // dropzone
