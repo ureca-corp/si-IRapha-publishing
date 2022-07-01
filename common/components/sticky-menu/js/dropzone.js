@@ -1,5 +1,5 @@
 const Classes = {
-  Dropzone: "irapha-sticky-menu1__dropzone",
+  Dropzone: "irapha-sticky-menu__dropzone",
   DropzoneDummy: "dropzone-dummy",
 
   StatusActive: "--active",
@@ -109,6 +109,13 @@ export class Dropzone {
     );
   }
 
+  // 바로 아래 자식 요소가 해당 클래스명을 보유하고 있는지
+  hasChildClassName(className) {
+    return [...this.#root.children].some((it) =>
+      it.className.includes(className)
+    );
+  }
+
   // 백그라운드 초기화
   invalidateBackground() {
     this.#root.style.background = "";
@@ -118,6 +125,9 @@ export class Dropzone {
     invalidateAllDropzoneBG();
     this.#drop(target);
 
-    return dropSuccessCallback({ isVertical: this.isTypeVertical() });
+    return dropSuccessCallback({
+      isVertical: this.isTypeVertical(),
+      hasChildClassName: (className) => this.hasChildClassName(className),
+    });
   }
 }

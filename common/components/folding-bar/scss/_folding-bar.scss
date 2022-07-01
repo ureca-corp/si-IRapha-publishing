@@ -1,0 +1,45 @@
+@use "../../../styles/common";
+
+$folding-bar: (
+  width: 130px,
+  height: 80px,
+  min-size: 28px,
+);
+
+@mixin l-folding-bar {
+  &.--layout-column {
+    & {
+      flex-direction: column;
+      height: 100%;
+      width: map-get($folding-bar, "width");
+    }
+  }
+}
+
+@mixin s-folding-bar {
+  &.--shrink-h {
+    & {
+      width: map-get($folding-bar, "min-size");
+    }
+  }
+
+  &.--shrink-v {
+    & {
+      height: map-get($folding-bar, "min-size");
+    }
+  }
+}
+
+.irapha-folding-bar {
+  display: flex;
+  width: 100%;
+  height: map-get($folding-bar, "height");
+  z-index: 4;
+
+  transition: all 0.2s ease-in-out;
+
+  @include l-folding-bar;
+  @include s-folding-bar;
+
+  background-color: red;
+}

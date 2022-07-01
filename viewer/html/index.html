@@ -19,9 +19,9 @@
   <body style="background-color: #999">
     <!-- Sticky Menu  -->
     <div class="irapha-sticky-menu">
-      <div class="irapha-sticky-menu__dropzone dropzone-top">
+      <div class="irapha-sticky-menu__dropzone --top --active">
         <!-- Toolbox -->
-        <div class="irapha-toolbox" draggable="true">
+        <div class="irapha-toolbox" draggable="true" priority="1">
           <div class="irapha-toolbox__logo">
             <!-- 로고 영역 -->
             <div class="irapha-logo">
@@ -1899,12 +1899,12 @@
             </ul>
           </div>
         </div>
-        <div class="irapha-thumbnail-box" draggable="true"></div>
+        <div class="irapha-thumbnail-box" draggable="true" priority="2"></div>
       </div>
-
-      <div class="irapha-sticky-menu__dropzone dropzone-left"></div>
-      <div class="irapha-sticky-menu__dropzone dropzone-right"></div>
-      <div class="irapha-sticky-menu__dropzone dropzone-bottom"></div>
+      <div class="irapha-sticky-menu__dropzone --left"></div>
+      <div class="irapha-sticky-menu__dropzone --right"></div>
+      <div class="irapha-sticky-menu__dropzone --bottom"></div>
+      <div class="content"></div>
     </div>
   </body>
 </html>
