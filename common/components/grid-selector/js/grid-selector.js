@@ -9,14 +9,10 @@ export class GridSelector {
   constructor({ element }) {
     this.#root = element;
 
-    this.#init();
-  }
-
-  // private
-  #init() {
     this.#initGridItems();
   }
 
+  // private
   #initGridItems() {
     const row = Array.from({ length: MatrixSize }, (_, index) => index + 1);
 

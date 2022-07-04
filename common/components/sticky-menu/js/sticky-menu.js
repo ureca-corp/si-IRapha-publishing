@@ -14,7 +14,6 @@ const Classes = {
 export class StickyMenu {
   #root;
   #dropzones;
-
   #draggedTarget;
 
   #dropSuccessCallback;

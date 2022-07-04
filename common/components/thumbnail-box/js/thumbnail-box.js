@@ -3,11 +3,11 @@ import { FoldingBar } from "../../folding-bar/index.js";
 const rx = rxjs;
 
 const Selectors = {
-  ThumbnailBar: "irapha-thumbnail-bar",
+  ThumbnailBar: "irapha-thumbnail-box",
   FoldingBar: "irapha-folding-bar",
 };
 
-export class ThumbnailBar {
+export class ThumbnailBox {
   #root;
 
   #isLayoutColumn$;

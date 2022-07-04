@@ -1,4 +1,4 @@
-import { ToggleExpandIcon } from "../../toggle-expand-icon1/index.js";
+import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
 
 const rx = rxjs;
 

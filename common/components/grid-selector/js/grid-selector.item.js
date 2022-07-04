@@ -14,12 +14,12 @@ const Attributes = {
 };
 
 export class GridSelectorItem {
-  #element;
+  #root;
 
   #isActive$;
 
   constructor(element) {
-    this.#element = element;
+    this.#root = element;
 
     this.#initStates();
   }
@@ -32,14 +32,14 @@ export class GridSelectorItem {
   }
 
   #active() {
-    this.#element.setAttribute(
+    this.#root.setAttribute(
       Attributes.GridSelector.key,
       Attributes.GridSelector.active
     );
   }
 
   #inactive() {
-    this.#element.setAttribute(Attributes.GridSelector.key, null);
+    this.#root.setAttribute(Attributes.GridSelector.key, null);
   }
 
   // handler
@@ -50,7 +50,7 @@ export class GridSelectorItem {
   }
 
   // public
-  // 원시 객체 (Dom) 생성
+  // 원시 객체 (DOM) 생성
   static createGridSelectorItemElement({ row, col }) {
     const gridItem = document.createElement("div");
     gridItem.classList.add(Selectors.GridSelectorItem);
@@ -61,11 +61,11 @@ export class GridSelectorItem {
   }
 
   getRow() {
-    return this.#element.getAttribute(Attributes.Row);
+    return this.#root.getAttribute(Attributes.Row);
   }
 
   getCol() {
-    return this.#element.getAttribute(Attributes.Column);
+    return this.#root.getAttribute(Attributes.Column);
   }
 
   getRowCol() {
@@ -85,14 +85,14 @@ export class GridSelectorItem {
 
   // set event listener
   setOnMouseEnterListener({ callback }) {
-    rx.fromEvent(this.#element, "mouseenter").subscribe(callback);
+    rx.fromEvent(this.#root, "mouseenter").subscribe(callback);
   }
 
   setOnMouseLeaveListener({ callback }) {
-    rx.fromEvent(this.#element, "mouseleave").subscribe(callback);
+    rx.fromEvent(this.#root, "mouseleave").subscribe(callback);
   }
 
   setOnClickListener({ callback }) {
-    rx.fromEvent(this.#element, "click").subscribe(callback);
+    rx.fromEvent(this.#root, "click").subscribe(callback);
   }
 }

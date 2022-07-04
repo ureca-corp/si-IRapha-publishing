@@ -2,13 +2,5 @@
 @use "../../libs//reset-5.0.1/reset.css" as reset;
 
 @use "../../common/components/toolbox/style" as toolbox;
+@use "../../common/components/thumbnail-box/style" as thumbnail-box;
 @use "../../common/components/sticky-menu/style" as sticky-menu;
-
-@use "../../common/components/folding-bar/style" as folding-bar;
-
-.irapha-thumbnail-box {
-  width: 56px;
-  height: 56px;
-  background-color: blue;
-  z-index: 4;
-}

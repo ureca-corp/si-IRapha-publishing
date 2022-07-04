@@ -5,8 +5,9 @@ const Selectors = {
   Menu: "irapha-toolbox__menu",
   Divider: "irapha-toolbox__divider",
 
-  dividerLayoutColumn: "--layout--column",
-  dividerAlignSelfCenter: "--align--self-center",
+  LayoutColumn: "--layout--column",
+  Hide: "--hide",
+  DividerAlignSelfCenter: "--align--self-center",
 };
 
 export class ToolboxMenusManager {
@@ -48,41 +49,41 @@ export class ToolboxMenusManager {
   }
 
   #setLayoutColumn() {
-    this.#root.classList.add("--layout-column");
+    this.#root.classList.add(Selectors.LayoutColumn);
 
     this.#setMenusLayout("columnTwo");
     this.#setDividerLayout(true);
   }
 
   #removeLayoutColumn() {
-    this.#root.classList.remove("--layout-column");
+    this.#root.classList.remove(Selectors.LayoutColumn);
 
     this.#setDividerLayout(null);
     this.#setMenusLayout(null);
   }
 
   #hide() {
-    this.#root.classList.add("--hide");
+    this.#root.classList.add(Selectors.Hide);
   }
 
   #visible() {
-    this.#root.classList.remove("--hide");
+    this.#root.classList.remove(Selectors.Hide);
   }
 
   // divider control
   #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
-      return this.#divider.classList.add(Selectors.dividerLayoutColumn);
+      return this.#divider.classList.add(Selectors.LayoutColumn);
     }
 
-    return this.#divider.classList.remove(Selectors.dividerLayoutColumn);
+    return this.#divider.classList.remove(Selectors.LayoutColumn);
   }
 
   #setDividerAlignSelfCenter(isAlignSelfCenter) {
     if (isAlignSelfCenter)
-      return this.#divider.classList.add(Selectors.dividerAlignSelfCenter);
+      return this.#divider.classList.add(Selectors.DividerAlignSelfCenter);
 
-    return this.#divider.classList.remove(Selectors.dividerAlignSelfCenter);
+    return this.#divider.classList.remove(Selectors.DividerAlignSelfCenter);
   }
 
   // menus control

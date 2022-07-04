@@ -1,8 +1,8 @@
 import { Toolbox } from "../../common/components/toolbox/index.js";
 const toolbox = new Toolbox();
 
-import { ThumbnailBar } from "../../common/components/thumbnail-bar/index.js";
-const thumbnailBar = new ThumbnailBar();
+import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
+const thumbnailBox = new ThumbnailBox();
 
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 new StickyMenu({
@@ -12,9 +12,9 @@ new StickyMenu({
       toolbox.setLayoutColumn(isVertical);
     }
 
-    if (hasElement("#irapha-thumbnail-bar")) {
+    if (hasElement("#irapha-thumbnail-box")) {
       console.log(isVertical);
-      thumbnailBar.setLayoutColumn(isVertical);
+      thumbnailBox.setLayoutColumn(isVertical);
     }
   },
 });

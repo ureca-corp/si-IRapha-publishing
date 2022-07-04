@@ -3,6 +3,9 @@
 @use "../../../themes/shape" as shapes;
 @use "../../../themes/typography" as typography;
 
+$bg: colors.$bg-black;
+$font-color: colors.$font-white;
+
 // 뷰어 정보
 .irapha-viewer-info {
   width: 280px;
@@ -10,13 +13,13 @@
 
   padding: 20px;
 
-  background-color: colors.$bg-black;
+  background-color: $bg;
   border-radius: shapes.$medium;
 
   &__title {
     @include typography.title-medium;
 
-    color: colors.$font-white;
+    color: $font-color;
 
     display: flex;
     justify-content: center;
@@ -26,7 +29,7 @@
   &__content {
     @include typography.body-small;
 
-    color: colors.$font-white;
+    color: $font-color;
 
     display: flex;
     flex-direction: column;
@@ -40,7 +43,7 @@
     &__divider {
       width: 100%;
       height: 1px;
-      background-color: #eeeeee33;
+      background-color: var(--color__border);
 
       margin: 8px 0;
     }

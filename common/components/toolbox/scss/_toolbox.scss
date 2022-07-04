@@ -1,15 +1,16 @@
 @use "../../../styles/common";
-@use "../../../themes/theme" as theme;
+@use "../../../themes/colors" as colors;
 
 @use "./menu" as menu;
 @use "./menu-manager" as menu-manager;
 @use "../../logo/style" as logo;
 @use "../../grid-selector/style" as grid-selector;
+@use "../../folding-bar/style" as folding-bar;
 
 // Variables
 // =========================================================================
 $bg: var(--color__teriary-container);
-$border-color: #eeeeee33;
+$border-color: var(--color__border);
 
 $toolbox: (
   width: 130px,
@@ -21,6 +22,13 @@ $toolbox: (
   &.--shrink-v {
     .irapha-toolbox__logo {
       width: fit-content;
+      aspect-ratio: unset;
+    }
+  }
+
+  &.--shrink-h {
+    .irapha-toolbox__logo {
+      height: fit-content;
       aspect-ratio: unset;
     }
   }

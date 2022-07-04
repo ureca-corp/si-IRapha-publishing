@@ -58,15 +58,15 @@ export class Dropzone {
       formerParent.classList.remove(Selectors.StatusActive);
   }
 
-  #getPriorityInElement({ element }) {
+  #getPriorityFromElement({ element }) {
     return element.getAttribute(Attributes.Priority);
   }
 
   #getSortedChild() {
     return [...this.#root.children].sort(
       (a, b) =>
-        this.#getPriorityInElement({ element: a }) -
-        this.#getPriorityInElement({ element: b })
+        this.#getPriorityFromElement({ element: a }) -
+        this.#getPriorityFromElement({ element: b })
     );
   }
 
@@ -104,7 +104,7 @@ export class Dropzone {
     );
   }
 
-  // 높은 우선 순위 자식을 보유하고 있는지
+  // 높은 우선순위 자식을 보유하고 있는지
   hasHighPriorityChild() {
     return [...this.#root.children].some(
       (it) => it.getAttribute(Attributes.Priority) === "1"

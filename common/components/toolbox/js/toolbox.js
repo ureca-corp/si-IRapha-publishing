@@ -86,13 +86,11 @@ export class Toolbox {
 
   // handler
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.Vertical) {
+    if (shrinkDirection === ShrinkDirection.Vertical)
       return this.#root.classList.add(Selectors.ShrinkVertical);
-    }
 
-    if (shrinkDirection === ShrinkDirection.Horizontal) {
+    if (shrinkDirection === ShrinkDirection.Horizontal)
       return this.#root.classList.add(Selectors.ShrinkHorizontal);
-    }
 
     this.#root.classList.remove(Selectors.ShrinkVertical);
     this.#root.classList.remove(Selectors.ShrinkHorizontal);

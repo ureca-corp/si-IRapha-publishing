@@ -1,12 +1,12 @@
 const rx = rxjs;
 
 export class ToggleExpandIcon {
-  #element;
+  #root;
 
   constructor({ element, isExpanded$, onClick }) {
-    this.#element = element;
+    this.#root = element;
 
-    rx.fromEvent(this.#element, "click").subscribe(() => onClick());
+    rx.fromEvent(this.#root, "click").subscribe(() => onClick());
 
     isExpanded$.subscribe((isExpanded) => this.handleExpandedChane(isExpanded));
   }
@@ -18,10 +18,10 @@ export class ToggleExpandIcon {
   }
 
   setExpandIcon() {
-    this.#element.setAttribute("uk-icon", "icon: expand");
+    this.#root.setAttribute("uk-icon", "icon: expand");
   }
 
   setShrinkIcon() {
-    this.#element.setAttribute("uk-icon", "icon: shrink");
+    this.#root.setAttribute("uk-icon", "icon: shrink");
   }
 }

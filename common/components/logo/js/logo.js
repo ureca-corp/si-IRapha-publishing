@@ -11,8 +11,8 @@ const Selectors = {
   MaximizeButton: "irapha-maximize__icon",
 
   UkButton: "uk-button-default",
-  ShrinkVertical: "is-state--shrink-vertical",
-  ShrinkHorizontal: "is-state--shrink-horizontal",
+  ShrinkVertical: "--shrink-v",
+  ShrinkHorizontal: "--shrink-h",
 };
 
 const ShrinkDirection = {
@@ -22,10 +22,6 @@ const ShrinkDirection = {
 
 export class Logo {
   #root;
-  #logoContainer;
-  #logoImage;
-  #viewerInfoPopup;
-  #maximizeBtn;
 
   #shrinkDirection$;
 
@@ -41,52 +37,26 @@ export class Logo {
 
   // private
   #init() {
-    this.#initLogoContainer();
     this.#initLogoImage();
     this.#initViewerInfoPopup();
     this.#initMaximizeBtn();
-
-    // this.#initStates();
-  }
-
-  #initStates() {
-    const shrinkDirection$ = new rx.BehaviorSubject();
-    shrinkDirection$.subscribe((shrinkDirection) =>
-      this.#handleShrinkChange(shrinkDirection)
-    );
-
-    this.#shrinkDirection$ = shrinkDirection$;
-  }
-
-  #initLogoContainer() {
-    this.#logoContainer = this.#root.querySelector(
-      `.${Selectors.LogoContainer}`
-    );
   }
 
   #initLogoImage() {
     const logoImage = this.#root.querySelector(`.${Selectors.LogoImage}`);
     logoImage.classList.add(Selectors.UkButton);
-
-    this.#logoImage = logoImage;
   }
 
   #initViewerInfoPopup() {
-    const viewerInfoPopup = new ViewerInfoPopup(
-      this.#root.querySelector(`.${Selectors.ViewerInfoPopup}`)
-    );
-    viewerInfoPopup.init();
-
-    this.#viewerInfoPopup = viewerInfoPopup;
+    new ViewerInfoPopup({
+      element: this.#root.querySelector(`.${Selectors.ViewerInfoPopup}`),
+    });
   }
 
   #initMaximizeBtn() {
-    const maximizeBtn = new MaximizeButton(
-      this.#root.querySelector(`.${Selectors.MaximizeButton}`)
-    );
-    maximizeBtn.init();
-
-    this.#maximizeBtn = maximizeBtn;
+    new MaximizeButton({
+      element: this.#root.querySelector(`.${Selectors.MaximizeButton}`),
+    });
   }
 
   // actions

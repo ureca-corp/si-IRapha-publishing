@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/index.css" />
     <script defer type="module" src="../js/index.js"></script>
   </head>
+
   <body style="background-color: #999">
     <!-- Sticky Menu  -->
     <div class="irapha-sticky-menu">
@@ -91,9 +92,7 @@
 
                     <!-- 네트워크 연결 상태 -->
                     <li class="irapha-network-status" uk-tooltip="18msec">
-                      <div
-                        class="irapha-network-status__icon is-state--green"
-                      />
+                      <div class="irapha-network-status__icon --status-green" />
                     </li>
                   </ul>
                 </div>
@@ -101,7 +100,7 @@
             </div>
 
             <div class="irapha-drag-point">
-              <span class="irapha-toggle-expand" uk-icon="icon: expand"></span>
+              <span class="irapha-toggle-expand"></span>
             </div>
 
             <div class="irapha-toolbox__menus">
@@ -1949,14 +1948,14 @@
         </div>
 
         <div
-          id="irapha-thumbnail-bar"
+          id="irapha-thumbnail-box"
+          class="irapha-thumbnail-box"
           draggable="true"
           priority="2"
-          style="z-index: 4"
         >
           <div class="irapha-folding-bar">
             <div class="irapha-drag-point">
-              <span class="irapha-toggle-expand" uk-icon="icon: expand"></span>
+              <span class="irapha-toggle-expand"></span>
             </div>
           </div>
         </div>

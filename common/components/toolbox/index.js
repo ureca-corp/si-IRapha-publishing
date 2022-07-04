@@ -1,1 +1,1 @@
-export { Toolbox } from "./js/toolbox1.js";
+export { Toolbox } from "./js/toolbox.js";
