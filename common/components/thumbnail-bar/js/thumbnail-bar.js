@@ -12,6 +12,7 @@ export class ThumbnailBar {
 
   #isLayoutColumn$;
   #isExpanded$;
+  #isPreview$;
   #shrinkDirection$;
 
   constructor() {
@@ -23,6 +24,7 @@ export class ThumbnailBar {
       element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
+      isPreview$: this.#isPreview$,
       shrinkDirection$: this.#shrinkDirection$,
     });
   }
@@ -35,12 +37,15 @@ export class ThumbnailBar {
     const shrinkDirection$ = new rx.BehaviorSubject();
     this.#shrinkDirection$ = shrinkDirection$;
 
+    const isPreview$ = new rx.BehaviorSubject(false);
+    this.#isPreview$ = isPreview$;
+
     const isExpanded$ = new rx.BehaviorSubject();
     this.#isExpanded$ = isExpanded$;
   }
 
   // public
-  setLayoutColumn(isVertical) {
-    this.#isLayoutColumn$.next(isVertical);
+  setLayoutColumn(isLayoutColumn) {
+    this.#isLayoutColumn$.next(isLayoutColumn);
   }
 }

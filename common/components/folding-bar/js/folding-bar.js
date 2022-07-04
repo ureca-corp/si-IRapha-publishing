@@ -20,12 +20,24 @@ export class FoldingBar {
 
   #isLayoutColumn$;
   #isExpanded$;
+  #isPreview$;
   #shrinkDirection$;
 
-  constructor({ element, isLayoutColumn$, isExpanded$, shrinkDirection$ }) {
+  constructor({
+    element,
+    isLayoutColumn$,
+    isExpanded$,
+    isPreview$,
+    shrinkDirection$,
+  }) {
     this.#root = element;
 
-    this.#initStates({ isLayoutColumn$, isExpanded$, shrinkDirection$ });
+    this.#initStates({
+      isLayoutColumn$,
+      isExpanded$,
+      isPreview$,
+      shrinkDirection$,
+    });
     this.#initMouseEvent();
 
     new ToggleExpandIcon({
@@ -36,7 +48,7 @@ export class FoldingBar {
   }
 
   // private
-  #initStates({ isLayoutColumn$, isExpanded$, shrinkDirection$ }) {
+  #initStates({ isLayoutColumn$, isExpanded$, isPreview$, shrinkDirection$ }) {
     isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
     );
@@ -49,19 +61,21 @@ export class FoldingBar {
 
     isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
     this.#isExpanded$ = isExpanded$;
+
+    this.#isPreview$ = isPreview$;
   }
 
   #initMouseEvent() {
     // 마우스 호버 시 임시로 보이기
-    rx.fromEvent(this.#root, "mouseover").subscribe(() => {
-      if (this.#isExpanded$.getValue()) return this.#resetShrinkState();
+    rx.fromEvent(this.#root, "mouseenter").subscribe(() => {
+      if (this.#isPreview$.getValue()) return this.#isExpanded$.next(false);
     });
 
     // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent(this.#root, "mouseout").subscribe(() => {
-      const isExpanded = this.#isExpanded$.getValue();
+    rx.fromEvent(this.#root, "mouseleave").subscribe(() => {
+      const old = this.#isExpanded$.getValue();
 
-      if (isExpanded) return this.#setExpand(isExpanded);
+      if (this.#isPreview$.getValue()) return this.#setExpand(!old);
     });
   }
 
@@ -73,7 +87,7 @@ export class FoldingBar {
   }
 
   #handleExpanded(isExpanded) {
-    if (!isExpanded) return this.#resetShrinkState();
+    if (!isExpanded) return this.#setShrinkDirection(null);
 
     if (!this.#isLayoutColumn$.getValue())
       return this.#setShrinkDirection(ShrinkDirection.Vertical);
@@ -119,16 +133,17 @@ export class FoldingBar {
   }
 
   // set states
-  #setLayoutColumn(isLayoutColumn) {
-    this.#isLayoutColumn$.next(isLayoutColumn);
-  }
-
   #setExpand(isExpanded) {
     this.#isExpanded$.next(isExpanded);
   }
 
   #toggle() {
-    const old = this.#isExpanded$.getValue();
-    this.#isExpanded$.next(!old);
+    const isPreview = this.#isPreview$.getValue();
+
+    if (!isPreview) {
+      this.#isExpanded$.next(!this.#isExpanded$.getValue());
+    }
+
+    this.#isPreview$.next(!isPreview);
   }
 }

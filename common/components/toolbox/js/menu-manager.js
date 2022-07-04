@@ -10,10 +10,13 @@ const Selectors = {
 };
 
 export class ToolboxMenusManager {
+  #root;
   #menus;
   #divider;
 
-  constructor({ isLayoutColumn$, isHideIconName$ }) {
+  constructor({ element, isLayoutColumn$, isHideIconName$, shrinkDirection$ }) {
+    this.#root = element;
+
     this.#init();
     this.#initMenuItemsController();
 
@@ -23,6 +26,10 @@ export class ToolboxMenusManager {
 
     isHideIconName$.subscribe((isHideIconName) =>
       this.#handleHideIconNameChange(isHideIconName)
+    );
+
+    shrinkDirection$.subscribe((shrinkDirection) =>
+      this.#handleShrinkDirectionChange(shrinkDirection)
     );
   }
 
@@ -40,10 +47,29 @@ export class ToolboxMenusManager {
     new ToolboxMenuItemsController();
   }
 
-  #setMenusLayout(layout) {
-    this.#menus.forEach((it) => it.setLayout(layout));
+  #setLayoutColumn() {
+    this.#root.classList.add("--layout-column");
+
+    this.#setMenusLayout("columnTwo");
+    this.#setDividerLayout(true);
   }
 
+  #removeLayoutColumn() {
+    this.#root.classList.remove("--layout-column");
+
+    this.#setDividerLayout(null);
+    this.#setMenusLayout(null);
+  }
+
+  #hide() {
+    this.#root.classList.add("--hide");
+  }
+
+  #visible() {
+    this.#root.classList.remove("--hide");
+  }
+
+  // divider control
   #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
       return this.#divider.classList.add(Selectors.dividerLayoutColumn);
@@ -59,15 +85,20 @@ export class ToolboxMenusManager {
     return this.#divider.classList.remove(Selectors.dividerAlignSelfCenter);
   }
 
+  // menus control
+  #setMenusLayout(layout) {
+    this.#menus.forEach((it) => it.setLayout(layout));
+  }
+
   #setHideIconName(isHideIconName) {
     this.#menus.forEach((it) => it.setHideIconName(isHideIconName));
   }
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) return this.setLayoutColumn(true);
+    if (isLayoutColumn) return this.#setLayoutColumn();
 
-    return this.setLayoutColumn(null);
+    return this.#removeLayoutColumn();
   }
 
   #handleHideIconNameChange(isHideIconName) {
@@ -75,14 +106,9 @@ export class ToolboxMenusManager {
     this.#setDividerAlignSelfCenter(isHideIconName);
   }
 
-  // public
-  setLayoutColumn(isLayoutColumn) {
-    if (isLayoutColumn) {
-      this.#setDividerLayout(true);
-      return this.#setMenusLayout("columnTwo");
-    }
+  #handleShrinkDirectionChange(shrinkDirection) {
+    if (!shrinkDirection) return this.#visible();
 
-    this.#setDividerLayout(null);
-    return this.#setMenusLayout(null);
+    return this.#hide();
   }
 }

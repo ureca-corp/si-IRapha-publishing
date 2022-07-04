@@ -111,11 +111,8 @@ export class Dropzone {
     );
   }
 
-  // 바로 아래 자식 요소가 해당 클래스명을 보유하고 있는지
-  hasChildClassName(className) {
-    return [...this.#root.children].some((it) =>
-      it.className.includes(className)
-    );
+  hasElement(id) {
+    return !!this.#root.querySelector(id);
   }
 
   // 백그라운드 초기화
@@ -129,7 +126,7 @@ export class Dropzone {
 
     return dropSuccessCallback({
       isVertical: this.isTypeVertical(),
-      hasChildClassName: (className) => this.hasChildClassName(className),
+      hasElement: (id) => this.hasElement(id),
     });
   }
 }

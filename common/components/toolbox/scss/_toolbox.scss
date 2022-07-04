@@ -1,8 +1,8 @@
 @use "../../../styles/common";
 @use "../../../themes/theme" as theme;
 
-@use "../../../components/toggle-expand-icon/style" as toggle-expand-icon;
 @use "./menu" as menu;
+@use "./menu-manager" as menu-manager;
 @use "../../logo/style" as logo;
 @use "../../grid-selector/style" as grid-selector;
 
@@ -17,79 +17,11 @@ $toolbox: (
   min-size: 28px,
 );
 
-// Mixins
-// =========================================================================
-@mixin l-toolbox {
-  &.is-layout {
-    &--column {
-      &.irapha-toolbox {
-        flex-direction: column;
-        height: 100%;
-        width: map-get($toolbox, "width");
-      }
-
-      .irapha-toolbox {
-        &__logo {
-          width: 100%;
-          height: fit-content;
-        }
-
-        &__drag-point {
-          width: 100%;
-          height: map-get($toolbox, "min-size");
-
-          justify-content: flex-start;
-
-          border-top: 1px;
-          border-bottom: 1px;
-          border-left: 0;
-          border-right: 0;
-          border-style: dashed;
-          border-color: $border-color;
-
-          box-shadow: 0px 0px 2px $border-color;
-
-          margin: 2px 0;
-        }
-
-        &__menus {
-          flex: 1;
-          flex-direction: column;
-          padding: 24px 0;
-        }
-      }
-    }
-  }
-}
-
 @mixin s-toolbox {
-  &.is-shrink {
-    &--horizontal {
-      &.irapha-toolbox {
-        width: map-get($toolbox, "min-size");
-      }
-      .irapha-toolbox {
-        &__menus {
-          display: none;
-        }
-      }
-    }
-
-    &--vertical {
-      &.irapha-toolbox {
-        height: map-get($toolbox, "min-size");
-      }
-
-      .irapha-toolbox {
-        &__logo {
-          width: fit-content;
-          aspect-ratio: unset;
-        }
-
-        &__menus {
-          display: none;
-        }
-      }
+  &.--shrink-v {
+    .irapha-toolbox__logo {
+      width: fit-content;
+      aspect-ratio: unset;
     }
   }
 }
@@ -97,49 +29,13 @@ $toolbox: (
 // Styles
 // =================================================================
 .irapha-toolbox {
-  display: flex;
-  width: 100%;
-  height: map-get($toolbox, "height");
-  z-index: 4;
-
-  transition: all 0.2s ease-in-out;
-
+  z-index: 5;
   background-color: $bg;
 
-  @include l-toolbox;
   @include s-toolbox;
 
   &__logo {
     width: map-get($toolbox, "width");
     aspect-ratio: 16/10;
-  }
-
-  &__drag-point {
-    display: flex;
-    justify-content: center;
-
-    width: map-get($toolbox, "min-size");
-    height: 100%;
-
-    padding: 4px;
-
-    border-left: 1px;
-    border-right: 1px;
-    border-style: dashed;
-    border-color: $border-color;
-
-    box-shadow: 0px 0px 2px $border-color;
-  }
-
-  &__menus {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 0 24px;
-
-    overflow: overlay;
   }
 }
