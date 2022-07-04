@@ -13,9 +13,17 @@ export class ToolboxMenusManager {
   #menus;
   #divider;
 
-  constructor() {
+  constructor({ isLayoutColumn$, isHideIconName$ }) {
     this.#init();
     this.#initMenuItemsController();
+
+    isLayoutColumn$.subscribe((isLayoutColumn) =>
+      this.#handleLayoutChange(isLayoutColumn)
+    );
+
+    isHideIconName$.subscribe((isHideIconName) =>
+      this.#handleHideIconNameChange(isHideIconName)
+    );
   }
 
   // private
@@ -55,6 +63,18 @@ export class ToolboxMenusManager {
     this.#menus.forEach((it) => it.setHideIconName(isHideIconName));
   }
 
+  // handler
+  #handleLayoutChange(isLayoutColumn) {
+    if (isLayoutColumn) return this.setLayoutColumn(true);
+
+    return this.setLayoutColumn(null);
+  }
+
+  #handleHideIconNameChange(isHideIconName) {
+    this.#setHideIconName(isHideIconName);
+    this.#setDividerAlignSelfCenter(isHideIconName);
+  }
+
   // public
   setLayoutColumn(isLayoutColumn) {
     if (isLayoutColumn) {
@@ -64,10 +84,5 @@ export class ToolboxMenusManager {
 
     this.#setDividerLayout(null);
     return this.#setMenusLayout(null);
-  }
-
-  setHideIconName(isHideIconName) {
-    this.#setHideIconName(isHideIconName);
-    this.#setDividerAlignSelfCenter(isHideIconName);
   }
 }

@@ -1,5 +1,5 @@
 import { Logo } from "../../logo/index.js";
-import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
+import { ToggleExpandIcon } from "../../toggle-expand-icon1/index.js";
 import { ToolboxMenusManager } from "./menu-manager.js";
 
 const rx = rxjs;
@@ -18,37 +18,48 @@ const ShrinkDirection = {
 };
 
 export class Toolbox {
-  #element;
-  #logo;
-  #toggleExpandButton;
-  #menusManager;
+  #root;
 
   #isLayoutColumn$;
   #isExpanded$;
   #shrinkDirection$;
+  #isHideIconName$;
 
   constructor() {
-    this.#element = document.querySelector(`.${Selectors.Toolbox}`);
+    this.#root = document.querySelector(`.${Selectors.Toolbox}`);
+
+    this.#initStates();
+
     this.#initLogo();
     this.#initToggleExpandButton();
     this.#initMenusManager();
 
-    this.#initStates();
     this.#initMouseEvent();
+
+    this.setHideIconName(true);
   }
 
   // private
   #initLogo() {
-    this.#logo = new Logo();
+    new Logo({
+      element: this.#root.querySelector(".irapha-logo"),
+      shrinkDirection$: this.#shrinkDirection$,
+    });
   }
 
   #initToggleExpandButton() {
-    this.#toggleExpandButton = new ToggleExpandIcon(() => this.#toggleExpand());
+    new ToggleExpandIcon({
+      element: this.#root.querySelector(".irapha-toggle-expand"),
+      isExpanded$: this.#isExpanded$,
+      onClick: () => this.#toggle(),
+    });
   }
 
   #initMenusManager() {
-    this.#menusManager = new ToolboxMenusManager();
-    this.#menusManager.setHideIconName(true);
+    new ToolboxMenusManager({
+      isLayoutColumn$: this.#isLayoutColumn$,
+      isHideIconName$: this.#isHideIconName$,
+    });
   }
 
   #initStates() {
@@ -58,25 +69,28 @@ export class Toolbox {
     );
     this.#isLayoutColumn$ = isLayoutColumn$;
 
-    const isExpanded$ = new rx.BehaviorSubject();
-    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
-    this.#isExpanded$ = isExpanded$;
-
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
     this.#shrinkDirection$ = shrinkDirection$;
+
+    const isExpanded$ = new rx.BehaviorSubject();
+    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
+    this.#isExpanded$ = isExpanded$;
+
+    const isHideIconName$ = new rx.BehaviorSubject();
+    this.#isHideIconName$ = isHideIconName$;
   }
 
   #initMouseEvent() {
     // 마우스 호버 시 임시로 보이기
-    rx.fromEvent(this.#element, "mouseover").subscribe(() => {
-      if (this.#isExpanded$.getValue()) return this.#resetShrinkState();
+    rx.fromEvent(this.#root, "mouseover").subscribe(() => {
+      if (this.#isExpanded$.getValue()) return this.#handleExpanded(false);
     });
 
     // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent(this.#element, "mouseout").subscribe(() => {
+    rx.fromEvent(this.#root, "mouseout").subscribe(() => {
       const isExpanded = this.#isExpanded$.getValue();
 
       if (isExpanded) return this.setExpand(isExpanded);
@@ -88,44 +102,36 @@ export class Toolbox {
   }
 
   #shrinkVertical() {
-    this.#logo.setShrinkDirection("vertical");
-    this.#element.classList.add(Selectors.ShrinkVertical);
+    this.#root.classList.add(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
-    this.#logo.setShrinkDirection("horizontal");
-    this.#element.classList.add(Selectors.ShrinkHorizontal);
+    this.#root.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #resetShrinkState() {
-    this.#logo.setShrinkDirection(null);
-    this.#element.classList.remove(Selectors.ShrinkVertical);
-    this.#element.classList.remove(Selectors.ShrinkHorizontal);
+    this.#root.classList.remove(Selectors.ShrinkVertical);
+    this.#root.classList.remove(Selectors.ShrinkHorizontal);
   }
 
-  #toggleExpand() {
+  #toggle() {
     const old = this.#isExpanded$.getValue();
     this.setExpand(!old);
   }
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) {
-      this.#menusManager.setLayoutColumn(true);
-      return this.#element.classList.add(Selectors.LayoutColumn);
-    }
+    if (isLayoutColumn) return this.#root.classList.add(Selectors.LayoutColumn);
 
-    this.#menusManager.setLayoutColumn(null);
-    return this.#element.classList.remove(Selectors.LayoutColumn);
+    return this.#root.classList.remove(Selectors.LayoutColumn);
   }
 
   #handleExpanded(isExpanded) {
     if (!isExpanded) {
-      this.#toggleExpandButton.setExpandIcon();
+      this.#setShrinkDirection(null);
       return this.#resetShrinkState();
     }
 
-    this.#toggleExpandButton.setShrinkIcon();
     if (!this.#isLayoutColumn$.getValue())
       return this.#setShrinkDirection("vertical");
 
@@ -152,6 +158,6 @@ export class Toolbox {
   }
 
   setHideIconName(isHideIconName) {
-    this.#menusManager.setHideIconName(isHideIconName);
+    this.#isHideIconName$.next(isHideIconName);
   }
 }

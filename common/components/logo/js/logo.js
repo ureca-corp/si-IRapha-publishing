@@ -21,7 +21,7 @@ const ShrinkDirection = {
 };
 
 export class Logo {
-  #element;
+  #root;
   #logoContainer;
   #logoImage;
   #viewerInfoPopup;
@@ -29,9 +29,14 @@ export class Logo {
 
   #shrinkDirection$;
 
-  constructor() {
-    this.#element = document.querySelector(`.${Selectors.Logo}`);
+  constructor({ element, shrinkDirection$ }) {
+    this.#root = element;
+
     this.#init();
+
+    shrinkDirection$.subscribe((shrinkDirection) =>
+      this.#handleShrinkChange(shrinkDirection)
+    );
   }
 
   // private
@@ -41,7 +46,7 @@ export class Logo {
     this.#initViewerInfoPopup();
     this.#initMaximizeBtn();
 
-    this.#initStates();
+    // this.#initStates();
   }
 
   #initStates() {
@@ -54,13 +59,13 @@ export class Logo {
   }
 
   #initLogoContainer() {
-    this.#logoContainer = this.#element.querySelector(
+    this.#logoContainer = this.#root.querySelector(
       `.${Selectors.LogoContainer}`
     );
   }
 
   #initLogoImage() {
-    const logoImage = this.#element.querySelector(`.${Selectors.LogoImage}`);
+    const logoImage = this.#root.querySelector(`.${Selectors.LogoImage}`);
     logoImage.classList.add(Selectors.UkButton);
 
     this.#logoImage = logoImage;
@@ -68,7 +73,7 @@ export class Logo {
 
   #initViewerInfoPopup() {
     const viewerInfoPopup = new ViewerInfoPopup(
-      this.#element.querySelector(`.${Selectors.ViewerInfoPopup}`)
+      this.#root.querySelector(`.${Selectors.ViewerInfoPopup}`)
     );
     viewerInfoPopup.init();
 
@@ -77,7 +82,7 @@ export class Logo {
 
   #initMaximizeBtn() {
     const maximizeBtn = new MaximizeButton(
-      this.#element.querySelector(`.${Selectors.MaximizeButton}`)
+      this.#root.querySelector(`.${Selectors.MaximizeButton}`)
     );
     maximizeBtn.init();
 
@@ -87,20 +92,20 @@ export class Logo {
   // actions
   #shrinkVertical() {
     this.#unshrinkHorizontal();
-    this.#element.classList.add(Selectors.ShrinkVertical);
+    this.#root.classList.add(Selectors.ShrinkVertical);
   }
 
   #unshrinkVertical() {
-    this.#element.classList.remove(Selectors.ShrinkVertical);
+    this.#root.classList.remove(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
     this.#unshrinkVertical();
-    this.#element.classList.add(Selectors.ShrinkHorizontal);
+    this.#root.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #unshrinkHorizontal() {
-    this.#element.classList.remove(Selectors.ShrinkHorizontal);
+    this.#root.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   #removeAllShrink() {

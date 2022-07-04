@@ -1,5 +1,7 @@
 @use "../../../styles/common";
 
+$border-color: #eeeeee33;
+
 $folding-bar: (
   width: 130px,
   height: 80px,
@@ -42,4 +44,21 @@ $folding-bar: (
   @include s-folding-bar;
 
   background-color: red;
+}
+
+.irapha-drag-point {
+  display: flex;
+  justify-content: center;
+
+  width: map-get($folding-bar, "min-size");
+  height: 100%;
+
+  padding: 4px;
+
+  border-left: 1px;
+  border-right: 1px;
+  border-style: dashed;
+  border-color: $border-color;
+
+  box-shadow: 0px 0px 2px $border-color;
 }
