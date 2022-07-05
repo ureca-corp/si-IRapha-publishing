@@ -1,0 +1,54 @@
+@use "../../../styles/common";
+
+// thumbnail box - nav
+// =================================================================
+$font-color1: #ffffff99;
+$font-color2: #fff;
+$focus-bg-color: #ffffff11;
+
+@mixin s-nav {
+}
+
+.irapha-thumbnail-box__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  width: 100%;
+}
+
+.irapha-thumbnail-box__nav__icon {
+  border: 1px solid var(--color__border);
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  aspect-ratio: 1;
+
+  padding: 4px;
+
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $focus-bg-color;
+    border-color: $font-color1;
+
+    img {
+      opacity: unset;
+    }
+  }
+
+  img {
+    width: 8px;
+    aspect-ratio: 1;
+
+    transition: all 0.3s ease-in-out;
+
+    opacity: 0.5;
+  }
+}

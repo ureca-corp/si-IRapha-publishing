@@ -1,9 +1,11 @@
+import { ThumbnailBoxControls } from "./controls.js";
 import { FoldingBar } from "../../folding-bar/index.js";
 
 const rx = rxjs;
 
 const Selectors = {
   ThumbnailBar: "irapha-thumbnail-box",
+  Controls: "irapha-thumbnail-box__controls",
   FoldingBar: "irapha-folding-bar",
 };
 
@@ -25,6 +27,12 @@ export class ThumbnailBox {
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
       isPreview$: this.#isPreview$,
+      shrinkDirection$: this.#shrinkDirection$,
+    });
+
+    new ThumbnailBoxControls({
+      element: this.#root.querySelector(`.${Selectors.Controls}`),
+      isLayoutColumn$: this.#isLayoutColumn$,
       shrinkDirection$: this.#shrinkDirection$,
     });
   }
