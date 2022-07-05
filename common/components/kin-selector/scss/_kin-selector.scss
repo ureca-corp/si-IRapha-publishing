@@ -15,7 +15,7 @@ $focus-bg-color: #ffffff11;
 }
 
 .irapha-kin-selector {
-  @include typography.title-small;
+  @include typography.label-medium;
 
   border-radius: 8px;
   border-color: var(--color__border);
