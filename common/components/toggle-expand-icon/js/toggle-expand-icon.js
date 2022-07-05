@@ -1,23 +1,27 @@
 const rx = rxjs;
 
-const SelectorClasses = {
-  ToggleExpandButton: ".irapha-toggle-expand",
-};
-
 export class ToggleExpandIcon {
-  #element;
+  #root;
 
-  constructor(onClick) {
-    this.#element = document.querySelector(SelectorClasses.ToggleExpandButton);
+  constructor({ element, isExpanded$, onClick }) {
+    this.#root = element;
 
-    rx.fromEvent(this.#element, "click").subscribe(() => onClick());
+    rx.fromEvent(this.#root, "click").subscribe(() => onClick());
+
+    isExpanded$.subscribe((isExpanded) => this.handleExpandedChane(isExpanded));
+  }
+
+  handleExpandedChane(isExpanded) {
+    if (isExpanded) return this.setShrinkIcon();
+
+    return this.setExpandIcon();
   }
 
   setExpandIcon() {
-    this.#element.setAttribute("uk-icon", "icon: expand");
+    this.#root.setAttribute("uk-icon", "icon: expand");
   }
 
   setShrinkIcon() {
-    this.#element.setAttribute("uk-icon", "icon: shrink");
+    this.#root.setAttribute("uk-icon", "icon: shrink");
   }
 }

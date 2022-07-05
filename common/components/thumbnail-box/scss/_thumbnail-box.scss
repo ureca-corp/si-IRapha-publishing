@@ -1,0 +1,8 @@
+@use "../../../styles/common";
+
+@use "./controls" as thumbnail-box__control;
+@use "../../folding-bar/style" as folding-bar;
+
+.irapha-thumbnail-box {
+  z-index: 4;
+}

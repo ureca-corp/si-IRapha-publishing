@@ -1,79 +1,115 @@
 import { ToolboxMenuItemsController } from "./menu-items/index.js";
 import { ToolboxMenu } from "./menu.js";
 
-const SelectorClasses = {
-  Menu: ".irapha-toolbox__menu",
-  Divider: ".irapha-toolbox__divider",
-};
+const Selectors = {
+  Menu: "irapha-toolbox__menu",
+  Divider: "irapha-toolbox__divider",
 
-const MutationClasses = {
-  dividerLayoutColumn: "is-layout--column",
-  dividerAlignSelfCenter: "is-state--align-self-center",
+  LayoutColumn: "--layout--column",
+  Hide: "--hide",
+  DividerAlignSelfCenter: "--align--self-center",
 };
 
 export class ToolboxMenusManager {
+  #root;
   #menus;
   #divider;
 
-  constructor() {
+  constructor({ element, isLayoutColumn$, isHideIconName$, shrinkDirection$ }) {
+    this.#root = element;
+
     this.#init();
     this.#initMenuItemsController();
+
+    isLayoutColumn$.subscribe((isLayoutColumn) =>
+      this.#handleLayoutChange(isLayoutColumn)
+    );
+
+    isHideIconName$.subscribe((isHideIconName) =>
+      this.#handleHideIconNameChange(isHideIconName)
+    );
+
+    shrinkDirection$.subscribe((shrinkDirection) =>
+      this.#handleShrinkDirectionChange(shrinkDirection)
+    );
   }
 
   // private
   #init() {
-    const menus = [...document.querySelectorAll(SelectorClasses.Menu)].map(
+    const menus = [...document.querySelectorAll(`.${Selectors.Menu}`)].map(
       (it) => new ToolboxMenu(it)
     );
     this.#menus = menus;
 
-    this.#divider = document.querySelector(SelectorClasses.Divider);
+    this.#divider = document.querySelector(`.${Selectors.Divider}`);
   }
 
   #initMenuItemsController() {
     new ToolboxMenuItemsController();
   }
 
-  #setMenusLayout(layout) {
-    this.#menus.forEach((it) => it.setLayout(layout));
+  #setLayoutColumn() {
+    this.#root.classList.add(Selectors.LayoutColumn);
+
+    this.#setMenusLayout("columnTwo");
+    this.#setDividerLayout(true);
   }
 
+  #removeLayoutColumn() {
+    this.#root.classList.remove(Selectors.LayoutColumn);
+
+    this.#setDividerLayout(null);
+    this.#setMenusLayout(null);
+  }
+
+  #hide() {
+    this.#root.classList.add(Selectors.Hide);
+  }
+
+  #visible() {
+    this.#root.classList.remove(Selectors.Hide);
+  }
+
+  // divider control
   #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
-      return this.#divider.classList.add(MutationClasses.dividerLayoutColumn);
+      return this.#divider.classList.add(Selectors.LayoutColumn);
     }
 
-    return this.#divider.classList.remove(MutationClasses.dividerLayoutColumn);
+    return this.#divider.classList.remove(Selectors.LayoutColumn);
   }
 
   #setDividerAlignSelfCenter(isAlignSelfCenter) {
     if (isAlignSelfCenter)
-      return this.#divider.classList.add(
-        MutationClasses.dividerAlignSelfCenter
-      );
+      return this.#divider.classList.add(Selectors.DividerAlignSelfCenter);
 
-    return this.#divider.classList.remove(
-      MutationClasses.dividerAlignSelfCenter
-    );
+    return this.#divider.classList.remove(Selectors.DividerAlignSelfCenter);
+  }
+
+  // menus control
+  #setMenusLayout(layout) {
+    this.#menus.forEach((it) => it.setLayout(layout));
   }
 
   #setHideIconName(isHideIconName) {
     this.#menus.forEach((it) => it.setHideIconName(isHideIconName));
   }
 
-  // public
-  setLayoutColumn(isLayoutColumn) {
-    if (isLayoutColumn) {
-      this.#setDividerLayout(true);
-      return this.#setMenusLayout("columnTwo");
-    }
+  // handler
+  #handleLayoutChange(isLayoutColumn) {
+    if (isLayoutColumn) return this.#setLayoutColumn();
 
-    this.#setDividerLayout(null);
-    return this.#setMenusLayout(null);
+    return this.#removeLayoutColumn();
   }
 
-  setHideIconName(isHideIconName) {
+  #handleHideIconNameChange(isHideIconName) {
     this.#setHideIconName(isHideIconName);
     this.#setDividerAlignSelfCenter(isHideIconName);
+  }
+
+  #handleShrinkDirectionChange(shrinkDirection) {
+    if (!shrinkDirection) return this.#visible();
+
+    return this.#hide();
   }
 }

@@ -1,25 +1,18 @@
 import { GridSelectorItem } from "./grid-selector.item.js";
 
-const SelectorClasses = {
-  GridSelector: ".irapha-grid-selector",
-};
-
 const MatrixSize = 5;
 
 export class GridSelector {
-  #gridContainer;
+  #root;
   #gridItems;
 
-  constructor() {
-    this.#init();
-  }
+  constructor({ element }) {
+    this.#root = element;
 
-  // private
-  #init() {
-    this.#gridContainer = document.querySelector(SelectorClasses.GridSelector);
     this.#initGridItems();
   }
 
+  // private
   #initGridItems() {
     const row = Array.from({ length: MatrixSize }, (_, index) => index + 1);
 
@@ -55,7 +48,7 @@ export class GridSelector {
   }
 
   #appendChildToGridContainer(element) {
-    this.#gridContainer.appendChild(element);
+    this.#root.appendChild(element);
     return element;
   }
 

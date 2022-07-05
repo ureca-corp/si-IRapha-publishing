@@ -6,26 +6,20 @@
 // Menu
 // =========================================================================
 @mixin l-menu {
-  &.is-layout {
-    // 세로 2 배치.
-    &--column-two {
-      grid-auto-flow: unset;
-      grid-template-columns: repeat(2, 1fr);
-    }
+  &.--layout--column-two {
+    grid-auto-flow: unset;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @mixin s-menu {
-  &.is-state {
-    // 아이콘 제목 숨기기
-    &--name-hide {
-      .irapha-toolbox__menu {
-        &__item__content {
-          width: fit-content;
+  &.--name-hide {
+    .irapha-toolbox__menu {
+      &__item__content {
+        width: fit-content;
 
-          &__name {
-            display: none;
-          }
+        &__name {
+          display: none;
         }
       }
     }
@@ -129,23 +123,19 @@
 // divider
 // =========================================================================
 @mixin l-divider {
-  &.is-layout {
-    &--column {
-      width: 65%;
-      min-height: 4px;
-      padding: 0;
-      margin: 16px 0;
-      align-self: unset;
-    }
+  &.--layout--column {
+    width: 65%;
+    min-height: 4px;
+    padding: 0;
+    margin: 16px 0;
+    align-self: unset;
   }
 }
 
 @mixin s-divider {
-  &.is-state {
-    &--align-self-center {
-      align-self: center;
-      margin: 16px;
-    }
+  &.--align--self-center {
+    align-self: center;
+    margin: 16px;
   }
 }
 
@@ -168,7 +158,7 @@
 // menu drop down
 // =========================================================================
 @mixin l-dropdown {
-  &[irm-dropdown*="is-layout--column-two"] {
+  &.--layout--column-two {
     .irapha-menu__dropdown {
       &__container {
         &__inner {

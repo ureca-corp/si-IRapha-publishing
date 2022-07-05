@@ -3,18 +3,16 @@ import { ViewerInfoPopup } from "../../viewer-info/index.js";
 
 const rx = rxjs;
 
-const SelectorClasses = {
-  Logo: ".irapha-logo",
-  LogoContainer: ".irapha-logo__container",
-  LogoImage: ".irapha-logo__logo-image",
-  ViewerInfoPopup: ".irapha-viewer-info-popup",
-  MaximizeButton: ".irapha-maximize__icon",
-};
+const Selectors = {
+  Logo: "irapha-logo",
+  LogoContainer: "irapha-logo__container",
+  LogoImage: "irapha-logo__logo-image",
+  ViewerInfoPopup: "irapha-viewer-info-popup",
+  MaximizeButton: "irapha-maximize__icon",
 
-const MutationClasses = {
   UkButton: "uk-button-default",
-  ShrinkVertical: "is-state--shrink-vertical",
-  ShrinkHorizontal: "is-state--shrink-horizontal",
+  ShrinkVertical: "--shrink-v",
+  ShrinkHorizontal: "--shrink-h",
 };
 
 const ShrinkDirection = {
@@ -23,86 +21,61 @@ const ShrinkDirection = {
 };
 
 export class Logo {
-  #element;
-  #logoContainer;
-  #logoImage;
-  #viewerInfoPopup;
-  #maximizeBtn;
+  #root;
 
   #shrinkDirection$;
 
-  constructor() {
-    this.#element = document.querySelector(SelectorClasses.Logo);
+  constructor({ element, shrinkDirection$ }) {
+    this.#root = element;
+
     this.#init();
+
+    shrinkDirection$.subscribe((shrinkDirection) =>
+      this.#handleShrinkChange(shrinkDirection)
+    );
   }
 
   // private
   #init() {
-    this.#initLogoContainer();
     this.#initLogoImage();
     this.#initViewerInfoPopup();
     this.#initMaximizeBtn();
-
-    this.#initStates();
-  }
-
-  #initStates() {
-    const shrinkDirection$ = new rx.BehaviorSubject();
-    shrinkDirection$.subscribe((shrinkDirection) =>
-      this.#handleShrinkChange(shrinkDirection)
-    );
-
-    this.#shrinkDirection$ = shrinkDirection$;
-  }
-
-  #initLogoContainer() {
-    this.#logoContainer = this.#element.querySelector(
-      SelectorClasses.LogoContainer
-    );
   }
 
   #initLogoImage() {
-    const logoImage = this.#element.querySelector(SelectorClasses.LogoImage);
-    logoImage.classList.add(MutationClasses.UkButton);
-
-    this.#logoImage = logoImage;
+    const logoImage = this.#root.querySelector(`.${Selectors.LogoImage}`);
+    logoImage.classList.add(Selectors.UkButton);
   }
 
   #initViewerInfoPopup() {
-    const viewerInfoPopup = new ViewerInfoPopup(
-      this.#element.querySelector(SelectorClasses.ViewerInfoPopup)
-    );
-    viewerInfoPopup.init();
-
-    this.#viewerInfoPopup = viewerInfoPopup;
+    new ViewerInfoPopup({
+      element: this.#root.querySelector(`.${Selectors.ViewerInfoPopup}`),
+    });
   }
 
   #initMaximizeBtn() {
-    const maximizeBtn = new MaximizeButton(
-      this.#element.querySelector(SelectorClasses.MaximizeButton)
-    );
-    maximizeBtn.init();
-
-    this.#maximizeBtn = maximizeBtn;
+    new MaximizeButton({
+      element: this.#root.querySelector(`.${Selectors.MaximizeButton}`),
+    });
   }
 
   // actions
   #shrinkVertical() {
     this.#unshrinkHorizontal();
-    this.#element.classList.add(MutationClasses.ShrinkVertical);
+    this.#root.classList.add(Selectors.ShrinkVertical);
   }
 
   #unshrinkVertical() {
-    this.#element.classList.remove(MutationClasses.ShrinkVertical);
+    this.#root.classList.remove(Selectors.ShrinkVertical);
   }
 
   #shrinkHorizontal() {
     this.#unshrinkVertical();
-    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
+    this.#root.classList.add(Selectors.ShrinkHorizontal);
   }
 
   #unshrinkHorizontal() {
-    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
+    this.#root.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   #removeAllShrink() {

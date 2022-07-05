@@ -1,0 +1,86 @@
+@use "../../../styles/common";
+@use "../../toggle-expand-icon/style" as toggle-expand-icon;
+
+$border-color: var(--color__border);
+
+$folding-bar: (
+  width: 130px,
+  height: 80px,
+  min-size: 28px,
+);
+
+// Drag point
+// =================================================================
+@mixin drag-point--layout-column {
+  &.irapha-drag-point {
+    justify-content: flex-start;
+    width: 100%;
+    height: 28px;
+
+    border-left: none;
+    border-right: none;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-style: dashed;
+    border-color: $border-color;
+  }
+}
+
+.irapha-drag-point {
+  display: flex;
+  justify-content: center;
+
+  width: map-get($folding-bar, "min-size");
+  height: 100%;
+
+  padding: 4px;
+
+  border-left: 1px;
+  border-right: 1px;
+  border-style: dashed;
+  border-color: $border-color;
+
+  box-shadow: 0px 0px 2px $border-color;
+}
+
+// Folding bar
+// =================================================================
+@mixin l-folding-bar {
+  &.--layout-column {
+    & {
+      flex-direction: column;
+      height: 100%;
+      width: map-get($folding-bar, "width");
+
+      .irapha-drag-point {
+        @include drag-point--layout-column;
+      }
+    }
+  }
+}
+
+@mixin s-folding-bar {
+  &.--shrink-h {
+    & {
+      width: map-get($folding-bar, "min-size");
+    }
+  }
+
+  &.--shrink-v {
+    & {
+      height: map-get($folding-bar, "min-size");
+    }
+  }
+}
+
+.irapha-folding-bar {
+  display: flex;
+  width: 100%;
+  height: map-get($folding-bar, "height");
+  z-index: 4;
+
+  transition: all 0.2s ease-in-out;
+
+  @include l-folding-bar;
+  @include s-folding-bar;
+}

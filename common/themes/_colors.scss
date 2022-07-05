@@ -1,11 +1,6 @@
 // Base Color
 // =================================================================
 
-// 네트워크 상태 컬러
-$status-danger: red;
-$status-warning: yellow;
-$status-normal: green;
-
 // 배경 컬러
 $bg-black: #000;
 
@@ -16,6 +11,11 @@ $font-white: #fff;
 // # Default theme
 // =================================================================
 :root {
+  // 네트워크 상태 컬러
+  --color__status-danger: red;
+  --color__status-warning: yellow;
+  --color__status-normal: green;
+
   --color__primary: #5a9600;
 
   --color__secondary: #5e6a7f;
@@ -25,4 +25,6 @@ $font-white: #fff;
   --color__teriary-container: #142f56;
 
   --color__font-primary: #ddd;
+
+  --color__border: #eeeeee33;
 }

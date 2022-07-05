@@ -1,16 +1,20 @@
 import { Toolbox } from "../../common/components/toolbox/index.js";
-import { StickyMenu } from "../../common/components/sticky-menu/index.js";
-
-import { GridSelector } from "../../common/components/grid-selector/index.js";
-
 const toolbox = new Toolbox();
 
-const stickyMenu = new StickyMenu(({ isVertical }) => {
-  if (isVertical) {
-    toolbox.setLayoutColumn(true);
-  } else {
-    toolbox.setLayoutColumn(false);
-  }
-});
+import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
+const thumbnailBox = new ThumbnailBox();
 
-new GridSelector();
+import { StickyMenu } from "../../common/components/sticky-menu/index.js";
+new StickyMenu({
+  dropSuccessCallback: ({ isVertical, hasElement }) => {
+    if (hasElement("#irapha-toolbox")) {
+      console.log(isVertical);
+      toolbox.setLayoutColumn(isVertical);
+    }
+
+    if (hasElement("#irapha-thumbnail-box")) {
+      console.log(isVertical);
+      thumbnailBox.setLayoutColumn(isVertical);
+    }
+  },
+});

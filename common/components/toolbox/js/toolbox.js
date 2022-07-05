@@ -1,149 +1,99 @@
+import { FoldingBar } from "../../folding-bar/index.js";
 import { Logo } from "../../logo/index.js";
-import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
 import { ToolboxMenusManager } from "./menu-manager.js";
 
 const rx = rxjs;
 
-const SelectorClasses = {
-  Toolbox: ".irapha-toolbox",
-  Menu: ".irapha-toolbox__menu",
-};
+const Selectors = {
+  Toolbox: "irapha-toolbox",
+  FoldingBar: "irapha-folding-bar",
+  Logo: "irapha-logo",
+  MenusManager: "irapha-toolbox__menus",
 
-const MutationClasses = {
-  LayoutColumn: "is-layout--column",
-  ShrinkHorizontal: "is-shrink--horizontal",
-  ShrinkVertical: "is-shrink--vertical",
+  ShrinkVertical: "--shrink-v",
+  ShrinkHorizontal: "--shrink-h",
 };
 
 const ShrinkDirection = {
-  vertical: "vertical",
-  horizontal: "horizontal",
+  Vertical: "vertical",
+  Horizontal: "horizontal",
 };
 
 export class Toolbox {
-  #element;
-  #logo;
-  #toggleExpandButton;
-  #menusManager;
+  #root;
 
   #isLayoutColumn$;
   #isExpanded$;
+  #isPreview$;
   #shrinkDirection$;
+  #isHideIconName$;
 
   constructor() {
-    this.#element = document.querySelector(SelectorClasses.Toolbox);
-    this.#initLogo();
-    this.#initToggleExpandButton();
-    this.#initMenusManager();
+    this.#root = document.querySelector(`#${Selectors.Toolbox}`);
 
     this.#initStates();
-    this.#initMouseEvent();
+
+    new FoldingBar({
+      element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
+      isLayoutColumn$: this.#isLayoutColumn$,
+      isExpanded$: this.#isExpanded$,
+      isPreview$: this.#isPreview$,
+      shrinkDirection$: this.#shrinkDirection$,
+    });
+
+    this.#initLogo();
+    this.#initMenusManager();
+
+    this.setHideIconName(true);
   }
 
   // private
   #initLogo() {
-    this.#logo = new Logo();
-  }
-
-  #initToggleExpandButton() {
-    this.#toggleExpandButton = new ToggleExpandIcon(() => this.#toggleExpand());
+    new Logo({
+      element: this.#root.querySelector(`.${Selectors.Logo}`),
+      shrinkDirection$: this.#shrinkDirection$,
+    });
   }
 
   #initMenusManager() {
-    this.#menusManager = new ToolboxMenusManager();
-    this.#menusManager.setHideIconName(true);
+    new ToolboxMenusManager({
+      element: this.#root.querySelector(`.${Selectors.MenusManager}`),
+      isLayoutColumn$: this.#isLayoutColumn$,
+      isHideIconName$: this.#isHideIconName$,
+      shrinkDirection$: this.#shrinkDirection$,
+    });
   }
 
   #initStates() {
     const isLayoutColumn$ = new rx.BehaviorSubject();
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
     this.#isLayoutColumn$ = isLayoutColumn$;
-
-    const isExpanded$ = new rx.BehaviorSubject();
-    isExpanded$.subscribe((isExpanded) => this.#handleExpanded(isExpanded));
-    this.#isExpanded$ = isExpanded$;
 
     const shrinkDirection$ = new rx.BehaviorSubject();
     shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
     this.#shrinkDirection$ = shrinkDirection$;
-  }
 
-  #initMouseEvent() {
-    // 마우스 호버 시 임시로 보이기
-    rx.fromEvent(this.#element, "mouseover").subscribe(() => {
-      if (this.#isExpanded$.getValue()) return this.#resetShrinkState();
-    });
+    const isPreview$ = new rx.BehaviorSubject(false);
+    this.#isPreview$ = isPreview$;
 
-    // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent(this.#element, "mouseout").subscribe(() => {
-      const isExpanded = this.#isExpanded$.getValue();
+    const isExpanded$ = new rx.BehaviorSubject();
+    this.#isExpanded$ = isExpanded$;
 
-      if (isExpanded) return this.setExpand(isExpanded);
-    });
-  }
-
-  #setShrinkDirection(shrinkDirection) {
-    this.#shrinkDirection$.next(shrinkDirection);
-  }
-
-  // actions
-  #shrinkVertical() {
-    this.#logo.setShrinkDirection("vertical");
-    this.#element.classList.add(MutationClasses.ShrinkVertical);
-  }
-
-  #shrinkHorizontal() {
-    this.#logo.setShrinkDirection("horizontal");
-    this.#element.classList.add(MutationClasses.ShrinkHorizontal);
-  }
-
-  #resetShrinkState() {
-    this.#logo.setShrinkDirection(null);
-    this.#element.classList.remove(MutationClasses.ShrinkVertical);
-    this.#element.classList.remove(MutationClasses.ShrinkHorizontal);
-  }
-
-  #toggleExpand() {
-    const old = this.#isExpanded$.getValue();
-    this.setExpand(!old);
+    const isHideIconName$ = new rx.BehaviorSubject();
+    this.#isHideIconName$ = isHideIconName$;
   }
 
   // handler
-  #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) {
-      this.#menusManager.setLayoutColumn(true);
-      return this.#element.classList.add(MutationClasses.LayoutColumn);
-    }
-
-    this.#menusManager.setLayoutColumn(null);
-    return this.#element.classList.remove(MutationClasses.LayoutColumn);
-  }
-
-  #handleExpanded(isExpanded) {
-    if (!isExpanded) {
-      this.#toggleExpandButton.setExpandIcon();
-      return this.#resetShrinkState();
-    }
-
-    this.#toggleExpandButton.setShrinkIcon();
-    if (!this.#isLayoutColumn$.getValue())
-      return this.#setShrinkDirection("vertical");
-
-    return this.#setShrinkDirection("horizontal");
-  }
-
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.vertical)
-      return this.#shrinkVertical();
+    if (shrinkDirection === ShrinkDirection.Vertical)
+      return this.#root.classList.add(Selectors.ShrinkVertical);
 
-    if (shrinkDirection === ShrinkDirection.horizontal)
-      return this.#shrinkHorizontal();
+    if (shrinkDirection === ShrinkDirection.Horizontal)
+      return this.#root.classList.add(Selectors.ShrinkHorizontal);
 
-    return this.#resetShrinkState();
+    this.#root.classList.remove(Selectors.ShrinkVertical);
+    this.#root.classList.remove(Selectors.ShrinkHorizontal);
   }
 
   // public
@@ -156,6 +106,6 @@ export class Toolbox {
   }
 
   setHideIconName(isHideIconName) {
-    this.#menusManager.setHideIconName(isHideIconName);
+    this.#isHideIconName$.next(isHideIconName);
   }
 }

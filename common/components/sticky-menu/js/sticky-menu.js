@@ -1,63 +1,108 @@
+import { Dropzone } from "./dropzone.js";
+
 const rx = rxjs;
 
-const SelectorClasses = {
-  StickyMenu: ".irapha-sticky-menu",
-  DropZone: ".irapha-sticky-menu__dropzone",
-};
-
-const ClassNames = {
+const Classes = {
+  StickyMenu: "irapha-sticky-menu",
   DropZone: "irapha-sticky-menu__dropzone",
+  DropZoneDummy: "dropzone-dummy",
+
+  LayoutColumnFirst: "--layout--column-first",
+  LayoutRowFirst: "--layout--row-first",
 };
 
 export class StickyMenu {
-  #element;
+  #root;
+  #dropzones;
   #draggedTarget;
+
   #dropSuccessCallback;
 
-  constructor(dropSuccessCallback) {
-    this.#element = document.querySelector(SelectorClasses.StickyMenu);
+  constructor({ dropSuccessCallback }) {
+    this.#root = document.querySelector(`.${Classes.StickyMenu}`);
+    this.#dropzones = [
+      ...document.querySelectorAll(`.${Classes.DropZone}`),
+    ].map((it) => new Dropzone(it));
+
     this.#dropSuccessCallback = dropSuccessCallback;
 
-    this.#init();
+    this.#initEvents();
   }
 
-  #init() {
-    rx.fromEvent(this.#element, "dragstart", false).subscribe((e) =>
+  // private
+  #initEvents() {
+    rx.fromEvent(this.#root, "dragstart", false).subscribe((e) =>
       this.#handleDragStart(e)
     );
 
-    rx.fromEvent(this.#element, "dragend", false).subscribe((e) =>
+    rx.fromEvent(this.#root, "dragend", false).subscribe((e) =>
       this.#handleDragEnd(e)
     );
 
-    rx.fromEvent(this.#element, "dragover", false).subscribe((e) =>
+    rx.fromEvent(this.#root, "dragover", false).subscribe((e) =>
       this.#handleDragOver(e)
     );
 
-    rx.fromEvent(this.#element, "dragenter", false).subscribe((e) =>
+    rx.fromEvent(this.#root, "dragenter", false).subscribe((e) =>
       this.#handleDragEnter(e)
     );
 
-    rx.fromEvent(this.#element, "dragleave", false).subscribe((e) =>
+    rx.fromEvent(this.#root, "dragleave", false).subscribe((e) =>
       this.#handleDragLeave(e)
     );
 
-    rx.fromEvent(this.#element, "drop", false).subscribe((e) =>
+    rx.fromEvent(this.#root, "drop", false).subscribe((e) =>
       this.#handleItemDrop(e)
     );
   }
 
-  // handler
+  #targetIncludesDropZoneDummy(target) {
+    return target.className.includes(Classes.DropZoneDummy);
+  }
+
+  // 레이아웃 컨트롤
+  #setLayoutRowFirst() {
+    this.#root.classList.add(Classes.LayoutRowFirst);
+  }
+
+  #resetLayout() {
+    this.#root.classList.remove(Classes.LayoutRowFirst);
+  }
+
+  #updateLayout({ dropzone }) {
+    if (dropzone.hasHighPriorityChild() && dropzone.isTypeVertical())
+      return this.#setLayoutRowFirst();
+
+    if (dropzone.hasHighPriorityChild()) return this.#resetLayout();
+  }
+
+  // drop-zones 컨트롤
+  #appendDummyToDropZones() {
+    this.#dropzones.forEach((it) => it.appendDummy());
+  }
+
+  #removeDummyInDropZones() {
+    this.#dropzones.forEach((it) => it.removeDummy());
+  }
+
+  #invalidateAllDropzoneBG() {
+    this.#dropzones.forEach((it) => it.invalidateBackground());
+  }
+
+  // handlers
 
   // 드래그 시작 시
   #handleDragStart(e) {
-    this.#draggedTarget = e.target;
+    this.#appendDummyToDropZones();
 
+    this.#draggedTarget = e.target;
     e.target.style.opacity = 0.5;
   }
 
   // 드래그 종료 시
   #handleDragEnd(e) {
+    this.#removeDummyInDropZones();
+
     e.target.style.opacity = "";
   }
 
@@ -70,14 +115,14 @@ export class StickyMenu {
   // 드래그 대상이 드랍존에 진입시
   #handleDragEnter(e) {
     // 요소를 드롭하려는 대상 위로 드래그했을 때 대상의 배경색 변경
-    if (e.target.className.includes(ClassNames.DropZone))
+    if (this.#targetIncludesDropZoneDummy(e.target))
       e.target.style.background = "#eeeeee33";
   }
 
   // 드래그 대상이 드랍존에서 탈출 시
   #handleDragLeave(e) {
     // 요소를 드래그하여 드롭하려던 대상으로부터 벗어났을 때 배경색 리셋
-    if (e.target.className.includes(ClassNames.DropZone))
+    if (this.#targetIncludesDropZoneDummy(e.target))
       e.target.style.background = "";
   }
 
@@ -85,42 +130,18 @@ export class StickyMenu {
   #handleItemDrop(e) {
     e.preventDefault();
 
-    const dropzones = document.querySelectorAll(SelectorClasses.DropZone);
+    if (!this.#targetIncludesDropZoneDummy(e.target)) return;
+
     const draggedTarget = this.#draggedTarget;
+    const dummyDropzone = e.target;
+    const dropzone = new Dropzone(dummyDropzone.parentNode);
 
-    // hide
-    dropzones.forEach((it) => (it.style.background = "transparent"));
+    dropzone.drop({
+      target: draggedTarget,
+      dropSuccessCallback: this.#dropSuccessCallback,
+      invalidateAllDropzoneBG: () => this.#invalidateAllDropzoneBG,
+    });
 
-    // 드래그한 요소를 드롭 대상으로 이동
-    const targetMoveToDropzone = () => {
-      e.target.style.background = "";
-
-      // 드랍존 우선 순위 변경
-      e.target.style.zIndex = 3;
-      draggedTarget.parentNode.style.zIndex = "unset";
-
-      // 드래그 타겟 드랍존 안으로 이동
-      draggedTarget.parentNode.removeChild(draggedTarget);
-      e.target.appendChild(draggedTarget);
-    };
-
-    const veticalDropzoneClasses = ["dropzone-left", "dropzone-right"];
-    if (veticalDropzoneClasses.some((it) => e.target.className.includes(it))) {
-      targetMoveToDropzone();
-      this.#dropSuccessCallback({
-        isVertical: true,
-      });
-
-      return;
-    }
-
-    if (e.target.className.includes("dropzone")) {
-      targetMoveToDropzone();
-      this.#dropSuccessCallback({
-        isVertical: false,
-      });
-
-      return;
-    }
+    this.#updateLayout({ dropzone });
   }
 }

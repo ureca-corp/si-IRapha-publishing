@@ -1,18 +1,18 @@
-@use "../../../themes/colors" as colors;
+@use "../../../styles/common";
 
 // 네트워크 상태 아이콘 - 상태
 @mixin s-network {
-  &.is-state {
-    &--red {
-      background-color: colors.$status-danger;
+  &.--status {
+    &-red {
+      background-color: var(--color__status-danger);
     }
 
-    &--yellow {
-      background-color: colors.$status-warning;
+    &-yellow {
+      background-color: var(--color__status-warning);
     }
 
-    &--green {
-      background-color: colors.$status-normal;
+    &-green {
+      background-color: var(--color__status-normal);
     }
   }
 }
