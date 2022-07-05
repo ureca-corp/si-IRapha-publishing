@@ -35,6 +35,8 @@ export class ThumbnailBox {
       isLayoutColumn$: this.#isLayoutColumn$,
       shrinkDirection$: this.#shrinkDirection$,
     });
+
+    this.#isLayoutColumn$.next(true);
   }
 
   // private
