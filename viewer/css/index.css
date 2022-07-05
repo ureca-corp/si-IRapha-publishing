@@ -8880,8 +8880,8 @@ img {
   justify-content: flex-start;
   width: 100%;
   height: 28px;
-  border-left: none;
-  border-right: none;
+  border-left: 0;
+  border-right: 0;
   border-top: 1px;
   border-bottom: 1px;
   border-style: dashed;
@@ -8916,8 +8916,8 @@ img {
 }
 
 .irapha-kin-selector {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 700;
   border-radius: 8px;
   border-color: var(--color__border);
@@ -8989,7 +8989,7 @@ img {
   height: fit-content;
   justify-content: flex-start;
   padding: 20px 16px;
-  border-right: unset;
+  border-right: 0;
   border-bottom: 1px;
   border-style: dashed;
   border-color: var(--color__border);
@@ -9040,7 +9040,12 @@ img {
 }
 .irapha-sticky-menu__dropzone.--top.--active {
   position: static;
-  z-index: 3;
+}
+.irapha-sticky-menu__dropzone.--top.--active.--top, .irapha-sticky-menu__dropzone.--top.--active.--bottom {
+  z-index: 6;
+}
+.irapha-sticky-menu__dropzone.--top.--active.--left, .irapha-sticky-menu__dropzone.--top.--active.--right {
+  z-index: 5;
 }
 .irapha-sticky-menu__dropzone.--left {
   grid-area: left;
@@ -9054,7 +9059,12 @@ img {
 }
 .irapha-sticky-menu__dropzone.--left.--active {
   position: static;
-  z-index: 3;
+}
+.irapha-sticky-menu__dropzone.--left.--active.--top, .irapha-sticky-menu__dropzone.--left.--active.--bottom {
+  z-index: 6;
+}
+.irapha-sticky-menu__dropzone.--left.--active.--left, .irapha-sticky-menu__dropzone.--left.--active.--right {
+  z-index: 5;
 }
 .irapha-sticky-menu__dropzone.--right {
   grid-area: right;
@@ -9069,7 +9079,12 @@ img {
 }
 .irapha-sticky-menu__dropzone.--right.--active {
   position: static;
-  z-index: 3;
+}
+.irapha-sticky-menu__dropzone.--right.--active.--top, .irapha-sticky-menu__dropzone.--right.--active.--bottom {
+  z-index: 6;
+}
+.irapha-sticky-menu__dropzone.--right.--active.--left, .irapha-sticky-menu__dropzone.--right.--active.--right {
+  z-index: 5;
 }
 .irapha-sticky-menu__dropzone.--bottom {
   grid-area: bottom;
@@ -9084,7 +9099,12 @@ img {
 }
 .irapha-sticky-menu__dropzone.--bottom.--active {
   position: static;
-  z-index: 3;
+}
+.irapha-sticky-menu__dropzone.--bottom.--active.--top, .irapha-sticky-menu__dropzone.--bottom.--active.--bottom {
+  z-index: 6;
+}
+.irapha-sticky-menu__dropzone.--bottom.--active.--left, .irapha-sticky-menu__dropzone.--bottom.--active.--right {
+  z-index: 5;
 }
 
 .content {
