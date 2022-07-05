@@ -8916,6 +8916,9 @@ img {
 }
 
 .irapha-kin-selector {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
   border-radius: 8px;
   border-color: var(--color__border);
   background-color: transparent;

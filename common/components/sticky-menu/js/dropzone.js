@@ -18,6 +18,17 @@ export class Dropzone {
 
   constructor(element) {
     this.#root = element;
+
+    this.#init();
+  }
+
+  // private
+  #init() {
+    if (this.#hasSomeChild()) return this.#active();
+  }
+
+  #hasSomeChild() {
+    return !!this.#root.children[0];
   }
 
   // Layered Drop Zone Dummy
