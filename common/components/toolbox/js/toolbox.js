@@ -67,12 +67,15 @@ export class Toolbox {
   #initStates() {
     const isLayoutColumn$ = new rx.BehaviorSubject();
     this.#isLayoutColumn$ = isLayoutColumn$;
+    isLayoutColumn$.subscribe((isLayoutColumn) =>
+      this.#handleLayoutChange(isLayoutColumn)
+    );
 
     const shrinkDirection$ = new rx.BehaviorSubject();
+    this.#shrinkDirection$ = shrinkDirection$;
     shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
-    this.#shrinkDirection$ = shrinkDirection$;
 
     const isPreview$ = new rx.BehaviorSubject(false);
     this.#isPreview$ = isPreview$;
@@ -85,6 +88,12 @@ export class Toolbox {
   }
 
   // handler
+  #handleLayoutChange(isLayoutColumn) {
+    if (isLayoutColumn) return this.#layoutColumn();
+
+    return this.#resetLayout();
+  }
+
   #handleShrinkDirectionChange(shrinkDirection) {
     if (shrinkDirection === ShrinkDirection.Vertical)
       return this.#root.classList.add(Selectors.ShrinkVertical);
@@ -94,6 +103,15 @@ export class Toolbox {
 
     this.#root.classList.remove(Selectors.ShrinkVertical);
     this.#root.classList.remove(Selectors.ShrinkHorizontal);
+  }
+
+  // layout control
+  #layoutColumn() {
+    this.#root.classList.add("--layout-column");
+  }
+
+  #resetLayout() {
+    this.#root.classList.remove("--layout-column");
   }
 
   // public

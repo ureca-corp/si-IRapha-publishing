@@ -18,16 +18,35 @@ $toolbox: (
   min-size: 28px,
 );
 
+@mixin l-toolbox {
+  &.--layout-column {
+    width: map-get($toolbox, "width");
+    height: 100%;
+  }
+}
+
 @mixin s-toolbox {
   &.--shrink-v {
+    & {
+      height: fit-content;
+    }
+
     .irapha-toolbox__logo {
+      min-width: unset;
       width: fit-content;
       aspect-ratio: unset;
     }
   }
 
   &.--shrink-h {
+    & {
+      width: fit-content;
+    }
+
     .irapha-toolbox__logo {
+      min-width: fit-content;
+      width: fit-content;
+
       height: fit-content;
       aspect-ratio: unset;
     }
@@ -40,9 +59,13 @@ $toolbox: (
   z-index: 5;
   background-color: $bg;
 
+  height: map-get($toolbox, "height");
+
+  @include l-toolbox;
   @include s-toolbox;
 
   &__logo {
+    min-width: map-get($toolbox, "width");
     width: map-get($toolbox, "width");
     aspect-ratio: 16/10;
   }

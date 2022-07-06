@@ -1,7 +1,4 @@
-const ShrinkDirection = {
-  Vertical: "vertical",
-  Horizontal: "horizontal",
-};
+import { ShrinkType } from "../../types/index.js";
 
 export class ThumbnailBoxNav {
   #root;
@@ -23,7 +20,7 @@ export class ThumbnailBoxNav {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.Horizontal)
+    if (shrinkDirection === ShrinkType.Horizontal)
       return this.#shrinkVertical();
 
     return this.#resetShrinkState();

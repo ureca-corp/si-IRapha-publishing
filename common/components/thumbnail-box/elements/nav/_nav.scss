@@ -1,5 +1,3 @@
-@use "../../../styles/common";
-
 // thumbnail box - nav
 // =================================================================
 $font-color1: #ffffff99;
@@ -37,6 +35,8 @@ $focus-bg-color: #ffffff11;
   &:hover {
     background-color: $focus-bg-color;
     border-color: $font-color1;
+
+    transform: scale(1.2);
 
     img {
       opacity: unset;

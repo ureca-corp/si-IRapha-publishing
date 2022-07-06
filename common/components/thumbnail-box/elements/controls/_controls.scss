@@ -1,20 +1,17 @@
-@use "../../../styles/common";
-
-@use "../../kin-selector/style" as kin-selector;
-@use "./nav" as thumbnail-box__nav;
+@use "../../../kin-selector/style" as kin-selector;
+@use "../nav/nav" as thumbnail-box__nav;
+@use "../pagination-info/pagination-info" as pagination-info;
 
 $border-color: var(--color__border);
 
 @mixin l-controls {
   &.--layout-column {
+    min-width: auto;
     height: fit-content;
     justify-content: flex-start;
-    padding: 20px 16px;
+    padding: 10% 8% 5% 8%;
 
-    border-right: 0;
-    border-bottom: 1px;
-    border-style: dashed;
-    border-color: $border-color;
+    box-shadow: none;
   }
 }
 
@@ -24,6 +21,8 @@ $border-color: var(--color__border);
   align-items: center;
   justify-content: center;
   gap: 8px;
+
+  min-width: 130px;
   height: 100%;
   padding: 8px 12px;
 

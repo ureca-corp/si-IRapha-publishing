@@ -1,3 +1,5 @@
+const rx = rxjs;
+
 const Selectors = {
   Dropzone: "irapha-sticky-menu__dropzone",
   DropzoneDummy: "dropzone-dummy",
@@ -24,7 +26,7 @@ export class Dropzone {
 
   // private
   #init() {
-    if (this.#hasSomeChild()) return this.#active();
+    if (this.#hasSomeChild()) this.#active();
   }
 
   #hasSomeChild() {

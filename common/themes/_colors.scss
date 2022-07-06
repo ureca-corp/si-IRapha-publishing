@@ -12,11 +12,11 @@ $font-white: #fff;
 // =================================================================
 :root {
   // 네트워크 상태 컬러
-  --color__status-danger: red;
-  --color__status-warning: yellow;
-  --color__status-normal: green;
+  --color__status-danger: #ff3b30;
+  --color__status-warning: #ffcc00;
+  --color__status-normal: #34c759;
 
-  --color__primary: #5a9600;
+  --color__primary: #34c759;
 
   --color__secondary: #5e6a7f;
   --color__secondary-container: #424a5b;
@@ -27,4 +27,10 @@ $font-white: #fff;
   --color__font-primary: #ddd;
 
   --color__border: #eeeeee33;
+
+  // common
+  --color__red: #ff3b30;
+  --color__orange: #ff9500;
+  --color__yellow: #ffcc00;
+  --color__green: #34c759;
 }
