@@ -9,6 +9,8 @@ const Classes = {
 
   LayoutColumnFirst: "--layout--column-first",
   LayoutRowFirst: "--layout--row-first",
+
+  BringFront: "--bring-front",
 };
 
 export class StickyMenu {
@@ -93,6 +95,8 @@ export class StickyMenu {
 
   // 드래그 시작 시
   #handleDragStart(e) {
+    new Dropzone(e.target.parentNode);
+
     this.#appendDummyToDropZones();
 
     this.#draggedTarget = e.target;

@@ -4,8 +4,7 @@
 $border-color: var(--color__border);
 
 $folding-bar: (
-  width: 130px,
-  height: 80px,
+  width: var(--bar-size),
   min-size: 28px,
 );
 
@@ -30,6 +29,7 @@ $folding-bar: (
   display: flex;
   justify-content: center;
 
+  min-width: map-get($folding-bar, "min-size");
   width: map-get($folding-bar, "min-size");
   height: 100%;
 
@@ -41,6 +41,8 @@ $folding-bar: (
   border-color: $border-color;
 
   box-shadow: 0px 0px 2px $border-color;
+
+  cursor: grab;
 }
 
 // Folding bar
@@ -50,7 +52,7 @@ $folding-bar: (
     & {
       flex-direction: column;
       height: 100%;
-      width: map-get($folding-bar, "width");
+      min-width: map-get($folding-bar, "width");
 
       .irapha-drag-point {
         @include drag-point--layout-column;
@@ -62,6 +64,7 @@ $folding-bar: (
 @mixin s-folding-bar {
   &.--shrink-h {
     & {
+      min-width: unset;
       width: map-get($folding-bar, "min-size");
     }
   }
@@ -76,10 +79,8 @@ $folding-bar: (
 .irapha-folding-bar {
   display: flex;
   width: 100%;
-  height: map-get($folding-bar, "height");
+  height: 100%;
   z-index: 4;
-
-  transition: all 0.2s ease-in-out;
 
   @include l-folding-bar;
   @include s-folding-bar;

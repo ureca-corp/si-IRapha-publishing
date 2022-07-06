@@ -1,0 +1,104 @@
+@use "../../../../../themes/colors" as colors;
+@use "../../../../../themes/typography" as typography;
+
+@mixin l-list {
+  &.--layout-column {
+    flex-direction: column;
+
+    overflow-x: hidden;
+    overflow-y: overlay;
+  }
+}
+
+.irapha-thumbnail-list {
+  display: flex;
+  flex-direction: row;
+
+  gap: 8px;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-x: overlay;
+  overflow-y: hidden;
+
+  @include l-list;
+}
+
+// List Item
+// =========================================================================
+$color-font: colors.$font-white;
+
+$color-green: var(--color__green);
+$color-yellow: var(--color__yellow);
+$color-orange: var(--color__orange);
+
+$floating-text__padding-size: 4px;
+
+@mixin responsive-list-item {
+  @media (max-width: 1440px) {
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+  min-width: 130px;
+  min-height: 130px;
+}
+
+@mixin s-list-item {
+  &.--active {
+    border: 2px solid $color-yellow;
+
+    &:hover {
+      border: 2px solid $color-orange;
+    }
+  }
+}
+
+.irapha-thumbnail-list__item {
+  @include responsive-list-item;
+  @include s-list-item;
+
+  position: relative;
+
+  border: 2px solid transparent;
+
+  cursor: pointer;
+
+  background-color: #666;
+
+  &:hover {
+    border: 2px solid $color-green;
+  }
+}
+
+.irapha-thumbnail-list__item {
+  &__text {
+    position: absolute;
+
+    color: $color-font;
+    @include typography.label-small;
+
+    &.--top-left {
+      top: $floating-text__padding-size;
+      left: $floating-text__padding-size;
+    }
+    &.--top-right {
+      top: $floating-text__padding-size;
+      right: $floating-text__padding-size;
+    }
+    &.--bottom-left {
+      bottom: $floating-text__padding-size;
+      left: $floating-text__padding-size;
+    }
+  }
+
+  &__canvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #000;
+  }
+}

@@ -1,16 +1,13 @@
-import { ThumbnailBoxNav } from "./nav.js";
-import { KinSelector } from "../../kin-selector/index.js";
+import { ThumbnailBoxNav } from "../nav/nav.js";
+import { KinSelector } from "../../../kin-selector/index.js";
+import { ThumbnailBoxPaginationInfo } from "../pagination-info/pagination-info.js";
+import { LayoutClassType } from "../../types/index.js";
+import { ShrinkType } from "../../types/index.js";
 
 const Selectors = {
   Nav: "irapha-thumbnail-box__nav",
   KinSelector: "irapha-kin-selector",
-
-  LayoutColumn: "--layout-column",
-};
-
-const ShrinkDirection = {
-  Vertical: "vertical",
-  Horizontal: "horizontal",
+  PaginationInfo: "irapha-thumbnail-box__pagination-info",
 };
 
 export class ThumbnailBoxControls {
@@ -29,6 +26,11 @@ export class ThumbnailBoxControls {
       shrinkDirection$,
     });
 
+    new ThumbnailBoxPaginationInfo({
+      element: this.#root.querySelector(`.${Selectors.PaginationInfo}`),
+      isHide$: shrinkDirection$,
+    });
+
     isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
     );
@@ -41,11 +43,11 @@ export class ThumbnailBoxControls {
   // private
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(Selectors.LayoutColumn);
+    this.#root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Selectors.LayoutColumn);
+    this.#root.classList.remove(LayoutClassType.Column);
   }
 
   // shrink control
@@ -63,10 +65,9 @@ export class ThumbnailBoxControls {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.Vertical)
-      return this.#shrinkVertical();
+    if (shrinkDirection === ShrinkType.Vertical) return this.#shrinkVertical();
 
-    if (shrinkDirection === ShrinkDirection.Horizontal)
+    if (shrinkDirection === ShrinkType.Horizontal)
       return this.#shrinkHorizontal();
 
     return this.#resetShrinkState();
