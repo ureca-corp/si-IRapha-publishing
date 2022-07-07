@@ -1,29 +1,22 @@
-import { LayoutClassType } from "../../../types/index.js";
+const rx = rxjs;
 
 export class ThumbnailItem {
   #root;
 
-  constructor({ element, isLayoutColumn$ }) {
+  constructor({ element }) {
     this.#root = element;
 
-    // isLayoutColumn$.subscribe((isLayoutColumn) =>
-    //   this.#handleLayoutChange(isLayoutColumn)
-    // );
+    this.#preventOriginContextMenu();
   }
 
-  //   // handler
-  //   #handleLayoutChange(isLayoutColumn) {
-  //     if (isLayoutColumn) return this.#layoutColumn();
+  #preventOriginContextMenu() {
+    rx.fromEvent(this.#root, "contextmenu", false).subscribe((e) => {
+      e.preventDefault();
+      this.#openCustomContextMenu(e);
+    });
+  }
 
-  //     return this.#resetLayout();
-  //   }
-
-  //   // layout control
-  //   #layoutColumn() {
-  //     this.#root.classList.add(LayoutClassType.Column);
-  //   }
-
-  //   #resetLayout() {
-  //     this.#root.classList.remove(LayoutClassType.Column);
-  //   }
+  #openCustomContextMenu(e) {
+    window.store.thumbnailContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
+  }
 }
