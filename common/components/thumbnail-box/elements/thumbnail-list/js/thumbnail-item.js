@@ -12,22 +12,11 @@ export class ThumbnailItem {
   #preventOriginContextMenu() {
     rx.fromEvent(this.#root, "contextmenu", false).subscribe((e) => {
       e.preventDefault();
-      this.#openCustomContextMenu();
+      this.#openCustomContextMenu(e);
     });
   }
 
-  #openCustomContextMenu() {
-    console.log("ok");
-
-    const div = document.createElement("div");
-    const inner = document.createElement("div");
-    inner.style.width = "400px";
-    inner.style.height = "400px";
-    inner.style.backgroundColor = "red";
-    div.appendChild(inner);
-
-    this.#root.appendChild(div);
-
-    UIkit.drop(div).show();
+  #openCustomContextMenu(e) {
+    window.store.thumbnailContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
   }
 }

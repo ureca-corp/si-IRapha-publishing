@@ -1,3 +1,5 @@
+import store from "../../common/store/store.js";
+
 import { Toolbox } from "../../common/components/toolbox/index.js";
 const toolbox = new Toolbox();
 
@@ -8,13 +10,19 @@ import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 new StickyMenu({
   dropSuccessCallback: ({ isVertical, hasElement }) => {
     if (hasElement("#irapha-toolbox")) {
-      console.log(isVertical);
       toolbox.setLayoutColumn(isVertical);
     }
 
     if (hasElement("#irapha-thumbnail-box")) {
-      console.log(isVertical);
       thumbnailBox.setLayoutColumn(isVertical);
     }
   },
+});
+
+// =================================================================
+
+import { CustomContextMenu } from "../../common/components/context-menus/index.js";
+new CustomContextMenu({
+  element: document.querySelector("#irapha-thumbnail-context-menu"),
+  open$: window.store.thumbnailContextMenuOpen$,
 });
