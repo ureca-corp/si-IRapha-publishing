@@ -1,12 +1,24 @@
+import { ContextMenuItem } from "./elements/menu-item/menu-item.js";
+
+const rx = rxjs;
+
+const Selectors = {
+  Item: "irapha-context-menu__item",
+};
+
 export class CustomContextMenu {
   #root;
   #style;
+
+  // 서브메뉴 오픈 방향 왼쪽 상태
+  #submenuDirectionLeft$;
 
   constructor({ element, open$ }) {
     this.#root = element;
     this.#style = this.#root.style;
 
     this.#init({ open$ });
+    this.#initMenuItems();
   }
 
   // private
@@ -24,6 +36,19 @@ export class CustomContextMenu {
 
       if (!me) return open$.next(null);
     });
+
+    //
+    this.#submenuDirectionLeft$ = new rx.BehaviorSubject();
+  }
+
+  #initMenuItems() {
+    [...this.#root.querySelectorAll(`.${Selectors.Item}`)].map(
+      (element) =>
+        new ContextMenuItem({
+          element,
+          directionLeft$: this.#submenuDirectionLeft$,
+        })
+    );
   }
 
   // handler
@@ -44,6 +69,7 @@ export class CustomContextMenu {
     style.zIndex = 9999;
 
     this.#limitOverflowIntoWindow(point);
+    this.#setSubmenuDirectionLeft_IfContextMenuLocatedRight();
   }
 
   #close() {
@@ -87,5 +113,15 @@ export class CustomContextMenu {
       style.top = unset;
       style.bottom = `${safeBottom}px`;
     }
+  }
+
+  #setSubmenuDirectionLeft_IfContextMenuLocatedRight() {
+    const contextMenuRect = this.#root.getBoundingClientRect();
+    const windowSegmentWidth = window.innerWidth / 4;
+    const overflowRightZone = windowSegmentWidth * 3;
+
+    const isSubmenuRightOverflow = contextMenuRect.right > overflowRightZone;
+
+    return this.#submenuDirectionLeft$.next(isSubmenuRightOverflow);
   }
 }

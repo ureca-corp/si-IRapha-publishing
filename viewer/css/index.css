@@ -9228,18 +9228,10 @@ img {
   background-color: skyblue;
 }
 
-.irapha-context-menu {
-  position: absolute;
-  z-index: -1;
-  display: flex;
-  flex-direction: column;
-  padding: 4px 0;
-  border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  background-color: var(--color__secondary-container);
-}
-
 .irapha-context-menu__item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
   width: 200px;
   height: 32px;
   padding: 8px;
@@ -9247,7 +9239,40 @@ img {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+.irapha-context-menu__item.--more::after {
+  content: "▶";
+  color: rgba(238, 238, 238, 0.6);
+  transform: scaleX(0.7);
+}
 .irapha-context-menu__item:hover {
   background-color: rgba(238, 238, 238, 0.0666666667);
   color: #fff;
+}
+
+.irapha-context-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  background-color: var(--color__secondary-container);
+  z-index: -1;
+}
+
+.irapha-context-menu__item__submenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  background-color: var(--color__secondary-container);
+  display: none;
+  top: 0;
+  left: 200px;
+}
+.irapha-context-menu__item__submenu.--direction-left {
+  left: unset;
+  right: 200px;
 }
