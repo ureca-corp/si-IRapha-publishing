@@ -26,3 +26,12 @@ new CustomContextMenu({
   element: document.querySelector("#irapha-thumbnail-context-menu"),
   open$: window.store.thumbnailContextMenuOpen$,
 });
+
+// =================================================================
+import { Tabs } from "../../common/components/tabs/index.js";
+new Tabs({ element: document.querySelector(".irapha-tabs") });
+
+new CustomContextMenu({
+  element: document.querySelector("#irapha-tabs-context-menu"),
+  open$: window.store.tabsContextMenuOpen$,
+});

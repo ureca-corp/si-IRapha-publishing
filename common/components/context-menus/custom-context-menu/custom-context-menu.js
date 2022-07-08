@@ -27,10 +27,10 @@ export class CustomContextMenu {
     open$.subscribe((point) => this.#handleContextMenuOpen(point));
 
     // 메뉴에서 마우스 벗어난 상태 핸들링
-    this.#root.addEventListener("mouseleave", () => open$.next(null));
+    rx.fromEvent(this.#root, "mouseleave").subscribe(() => open$.next(null));
 
     // 메뉴 외에 영역 클릭 핸들링
-    document.addEventListener("click", (e) => {
+    rx.fromEvent(document, "click").subscribe((e) => {
       const parentTree = e.path;
       const me = parentTree.find((element) => element.id === this.#root.id);
 
