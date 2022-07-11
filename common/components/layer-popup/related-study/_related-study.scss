@@ -1,0 +1,81 @@
+@use "../../../styles/common";
+@use "../../../themes/typography" as typography;
+
+@use "../base/scss/layer-popup";
+
+$color-border: var(--color__border);
+$color-bg: #333;
+
+.irapha-related-study__inner {
+  background-color: $color-bg;
+
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+  .irapha____top {
+    position: relative;
+    padding: 16px;
+
+    border-bottom: 1px dashed $color-border;
+
+    cursor: grab;
+
+    .irapha____close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+  }
+
+  .irapha____user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .irapha____row {
+      display: flex;
+      gap: 24px;
+    }
+
+    .irapha____row__item {
+      width: 20%;
+
+      white-space: nowrap;
+    }
+
+    .irapha____title {
+      @include typography.body-small;
+    }
+
+    .irapha____data {
+      @include typography.title-small;
+
+      color: #ccc;
+    }
+  }
+}
+
+.irapha-related-study__data-grid {
+  max-height: 286px;
+  overflow: auto;
+
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: $color-bg;
+  }
+
+  tbody {
+    tr {
+      border-color: $color-border !important;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+// =========================================================================

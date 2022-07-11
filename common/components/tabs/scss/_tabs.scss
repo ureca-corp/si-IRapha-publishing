@@ -1,0 +1,33 @@
+@use "../../../styles/common";
+
+@use "../common/tabs.constant.scss" as constant;
+@use "../elements/tabs-item/tabs-item";
+
+$inactive-bg-color: constant.$inactive-bg-color;
+$active-bg-color: constant.$active-bg-color;
+
+.irapha-tabs {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+
+  background-color: $inactive-bg-color;
+
+  overflow: hidden;
+}
+
+// List
+// =================================================================
+.irapha-tabs__list {
+  display: flex;
+  gap: 4px;
+  padding: 8px 8px 0 8px;
+
+  width: 100%;
+  height: 100%;
+
+  border-bottom: 4px solid $active-bg-color;
+
+  overflow: overlay;
+}
