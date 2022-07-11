@@ -9387,3 +9387,57 @@ img {
   height: 100%;
   border-bottom: 4px solid rgb(54, 54, 58);
 }
+
+.irapha-layer-popup {
+  position: absolute;
+}
+
+.irapha-related-study__inner {
+  background-color: #333;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+.irapha-related-study__inner .irapha____top {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px dashed var(--color__border);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.irapha-related-study__inner .irapha____top .irapha____close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+.irapha-related-study__inner .irapha____user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.irapha-related-study__inner .irapha____user-info .irapha____row {
+  display: flex;
+  gap: 24px;
+}
+.irapha-related-study__inner .irapha____user-info .irapha____row__item {
+  width: 20%;
+  white-space: nowrap;
+}
+.irapha-related-study__inner .irapha____user-info .irapha____title {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+.irapha-related-study__inner .irapha____user-info .irapha____data {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #ccc;
+}
+
+.irapha-related-study__data-grid tbody tr {
+  border-color: var(--color__border) !important;
+  cursor: pointer;
+}
+.irapha-related-study__data-grid tbody tr:hover {
+  background-color: #ccc;
+}

@@ -35,3 +35,13 @@ new CustomContextMenu({
   element: document.querySelector("#irapha-tabs-context-menu"),
   open$: window.store.tabsContextMenuOpen$,
 });
+
+// =================================================================
+import { RelatedStudyLayerPopup } from "../../common/components/layer-popup/index.js";
+
+new RelatedStudyLayerPopup({
+  element: document.querySelector("#irapha-related-study-popup"),
+  open$: window.store.relatedStudyOpen$,
+});
+
+window.store.relatedStudyOpen$.next({ x: 200, y: 200 });
