@@ -4,9 +4,10 @@
 @use "../base/scss/layer-popup";
 
 $color-border: var(--color__border);
+$color-bg: #333;
 
 .irapha-related-study__inner {
-  background-color: #333;
+  background-color: $color-bg;
 
   border-radius: 4px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
@@ -56,6 +57,15 @@ $color-border: var(--color__border);
 }
 
 .irapha-related-study__data-grid {
+  max-height: 286px;
+  overflow: auto;
+
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: $color-bg;
+  }
+
   tbody {
     tr {
       border-color: $color-border !important;

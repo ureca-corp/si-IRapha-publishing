@@ -67,7 +67,7 @@ $dropzone-min-size: 48px;
 @mixin s-dropzone {
   &.--active {
     position: static;
-    z-index: auto;
+    z-index: 4;
   }
 }
 

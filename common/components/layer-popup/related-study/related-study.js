@@ -42,8 +42,11 @@ export class RelatedStudyLayerPopup {
 
   #handleMouseDrag(event) {
     const rect = this.#root.getBoundingClientRect();
+    const style = this.#root.style;
 
-    this.#root.style.top = `${rect.top + event.movementY}px`;
-    this.#root.style.left = `${rect.left + event.movementX}px`;
+    style.top = `${rect.top + event.movementY}px`;
+    style.bottom = "unset";
+    style.left = `${rect.left + event.movementX}px`;
+    style.right = "unset";
   }
 }

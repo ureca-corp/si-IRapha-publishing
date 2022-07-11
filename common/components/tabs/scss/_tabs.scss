@@ -28,4 +28,6 @@ $active-bg-color: constant.$active-bg-color;
   height: 100%;
 
   border-bottom: 4px solid $active-bg-color;
+
+  overflow: overlay;
 }

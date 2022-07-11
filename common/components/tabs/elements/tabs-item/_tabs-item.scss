@@ -3,6 +3,7 @@
 
 $inactive-bg-color: constant.$inactive-bg-color;
 $active-bg-color: constant.$active-bg-color;
+$hover-bg-color: #eeeeee11;
 
 // List item
 // =================================================================
@@ -90,40 +91,67 @@ $active-bg-color: constant.$active-bg-color;
 
   color: var(--color__font-primary);
   background-color: transparent;
-}
 
-.irapha-tabs__list__item__title {
-  @include typography.title-small;
-}
+  &:hover {
+    &:not(.--active) {
+      background-color: $hover-bg-color;
+    }
 
-.irapha-tabs__list__item__description {
-  @include typography.label-small;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+    .irapha-tabs__list__item__menus {
+      opacity: 1;
+    }
+  }
 
-  opacity: 0.8;
+  .irapha____title-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .irapha____title {
+    @include typography.title-small;
+  }
+
+  .irapha____description {
+    @include typography.label-small;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    opacity: 0.8;
+  }
 }
 
 // =========================================================================
-.irapha-tabs__list__item__title-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-// =========================================================================
-.irapha-tabs__list__item__menus {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.irapha-tabs__list__item__menus__item {
+@mixin menus-item {
   width: 12px;
   height: fit-content;
   aspect-ratio: 1;
 
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 
-  background-color: blue;
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.irapha-tabs__list__item__menus {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+
+  .irapha____cid {
+    @include menus-item;
+  }
+
+  .irapha____related-study {
+    @include menus-item;
+  }
+
+  .irapha____close {
+    @include menus-item;
+  }
 }

@@ -1,7 +1,10 @@
+import { TabMenus } from "../tab-menus/tab-menus.js";
+
 const rx = rxjs;
 
 const Selectors = {
   Dummy: "irapha-tabs__list__item__dummy",
+  Menus: "irapha-tabs__list__item__menus",
 };
 
 export class TabItem {
@@ -11,6 +14,8 @@ export class TabItem {
   constructor({ element, isActive$, onClick }) {
     this.#root = element;
     this.#dummy = this.#createDummy();
+
+    new TabMenus({ element: element.querySelector(`.${Selectors.Menus}`) });
 
     isActive$.subscribe((isActive) => this.#handleActiveChange(isActive));
 
