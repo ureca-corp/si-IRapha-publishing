@@ -15,6 +15,7 @@ store.tabsContextMenuOpen$ = new rx.BehaviorSubject();
  * type of ({x: number, y: number} || null)
  */
 store.relatedStudyOpen$ = new rx.BehaviorSubject();
+store.exportDicomOpen$ = new rx.BehaviorSubject();
 
 //
 window.store = store;
