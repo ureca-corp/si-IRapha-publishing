@@ -9357,8 +9357,8 @@ img {
 
 .irapha-export-dicom__inner .irapha____footer {
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  justify-content: flex-end;
+  gap: 12px;
   padding: 12px;
   border-top: 1px dashed var(--color__border);
 }

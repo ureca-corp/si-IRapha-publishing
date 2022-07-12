@@ -141,8 +141,8 @@ $color-font2: var(--color__font-primary);
 // =================================================================
 .irapha-export-dicom__inner .irapha____footer {
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  justify-content: flex-end;
+  gap: 12px;
 
   padding: 12px;
 
