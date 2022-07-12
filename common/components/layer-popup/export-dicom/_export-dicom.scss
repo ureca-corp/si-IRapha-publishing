@@ -1,0 +1,163 @@
+@use "../../../styles/common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/typography" as typography;
+
+@use "../../../styles/buttons" as buttons;
+@use "../base/scss/layer-popup";
+
+$color-border: var(--color__border);
+$color-bg: #333;
+
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+
+.irapha-export-dicom__inner {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+
+  background-color: $color-bg;
+}
+
+// Title
+// =================================================================
+.irapha-export-dicom__inner .irapha____title {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px dashed $color-border;
+
+  cursor: move;
+
+  .irapha____title__text {
+    @include typography.title-medium;
+    padding: 8px;
+  }
+
+  .irapha____close {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+
+    transform: translateY(-50%);
+  }
+}
+
+// Content
+// =================================================================
+@mixin content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@mixin content-label {
+  label {
+    @include typography.label-medium;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+
+    cursor: pointer;
+  }
+}
+
+@mixin content-input {
+  input[type="text"] {
+    width: 50%;
+    padding: 0px 4px;
+    margin-left: 4px;
+
+    background-color: #eeeeee11;
+    border: 1px solid $color-border;
+    border-radius: 2px;
+
+    color: $color-font2;
+
+    transition: all 0.3s ease-in-out;
+
+    &:focus {
+      background-color: #eeeeee33;
+      border-color: var(--color__teriary);
+    }
+  }
+
+  input[type="checkbox"][disabled] {
+    opacity: 0.3;
+  }
+}
+
+.irapha-export-dicom__inner .irapha____content {
+  display: grid;
+  grid-template-areas:
+    "first first second"
+    "first first second"
+    "first first third";
+  row-gap: 16px;
+  column-gap: 36px;
+
+  padding: 24px;
+
+  @include content-label;
+  @include content-input;
+
+  .irapha____content-first {
+    grid-area: first;
+    @include content-section;
+  }
+
+  .irapha____content-second {
+    grid-area: second;
+    @include content-section;
+  }
+
+  .irapha____content-third {
+    grid-area: third;
+    @include content-section;
+  }
+
+  .irapha____content-title {
+    @include typography.title-small;
+    color: $color-font1;
+  }
+
+  .irapha____content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+// Footer
+// =================================================================
+.irapha-export-dicom__inner .irapha____footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  padding: 12px;
+
+  border-top: 1px dashed $color-border;
+
+  .irapha____cancel {
+    @include buttons.outlined-button;
+
+    &:hover {
+      color: $color-font1;
+    }
+  }
+
+  .irapha____export {
+    @include buttons.contained-button;
+    background-color: var(--color__teriary);
+  }
+}

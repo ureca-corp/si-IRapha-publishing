@@ -2347,7 +2347,9 @@
 
     <!-- Tabs Context Menu -->
     <div id="irapha-tabs-context-menu" class="irapha-context-menu">
-      <div class="irapha-context-menu__item">Dicom Export AS</div>
+      <div id="irapha-export-dicom-menu" class="irapha-context-menu__item">
+        Dicom Export AS
+      </div>
     </div>
 
     <!-- Related Study Layer Popup -->
@@ -2471,6 +2473,172 @@
           </table>
         </div>
       </div>
+    </div>
+
+    <!-- Export DICOM AS Layer Popup -->
+    <div id="irapha-export-dicom-popup" class="irapha-layer-popup">
+      <form class="irapha-export-dicom__inner" onsubmit="return false">
+        <div aria-label="header" class="irapha____title">
+          <div class="irapha____title__text">Export DICOM AS</div>
+          <button class="irapha____close" uk-close></button>
+        </div>
+
+        <div aria-label="content" class="irapha____content">
+          <!-- File Format -->
+          <div class="irapha____content-first">
+            <div class="irapha____content-title">File Format</div>
+            <div class="irapha____content-list">
+              <label>
+                <input
+                  class="uk-radio"
+                  type="radio"
+                  name="file-format"
+                  checked
+                />
+                DICOM (.dcm)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                JPEG (.jpg)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                GIF (.gif)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                PNG (.png)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                JP2 (.jp2)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                NRRD (.nrrd) - Zipped
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                SPM2/Analyze (.nil)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                SPM5/NIfTI (.nil)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                Multiframe NRRD (.nrrd) - Zipped
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                Multiframe SPM2/Analyze (.nil)
+              </label>
+              <label>
+                <input class="uk-radio" type="radio" name="file-format" />
+                Multiframe SPM5/NIfTI (.nil)
+              </label>
+            </div>
+          </div>
+
+          <!-- Filename Format -->
+          <div class="irapha____content-second">
+            <div class="irapha____content-title">Filename Format</div>
+            <div class="irapha____content-list">
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Prefix
+                <input type="text" />
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Patient ID
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Accession Number
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Study Instance UID
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Modality
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Series Number
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Series Intance UID
+              </label>
+              <label>
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                />
+                Include Instance Number
+              </label>
+              <label style="cursor: unset">
+                <input
+                  class="uk-checkbox"
+                  type="checkbox"
+                  name="filename-format"
+                  checked
+                  disabled
+                />
+                Include SOP Instance UID
+              </label>
+            </div>
+          </div>
+
+          <!-- ETC -->
+          <div class="irapha____content-third">
+            <div class="irapha____content-title">ETC</div>
+            <div class="irapha____content-list">
+              <label>
+                <input class="uk-checkbox" type="checkbox" name="ETC" />
+                Export Image Annotations
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div aria-label="footer" class="irapha____footer">
+          <button class="irapha____cancel">Cancel</button>
+          <button class="irapha____export" type="submit">Export</button>
+        </div>
+      </form>
     </div>
   </body>
 </html>

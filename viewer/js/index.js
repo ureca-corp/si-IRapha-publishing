@@ -36,10 +36,24 @@ new CustomContextMenu({
   open$: window.store.tabsContextMenuOpen$,
 });
 
+document
+  .querySelector("#irapha-export-dicom-menu")
+  .addEventListener("click", (e) => {
+    window.store.exportDicomOpen$.next({ x: e.clientX, y: e.clientY });
+  });
+
 // =================================================================
-import { RelatedStudyLayerPopup } from "../../common/components/layer-popup/index.js";
+import {
+  RelatedStudyLayerPopup,
+  ExportDicomLayerPopup,
+} from "../../common/components/layer-popup/index.js";
 
 new RelatedStudyLayerPopup({
   element: document.querySelector("#irapha-related-study-popup"),
   open$: window.store.relatedStudyOpen$,
+});
+
+new ExportDicomLayerPopup({
+  element: document.querySelector("#irapha-export-dicom-popup"),
+  open$: window.store.exportDicomOpen$,
 });

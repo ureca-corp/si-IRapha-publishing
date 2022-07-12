@@ -1,16 +1,16 @@
 import { LayerPopup } from "../base/js/layer-popup.js";
 import { setOnMouseDragListener } from "../../../utils/events/EventListener.js";
-import { DataGrid } from "../../tables/index.js";
 
 const rx = rxjs;
 
 const Selectors = {
   CloseButton: "irapha____close",
-  TopArea: "irapha____top",
-  DataGrid: "irapha-related-study__data-grid",
+  CancelButton: "irapha____cancel",
+  SubmitButton: "irapha____export",
+  DragArea: "irapha____title",
 };
 
-export class RelatedStudyLayerPopup {
+export class ExportDicomLayerPopup {
   #root;
   #dragArea;
 
@@ -18,15 +18,15 @@ export class RelatedStudyLayerPopup {
 
   constructor({ element, open$ }) {
     this.#root = element;
-    this.#dragArea = element.querySelector(`.${Selectors.TopArea}`);
+    this.#dragArea = element.querySelector(`.${Selectors.DragArea}`);
+
     this.#open$ = open$;
 
     new LayerPopup({ element, open$ });
-    new DataGrid({
-      element: element.querySelector(`.${Selectors.DataGrid}`),
-    });
 
     this.#initCloseButton();
+    this.#initCancelButton();
+    this.#initSubmitButton();
 
     setOnMouseDragListener({
       emitter: this.#dragArea,
@@ -40,6 +40,19 @@ export class RelatedStudyLayerPopup {
     rx.fromEvent(closeBtn, "click").subscribe(() => this.#open$.next(null));
   }
 
+  #initCancelButton() {
+    const cancelBtn = this.#root.querySelector(`.${Selectors.CancelButton}`);
+    rx.fromEvent(cancelBtn, "click").subscribe(() => this.#open$.next(null));
+  }
+
+  #initSubmitButton() {
+    const submitBtn = this.#root.querySelector(`.${Selectors.SubmitButton}`);
+    rx.fromEvent(submitBtn, "click").subscribe(() => {
+      alert("Todo");
+    });
+  }
+
+  // handlers
   #handleMouseDrag(event) {
     const rect = this.#root.getBoundingClientRect();
     const style = this.#root.style;
