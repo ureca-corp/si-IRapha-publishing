@@ -1,4 +1,4 @@
-import { GridSelector } from "../../../../grid-selector/index.js";
+import { GridSelector } from "../../../../../grid-selector/index.js";
 
 const Selectors = {
   dropDown: "#irapha-menu__display-layout__config__dropdown",

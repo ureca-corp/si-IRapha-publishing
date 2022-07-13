@@ -1,6 +1,6 @@
 import { FoldingBar } from "../../folding-bar/index.js";
 import { Logo } from "../../logo/index.js";
-import { ToolboxMenusManager } from "./menu-manager.js";
+import { ToolboxMenusManager } from "../elements/index.js";
 
 const rx = rxjs;
 

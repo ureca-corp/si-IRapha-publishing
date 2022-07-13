@@ -1,0 +1,68 @@
+@use "../../../styles/common";
+@use "../../../themes/typography" as typography;
+
+@mixin menu-name {
+  @include typography.label-small;
+  color: var(--color__font-primary);
+
+  text-align: center;
+
+  width: 100%;
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin l-submenu {
+  &.--layout--column-two {
+    & > .irapha____container {
+      & > .irapha____inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+.irapha-sub-menu {
+  @include l-submenu;
+
+  & > .irapha____container {
+    background-color: var(--color__bg-primary);
+
+    border-radius: 4px;
+    box-shadow: var(--box-shadow__layer-menu);
+
+    width: fit-content;
+
+    & > .irapha____inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      padding: 12px 16px;
+
+      & > .irapha____item {
+        & > .irapha____item__dl {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          cursor: pointer;
+
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            opacity: 0.6;
+          }
+
+          & > .irapha____item__name {
+            @include menu-name;
+            text-align: start;
+          }
+        }
+      }
+    }
+  }
+}

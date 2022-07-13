@@ -8234,6 +8234,11 @@ table {
 }
 
 :root {
+  --box-shadow__layer-menu: 0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+}
+
+:root {
   --bar-size: 130px;
 }
 @media (max-width: 1440px) {
@@ -8313,6 +8318,47 @@ img {
   --color__green: #34c759;
 }
 
+.irapha-sub-menu.--layout--column-two > .irapha____container > .irapha____inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.irapha-sub-menu > .irapha____container {
+  background-color: var(--color__bg-primary);
+  border-radius: 4px;
+  box-shadow: var(--box-shadow__layer-menu);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.irapha-sub-menu > .irapha____container > .irapha____inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl:hover {
+  opacity: 0.6;
+}
+.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl > .irapha____item__name {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--color__font-primary);
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
@@ -8325,15 +8371,15 @@ img {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content {
+.irapha-toolbox__menu.--name-hide > .irapha____item > .irapha____item__content {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
-.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content__name {
+.irapha-toolbox__menu.--name-hide > .irapha____item > .irapha____item__content > .irapha____name {
   display: none;
 }
-.irapha-toolbox__menu__item__content {
+.irapha-toolbox__menu > .irapha____item > .irapha____item__content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8342,7 +8388,7 @@ img {
   width: 50px;
   border: none;
 }
-.irapha-toolbox__menu__item__content__name {
+.irapha-toolbox__menu > .irapha____item > .irapha____item__content > .irapha____name {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -8405,47 +8451,6 @@ img {
 .irapha-toolbox__divider.--align--self-center {
   align-self: center;
   margin: 16px;
-}
-
-.irapha-menu__dropdown.--layout--column-two .irapha-menu__dropdown__container__inner {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.irapha-menu__dropdown__container {
-  background-color: var(--color__teriary-container);
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px #666;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.irapha-menu__dropdown__container__inner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 12px 16px;
-}
-.irapha-menu__dropdown__item__dl {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.irapha-menu__dropdown__item__dl:hover {
-  opacity: 0.6;
-}
-.irapha-menu__dropdown__item__name {
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 700;
-  color: var(--color__font-primary);
-  text-align: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: start;
 }
 
 .irapha-toolbox__menus {
@@ -9017,7 +9022,7 @@ img {
   flex-direction: column;
   padding: 4px 0;
   border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
   z-index: -1;
 }
@@ -9028,7 +9033,7 @@ img {
   flex-direction: column;
   padding: 4px 0;
   border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
   display: none;
   top: 0;
@@ -9188,7 +9193,7 @@ img {
 .irapha-related-study__inner {
   background-color: #333;
   border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow__layer-menu);
 }
 .irapha-related-study__inner .irapha____top {
   position: relative;
@@ -9248,7 +9253,7 @@ img {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--box-shadow__layer-menu);
   background-color: #333;
 }
 

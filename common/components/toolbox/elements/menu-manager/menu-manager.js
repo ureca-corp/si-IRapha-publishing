@@ -1,5 +1,5 @@
-import { ToolboxMenuItemsController } from "./menu-items/index.js";
-import { ToolboxMenu } from "./menu.js";
+import { ToolboxMenuItemsController } from "../menu-items-controller/index.js";
+import { ToolboxMenu } from "../menu/menu.js";
 
 const Selectors = {
   Menu: "irapha-toolbox__menu",

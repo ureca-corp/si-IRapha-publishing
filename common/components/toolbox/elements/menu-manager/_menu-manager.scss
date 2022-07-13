@@ -1,7 +1,9 @@
-@use "../../../styles/common";
-@use "../../../themes/colors" as colors;
-@use "../../../themes/typography" as typography;
-@use "../../../themes/shape" as shapes;
+@use "../../../../styles/common";
+@use "../../../../themes/colors" as colors;
+@use "../../../../themes/typography" as typography;
+@use "../../../../themes/shape" as shapes;
+
+@use "../menu/menu" as menu;
 
 // menus
 // =================================================================

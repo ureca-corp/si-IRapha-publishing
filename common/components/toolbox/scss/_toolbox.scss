@@ -1,8 +1,7 @@
 @use "../../../styles/common";
 @use "../../../themes/colors" as colors;
 
-@use "./menu" as menu;
-@use "./menu-manager" as menu-manager;
+@use "../elements/menu-manager/menu-manager" as menu-manager;
 @use "../../logo/style" as logo;
 @use "../../grid-selector/style" as grid-selector;
 @use "../../folding-bar/style" as folding-bar;
