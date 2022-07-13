@@ -64,19 +64,12 @@
 // =================================================================
 $dropzone-min-size: 48px;
 
-@mixin s-dropzone {
-  &.--active {
-    position: static;
-    z-index: 4;
-  }
-}
-
 .irapha-sticky-menu__dropzone {
   &.--top {
     grid-area: top;
     align-self: flex-start;
+    z-index: 3;
 
-    position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -88,8 +81,8 @@ $dropzone-min-size: 48px;
   &.--left {
     grid-area: left;
     justify-self: flex-start;
+    z-index: 2;
 
-    position: absolute;
     display: flex;
     width: fit-content;
     height: 100%;
@@ -100,8 +93,8 @@ $dropzone-min-size: 48px;
   &.--right {
     grid-area: right;
     justify-self: flex-end;
+    z-index: 2;
 
-    position: absolute;
     display: flex;
     flex-direction: row-reverse;
     width: fit-content;
@@ -113,8 +106,8 @@ $dropzone-min-size: 48px;
   &.--bottom {
     grid-area: bottom;
     align-self: flex-end;
+    z-index: 3;
 
-    position: absolute;
     display: flex;
     flex-direction: column-reverse;
     width: 100%;

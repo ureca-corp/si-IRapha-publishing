@@ -8941,7 +8941,7 @@ img {
 .irapha-sticky-menu__dropzone.--top {
   grid-area: top;
   align-self: flex-start;
-  position: absolute;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8949,28 +8949,20 @@ img {
   height: -moz-fit-content;
   height: fit-content;
 }
-.irapha-sticky-menu__dropzone.--top.--active {
-  position: static;
-  z-index: 4;
-}
 .irapha-sticky-menu__dropzone.--left {
   grid-area: left;
   justify-self: flex-start;
-  position: absolute;
+  z-index: 2;
   display: flex;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 100%;
 }
-.irapha-sticky-menu__dropzone.--left.--active {
-  position: static;
-  z-index: 4;
-}
 .irapha-sticky-menu__dropzone.--right {
   grid-area: right;
   justify-self: flex-end;
-  position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: row-reverse;
   width: -webkit-fit-content;
@@ -8978,14 +8970,10 @@ img {
   width: fit-content;
   height: 100%;
 }
-.irapha-sticky-menu__dropzone.--right.--active {
-  position: static;
-  z-index: 4;
-}
 .irapha-sticky-menu__dropzone.--bottom {
   grid-area: bottom;
   align-self: flex-end;
-  position: absolute;
+  z-index: 3;
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
@@ -8993,11 +8981,6 @@ img {
   height: -moz-fit-content;
   height: fit-content;
 }
-.irapha-sticky-menu__dropzone.--bottom.--active {
-  position: static;
-  z-index: 4;
-}
-
 .content {
   grid-area: content;
   width: 100%;

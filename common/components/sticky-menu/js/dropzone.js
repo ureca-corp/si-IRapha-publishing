@@ -4,7 +4,6 @@ const Selectors = {
   Dropzone: "irapha-sticky-menu__dropzone",
   DropzoneDummy: "dropzone-dummy",
 
-  StatusActive: "--active",
   StatusLeft: "--left",
   StatusRight: "--right",
 };
@@ -20,18 +19,9 @@ export class Dropzone {
 
   constructor(element) {
     this.#root = element;
-
-    this.#init();
   }
 
   // private
-  #init() {
-    if (this.#hasSomeChild()) this.#active();
-  }
-
-  #hasSomeChild() {
-    return !!this.#root.children[0];
-  }
 
   // Layered Drop Zone Dummy
   #createDummyDropZone() {
@@ -62,15 +52,6 @@ export class Dropzone {
     this.#root.innerHTML = "";
   }
 
-  #active() {
-    this.#root.classList.add(Selectors.StatusActive);
-  }
-
-  #inactiveTargetIfNotHaveChild(formerParent) {
-    if (!formerParent.children[0])
-      formerParent.classList.remove(Selectors.StatusActive);
-  }
-
   #getPriorityFromElement({ element }) {
     return element.getAttribute(Attributes.Priority);
   }
@@ -85,18 +66,14 @@ export class Dropzone {
 
   #drop(target) {
     const dropzone = this.#root;
-    const formerParent = target.parentNode;
 
     this.invalidateBackground();
     this.#targetMoveToDropzone({ target });
-    this.#inactiveTargetIfNotHaveChild(formerParent);
 
     const sortedTargets = this.#getSortedChild();
     this.#removeAllChild();
 
     sortedTargets.forEach((it) => dropzone.appendChild(it));
-
-    this.#active();
   }
 
   // public
