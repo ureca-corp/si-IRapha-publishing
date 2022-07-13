@@ -17,14 +17,14 @@
       width: fit-content;
       height: 30px;
 
-      .irapha-logo {
-        &__container {
-          width: fit-content;
-          align-self: flex-start;
-        }
+      & > .irapha____container {
+        width: fit-content;
+        align-self: flex-start;
 
-        &__logo-image {
-          display: none;
+        & > .irapha____wrapper {
+          & > .irapha____logo-image {
+            display: none;
+          }
         }
       }
     }
@@ -33,20 +33,20 @@
   // 좌우 축소 상태
   &.--shrink-h {
     &.irapha-logo {
-      .irapha-logo {
-        &__container {
-          display: flex;
-          justify-content: flex-start;
-          align-items: flex-start;
-          aspect-ratio: unset;
+      & > .irapha____container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        aspect-ratio: unset;
+
+        & > .irapha____wrapper {
+          & > .irapha____logo-image {
+            display: none;
+          }
         }
 
-        &__menus {
+        & > .irapha____menus {
           flex-direction: column;
-        }
-
-        &__logo-image {
-          display: none;
         }
       }
     }
@@ -60,41 +60,41 @@
 
   @include s-logo;
 
-  &__container {
+  & > .irapha____container {
     position: relative;
 
     height: 100%;
     aspect-ratio: 16/10;
-  }
 
-  &__wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    & > .irapha____wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
-    width: 82%;
-    height: 100%;
-  }
+      width: 82%;
+      height: 100%;
 
-  &__logo-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+      & > .irapha____logo-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
 
-    border: none;
+        border: none;
 
-    cursor: pointer;
+        cursor: pointer;
 
-    transition: all 0.1 ease-in-out;
-  }
+        transition: all 0.1 ease-in-out;
+      }
+    }
 
-  &__menus {
-    position: relative;
-    z-index: 2;
+    & > .irapha____menus {
+      position: relative;
+      z-index: 2;
 
-    display: flex;
-    padding: 4px;
+      display: flex;
+      padding: 4px;
+    }
   }
 }
 
