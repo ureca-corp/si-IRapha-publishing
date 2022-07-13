@@ -1,7 +1,7 @@
 const rx = rxjs;
 
 const Selectors = {
-  Dropzone: "irapha-sticky-menu__dropzone",
+  Dropzone: "irapha____dropzone",
   DropzoneDummy: "dropzone-dummy",
 
   StatusLeft: "--left",
@@ -56,7 +56,7 @@ export class Dropzone {
     return element.getAttribute(Attributes.Priority);
   }
 
-  #getSortedChild() {
+  #getSortedChildByHighPriority() {
     return [...this.#root.children].sort(
       (a, b) =>
         this.#getPriorityFromElement({ element: a }) -
@@ -70,7 +70,7 @@ export class Dropzone {
     this.invalidateBackground();
     this.#targetMoveToDropzone({ target });
 
-    const sortedTargets = this.#getSortedChild();
+    const sortedTargets = this.#getSortedChildByHighPriority();
     this.#removeAllChild();
 
     sortedTargets.forEach((it) => dropzone.appendChild(it));

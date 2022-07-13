@@ -1,7 +1,10 @@
 @use "../../../styles/common";
 
-// sticky
+// sticky menu
 // =================================================================
+$activated-z-index: 5;
+$bg-sticky-menu: var(--color__bg-primary);
+
 @mixin l-column-first {
   grid-template-areas:
     "top top top top"
@@ -22,12 +25,12 @@
   &.--layout--column-first {
     @include l-column-first;
 
-    .irapha-sticky-menu__dropzone {
+    .irapha____dropzone {
       &.--left {
-        z-index: 4;
+        z-index: $activated-z-index;
       }
       &.--right {
-        z-index: 4;
+        z-index: $activated-z-index;
       }
     }
   }
@@ -35,12 +38,12 @@
   &.--layout--row-first {
     @include l-row-first;
 
-    .irapha-sticky-menu__dropzone {
+    .irapha____dropzone {
       &.--top {
-        z-index: 4;
+        z-index: $activated-z-index;
       }
       &.--bottom {
-        z-index: 4;
+        z-index: $activated-z-index;
       }
     }
   }
@@ -54,7 +57,7 @@
   grid-template-rows: fit-content(0) 1fr 1fr fit-content(0);
   grid-template-columns: fit-content(0) 1fr 1fr fit-content(0);
 
-  background-color: #333;
+  background-color: $bg-sticky-menu;
 
   @include l-column-first;
   @include l-sticky-menu;
@@ -64,56 +67,48 @@
 // =================================================================
 $dropzone-min-size: 48px;
 
-.irapha-sticky-menu__dropzone {
+.irapha____dropzone {
   &.--top {
     grid-area: top;
     align-self: flex-start;
-    z-index: 3;
+    z-index: 4;
 
     display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
-
-    @include s-dropzone;
   }
 
   &.--left {
     grid-area: left;
     justify-self: flex-start;
-    z-index: 2;
+    z-index: 3;
 
     display: flex;
     width: fit-content;
     height: 100%;
-
-    @include s-dropzone;
   }
 
   &.--right {
     grid-area: right;
     justify-self: flex-end;
-    z-index: 2;
+    z-index: 3;
 
     display: flex;
     flex-direction: row-reverse;
     width: fit-content;
     height: 100%;
-
-    @include s-dropzone;
   }
 
   &.--bottom {
     grid-area: bottom;
     align-self: flex-end;
-    z-index: 3;
+    z-index: 4;
 
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
     height: fit-content;
-
-    @include s-dropzone;
   }
 }
 

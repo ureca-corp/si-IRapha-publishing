@@ -2,9 +2,9 @@ import { Dropzone } from "./dropzone.js";
 
 const rx = rxjs;
 
-const Classes = {
+const Selectors = {
   StickyMenu: "irapha-sticky-menu",
-  DropZone: "irapha-sticky-menu__dropzone",
+  DropZone: "irapha____dropzone",
   DropZoneDummy: "dropzone-dummy",
 
   LayoutColumnFirst: "--layout--column-first",
@@ -21,9 +21,9 @@ export class StickyMenu {
   #dropSuccessCallback;
 
   constructor({ dropSuccessCallback }) {
-    this.#root = document.querySelector(`.${Classes.StickyMenu}`);
+    this.#root = document.querySelector(`.${Selectors.StickyMenu}`);
     this.#dropzones = [
-      ...document.querySelectorAll(`.${Classes.DropZone}`),
+      ...document.querySelectorAll(`.${Selectors.DropZone}`),
     ].map((it) => new Dropzone(it));
 
     this.#dropSuccessCallback = dropSuccessCallback;
@@ -58,17 +58,17 @@ export class StickyMenu {
     );
   }
 
-  #targetIncludesDropZoneDummy(target) {
-    return target.className.includes(Classes.DropZoneDummy);
+  #isTargetIncludedDropZoneDummy(target) {
+    return target.className.includes(Selectors.DropZoneDummy);
   }
 
   // 레이아웃 컨트롤
   #setLayoutRowFirst() {
-    this.#root.classList.add(Classes.LayoutRowFirst);
+    this.#root.classList.add(Selectors.LayoutRowFirst);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Classes.LayoutRowFirst);
+    this.#root.classList.remove(Selectors.LayoutRowFirst);
   }
 
   #updateLayout({ dropzone }) {
@@ -119,14 +119,14 @@ export class StickyMenu {
   // 드래그 대상이 드랍존에 진입시
   #handleDragEnter(e) {
     // 요소를 드롭하려는 대상 위로 드래그했을 때 대상의 배경색 변경
-    if (this.#targetIncludesDropZoneDummy(e.target))
+    if (this.#isTargetIncludedDropZoneDummy(e.target))
       e.target.style.background = "#eeeeee33";
   }
 
   // 드래그 대상이 드랍존에서 탈출 시
   #handleDragLeave(e) {
     // 요소를 드래그하여 드롭하려던 대상으로부터 벗어났을 때 배경색 리셋
-    if (this.#targetIncludesDropZoneDummy(e.target))
+    if (this.#isTargetIncludedDropZoneDummy(e.target))
       e.target.style.background = "";
   }
 
@@ -134,7 +134,7 @@ export class StickyMenu {
   #handleItemDrop(e) {
     e.preventDefault();
 
-    if (!this.#targetIncludesDropZoneDummy(e.target)) return;
+    if (!this.#isTargetIncludedDropZoneDummy(e.target)) return;
 
     const draggedTarget = this.#draggedTarget;
     const dummyDropzone = e.target;
