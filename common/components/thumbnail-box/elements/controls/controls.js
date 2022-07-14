@@ -1,4 +1,4 @@
-import { KinSelector } from "../../../kin-selector/index.js";
+import { KinSelector } from "../../../selectors/index.js";
 import { ThumbnailBoxNav } from "../nav/nav.js";
 import { ThumbnailBoxPaginationInfo } from "../pagination-info/pagination-info.js";
 

@@ -1,17 +1,14 @@
-@use "../../../themes/colors" as colors;
 @use "../../../themes/typography" as typography;
 
-$font-color1: #ffffff99;
-$font-color2: colors.$font-white;
-$focus-bg-color: #ffffff11;
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-focus: #ffffff11;
+$color-border-default: var(--color__border);
 
 @mixin focus {
-  color: $font-color2;
-  border-color: $font-color1;
-  background-color: $focus-bg-color;
-}
-
-@mixin s-kin-selector {
+  color: $color-font2;
+  border-color: $color-font1;
+  background-color: $color-bg-focus;
 }
 
 .irapha-kin-selector {
@@ -20,10 +17,10 @@ $focus-bg-color: #ffffff11;
   width: fit-content;
 
   border-radius: 8px;
-  border-color: var(--color__border);
+  border-color: $color-border-default;
 
   background-color: transparent;
-  color: $font-color1;
+  color: $color-font1;
 
   cursor: pointer;
 
