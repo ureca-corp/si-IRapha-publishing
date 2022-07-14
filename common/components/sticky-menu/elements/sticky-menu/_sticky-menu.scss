@@ -1,4 +1,4 @@
-@use "../../../styles/common";
+@use "../../../../styles/common";
 
 // sticky menu
 // =================================================================
@@ -110,14 +110,4 @@ $dropzone-min-size: 48px;
     width: 100%;
     height: fit-content;
   }
-}
-
-// =================================================================
-
-.content {
-  grid-area: content;
-
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
 }

@@ -5,9 +5,14 @@
 @use "../../common/components/thumbnail-box/style" as thumbnail-box;
 @use "../../common/components/sticky-menu/style" as sticky-menu;
 
-// @use "../../common/components/context-menus/style" as context-menu;
-
-// =================================================================
 @use "../../common/components/tabs/style" as tabs;
 
 @use "../../common/components/layer-popup/style" as layer-popup;
+
+.content {
+  grid-area: content;
+
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+}

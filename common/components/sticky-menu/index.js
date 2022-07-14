@@ -1,1 +1,1 @@
-export { StickyMenu } from "./js/sticky-menu.js";
+export { StickyMenu } from "./elements/index.js";

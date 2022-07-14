@@ -1,17 +1,7 @@
 import { Dropzone } from "./dropzone.js";
+import { Selectors, LayoutClassType } from "../../common/index.js";
 
 const rx = rxjs;
-
-const Selectors = {
-  StickyMenu: "irapha-sticky-menu",
-  DropZone: "irapha-sticky-menu__dropzone",
-  DropZoneDummy: "dropzone-dummy",
-
-  LayoutColumnFirst: "--layout--column-first",
-  LayoutRowFirst: "--layout--row-first",
-
-  BringFront: "--bring-front",
-};
 
 export class StickyMenu {
   #root;
@@ -23,7 +13,7 @@ export class StickyMenu {
   constructor({ dropSuccessCallback }) {
     this.#root = document.querySelector(`.${Selectors.StickyMenu}`);
     this.#dropzones = [
-      ...document.querySelectorAll(`.${Selectors.DropZone}`),
+      ...document.querySelectorAll(`.${Selectors.Dropzone}`),
     ].map((it) => new Dropzone(it));
 
     this.#dropSuccessCallback = dropSuccessCallback;
@@ -59,16 +49,16 @@ export class StickyMenu {
   }
 
   #isTargetIncludedDropZoneDummy(target) {
-    return target.className.includes(Selectors.DropZoneDummy);
+    return target.className.includes(Selectors.DropzoneDummy);
   }
 
   // 레이아웃 컨트롤
   #setLayoutRowFirst() {
-    this.#root.classList.add(Selectors.LayoutRowFirst);
+    this.#root.classList.add(LayoutClassType.RowFirst);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Selectors.LayoutRowFirst);
+    this.#root.classList.remove(LayoutClassType.RowFirst);
   }
 
   #updateLayout({ dropzone }) {

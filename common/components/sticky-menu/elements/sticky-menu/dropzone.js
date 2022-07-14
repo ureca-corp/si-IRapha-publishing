@@ -1,18 +1,13 @@
-const rx = rxjs;
+import {
+  Selectors,
+  Attributes,
+  PositionClassType,
+} from "../../common/index.js";
 
-const Selectors = {
-  Dropzone: "irapha-sticky-menu__dropzone",
-  DropzoneDummy: "dropzone-dummy",
-
-  StatusLeft: "--left",
-  StatusRight: "--right",
-};
-
-const Attributes = {
-  Priority: "priority",
-};
-
-const VeticalDropzoneClasses = [Selectors.StatusLeft, Selectors.StatusRight];
+const VeticalDropzoneClasses = [
+  PositionClassType.Left,
+  PositionClassType.Right,
+];
 
 export class Dropzone {
   #root;
@@ -24,13 +19,13 @@ export class Dropzone {
   // private
 
   // Layered Drop Zone Dummy
-  #createDummyDropZone() {
+  #createDummyDropzone() {
     const { clientWidth, clientHeight } = this.#root;
     const space = 48;
 
-    const dropzoneDummy = document.createElement("div");
-    dropzoneDummy.className = Selectors.DropzoneDummy;
-    dropzoneDummy.style.cssText = `
+    const dropZoneDummy = document.createElement("div");
+    dropZoneDummy.className = Selectors.DropzoneDummy;
+    dropZoneDummy.style.cssText = `
         position: absolute;
         min-width: ${space}px;
         min-height: ${space}px;
@@ -38,7 +33,7 @@ export class Dropzone {
         height: ${clientHeight + space}px;
       `;
 
-    return dropzoneDummy;
+    return dropZoneDummy;
   }
 
   // 드래그 타겟 드랍존 안으로 이동
@@ -78,7 +73,7 @@ export class Dropzone {
 
   // public
   appendDummy() {
-    this.#root.appendChild(this.#createDummyDropZone());
+    this.#root.appendChild(this.#createDummyDropzone());
   }
 
   removeDummy() {
