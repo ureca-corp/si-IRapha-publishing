@@ -1,7 +1,7 @@
-@use "../../../styles/common";
-@use "./maximize-button";
-@use "./network-status";
-@use "../../viewer-info/style";
+@use "../../../../styles/common";
+@use "../maximize-button/maximize-button";
+@use "../network-status/network-status";
+@use "../../../viewer-info/style";
 
 @mixin logo-icon-wrapper {
   position: relative;
@@ -22,7 +22,7 @@
         align-self: flex-start;
       }
 
-      .irapha-logo__logo-image {
+      &__logo-image {
         display: none;
       }
     }

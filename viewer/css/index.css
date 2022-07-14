@@ -8566,7 +8566,7 @@ img {
   width: fit-content;
   align-self: flex-start;
 }
-.irapha-logo.--shrink-v.irapha-logo .irapha-logo__logo-image {
+.irapha-logo.--shrink-v.irapha-logo__logo-image {
   display: none;
 }
 .irapha-logo.--shrink-h.irapha-logo .irapha-logo__container {
@@ -8620,6 +8620,14 @@ img {
   aspect-ratio: 1;
 }
 
+.irapha-grid-selector__item {
+  border-radius: 4px;
+  background-color: var(--color__secondary);
+}
+.irapha-grid-selector__item[irapha-grid-selector*="active: true"] {
+  background-color: var(--color__teriary);
+}
+
 .irapha-grid-selector {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -8629,14 +8637,6 @@ img {
   padding: 3%;
   border-radius: 4px;
   background-color: #424a5b;
-}
-
-.irapha-grid-selector__item {
-  border-radius: 4px;
-  background-color: var(--color__secondary);
-}
-.irapha-grid-selector__item[irapha-grid-selector*="active: true"] {
-  background-color: var(--color__teriary);
 }
 
 .irapha-toggle-expand {
@@ -8750,17 +8750,17 @@ img {
   border-radius: 8px;
   border-color: var(--color__border);
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color__font-secondary);
   cursor: pointer;
 }
 .irapha-kin-selector:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-kin-selector.uk-select:focus {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 

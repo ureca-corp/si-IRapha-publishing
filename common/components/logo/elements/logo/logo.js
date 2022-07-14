@@ -1,24 +1,7 @@
-import { MaximizeButton } from "./maximize-button.js";
-import { ViewerInfoPopup } from "../../viewer-info/index.js";
+import { MaximizeButton } from "../maximize-button/maximize-button.js";
+import { ViewerInfoPopup } from "../../../viewer-info/index.js";
 
-const rx = rxjs;
-
-const Selectors = {
-  Logo: "irapha-logo",
-  LogoContainer: "irapha-logo__container",
-  LogoImage: "irapha-logo__logo-image",
-  ViewerInfoPopup: "irapha-viewer-info-popup",
-  MaximizeButton: "irapha-maximize__icon",
-
-  UkButton: "uk-button-default",
-  ShrinkVertical: "--shrink-v",
-  ShrinkHorizontal: "--shrink-h",
-};
-
-const ShrinkDirection = {
-  vertical: "vertical",
-  horizontal: "horizontal",
-};
+import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
 
 export class Logo {
   #root;
@@ -62,20 +45,20 @@ export class Logo {
   // actions
   #shrinkVertical() {
     this.#unshrinkHorizontal();
-    this.#root.classList.add(Selectors.ShrinkVertical);
+    this.#root.classList.add(ShrinkClassType.Column);
   }
 
   #unshrinkVertical() {
-    this.#root.classList.remove(Selectors.ShrinkVertical);
+    this.#root.classList.remove(ShrinkClassType.Column);
   }
 
   #shrinkHorizontal() {
     this.#unshrinkVertical();
-    this.#root.classList.add(Selectors.ShrinkHorizontal);
+    this.#root.classList.add(ShrinkClassType.Row);
   }
 
   #unshrinkHorizontal() {
-    this.#root.classList.remove(Selectors.ShrinkHorizontal);
+    this.#root.classList.remove(ShrinkClassType.Row);
   }
 
   #removeAllShrink() {
@@ -97,10 +80,10 @@ export class Logo {
   }
 
   #handleShrinkChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.vertical)
+    if (shrinkDirection === ShrinkType.Vertical)
       return this.#handleShrinkVerticalChange(shrinkDirection);
 
-    if (shrinkDirection === ShrinkDirection.horizontal)
+    if (shrinkDirection === ShrinkType.Horizontal)
       return this.#handleShrinkHorizontalChange(shrinkDirection);
 
     return this.#removeAllShrink();
