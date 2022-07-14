@@ -2,22 +2,14 @@ import { FoldingBar } from "../../folding-bar/index.js";
 import { Logo } from "../../logo/index.js";
 import { ToolboxMenusManager } from "../elements/index.js";
 
+import {
+  Selectors,
+  LayoutClassType,
+  ShrinkClassType,
+  ShrinkType,
+} from "../common/index.js";
+
 const rx = rxjs;
-
-const Selectors = {
-  Toolbox: "irapha-toolbox",
-  FoldingBar: "irapha-folding-bar",
-  Logo: "irapha-logo",
-  MenusManager: "irapha-toolbox__menus",
-
-  ShrinkVertical: "--shrink-v",
-  ShrinkHorizontal: "--shrink-h",
-};
-
-const ShrinkDirection = {
-  Vertical: "vertical",
-  Horizontal: "horizontal",
-};
 
 export class Toolbox {
   #root;
@@ -57,7 +49,7 @@ export class Toolbox {
 
   #initMenusManager() {
     new ToolboxMenusManager({
-      element: this.#root.querySelector(`.${Selectors.MenusManager}`),
+      element: this.#root.querySelector(`.${Selectors.Menus}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isHideIconName$: this.#isHideIconName$,
       shrinkDirection$: this.#shrinkDirection$,
@@ -95,23 +87,23 @@ export class Toolbox {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.Vertical)
-      return this.#root.classList.add(Selectors.ShrinkVertical);
+    if (shrinkDirection === ShrinkType.Vertical)
+      return this.#root.classList.add(ShrinkClassType.Column);
 
-    if (shrinkDirection === ShrinkDirection.Horizontal)
-      return this.#root.classList.add(Selectors.ShrinkHorizontal);
+    if (shrinkDirection === ShrinkType.Horizontal)
+      return this.#root.classList.add(ShrinkClassType.Row);
 
-    this.#root.classList.remove(Selectors.ShrinkVertical);
-    this.#root.classList.remove(Selectors.ShrinkHorizontal);
+    this.#root.classList.remove(ShrinkClassType.Column);
+    this.#root.classList.remove(ShrinkClassType.Row);
   }
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add("--layout-column");
+    this.#root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove("--layout-column");
+    this.#root.classList.remove(LayoutClassType.Column);
   }
 
   // public

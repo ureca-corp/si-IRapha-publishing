@@ -6,8 +6,8 @@
 @use "../../grid-selector/style" as grid-selector;
 @use "../../folding-bar/style" as folding-bar;
 
-// Variables
-// =========================================================================
+// Toolbox
+// =================================================================
 $bg: var(--color__teriary-container);
 $border-color: var(--color__border);
 
@@ -52,8 +52,6 @@ $toolbox: (
   }
 }
 
-// Styles
-// =================================================================
 .irapha-toolbox {
   z-index: 5;
   background-color: $bg;

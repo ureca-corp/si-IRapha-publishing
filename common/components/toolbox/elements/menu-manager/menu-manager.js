@@ -1,14 +1,13 @@
 import { ToolboxMenuItemsController } from "../menu-items-controller/index.js";
 import { ToolboxMenu } from "../menu/menu.js";
 
-const Selectors = {
-  Menu: "irapha-toolbox__menu",
-  Divider: "irapha-toolbox__divider",
-
-  LayoutColumn: "--layout--column",
-  Hide: "--hide",
-  DividerAlignSelfCenter: "--align--self-center",
-};
+import {
+  Selectors,
+  LayoutClassType,
+  AlignClassType,
+  HideClassType,
+  LayoutType,
+} from "../../common/index.js";
 
 export class ToolboxMenusManager {
   #root;
@@ -49,41 +48,41 @@ export class ToolboxMenusManager {
   }
 
   #setLayoutColumn() {
-    this.#root.classList.add(Selectors.LayoutColumn);
+    this.#root.classList.add(LayoutClassType.Column);
 
-    this.#setMenusLayout("columnTwo");
+    this.#setMenusLayout(LayoutType.ColumnTwo);
     this.#setDividerLayout(true);
   }
 
   #removeLayoutColumn() {
-    this.#root.classList.remove(Selectors.LayoutColumn);
+    this.#root.classList.remove(LayoutClassType.Column);
 
     this.#setDividerLayout(null);
     this.#setMenusLayout(null);
   }
 
   #hide() {
-    this.#root.classList.add(Selectors.Hide);
+    this.#root.classList.add(HideClassType.Hide);
   }
 
   #visible() {
-    this.#root.classList.remove(Selectors.Hide);
+    this.#root.classList.remove(HideClassType.Hide);
   }
 
   // divider control
   #setDividerLayout(isLayoutColumn) {
     if (isLayoutColumn) {
-      return this.#divider.classList.add(Selectors.LayoutColumn);
+      return this.#divider.classList.add(LayoutClassType.Column);
     }
 
-    return this.#divider.classList.remove(Selectors.LayoutColumn);
+    return this.#divider.classList.remove(LayoutClassType.Column);
   }
 
   #setDividerAlignSelfCenter(isAlignSelfCenter) {
     if (isAlignSelfCenter)
-      return this.#divider.classList.add(Selectors.DividerAlignSelfCenter);
+      return this.#divider.classList.add(AlignClassType.SelfCenter);
 
-    return this.#divider.classList.remove(Selectors.DividerAlignSelfCenter);
+    return this.#divider.classList.remove(AlignClassType.SelfCenter);
   }
 
   // menus control

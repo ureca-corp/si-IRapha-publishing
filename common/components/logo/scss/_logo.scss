@@ -11,41 +11,39 @@
 }
 
 @mixin s-logo {
-  &.is-state {
-    // 상하 축소 상태
-    &--shrink-vertical {
-      &.irapha-logo {
+  // 상하 축소 상태
+  &.--shrink-v {
+    &.irapha-logo {
+      width: fit-content;
+      height: 30px;
+
+      &__container {
         width: fit-content;
-        height: 30px;
+        align-self: flex-start;
+      }
 
-        &__container {
-          width: fit-content;
-          align-self: flex-start;
-        }
-
-        .irapha-logo__logo-image {
-          display: none;
-        }
+      .irapha-logo__logo-image {
+        display: none;
       }
     }
+  }
 
-    // 좌우 축소 상태
-    &--shrink-horizontal {
-      &.irapha-logo {
-        .irapha-logo {
-          &__container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-          }
+  // 좌우 축소 상태
+  &.--shrink-h {
+    &.irapha-logo {
+      .irapha-logo {
+        &__container {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
 
-          &__menus {
-            flex-direction: column;
-          }
+        &__menus {
+          flex-direction: column;
+        }
 
-          &__logo-image {
-            display: none;
-          }
+        &__logo-image {
+          display: none;
         }
       }
     }

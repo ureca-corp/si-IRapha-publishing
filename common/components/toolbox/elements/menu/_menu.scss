@@ -8,7 +8,7 @@
 // Menu
 // =========================================================================
 @mixin l-menu {
-  &.--layout--column-two {
+  &.--layout-column-two {
     grid-auto-flow: unset;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -17,10 +17,10 @@
 @mixin s-menu {
   &.--name-hide {
     .irapha-toolbox__menu__item {
-      .irapha-toolbox__menu__item__content {
+      &__content {
         width: fit-content;
 
-        .irapha-toolbox__menu__item__content__name {
+        &__name {
           display: none;
         }
       }
@@ -52,7 +52,7 @@
   @include s-menu;
 
   .irapha-toolbox__menu__item {
-    .irapha-toolbox__menu__item__content {
+    &__content {
       position: relative;
 
       display: flex;
@@ -64,7 +64,7 @@
 
       border: none;
 
-      .irapha-toolbox__menu__item__content__name {
+      &__name {
         @include menu-name;
       }
     }
@@ -120,39 +120,4 @@
   }
 
   @include s-menu-icon;
-}
-
-// divider
-// =========================================================================
-@mixin l-divider {
-  &.--layout--column {
-    width: 65%;
-    min-height: 4px;
-    padding: 0;
-    margin: 16px 0;
-    align-self: unset;
-  }
-}
-
-@mixin s-divider {
-  &.--align--self-center {
-    align-self: center;
-    margin: 16px;
-  }
-}
-
-.irapha-toolbox__divider {
-  border-radius: 36px;
-  align-self: flex-start;
-
-  min-width: 4px;
-  height: auto;
-
-  padding: 16px 0;
-  margin: 14px 16px 0 16px;
-
-  background-color: #eeeeee22;
-
-  @include l-divider;
-  @include s-divider;
 }

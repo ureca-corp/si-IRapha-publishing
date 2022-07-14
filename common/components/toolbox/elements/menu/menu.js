@@ -1,13 +1,10 @@
+import {
+  HideClassType,
+  LayoutClassType,
+  LayoutType,
+} from "../../common/index.js";
+
 const rx = rxjs;
-
-const Selectors = {
-  LayoutColumnTwo: "--layout--column-two",
-  HideIconName: "--name-hide",
-};
-
-const LayoutTypes = {
-  ColumnTwo: "columnTwo",
-};
 
 export class ToolboxMenu {
   #root;
@@ -33,24 +30,25 @@ export class ToolboxMenu {
   }
 
   #setLayoutColumnTwo() {
-    this.#root.classList.add(Selectors.LayoutColumnTwo);
+    this.#root.classList.add(LayoutClassType.ColumnTwo);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Selectors.LayoutColumnTwo);
+    this.#root.classList.remove(LayoutClassType.ColumnTwo);
   }
 
   // handler
   #handleLayoutChange(layout) {
-    if (layout === LayoutTypes.ColumnTwo) return this.#setLayoutColumnTwo();
+    if (layout === LayoutType.ColumnTwo) return this.#setLayoutColumnTwo();
 
     return this.#resetLayout();
   }
 
   #handleHideIconNameChange(isHideIconName) {
-    if (isHideIconName) return this.#root.classList.add(Selectors.HideIconName);
+    if (isHideIconName)
+      return this.#root.classList.add(HideClassType.HideIconName);
 
-    return this.#root.classList.remove(Selectors.HideIconName);
+    return this.#root.classList.remove(HideClassType.HideIconName);
   }
 
   // public
