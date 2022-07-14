@@ -1,19 +1,12 @@
-import { ToggleExpandIcon } from "../../toggle-expand-icon/index.js";
+import { ToggleExpandIcon } from "../../../toggle-expand-icon/index.js";
+import {
+  Selectors,
+  LayoutClassType,
+  ShrinkClassType,
+  ShrinkType,
+} from "../../common/index.js";
 
 const rx = rxjs;
-
-const Selectors = {
-  ToggleIcon: "irapha-toggle-expand",
-
-  LayoutColumn: "--layout-column",
-  ShrinkVertical: "--shrink-v",
-  ShrinkHorizontal: "--shrink-h",
-};
-
-const ShrinkDirection = {
-  Vertical: "vertical",
-  Horizontal: "horizontal",
-};
 
 export class FoldingBar {
   #root;
@@ -90,16 +83,15 @@ export class FoldingBar {
     if (!isExpanded) return this.#setShrinkDirection(null);
 
     if (!this.#isLayoutColumn$.getValue())
-      return this.#setShrinkDirection(ShrinkDirection.Vertical);
+      return this.#setShrinkDirection(ShrinkType.Vertical);
 
-    return this.#setShrinkDirection(ShrinkDirection.Horizontal);
+    return this.#setShrinkDirection(ShrinkType.Horizontal);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkDirection.Vertical)
-      return this.#shrinkVertical();
+    if (shrinkDirection === ShrinkType.Vertical) return this.#shrinkVertical();
 
-    if (shrinkDirection === ShrinkDirection.Horizontal)
+    if (shrinkDirection === ShrinkType.Horizontal)
       return this.#shrinkHorizontal();
 
     return this.#resetShrinkState();
@@ -107,25 +99,25 @@ export class FoldingBar {
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(Selectors.LayoutColumn);
+    this.#root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(Selectors.LayoutColumn);
+    this.#root.classList.remove(LayoutClassType.Column);
   }
 
   // shrink control
   #shrinkVertical() {
-    this.#root.classList.add(Selectors.ShrinkVertical);
+    this.#root.classList.add(ShrinkClassType.Column);
   }
 
   #shrinkHorizontal() {
-    this.#root.classList.add(Selectors.ShrinkHorizontal);
+    this.#root.classList.add(ShrinkClassType.Row);
   }
 
   #resetShrinkState() {
-    this.#root.classList.remove(Selectors.ShrinkVertical);
-    this.#root.classList.remove(Selectors.ShrinkHorizontal);
+    this.#root.classList.remove(ShrinkClassType.Column);
+    this.#root.classList.remove(ShrinkClassType.Row);
   }
 
   #setShrinkDirection(shrinkDirection) {
