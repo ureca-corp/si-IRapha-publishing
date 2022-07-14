@@ -8989,55 +8989,6 @@ img {
   background-color: #000000;
 }
 
-.irapha-context-menu__item {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-  height: 32px;
-  padding: 8px;
-  color: rgba(238, 238, 238, 0.6);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.irapha-context-menu__item.--more::after {
-  content: "▶";
-  color: rgba(238, 238, 238, 0.6);
-  transform: scaleX(0.7);
-}
-.irapha-context-menu__item:hover {
-  background-color: rgba(238, 238, 238, 0.0666666667);
-  color: #fff;
-}
-
-.irapha-context-menu {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  padding: 4px 0;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__secondary-container);
-  z-index: -1;
-}
-
-.irapha-context-menu__item__submenu {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  padding: 4px 0;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__secondary-container);
-  display: none;
-  top: 0;
-  left: 200px;
-}
-.irapha-context-menu__item__submenu.--direction-left {
-  left: unset;
-  right: 200px;
-}
-
 .irapha-tabs__list__item {
   position: relative;
   z-index: 3;
@@ -9378,4 +9329,53 @@ img {
 }
 .irapha-export-dicom__inner .irapha____footer .irapha____export:hover {
   opacity: 0.7;
+}
+
+.irapha-context-menu__item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  height: 32px;
+  padding: 8px;
+  color: var(--color__font-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.irapha-context-menu__item.--more::after {
+  content: "▶";
+  color: var(--color__font-secondary);
+  transform: scaleX(0.7);
+}
+.irapha-context-menu__item:hover {
+  background-color: rgba(238, 238, 238, 0.0666666667);
+  color: var(--color__font-primary);
+}
+
+.irapha-context-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow__layer-menu);
+  background-color: var(--color__secondary-container);
+  z-index: -1;
+}
+
+.irapha-context-menu__item__submenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow__layer-menu);
+  background-color: var(--color__secondary-container);
+  display: none;
+  top: 0;
+  left: 200px;
+}
+.irapha-context-menu__item__submenu.--direction-left {
+  left: unset;
+  right: 200px;
 }

@@ -1,9 +1,9 @@
-@use "../../../styles/common";
-@use "../../../themes/colors" as colors;
+@use "../../../../../styles/common";
 
-@use "./elements/menu-item/menu-item" as custom-context-menu__item;
+@use "../menu-item/menu-item" as custom-context-menu__item;
 
 $menu-bg: var(--color__secondary-container);
+$box-shadow: var(--box-shadow__layer-menu);
 
 @mixin menu-container {
   position: absolute;
@@ -13,7 +13,7 @@ $menu-bg: var(--color__secondary-container);
   padding: 4px 0;
 
   border-radius: 4px;
-  box-shadow: var(--box-shadow__layer-menu);
+  box-shadow: $box-shadow;
 
   background-color: $menu-bg;
 }

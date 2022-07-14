@@ -1,11 +1,9 @@
-import { LayerPopup } from "../../layer-popup/index.js";
-import { ContextMenuItem } from "./elements/menu-item/menu-item.js";
+import { LayerPopup } from "../../../base/js/layer-popup.js";
+import { ContextMenuItem } from "../menu-item/menu-item.js";
+
+import { Selectors } from "../../common/index.js";
 
 const rx = rxjs;
-
-const Selectors = {
-  Item: "irapha-context-menu__item",
-};
 
 export class CustomContextMenu extends LayerPopup {
   #root;
@@ -34,7 +32,7 @@ export class CustomContextMenu extends LayerPopup {
     // 메뉴에서 마우스 벗어난 상태 핸들링
     rx.fromEvent(this.#root, "mouseleave").subscribe(() => open$.next(null));
 
-    // 메뉴 외에 영역 클릭 핸들링
+    // 메뉴 외 영역 클릭 핸들링
     rx.fromEvent(document, "click").subscribe((e) => {
       const parentTree = e.path;
       const me = parentTree.find((element) => element.id === this.#root.id);
@@ -44,7 +42,7 @@ export class CustomContextMenu extends LayerPopup {
   }
 
   #initMenuItems() {
-    [...this.#root.querySelectorAll(`.${Selectors.Item}`)].map(
+    [...this.#root.querySelectorAll(`.${Selectors.ContextMenuItem}`)].map(
       (element) =>
         new ContextMenuItem({
           element,

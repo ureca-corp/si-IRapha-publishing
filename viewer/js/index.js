@@ -21,7 +21,7 @@ new StickyMenu({
 
 // =================================================================
 
-import { CustomContextMenu } from "../../common/components/context-menus/index.js";
+import { CustomContextMenu } from "../../common/components/layer-popup/index.js";
 new CustomContextMenu({
   element: document.querySelector("#irapha-thumbnail-context-menu"),
   open$: window.store.thumbnailContextMenuOpen$,

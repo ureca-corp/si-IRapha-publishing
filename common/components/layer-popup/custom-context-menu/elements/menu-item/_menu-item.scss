@@ -1,9 +1,8 @@
 @use "../../../../../styles/common";
-@use "../../../../../themes/colors" as colors;
 
 $item-hover-bg: #eeeeee11;
-$color-font1: #eeeeee99;
-$color-font2: colors.$font-white;
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
 
 @mixin s-menu-item {
   &.--more {
