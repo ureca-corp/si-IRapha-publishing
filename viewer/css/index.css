@@ -8473,7 +8473,7 @@ img {
 .irapha-maximize__icon {
   cursor: pointer;
 }
-.irapha-maximize__icon > .irapha____image {
+.irapha-maximize__icon__image {
   position: absolute;
   width: 100%;
   aspect-ratio: 1;
@@ -8485,18 +8485,18 @@ img {
   align-items: center;
   padding: 4px;
 }
-.irapha-network-status > .irapha____icon {
+.irapha-network-status__icon {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
 }
-.irapha-network-status > .irapha____icon.--status-red {
+.irapha-network-status__icon.--status-red {
   background-color: var(--color__status-danger);
 }
-.irapha-network-status > .irapha____icon.--status-yellow {
+.irapha-network-status__icon.--status-yellow {
   background-color: var(--color__status-warning);
 }
-.irapha-network-status > .irapha____icon.--status-green {
+.irapha-network-status__icon.--status-green {
   background-color: var(--color__status-normal);
 }
 
@@ -8553,39 +8553,38 @@ img {
   position: relative;
   z-index: 1;
 }
-.irapha-logo.--shrink-v.irapha-logo {
+.irapha-logo.is-state--shrink-vertical.irapha-logo {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 30px;
 }
-.irapha-logo.--shrink-v.irapha-logo > .irapha____container {
+.irapha-logo.is-state--shrink-vertical.irapha-logo__container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   align-self: flex-start;
 }
-.irapha-logo.--shrink-v.irapha-logo > .irapha____container > .irapha____wrapper > .irapha____logo-image {
+.irapha-logo.is-state--shrink-vertical.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
-.irapha-logo.--shrink-h.irapha-logo > .irapha____container {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  aspect-ratio: unset;
 }
-.irapha-logo.--shrink-h.irapha-logo > .irapha____container > .irapha____wrapper > .irapha____logo-image {
-  display: none;
-}
-.irapha-logo.--shrink-h.irapha-logo > .irapha____container > .irapha____menus {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__menus {
   flex-direction: column;
 }
-.irapha-logo > .irapha____container {
+.irapha-logo.is-state--shrink-horizontal.irapha-logo .irapha-logo__logo-image {
+  display: none;
+}
+.irapha-logo__container {
   position: relative;
   height: 100%;
   aspect-ratio: 16/10;
 }
-.irapha-logo > .irapha____container > .irapha____wrapper {
+.irapha-logo__wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -8593,7 +8592,7 @@ img {
   width: 82%;
   height: 100%;
 }
-.irapha-logo > .irapha____container > .irapha____wrapper > .irapha____logo-image {
+.irapha-logo__logo-image {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -8601,7 +8600,7 @@ img {
   cursor: pointer;
   transition: all 0.1 ease-in-out;
 }
-.irapha-logo > .irapha____container > .irapha____menus {
+.irapha-logo__menus {
   position: relative;
   z-index: 2;
   display: flex;

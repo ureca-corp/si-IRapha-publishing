@@ -5,8 +5,8 @@ const rx = rxjs;
 
 const Selectors = {
   Logo: "irapha-logo",
-  LogoContainer: "irapha____container",
-  LogoImage: "irapha____logo-image",
+  LogoContainer: "irapha-logo__container",
+  LogoImage: "irapha-logo__logo-image",
   ViewerInfoPopup: "irapha-viewer-info-popup",
   MaximizeButton: "irapha-maximize__icon",
 

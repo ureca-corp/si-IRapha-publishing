@@ -11,42 +11,41 @@
 }
 
 @mixin s-logo {
-  // 상하 축소 상태
-  &.--shrink-v {
-    &.irapha-logo {
-      width: fit-content;
-      height: 30px;
-
-      & > .irapha____container {
+  &.is-state {
+    // 상하 축소 상태
+    &--shrink-vertical {
+      &.irapha-logo {
         width: fit-content;
-        align-self: flex-start;
+        height: 30px;
 
-        & > .irapha____wrapper {
-          & > .irapha____logo-image {
-            display: none;
-          }
+        &__container {
+          width: fit-content;
+          align-self: flex-start;
+        }
+
+        .irapha-logo__logo-image {
+          display: none;
         }
       }
     }
-  }
 
-  // 좌우 축소 상태
-  &.--shrink-h {
-    &.irapha-logo {
-      & > .irapha____container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        aspect-ratio: unset;
+    // 좌우 축소 상태
+    &--shrink-horizontal {
+      &.irapha-logo {
+        .irapha-logo {
+          &__container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
 
-        & > .irapha____wrapper {
-          & > .irapha____logo-image {
+          &__menus {
+            flex-direction: column;
+          }
+
+          &__logo-image {
             display: none;
           }
-        }
-
-        & > .irapha____menus {
-          flex-direction: column;
         }
       }
     }
@@ -60,41 +59,41 @@
 
   @include s-logo;
 
-  & > .irapha____container {
+  &__container {
     position: relative;
 
     height: 100%;
     aspect-ratio: 16/10;
+  }
 
-    & > .irapha____wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-      width: 82%;
-      height: 100%;
+    width: 82%;
+    height: 100%;
+  }
 
-      & > .irapha____logo-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+  &__logo-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-        border: none;
+    border: none;
 
-        cursor: pointer;
+    cursor: pointer;
 
-        transition: all 0.1 ease-in-out;
-      }
-    }
+    transition: all 0.1 ease-in-out;
+  }
 
-    & > .irapha____menus {
-      position: relative;
-      z-index: 2;
+  &__menus {
+    position: relative;
+    z-index: 2;
 
-      display: flex;
-      padding: 4px;
-    }
+    display: flex;
+    padding: 4px;
   }
 }
 
