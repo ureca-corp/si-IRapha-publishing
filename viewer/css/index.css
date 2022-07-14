@@ -8371,15 +8371,15 @@ img {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-toolbox__menu.--name-hide > .irapha____item > .irapha____item__content {
+.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item .irapha-toolbox__menu__item__content {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
-.irapha-toolbox__menu.--name-hide > .irapha____item > .irapha____item__content > .irapha____name {
+.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item .irapha-toolbox__menu__item__content .irapha-toolbox__menu__item__content__name {
   display: none;
 }
-.irapha-toolbox__menu > .irapha____item > .irapha____item__content {
+.irapha-toolbox__menu .irapha-toolbox__menu__item .irapha-toolbox__menu__item__content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8388,7 +8388,7 @@ img {
   width: 50px;
   border: none;
 }
-.irapha-toolbox__menu > .irapha____item > .irapha____item__content > .irapha____name {
+.irapha-toolbox__menu .irapha-toolbox__menu__item .irapha-toolbox__menu__item__content .irapha-toolbox__menu__item__content__name {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;

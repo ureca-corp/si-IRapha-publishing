@@ -16,11 +16,11 @@
 
 @mixin s-menu {
   &.--name-hide {
-    & > .irapha____item {
-      & > .irapha____item__content {
+    .irapha-toolbox__menu__item {
+      .irapha-toolbox__menu__item__content {
         width: fit-content;
 
-        & > .irapha____name {
+        .irapha-toolbox__menu__item__content__name {
           display: none;
         }
       }
@@ -51,8 +51,8 @@
   @include l-menu;
   @include s-menu;
 
-  & > .irapha____item {
-    & > .irapha____item__content {
+  .irapha-toolbox__menu__item {
+    .irapha-toolbox__menu__item__content {
       position: relative;
 
       display: flex;
@@ -64,7 +64,7 @@
 
       border: none;
 
-      & > .irapha____name {
+      .irapha-toolbox__menu__item__content__name {
         @include menu-name;
       }
     }
