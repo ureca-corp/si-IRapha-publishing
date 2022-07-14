@@ -8318,11 +8318,11 @@ img {
   --color__green: #34c759;
 }
 
-.irapha-sub-menu.--layout--column-two > .irapha____container > .irapha____inner {
+.irapha-sub-menu.--layout--column-two .irapha-sub-menu__container .irapha-sub-menu__container__inner {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-sub-menu > .irapha____container {
+.irapha-sub-menu .irapha-sub-menu__container {
   background-color: var(--color__bg-primary);
   border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
@@ -8330,23 +8330,23 @@ img {
   width: -moz-fit-content;
   width: fit-content;
 }
-.irapha-sub-menu > .irapha____container > .irapha____inner {
+.irapha-sub-menu .irapha-sub-menu__container .irapha-sub-menu__container__inner {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 12px 16px;
 }
-.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl {
+.irapha-sub-menu .irapha-sub-menu__container .irapha-sub-menu__container__inner .irapha-sub-menu__item .irapha-sub-menu__item__dl {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl:hover {
+.irapha-sub-menu .irapha-sub-menu__container .irapha-sub-menu__container__inner .irapha-sub-menu__item .irapha-sub-menu__item__dl:hover {
   opacity: 0.6;
 }
-.irapha-sub-menu > .irapha____container > .irapha____inner > .irapha____item > .irapha____item__dl > .irapha____item__name {
+.irapha-sub-menu .irapha-sub-menu__container .irapha-sub-menu__container__inner .irapha-sub-menu__item .irapha-sub-menu__item__dl .irapha-sub-menu__item__name {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
