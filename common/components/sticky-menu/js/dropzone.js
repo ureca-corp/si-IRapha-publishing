@@ -1,7 +1,7 @@
 const rx = rxjs;
 
 const Selectors = {
-  Dropzone: "irapha____dropzone",
+  Dropzone: "irapha-sticky-menu__dropzone",
   DropzoneDummy: "dropzone-dummy",
 
   StatusLeft: "--left",

@@ -25,7 +25,7 @@ $bg-sticky-menu: var(--color__bg-primary);
   &.--layout--column-first {
     @include l-column-first;
 
-    .irapha____dropzone {
+    .irapha-sticky-menu__dropzone {
       &.--left {
         z-index: $activated-z-index;
       }
@@ -38,7 +38,7 @@ $bg-sticky-menu: var(--color__bg-primary);
   &.--layout--row-first {
     @include l-row-first;
 
-    .irapha____dropzone {
+    .irapha-sticky-menu__dropzone {
       &.--top {
         z-index: $activated-z-index;
       }
@@ -67,7 +67,7 @@ $bg-sticky-menu: var(--color__bg-primary);
 // =================================================================
 $dropzone-min-size: 48px;
 
-.irapha____dropzone {
+.irapha-sticky-menu__dropzone {
   &.--top {
     grid-area: top;
     align-self: flex-start;

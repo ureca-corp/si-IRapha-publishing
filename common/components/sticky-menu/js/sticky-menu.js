@@ -4,7 +4,7 @@ const rx = rxjs;
 
 const Selectors = {
   StickyMenu: "irapha-sticky-menu",
-  DropZone: "irapha____dropzone",
+  DropZone: "irapha-sticky-menu__dropzone",
   DropZoneDummy: "dropzone-dummy",
 
   LayoutColumnFirst: "--layout--column-first",

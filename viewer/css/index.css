@@ -8928,23 +8928,23 @@ img {
 .irapha-sticky-menu.--layout--column-first {
   grid-template-areas: "top top top top" "left content content right" "left content content right" "bottom bottom bottom bottom";
 }
-.irapha-sticky-menu.--layout--column-first .irapha____dropzone.--left {
+.irapha-sticky-menu.--layout--column-first .irapha-sticky-menu__dropzone.--left {
   z-index: 5;
 }
-.irapha-sticky-menu.--layout--column-first .irapha____dropzone.--right {
+.irapha-sticky-menu.--layout--column-first .irapha-sticky-menu__dropzone.--right {
   z-index: 5;
 }
 .irapha-sticky-menu.--layout--row-first {
   grid-template-areas: "left top top right" "left content content right" "left content content right" "left bottom bottom right";
 }
-.irapha-sticky-menu.--layout--row-first .irapha____dropzone.--top {
+.irapha-sticky-menu.--layout--row-first .irapha-sticky-menu__dropzone.--top {
   z-index: 5;
 }
-.irapha-sticky-menu.--layout--row-first .irapha____dropzone.--bottom {
+.irapha-sticky-menu.--layout--row-first .irapha-sticky-menu__dropzone.--bottom {
   z-index: 5;
 }
 
-.irapha____dropzone.--top {
+.irapha-sticky-menu__dropzone.--top {
   grid-area: top;
   align-self: flex-start;
   z-index: 4;
@@ -8955,7 +8955,7 @@ img {
   height: -moz-fit-content;
   height: fit-content;
 }
-.irapha____dropzone.--left {
+.irapha-sticky-menu__dropzone.--left {
   grid-area: left;
   justify-self: flex-start;
   z-index: 3;
@@ -8965,7 +8965,7 @@ img {
   width: fit-content;
   height: 100%;
 }
-.irapha____dropzone.--right {
+.irapha-sticky-menu__dropzone.--right {
   grid-area: right;
   justify-self: flex-end;
   z-index: 3;
@@ -8976,7 +8976,7 @@ img {
   width: fit-content;
   height: 100%;
 }
-.irapha____dropzone.--bottom {
+.irapha-sticky-menu__dropzone.--bottom {
   grid-area: bottom;
   align-self: flex-end;
   z-index: 4;
