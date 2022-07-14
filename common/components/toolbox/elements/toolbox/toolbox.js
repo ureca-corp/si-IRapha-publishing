@@ -1,13 +1,13 @@
-import { FoldingBar } from "../../folding-bar/index.js";
-import { Logo } from "../../logo/index.js";
-import { ToolboxMenusManager } from "../elements/index.js";
+import { FoldingBar } from "../../../folding-bar/index.js";
+import { Logo } from "../../../logo/index.js";
+import { ToolboxMenusManager } from "../menu-manager/menu-manager.js";
 
 import {
   Selectors,
   LayoutClassType,
   ShrinkClassType,
   ShrinkType,
-} from "../common/index.js";
+} from "../../common/index.js";
 
 const rx = rxjs;
 

@@ -1,1 +1,1 @@
-export { ToolboxMenusManager } from "./menu-manager/menu-manager.js";
+export { Toolbox } from "./toolbox/toolbox.js";
