@@ -1,4 +1,4 @@
-import { GridSelectorItem } from "./grid-selector.item.js";
+import { GridSelectorItem } from "../item/grid-selector.item.js";
 
 const MatrixSize = 5;
 

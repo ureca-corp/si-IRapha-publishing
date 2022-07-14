@@ -1,1 +1,1 @@
-export { GridSelector } from "./js/grid-selector.js";
+export { GridSelector } from "./elements/index.js";

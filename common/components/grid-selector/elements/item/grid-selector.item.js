@@ -1,17 +1,6 @@
+import { Selectors, Attributes } from "../../common/index.js";
+
 const rx = rxjs;
-
-const Selectors = {
-  GridSelectorItem: "irapha-grid-selector__item",
-};
-
-const Attributes = {
-  Row: "row",
-  Column: "col",
-  GridSelector: {
-    key: "irapha-grid-selector",
-    active: "active: true;",
-  },
-};
 
 export class GridSelectorItem {
   #root;
