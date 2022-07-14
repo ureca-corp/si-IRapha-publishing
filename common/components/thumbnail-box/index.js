@@ -1,1 +1,1 @@
-export { ThumbnailBox } from "./js/thumbnail-box.js";
+export { ThumbnailBox } from "./elements/index.js";

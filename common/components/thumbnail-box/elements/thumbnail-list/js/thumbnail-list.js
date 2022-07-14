@@ -1,19 +1,14 @@
 import { ThumbnailItem } from "./thumbnail-item.js";
-import { LayoutClassType } from "../../../types/index.js";
 
-const Selectors = {
-  Item: "irapha-thumbnail-list__item",
-};
+import { Selectors, LayoutClassType } from "../../../common/index.js";
 
 export class ThumbnailList {
   #root;
 
-  #thumbnails;
-
   constructor({ element, isLayoutColumn$, isHide$ }) {
     this.#root = element;
 
-    this.#thumbnails = [...element.querySelectorAll(`.${Selectors.Item}`)].map(
+    [...element.querySelectorAll(`.${Selectors.ThumbnailListItem}`)].map(
       (it) => new ThumbnailItem({ element: it, isLayoutColumn$ })
     );
 

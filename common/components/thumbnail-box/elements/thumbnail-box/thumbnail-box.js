@@ -1,20 +1,15 @@
-import { ThumbnailBoxControls } from "../elements/controls/controls.js";
-import { FoldingBar } from "../../folding-bar/index.js";
-import { ThumbnailList } from "../elements/thumbnail-list/js/thumbnail-list.js";
+import { ThumbnailBoxControls } from "../controls/controls.js";
+import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
+import { FoldingBar } from "../../../folding-bar/index.js";
+
 import {
+  Selectors,
   LayoutClassType,
-  ShrinkType,
   ShrinkClassType,
-} from "../types/index.js";
+  ShrinkType,
+} from "../../common/index.js";
 
 const rx = rxjs;
-
-const Selectors = {
-  ThumbnailBar: "irapha-thumbnail-box",
-  Controls: "irapha-thumbnail-box__controls",
-  FoldingBar: "irapha-folding-bar",
-  List: "irapha-thumbnail-list",
-};
 
 export class ThumbnailBox {
   #root;
@@ -38,13 +33,13 @@ export class ThumbnailBox {
     });
 
     new ThumbnailBoxControls({
-      element: this.#root.querySelector(`.${Selectors.Controls}`),
+      element: this.#root.querySelector(`.${Selectors.ThumbnailBarControls}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       shrinkDirection$: this.#shrinkDirection$,
     });
 
     new ThumbnailList({
-      element: this.#root.querySelector(`.${Selectors.List}`),
+      element: this.#root.querySelector(`.${Selectors.ThumbnailList}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isHide$: this.#isExpanded$,
     });
