@@ -9,10 +9,6 @@
     <!-- RxJS -->
     <script defer src="../../libs/rxjs-7.5.5/rx.js"></script>
 
-    <!-- UIkit -->
-    <script defer src="../../libs/uikit-3.14.3/js/uikit.min.js"></script>
-    <script defer src="../../libs/uikit-3.14.3/js/uikit-icons.min.js"></script>
-
     <link rel="stylesheet" href="../css/index.css" />
     <script defer type="module" src="../js/index.js"></script>
   </head>
@@ -2151,7 +2147,7 @@
       <div class="irapha-sticky-menu__dropzone --bottom"></div>
       <div class="content">
         <!-- Layout -->
-        <div aria-label="layout">
+        <div aria-label="layout" style="width: 100%; height: 100%">
           <!-- Tabs -->
           <div class="irapha-tabs">
             <ul class="irapha-tabs__list">
@@ -2222,8 +2218,9 @@
             </ul>
           </div>
 
+          <!-- #111 -->
           <!-- View -->
-          <div aria-label="view"></div>
+          <div id="irapha-dicom-window" class="irapha-dicom-window"></div>
         </div>
       </div>
     </div>

@@ -1,4 +1,8 @@
-import store from "../../common/store/store.js";
+import {} from "../../libs/lodash-4.17.21/lodash.js";
+import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
+import {} from "../../libs/uikit-3.14.3/js/uikit.min.js";
+
+import {} from "../../common/store/store.js";
 
 import { Toolbox } from "../../common/components/toolbox/index.js";
 const toolbox = new Toolbox();
@@ -59,3 +63,16 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
+
+import { DicomWindow } from "../../common/components/dicom-window/index.js";
+
+const dummyViewBox = Array.from({ length: 10 }, () => 0).map((_, index) => {
+  const dummy = document.createElement("div");
+  dummy.classList.add(`index:${index}`);
+  return dummy;
+});
+
+new DicomWindow({
+  element: document.querySelector("#irapha-dicom-window"),
+  items: dummyViewBox,
+});

@@ -11,10 +11,11 @@
 
 @use "../../common/components/layer-popup/style" as layer-popup;
 
+@use "../../common/components/dicom-window/style" as dicom-window;
+
 .content {
   grid-area: content;
 
   width: 100%;
   height: 100%;
-  background-color: #000000;
 }
