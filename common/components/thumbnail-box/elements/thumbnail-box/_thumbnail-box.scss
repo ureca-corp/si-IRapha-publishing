@@ -1,0 +1,28 @@
+@use "../../../../styles/common";
+
+@use "../controls/controls" as thumbnail-box__control;
+@use "../thumbnail-list/scss/thumbnail-list" as thumbnail-list;
+@use "../../../folding-bar/style" as folding-bar;
+
+@mixin l-thumbnail-box {
+  &.--layout-column {
+    height: 100%;
+  }
+}
+
+@mixin s-thumbnail-box {
+  &.--shrink-v {
+    & {
+      height: fit-content;
+    }
+  }
+}
+
+.irapha-thumbnail-box {
+  z-index: 4;
+
+  height: var(--bar-size);
+
+  @include l-thumbnail-box;
+  @include s-thumbnail-box;
+}

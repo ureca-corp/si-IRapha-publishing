@@ -1,1 +1,1 @@
-export { FoldingBar } from "./js/folding-bar.js";
+export { FoldingBar } from "./elements/folding-bar/folding-bar.js";

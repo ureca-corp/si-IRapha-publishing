@@ -1,0 +1,75 @@
+@use "../../../../styles/common";
+@use "../../../../themes/colors" as colors;
+
+@use "../menu-manager/menu-manager" as menu-manager;
+@use "../../../logo/style" as logo;
+@use "../../../selectors/grid-selector/style" as grid-selector;
+@use "../../../folding-bar/style" as folding-bar;
+
+// Toolbox
+// =================================================================
+$bg: var(--color__teriary-container);
+$border-color: var(--color__border);
+
+$toolbox: (
+  width: 130px,
+  height: 80px,
+  min-size: 28px,
+);
+
+@mixin l-toolbox {
+  &.--layout-column {
+    width: map-get($toolbox, "width");
+    height: 100%;
+
+    .irapha-toolbox__logo {
+      border-bottom: 1px dashed $border-color;
+    }
+  }
+}
+
+@mixin s-toolbox {
+  &.--shrink-v {
+    & {
+      height: fit-content;
+    }
+
+    .irapha-toolbox__logo {
+      min-width: unset;
+      width: fit-content;
+      aspect-ratio: unset;
+    }
+  }
+
+  &.--shrink-h {
+    & {
+      width: fit-content;
+    }
+
+    .irapha-toolbox__logo {
+      min-width: fit-content;
+      width: fit-content;
+
+      height: fit-content;
+      aspect-ratio: unset;
+    }
+  }
+}
+
+.irapha-toolbox {
+  z-index: 5;
+  background-color: $bg;
+
+  height: map-get($toolbox, "height");
+
+  @include l-toolbox;
+  @include s-toolbox;
+
+  &__logo {
+    min-width: map-get($toolbox, "width");
+    width: map-get($toolbox, "width");
+    aspect-ratio: 16/10;
+
+    border-right: 1px dashed $border-color;
+  }
+}

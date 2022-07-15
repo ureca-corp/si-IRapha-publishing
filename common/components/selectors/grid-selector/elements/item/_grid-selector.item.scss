@@ -1,0 +1,17 @@
+@use "../../../../../styles/common";
+
+// grid item
+// =================================================================
+@mixin s-grid-item {
+  // 아이템 활성화
+  &[irapha-grid-selector*="active: true"] {
+    background-color: var(--color__teriary);
+  }
+}
+
+.irapha-grid-selector__item {
+  border-radius: 4px;
+  background-color: var(--color__secondary);
+
+  @include s-grid-item;
+}

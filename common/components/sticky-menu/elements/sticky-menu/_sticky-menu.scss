@@ -1,0 +1,113 @@
+@use "../../../../styles/common";
+
+// sticky menu
+// =================================================================
+$activated-z-index: 5;
+$bg-sticky-menu: var(--color__bg-primary);
+
+@mixin l-column-first {
+  grid-template-areas:
+    "top top top top"
+    "left content content right"
+    "left content content right"
+    "bottom bottom bottom bottom";
+}
+
+@mixin l-row-first {
+  grid-template-areas:
+    "left top top right"
+    "left content content right"
+    "left content content right"
+    "left bottom bottom right";
+}
+
+@mixin l-sticky-menu {
+  &.--layout--column-first {
+    @include l-column-first;
+
+    .irapha-sticky-menu__dropzone {
+      &.--left {
+        z-index: $activated-z-index;
+      }
+      &.--right {
+        z-index: $activated-z-index;
+      }
+    }
+  }
+
+  &.--layout--row-first {
+    @include l-row-first;
+
+    .irapha-sticky-menu__dropzone {
+      &.--top {
+        z-index: $activated-z-index;
+      }
+      &.--bottom {
+        z-index: $activated-z-index;
+      }
+    }
+  }
+}
+
+.irapha-sticky-menu {
+  display: grid;
+  width: 100%;
+  height: 100%;
+
+  grid-template-rows: fit-content(0) 1fr 1fr fit-content(0);
+  grid-template-columns: fit-content(0) 1fr 1fr fit-content(0);
+
+  background-color: $bg-sticky-menu;
+
+  @include l-column-first;
+  @include l-sticky-menu;
+}
+
+// dropzone
+// =================================================================
+$dropzone-min-size: 48px;
+
+.irapha-sticky-menu__dropzone {
+  &.--top {
+    grid-area: top;
+    align-self: flex-start;
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+  }
+
+  &.--left {
+    grid-area: left;
+    justify-self: flex-start;
+    z-index: 3;
+
+    display: flex;
+    width: fit-content;
+    height: 100%;
+  }
+
+  &.--right {
+    grid-area: right;
+    justify-self: flex-end;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    height: 100%;
+  }
+
+  &.--bottom {
+    grid-area: bottom;
+    align-self: flex-end;
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: fit-content;
+  }
+}

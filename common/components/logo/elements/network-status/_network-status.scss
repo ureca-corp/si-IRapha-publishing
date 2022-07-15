@@ -1,0 +1,34 @@
+@use "../../../../styles/common";
+
+// 네트워크 상태 아이콘 - 상태
+@mixin s-network {
+  &.--status {
+    &-red {
+      background-color: var(--color__status-danger);
+    }
+
+    &-yellow {
+      background-color: var(--color__status-warning);
+    }
+
+    &-green {
+      background-color: var(--color__status-normal);
+    }
+  }
+}
+
+// 네트워크 상태 표시 아이콘
+.irapha-network-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+
+  &__icon {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    @include s-network;
+  }
+}

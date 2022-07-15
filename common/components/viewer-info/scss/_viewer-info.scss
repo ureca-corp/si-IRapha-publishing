@@ -1,10 +1,11 @@
 @use "../../../styles/common";
-@use "../../../themes/colors" as colors;
 @use "../../../themes/shape" as shapes;
 @use "../../../themes/typography" as typography;
 
-$bg: colors.$bg-black;
-$font-color: colors.$font-white;
+$color-bg: var(--color__black);
+$color-font: var(--color__font-primary);
+$color-border: var(--color__border);
+$box-shadow: var(--box-shadow__layer-menu);
 
 // 뷰어 정보
 .irapha-viewer-info {
@@ -13,13 +14,17 @@ $font-color: colors.$font-white;
 
   padding: 20px;
 
-  background-color: $bg;
+  background-color: $color-bg;
+
+  border: 1px solid $color-border;
   border-radius: shapes.$medium;
+
+  box-shadow: $box-shadow;
 
   &__title {
     @include typography.title-medium;
 
-    color: $font-color;
+    color: $color-font;
 
     display: flex;
     justify-content: center;
@@ -29,7 +34,7 @@ $font-color: colors.$font-white;
   &__content {
     @include typography.body-small;
 
-    color: $font-color;
+    color: $color-font;
 
     display: flex;
     flex-direction: column;

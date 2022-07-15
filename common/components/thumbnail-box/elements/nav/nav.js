@@ -1,4 +1,4 @@
-import { ShrinkType } from "../../types/index.js";
+import { ShrinkType } from "../../common/index.js";
 
 export class ThumbnailBoxNav {
   #root;
