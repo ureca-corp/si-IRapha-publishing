@@ -8529,14 +8529,16 @@ img {
   width: 280px;
   aspect-ratio: 0.912;
   padding: 20px;
-  background-color: #000;
+  background-color: var(--color__black);
+  border: 1px solid var(--color__border);
   border-radius: 8px;
+  box-shadow: var(--box-shadow__layer-menu);
 }
 .irapha-viewer-info__title {
   font-size: 16px;
   line-height: 22px;
   font-weight: 700;
-  color: #fff;
+  color: var(--color__font-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8545,7 +8547,7 @@ img {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
-  color: #fff;
+  color: var(--color__font-primary);
   display: flex;
   flex-direction: column;
   margin-top: 16px;
@@ -8664,17 +8666,6 @@ img {
   padding: 3%;
   border-radius: 4px;
   background-color: #424a5b;
-}
-
-.irapha-toggle-expand {
-  width: 12px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  aspect-ratio: 1;
-  margin: 2px;
-  color: #fff;
-  cursor: pointer;
 }
 
 .irapha-drag-point {

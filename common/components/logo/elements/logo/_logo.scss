@@ -3,7 +3,7 @@
 @use "../../../icons/style" as icons;
 @use "../maximize-button/maximize-button";
 @use "../network-status/network-status";
-@use "../../../viewer-info/style";
+@use "../../../viewer-info/style" as viewer-info;
 
 @mixin logo-icon-wrapper {
   position: relative;

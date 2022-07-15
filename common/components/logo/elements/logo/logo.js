@@ -1,4 +1,3 @@
-import { ViewerInfoPopup } from "../../../viewer-info/index.js";
 import { MaximizeButton } from "../maximize-button/maximize-button.js";
 
 import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
@@ -19,19 +18,13 @@ export class Logo {
   // private
   #init() {
     this.#initLogoImage();
-    this.#initViewerInfoPopup();
+    // this.#initViewerInfoPopup();
     this.#initMaximizeBtn();
   }
 
   #initLogoImage() {
     const logoImage = this.#root.querySelector(`.${Selectors.LogoImage}`);
     logoImage.classList.add(Selectors.UkButton);
-  }
-
-  #initViewerInfoPopup() {
-    new ViewerInfoPopup({
-      element: this.#root.querySelector(`.${Selectors.ViewerInfoPopup}`),
-    });
   }
 
   #initMaximizeBtn() {
