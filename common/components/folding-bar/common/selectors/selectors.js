@@ -1,3 +1,3 @@
 export const Selectors = {
-  ToggleIcon: "irapha-toggle-expand",
+  ToggleIcon: "irapha-folding-bar__toggle",
 };

@@ -21,6 +21,10 @@ $toolbox: (
   &.--layout-column {
     width: map-get($toolbox, "width");
     height: 100%;
+
+    .irapha-toolbox__logo {
+      border-bottom: 1px dashed $border-color;
+    }
   }
 }
 
@@ -65,5 +69,7 @@ $toolbox: (
     min-width: map-get($toolbox, "width");
     width: map-get($toolbox, "width");
     aspect-ratio: 16/10;
+
+    border-right: 1px dashed $border-color;
   }
 }

@@ -1,4 +1,4 @@
-import { ToggleExpandIcon } from "../../../toggle-expand-icon/index.js";
+import { PinIcon } from "../../../icons/index.js";
 import {
   Selectors,
   LayoutClassType,
@@ -33,11 +33,7 @@ export class FoldingBar {
     });
     this.#initMouseEvent();
 
-    new ToggleExpandIcon({
-      element: this.#root.querySelector(`.${Selectors.ToggleIcon}`),
-      isExpanded$: this.#isExpanded$,
-      onClick: () => this.#toggle(),
-    });
+    this.#initToggleIcon();
   }
 
   // private
@@ -61,6 +57,7 @@ export class FoldingBar {
   #initMouseEvent() {
     // 마우스 호버 시 임시로 보이기
     rx.fromEvent(this.#root, "mouseenter").subscribe(() => {
+      console.log("ok");
       if (this.#isPreview$.getValue()) return this.#isExpanded$.next(false);
     });
 
@@ -70,6 +67,23 @@ export class FoldingBar {
 
       if (this.#isPreview$.getValue()) return this.#setExpand(!old);
     });
+  }
+
+  #initToggleIcon() {
+    const toggleExpandIcon = this.#root.querySelector(
+      `.${Selectors.ToggleIcon}`
+    );
+
+    if (!!toggleExpandIcon) {
+      const isActive$ = new rx.BehaviorSubject();
+      this.#isExpanded$.subscribe((isExpanded) => isActive$.next(!isExpanded));
+
+      new PinIcon({
+        element: this.#root.querySelector(`.${Selectors.ToggleIcon}`),
+        isActive$: isActive$,
+        onClick: () => this.#toggle(),
+      });
+    }
   }
 
   // handler

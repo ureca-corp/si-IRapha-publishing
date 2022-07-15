@@ -1,12 +1,10 @@
-import { MaximizeButton } from "../maximize-button/maximize-button.js";
 import { ViewerInfoPopup } from "../../../viewer-info/index.js";
+import { MaximizeButton } from "../maximize-button/maximize-button.js";
 
 import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
 
 export class Logo {
   #root;
-
-  #shrinkDirection$;
 
   constructor({ element, shrinkDirection$ }) {
     this.#root = element;
@@ -87,10 +85,5 @@ export class Logo {
       return this.#handleShrinkHorizontalChange(shrinkDirection);
 
     return this.#removeAllShrink();
-  }
-
-  // public
-  setShrinkDirection(shrinkDirection) {
-    this.#shrinkDirection$.next(shrinkDirection);
   }
 }

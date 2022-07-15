@@ -1,6 +1,8 @@
 @use "../../libs/uikit-3.14.3/css/uikit.min.css" as uikit;
 @use "../../libs//reset-5.0.1/reset.css" as reset;
 
+@use "../../common/components/icons/style" as icons;
+
 @use "../../common/components/toolbox/style" as toolbox;
 @use "../../common/components/thumbnail-box/style" as thumbnail-box;
 @use "../../common/components/sticky-menu/style" as sticky-menu;

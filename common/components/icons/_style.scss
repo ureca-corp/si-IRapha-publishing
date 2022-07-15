@@ -1,0 +1,41 @@
+@use "../../styles/common";
+
+// icons
+// =================================================================
+
+$color-default: #eeeeee33;
+$color-focus: var(--color__font-primary);
+$color-active: var(--color__font-primary);
+
+@mixin size-icon {
+  &.--small {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@mixin s-icon {
+  &.--active {
+    fill: $color-active;
+  }
+}
+
+.irapha-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  fill: $color-default;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    fill: $color-focus;
+
+    &.--active {
+      opacity: 0.7;
+    }
+  }
+
+  @include size-icon;
+  @include s-icon;
+}

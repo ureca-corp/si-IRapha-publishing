@@ -8298,6 +8298,27 @@ img {
   border-radius: 2px;
 }
 
+.irapha-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  fill: rgba(238, 238, 238, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.irapha-icon:hover {
+  fill: var(--color__font-primary);
+}
+.irapha-icon:hover.--active {
+  opacity: 0.7;
+}
+.irapha-icon.--small {
+  width: 20px;
+  height: 20px;
+}
+.irapha-icon.--active {
+  fill: var(--color__font-primary);
+}
+
 :root {
   --color__status-danger: #ff3b30;
   --color__status-warning: #ffcc00;
@@ -8560,13 +8581,16 @@ img {
   width: fit-content;
   height: 30px;
 }
-.irapha-logo.--shrink-v.irapha-logo__container {
+.irapha-logo.--shrink-v.irapha-logo .irapha-logo__container {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   align-self: flex-start;
 }
-.irapha-logo.--shrink-v.irapha-logo__logo-image {
+.irapha-logo.--shrink-v.irapha-logo .irapha-logo__logo-image {
   display: none;
 }
 .irapha-logo.--shrink-h.irapha-logo .irapha-logo__container {
@@ -8705,6 +8729,9 @@ img {
   width: 130px;
   height: 100%;
 }
+.irapha-toolbox.--layout-column .irapha-toolbox__logo {
+  border-bottom: 1px dashed var(--color__border);
+}
 .irapha-toolbox.--shrink-v {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -8738,6 +8765,7 @@ img {
   min-width: 130px;
   width: 130px;
   aspect-ratio: 16/10;
+  border-right: 1px dashed var(--color__border);
 }
 
 .irapha-kin-selector {

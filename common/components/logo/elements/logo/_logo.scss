@@ -1,4 +1,6 @@
 @use "../../../../styles/common";
+
+@use "../../../icons/style" as icons;
 @use "../maximize-button/maximize-button";
 @use "../network-status/network-status";
 @use "../../../viewer-info/style";
@@ -17,13 +19,16 @@
       width: fit-content;
       height: 30px;
 
-      &__container {
-        width: fit-content;
-        align-self: flex-start;
-      }
+      .irapha-logo {
+        &__container {
+          width: fit-content;
+          height: fit-content;
+          align-self: flex-start;
+        }
 
-      &__logo-image {
-        display: none;
+        &__logo-image {
+          display: none;
+        }
       }
     }
   }
