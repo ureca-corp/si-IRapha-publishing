@@ -8384,7 +8384,7 @@ img {
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
-  gap: 12px;
+  gap: 2px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -8392,6 +8392,9 @@ img {
 .irapha-toolbox__menu.--layout-column-two {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
+}
+.irapha-toolbox__menu.--name-hide {
+  gap: 8px;
 }
 .irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content {
   width: -webkit-fit-content;
@@ -8414,7 +8417,7 @@ img {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
-  color: var(--color__font-primary);
+  color: var(--color__font-secondary);
   text-align: center;
   width: 100%;
   white-space: nowrap;
@@ -8474,10 +8477,10 @@ img {
 .irapha-toolbox__divider {
   border-radius: 36px;
   align-self: flex-start;
-  min-width: 4px;
+  min-width: 3px;
   height: auto;
   padding: 16px 0;
-  margin: 14px 16px 0 16px;
+  margin: 14px 12px 0 12px;
   background-color: var(--color__border);
 }
 .irapha-toolbox__divider.--layout-column {

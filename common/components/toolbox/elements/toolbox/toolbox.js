@@ -36,7 +36,7 @@ export class Toolbox {
     this.#initLogo();
     this.#initMenusManager();
 
-    this.setHideIconName(true);
+    //this.setHideIconName(true);
   }
 
   // private
@@ -109,10 +109,6 @@ export class Toolbox {
   // public
   setLayoutColumn(isLayoutColumn) {
     this.#isLayoutColumn$.next(isLayoutColumn);
-  }
-
-  setExpand(isExpanded) {
-    this.#isExpanded$.next(isExpanded);
   }
 
   setHideIconName(isHideIconName) {

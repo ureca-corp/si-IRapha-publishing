@@ -16,6 +16,10 @@
 
 @mixin s-menu {
   &.--name-hide {
+    & {
+      gap: 8px;
+    }
+
     .irapha-toolbox__menu__item {
       &__content {
         width: fit-content;
@@ -30,7 +34,7 @@
 
 @mixin menu-name {
   @include typography.label-small;
-  color: var(--color__font-primary);
+  color: var(--color__font-secondary);
 
   text-align: center;
 
@@ -44,7 +48,7 @@
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
-  gap: 12px;
+  gap: 2px;
 
   width: fit-content;
 
