@@ -1,48 +1,162 @@
-const rx = rxjs;
-
-const LayoutClassType = {
-  OneByOne: "1:1",
-};
+import { Selectors, LayoutAttributeType } from "../../common/index.js";
 
 export class DicomWindow {
   #root;
   #items;
 
-  constructor({ element, items }) {
+  constructor({ element, items, layout$ }) {
     this.#root = element;
 
     this.#items = items.map((element) => createDicomWindowItem(element));
 
-    const layout = new rx.BehaviorSubject(LayoutClassType.OneByOne);
-    layout.subscribe((layout) => this.#handleLayoutChange(layout));
+    layout$.subscribe(({ layout, grid }) =>
+      this.#handleLayoutChange({ layout, grid })
+    );
   }
 
   // handlers
-  #handleLayoutChange(layout) {
+  #handleLayoutChange({ layout, grid }) {
     switch (layout) {
+      case LayoutAttributeType.OneByTwo:
+        return this.#setLayout({
+          chunkSize: 2,
+          layoutType: LayoutAttributeType.OneByTwo,
+        });
+      case LayoutAttributeType.TwoByOne:
+        return this.#setLayout({
+          chunkSize: 2,
+          layoutType: LayoutAttributeType.TwoByOne,
+        });
+      case LayoutAttributeType.TwoByTwo:
+        return this.#setLayout({
+          chunkSize: 4,
+          layoutType: LayoutAttributeType.TwoByTwo,
+        });
+
+      case LayoutAttributeType.A:
+        return this.#setLayout({
+          chunkSize: 3,
+          layoutType: LayoutAttributeType.A,
+        });
+      case LayoutAttributeType.B:
+        return this.#setLayout({
+          chunkSize: 3,
+          layoutType: LayoutAttributeType.B,
+        });
+      case LayoutAttributeType.C:
+        return this.#setLayout({
+          chunkSize: 3,
+          layoutType: LayoutAttributeType.C,
+        });
+      case LayoutAttributeType.D:
+        return this.#setLayout({
+          chunkSize: 3,
+          layoutType: LayoutAttributeType.D,
+        });
+      case LayoutAttributeType.E:
+        return this.#setLayout({
+          chunkSize: 4,
+          layoutType: LayoutAttributeType.E,
+        });
+      case LayoutAttributeType.F:
+        return this.#setLayout({
+          chunkSize: 4,
+          layoutType: LayoutAttributeType.F,
+        });
+      case LayoutAttributeType.G:
+        return this.#setLayout({
+          chunkSize: 4,
+          layoutType: LayoutAttributeType.G,
+        });
+      case LayoutAttributeType.H:
+        return this.#setLayout({
+          chunkSize: 4,
+          layoutType: LayoutAttributeType.H,
+        });
+      case LayoutAttributeType.I:
+        return this.#setLayout({
+          chunkSize: 5,
+          layoutType: LayoutAttributeType.I,
+        });
+      case LayoutAttributeType.J:
+        return this.#setLayout({
+          chunkSize: 5,
+          layoutType: LayoutAttributeType.J,
+        });
+      case LayoutAttributeType.K:
+        return this.#setLayout({
+          chunkSize: 5,
+          layoutType: LayoutAttributeType.K,
+        });
+      case LayoutAttributeType.L:
+        return this.#setLayout({
+          chunkSize: 5,
+          layoutType: LayoutAttributeType.L,
+        });
+      case LayoutAttributeType.M:
+        return this.#setLayout({
+          chunkSize: 7,
+          layoutType: LayoutAttributeType.M,
+        });
+      case LayoutAttributeType.N:
+        return this.#setLayout({
+          chunkSize: 5,
+          layoutType: LayoutAttributeType.N,
+        });
+
+      case LayoutAttributeType.Custom:
+        return this.#setCustomLayout({
+          row: grid.row,
+          col: grid.col,
+        });
+
       default:
-        return this.#setOneByOneLayout();
+        return this.#setLayout({
+          chunkSize: 1,
+          layoutType: LayoutAttributeType.OneByOne,
+        });
     }
   }
 
   // set Layout
-  #setOneByOneLayout() {
-    const gridList = this.#items.map((element) => {
-      const ul = document.createElement("div");
-      ul.classList.add("irapha-dicom-window__grid");
-      ul.append(element);
-      ul.setAttribute("layout", LayoutClassType.OneByOne);
+  #clearLayoutItems() {
+    this.#root.innerHTML = "";
+    this.#root.setAttribute(LayoutAttributeType.Key, "");
+  }
 
-      return ul;
+  #setLayout({ chunkSize, layoutType }) {
+    this.#clearLayoutItems();
+
+    const gridList = createDicomWindowGrid({
+      items: this.#items,
+      chunkSize,
+      layoutType,
     });
 
     this.#root.append(...gridList);
   }
+
+  #setCustomLayout({ row, col }) {
+    this.#clearLayoutItems();
+
+    console.log(row, col);
+  }
 }
+
+const createDicomWindowGrid = ({ items, chunkSize, layoutType }) => {
+  return _.chunk(items, chunkSize).map((elements) => {
+    const ul = document.createElement("div");
+    ul.classList.add(Selectors.WindowGrid);
+    ul.append(...elements);
+    ul.setAttribute(LayoutAttributeType.Key, layoutType);
+
+    return ul;
+  });
+};
 
 const createDicomWindowItem = (children) => {
   const div = document.createElement("div");
-  div.classList.add("irapha-dicom-window__grid__item");
+  div.classList.add(Selectors.WindowGridItem);
   div.appendChild(children);
 
   return div;

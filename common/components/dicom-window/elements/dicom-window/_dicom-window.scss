@@ -6,24 +6,25 @@
   }
 
   // 1:2 Mode
-  &.--layout-1by2 {
+  &[layout="1:2"] {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
   }
 
   // 2:1 Mode
-  &.--layout-2by1 {
+  &[layout="2:1"] {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
   }
 
   // 2:2 Mode
-  &.--layout-2by2 {
+  &[layout="2:2"] {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
 
-  &.--layout-A {
+  // A Mode
+  &[layout="type-A"] {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr 1fr;
     grid-auto-flow: dense;
@@ -31,13 +32,227 @@
     & .irapha-dicom-window__item {
       &:nth-child(1) {
         grid-area: span 2 / span 1;
-
-        background-color: green;
       }
     }
+  }
 
-    & .irapha-dicom-window__item:nth-child(2n) {
-      background-color: blue;
+  &[layout="type-B"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(2) {
+        grid-area: span 2 / span 1;
+      }
+    }
+  }
+
+  &[layout="type-C"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(3) {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-D"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-E"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 3 / span 1;
+      }
+    }
+  }
+
+  &[layout="type-F"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(2) {
+        grid-area: span 3 / span 1;
+      }
+    }
+  }
+
+  &[layout="type-G"] {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(4) {
+        grid-area: span 1 / span 3;
+      }
+    }
+  }
+
+  &[layout="type-H"] {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 1 / span 3;
+      }
+    }
+  }
+
+  &[layout="type-I"] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 2 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-J"] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(3) {
+        grid-area: span 2 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-K"] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 1 / span 2;
+      }
+
+      &:nth-child(4) {
+        grid-area: span 1 / span 2;
+      }
+
+      &:nth-child(5) {
+        grid-area: span 1 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-L"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 2 / span 1;
+      }
+
+      &:nth-child(2) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(3) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(4) {
+        grid-area: span 2 / span 1;
+      }
+
+      &:nth-child(5) {
+        grid-area: span 2 / span 1;
+      }
+    }
+  }
+
+  &[layout="type-M"] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 2 / span 2;
+      }
+
+      &:nth-child(2) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(3) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(4) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(5) {
+        grid-area: span 1 / span 1;
+      }
+
+      &:nth-child(6) {
+        grid-area: span 2 / span 2;
+      }
+
+      &:nth-child(7) {
+        grid-area: span 2 / span 2;
+      }
+    }
+  }
+
+  &[layout="type-N"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-auto-flow: dense;
+
+    & .irapha-dicom-window__item {
+      &:nth-child(1) {
+        grid-area: span 3 / span 1;
+      }
+
+      &:nth-child(2) {
+        grid-area: span 2 / span 1;
+      }
+
+      &:nth-child(3) {
+        grid-area: span 2 / span 1;
+      }
+
+      &:nth-child(4) {
+        grid-area: span 3 / span 1;
+      }
+
+      &:nth-child(5) {
+        grid-area: span 2 / span 1;
+      }
     }
   }
 }
@@ -46,7 +261,7 @@
 .irapha-dicom-window {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 48px;
 
   width: 100%;
   height: 100%;
@@ -58,17 +273,34 @@
     @include l-dicom-window-grid;
 
     display: grid;
+    gap: 16px;
 
     width: 100%;
     height: 100%;
     min-height: 100%;
 
     background-color: #000;
+  }
 
-    &__item {
-      background-color: red;
-      width: 100%;
-      height: 100%;
+  &__item {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+
+    &:nth-child(1) {
+      background-color: green;
+    }
+
+    &:nth-child(2) {
+      background-color: blue;
+    }
+
+    &:nth-child(3) {
+      background-color: aqua;
+    }
+
+    &:nth-child(4) {
+      background-color: brown;
     }
   }
 }

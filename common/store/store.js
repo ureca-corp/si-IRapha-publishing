@@ -5,17 +5,23 @@ const store = {};
 
 /**
  * Context Menu Popup
- * type of ({x: number, y: number} || null)
+ * type of ({ x: number, y: number } || null)
  */
 store.thumbnailContextMenuOpen$ = new rx.BehaviorSubject();
 store.tabsContextMenuOpen$ = new rx.BehaviorSubject();
 
 /**
  * Layer Popup
- * type of ({x: number, y: number} || null)
+ * type of ({ x: number, y: number } || null)
  */
 store.relatedStudyOpen$ = new rx.BehaviorSubject();
 store.exportDicomOpen$ = new rx.BehaviorSubject();
+
+/**
+ * DicomWindow Layout Mode
+ * type of ({ layout: LayoutAttributeType, grid: { row: number, col: number} || null } || null)
+ */
+store.dicomWindowLayout$ = new rx.BehaviorSubject({ layout: "1:1" });
 
 //
 window.store = store;

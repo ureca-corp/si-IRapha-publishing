@@ -75,4 +75,5 @@ const dummyViewBox = Array.from({ length: 10 }, () => 0).map((_, index) => {
 new DicomWindow({
   element: document.querySelector("#irapha-dicom-window"),
   items: dummyViewBox,
+  layout$: window.store.dicomWindowLayout$,
 });

@@ -9398,7 +9398,7 @@ img {
 .irapha-dicom-window {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 48px;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -9406,6 +9406,7 @@ img {
 }
 .irapha-dicom-window__grid {
   display: grid;
+  gap: 16px;
   width: 100%;
   height: 100%;
   min-height: 100%;
@@ -9415,34 +9416,194 @@ img {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
 }
-.irapha-dicom-window__grid.--layout-1by2 {
+.irapha-dicom-window__grid[layout="1:2"] {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
 }
-.irapha-dicom-window__grid.--layout-2by1 {
+.irapha-dicom-window__grid[layout="2:1"] {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 1fr);
 }
-.irapha-dicom-window__grid.--layout-2by2 {
+.irapha-dicom-window__grid[layout="2:2"] {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
-.irapha-dicom-window__grid.--layout-A {
+.irapha-dicom-window__grid[layout=type-A] {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr;
   grid-auto-flow: dense;
 }
-.irapha-dicom-window__grid.--layout-A .irapha-dicom-window__item:nth-child(1) {
+.irapha-dicom-window__grid[layout=type-A] .irapha-dicom-window__item:nth-child(1) {
   grid-area: span 2/span 1;
-  background-color: green;
 }
-.irapha-dicom-window__grid.--layout-A .irapha-dicom-window__item:nth-child(2n) {
-  background-color: blue;
+.irapha-dicom-window__grid[layout=type-B] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
 }
-.irapha-dicom-window__grid__item {
+.irapha-dicom-window__grid[layout=type-B] .irapha-dicom-window__item:nth-child(2) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-C] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-C] .irapha-dicom-window__item:nth-child(3) {
+  grid-area: span 1/span 2;
+}
+.irapha-dicom-window__grid[layout=type-D] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-D] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 1/span 2;
+}
+.irapha-dicom-window__grid[layout=type-E] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-E] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 3/span 1;
+}
+.irapha-dicom-window__grid[layout=type-F] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-F] .irapha-dicom-window__item:nth-child(2) {
+  grid-area: span 3/span 1;
+}
+.irapha-dicom-window__grid[layout=type-G] {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-G] .irapha-dicom-window__item:nth-child(4) {
+  grid-area: span 1/span 3;
+}
+.irapha-dicom-window__grid[layout=type-H] {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-H] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 1/span 3;
+}
+.irapha-dicom-window__grid[layout=type-I] {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-I] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 2/span 2;
+}
+.irapha-dicom-window__grid[layout=type-J] {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-J] .irapha-dicom-window__item:nth-child(3) {
+  grid-area: span 2/span 2;
+}
+.irapha-dicom-window__grid[layout=type-K] {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-K] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 1/span 2;
+}
+.irapha-dicom-window__grid[layout=type-K] .irapha-dicom-window__item:nth-child(4) {
+  grid-area: span 1/span 2;
+}
+.irapha-dicom-window__grid[layout=type-K] .irapha-dicom-window__item:nth-child(5) {
+  grid-area: span 1/span 2;
+}
+.irapha-dicom-window__grid[layout=type-L] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-L] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-L] .irapha-dicom-window__item:nth-child(2) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-L] .irapha-dicom-window__item:nth-child(3) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-L] .irapha-dicom-window__item:nth-child(4) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-L] .irapha-dicom-window__item:nth-child(5) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-M] {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 2/span 2;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(2) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(3) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(4) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(5) {
+  grid-area: span 1/span 1;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(6) {
+  grid-area: span 2/span 2;
+}
+.irapha-dicom-window__grid[layout=type-M] .irapha-dicom-window__item:nth-child(7) {
+  grid-area: span 2/span 2;
+}
+.irapha-dicom-window__grid[layout=type-N] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-auto-flow: dense;
+}
+.irapha-dicom-window__grid[layout=type-N] .irapha-dicom-window__item:nth-child(1) {
+  grid-area: span 3/span 1;
+}
+.irapha-dicom-window__grid[layout=type-N] .irapha-dicom-window__item:nth-child(2) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-N] .irapha-dicom-window__item:nth-child(3) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__grid[layout=type-N] .irapha-dicom-window__item:nth-child(4) {
+  grid-area: span 3/span 1;
+}
+.irapha-dicom-window__grid[layout=type-N] .irapha-dicom-window__item:nth-child(5) {
+  grid-area: span 2/span 1;
+}
+.irapha-dicom-window__item {
   background-color: red;
   width: 100%;
   height: 100%;
+}
+.irapha-dicom-window__item:nth-child(1) {
+  background-color: green;
+}
+.irapha-dicom-window__item:nth-child(2) {
+  background-color: blue;
+}
+.irapha-dicom-window__item:nth-child(3) {
+  background-color: aqua;
+}
+.irapha-dicom-window__item:nth-child(4) {
+  background-color: brown;
 }
 
 .content {

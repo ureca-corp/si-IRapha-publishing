@@ -1,4 +1,5 @@
 import { GridSelectorItem } from "../item/grid-selector.item.js";
+import { LayoutAttributeType } from "../../../../dicom-window/common/index.js";
 
 const MatrixSize = 5;
 
@@ -58,6 +59,16 @@ export class GridSelector {
 
   // handler
   #handleGridItemClick({ row, col }) {
-    console.log(`${row},${col}`);
+    this.#mutateDicomWindowLayout({ row, col });
+  }
+
+  #mutateDicomWindowLayout({ row, col }) {
+    window.store.dicomWindowLayout$.next({
+      layout: LayoutAttributeType.Custom,
+      grid: {
+        row,
+        col,
+      },
+    });
   }
 }
