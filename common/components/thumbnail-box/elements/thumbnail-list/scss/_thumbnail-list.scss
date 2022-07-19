@@ -71,6 +71,8 @@ $floating-text__padding-size: 4px;
   &:hover {
     border: 2px solid $color-green;
   }
+
+  transition: all 0.3s ease-in-out;
 }
 
 .irapha-thumbnail-list__item {

@@ -12,6 +12,7 @@
 @use "../../common/components/layer-popup/style" as layer-popup;
 
 @use "../../common/components/dicom-window/style" as dicom-window;
+@use "../../common/components/dicom-viewbox/style" as dicom-viewbox;
 
 .content {
   grid-area: content;

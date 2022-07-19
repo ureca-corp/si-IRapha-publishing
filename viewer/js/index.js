@@ -48,8 +48,8 @@ document
 
 // =================================================================
 import {
-  RelatedStudyLayerPopup,
   ExportDicomLayerPopup,
+  RelatedStudyLayerPopup,
 } from "../../common/components/layer-popup/index.js";
 
 new RelatedStudyLayerPopup({
@@ -64,16 +64,67 @@ new ExportDicomLayerPopup({
 
 // =================================================================
 
+import { DicomViewBox } from "../../common/components/dicom-viewbox/index.js";
 import { DicomWindow } from "../../common/components/dicom-window/index.js";
 
-const dummyViewBox = Array.from({ length: 10 }, () => 0).map((_, index) => {
-  const dummy = document.createElement("div");
-  dummy.classList.add(`index:${index}`);
-  return dummy;
-});
+const viewBoxes = Array.from(
+  { length: 40 },
+  () =>
+    new DicomViewBox({
+      descItems: {
+        topLeft: `<p>
+          O^YEONG SU
+          <br/>
+          064Y / M
+          <br/>
+          2019-11-25
+          <br/>
+          06:26:49
+        </p>`,
+        topCenter: "A",
+        topRight: `<p>
+          Test11
+          <br/>
+          Institution:VHS Medical Center 3T
+          <br/>
+          tof_cs_acc7.2
+          <br/>
+          S:5
+          <br/>
+          I:4
+        </p>`,
+        left: `<p>
+          MR
+          <br/>
+          TE:3.69
+          <br/>
+          TR: 21.00
+          <br/>
+          PP: HFS
+          <br/>
+          ST: 0.50
+          <br/>
+          SL: 104.50 / SI: 0.00
+        </p>`,
+        right: "L",
+        bottomLeft: `<p>
+          520 X 576
+          <br/>
+          Zoom:63.54%
+        </p>`,
+        bottomRight: `<p>
+          Linear
+          <br/>
+          W:338 L:146
+          <br/>
+          MANETOM Vida
+        </p>`,
+      },
+    })
+);
 
 new DicomWindow({
   element: document.querySelector("#irapha-dicom-window"),
-  items: dummyViewBox,
+  items: viewBoxes.map((it) => it.getDomElement()),
   layout$: window.store.dicomWindowLayout$,
 });
