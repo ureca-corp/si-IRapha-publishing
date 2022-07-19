@@ -1,4 +1,5 @@
 import { Selectors, PositionClassType } from "../../common/index.js";
+import { CinePlayController } from "../../../cineplay-controller/index.js";
 
 /**
  * type descItems = {
@@ -14,9 +15,25 @@ import { Selectors, PositionClassType } from "../../common/index.js";
  */
 export class DicomViewBox {
   #root;
+  #cinePlayController;
 
-  constructor({ descItems }) {
-    this.#root = createRoot();
+  constructor({ descItems, hasController }) {
+    this.#init({ descItems, hasController });
+  }
+
+  // private
+  #init({ descItems, hasController }) {
+    const root = document.createElement("div");
+    root.classList.add(Selectors.ViewBox);
+    this.#root = root;
+
+    this.#initGrid({ descItems });
+
+    if (hasController) this.#initCinePlayController();
+  }
+
+  #initGrid({ descItems }) {
+    const grid = createGrid();
 
     const topLeft = createDesc({
       positionCSS: PositionClassType.TopLeft,
@@ -60,19 +77,32 @@ export class DicomViewBox {
 
     const canvas = document.createElement("canvas");
 
-    const list = [
-      topLeft,
-      topCenter,
-      topRight,
-      left,
-      right,
-      bottomLeft,
-      bottomCenter,
-      bottomRight,
-      canvas,
-    ];
+    grid.append(
+      ...[
+        topLeft,
+        topCenter,
+        topRight,
+        left,
+        right,
+        bottomLeft,
+        bottomCenter,
+        bottomRight,
+        canvas,
+      ]
+    );
 
-    this.#root.append(...list);
+    this.#root.append(grid);
+  }
+
+  #initCinePlayController() {
+    const globalCineControllerHide$ = store.cinePlayControllerHide$;
+
+    const cinePlayController = new CinePlayController({
+      isHideController$: globalCineControllerHide$,
+    });
+    this.#cinePlayController = cinePlayController;
+
+    this.#root.append(cinePlayController.getDomElement());
   }
 
   getDomElement() {
@@ -80,9 +110,10 @@ export class DicomViewBox {
   }
 }
 
-const createRoot = () => {
+// =================================================================
+const createGrid = () => {
   const div = document.createElement("div");
-  div.classList.add(Selectors.ViewBox);
+  div.classList.add(Selectors.ViewBoxScreen);
 
   return div;
 };
@@ -92,7 +123,7 @@ const createDesc = ({ children, positionCSS }) => {
   div.classList.add(Selectors.ViewBoxDesc);
   div.classList.add(positionCSS);
 
-  if (children) div.innerHTML = children;
+  if (children) div.append(children);
 
   return div;
 };

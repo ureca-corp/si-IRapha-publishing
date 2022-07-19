@@ -1,6 +1,8 @@
 @use "../../../../styles/common";
 @use "../../../../themes/typography" as typography;
 
+@use "../../../cineplay-controller/style" as cineplay-controller;
+
 // dicom viewbox
 // =================================================================
 $color-font: var(--color__font-primary);
@@ -10,6 +12,8 @@ $color-yellow: var(--color__yellow);
 $color-orange: var(--color__orange);
 
 $color-border: var(--color__border);
+
+$min-width: 360px;
 
 @mixin s-viewbox {
   &.--active {
@@ -26,6 +30,21 @@ $color-border: var(--color__border);
 .irapha-dicom-viewbox {
   @include s-viewbox;
 
+  display: flex;
+  flex-direction: column;
+  min-width: $min-width;
+  height: 100%;
+
+  border: 2px solid #eeeeee22;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    border: 2px solid $color-green;
+  }
+}
+
+.irapha-dicom-viewbox__screen {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -37,23 +56,13 @@ $color-border: var(--color__border);
   width: 100%;
   height: 100%;
 
-  border: 2px solid #eeeeee22;
-
   overflow: hidden;
-
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    border: 2px solid $color-green;
-  }
 
   canvas {
     position: absolute;
 
     width: 100%;
     height: 100%;
-
-    background-color: #000;
   }
 }
 

@@ -23,6 +23,12 @@ store.exportDicomOpen$ = new rx.BehaviorSubject();
  */
 store.dicomWindowLayout$ = new rx.BehaviorSubject({ layout: "1:1" });
 
+/**
+ * Cine Play Controller - Hide Mode
+ * type of boolean
+ */
+store.cinePlayControllerHide$ = new rx.BehaviorSubject(false);
+
 //
 window.store = store;
 export default {};

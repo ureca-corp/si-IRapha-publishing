@@ -9144,7 +9144,8 @@ img {
   width: 100%;
   height: 100%;
   border-bottom: 4px solid rgb(54, 54, 58);
-  overflow: overlay;
+  overflow-x: overlay;
+  overflow-y: hidden;
 }
 
 .irapha-layer-popup {
@@ -9402,16 +9403,14 @@ img {
   gap: 48px;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
 }
 .irapha-dicom-window__grid {
   display: grid;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
   height: 100%;
   min-height: 100%;
-  background-color: #000;
 }
 .irapha-dicom-window__grid[layout="1:1"] {
   grid-template-columns: 1fr;
@@ -9601,16 +9600,150 @@ img {
   width: 100%;
   height: 100%;
 }
+.irapha-dicom-window__item canvas {
+  background-color: #000;
+}
+
+.irapha-cineplay-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  border-top: 1px dashed var(--color__border);
+  padding: 8px;
+  background-color: var(--color__black);
+  white-space: nowrap;
+}
+
+.irapha-cineplay-controller__wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.irapha-cineplay-controller__progress {
+  height: 10px;
+  margin: 0;
+  background: transparent;
+  border-radius: 2px;
+  border: 1px solid var(--color__border);
+}
+
+.irapha-cineplay-controller__play-type {
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  min-width: 60px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: var(--color__font-secondary);
+  cursor: pointer;
+}
+.irapha-cineplay-controller__play-type:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-cineplay-controller__play-type.uk-select:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+
+.irapha-cineplay-controller__nav {
+  display: flex;
+  align-items: center;
+  fill: var(--color__font-secondary);
+}
+.irapha-cineplay-controller__nav > li {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.irapha-cineplay-controller__nav > li:hover {
+  transform: scale(1.2);
+  fill: var(--color__font-primary);
+}
+
+.irapha-cineplay-controller__FPS-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  position: relative;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input {
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+  width: 68px;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+  width: 88px;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
+}
+.irapha-cineplay-controller__FPS-box__frame-count {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  color: var(--color__font-secondary);
+}
+
+.irapha-cineplay-controller__loop-box {
+  display: flex;
+  align-items: center;
+}
+.irapha-cineplay-controller__loop-box__item {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.irapha-cineplay-controller__loop-box__item:hover {
+  transform: scale(1.2);
+  fill: var(--color__font-primary);
+}
+.irapha-cineplay-controller__loop-box__item.--active {
+  fill: var(--color__orange);
+}
 
 .irapha-dicom-viewbox {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: "tl tc tr" "l . r" "bl bc br";
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 360px;
   height: 100%;
   border: 2px solid rgba(238, 238, 238, 0.1333333333);
-  overflow: hidden;
   transition: all 0.3s ease-in-out;
 }
 .irapha-dicom-viewbox.--active {
@@ -9623,11 +9756,20 @@ img {
 .irapha-dicom-viewbox:hover {
   border: 2px solid var(--color__green);
 }
-.irapha-dicom-viewbox canvas {
+
+.irapha-dicom-viewbox__screen {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "tl tc tr" "l . r" "bl bc br";
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.irapha-dicom-viewbox__screen canvas {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #000;
 }
 
 .irapha-dicom-viewbox .irapha-dicom-viewbox__desc {

@@ -1,0 +1,173 @@
+@use "../../../../styles/common";
+@use "../../../../themes/typography" as typography;
+
+// cineplay-controller
+// =================================================================
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-focus: #ffffff11;
+$color-border-default: var(--color__border);
+$color-black: var(--color__black);
+$color-orange: var(--color__orange);
+
+@mixin input-style {
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  background-color: transparent;
+
+  border-radius: 4px;
+  border: 1px solid $color-border-default;
+
+  transition: all 0.3s ease-in-out;
+}
+
+@mixin focus {
+  color: $color-font2;
+  border-color: $color-font1;
+  background-color: $color-bg-focus;
+}
+
+.irapha-cineplay-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  width: 100%;
+
+  border-top: 1px dashed $color-border-default;
+  padding: 8px;
+
+  background-color: $color-black;
+
+  white-space: nowrap;
+}
+
+.irapha-cineplay-controller__wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+// progress bar
+// =================================================================
+.irapha-cineplay-controller__progress {
+  height: 10px;
+
+  margin: 0;
+  background: transparent;
+
+  border-radius: 2px;
+  border: 1px solid $color-border-default;
+}
+
+// play-type
+// =========================================================================
+.irapha-cineplay-controller__play-type {
+  @include input-style;
+  @include typography.label-small;
+
+  min-width: 60px;
+  width: fit-content;
+
+  color: $color-font1;
+
+  cursor: pointer;
+
+  &:hover {
+    @include focus;
+  }
+
+  &.uk-select:focus {
+    @include focus;
+  }
+}
+
+// nav
+// =========================================================================
+.irapha-cineplay-controller__nav {
+  display: flex;
+  align-items: center;
+
+  fill: $color-font1;
+
+  & > li {
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+      fill: $color-font2;
+    }
+  }
+}
+
+// FPS-box
+// =========================================================================
+.irapha-cineplay-controller__FPS-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__input-wrapper {
+    @include typography.label-small;
+
+    position: relative;
+
+    input {
+      @include input-style;
+
+      width: 68px;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &:hover {
+        @include focus;
+      }
+
+      &:focus {
+        @include focus;
+
+        width: 88px;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: auto;
+          margin: unset;
+        }
+      }
+    }
+  }
+
+  &__frame-count {
+    @include typography.label-small;
+    color: $color-font1;
+  }
+}
+
+// loop-box
+// =========================================================================
+.irapha-cineplay-controller__loop-box {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+      fill: $color-font2;
+    }
+
+    &.--active {
+      fill: $color-orange;
+    }
+  }
+}

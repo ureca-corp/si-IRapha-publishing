@@ -8,12 +8,15 @@ export class BaseIcon {
 
     this.#init({ isClickable: !!onClick });
 
-    isActive$.subscribe((isActive) => this.#handleActiveChange(isActive));
-    rx.fromEvent(element, "click").subscribe((e) => onClick(e));
+    isActive$?.subscribe((isActive) => this.#handleActiveChange(isActive));
+
+    if (onClick) rx.fromEvent(element, "click").subscribe((e) => onClick(e));
   }
 
   // private
   #init({ isClickable }) {
+    this.#root.classList.add("irapha-icon");
+
     if (isClickable) this.#root.style.cursor = "pointer";
   }
 
