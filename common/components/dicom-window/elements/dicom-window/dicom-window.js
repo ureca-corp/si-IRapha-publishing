@@ -139,7 +139,20 @@ export class DicomWindow {
   #setCustomLayout({ row, col }) {
     this.#clearLayoutItems();
 
-    console.log(row, col);
+    const gridList = createDicomWindowGrid({
+      items: this.#items,
+      chunkSize: row * col,
+      layoutType: LayoutAttributeType.Custom,
+    });
+
+    gridList.forEach((element) => {
+      element.style.cssText = `
+        grid-template-columns: repeat(${col}, 1fr);
+        grid-template-rows: repeat(${row}, 1fr);
+      `;
+    });
+
+    this.#root.append(...gridList);
   }
 }
 
