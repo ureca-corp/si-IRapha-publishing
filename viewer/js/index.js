@@ -1,6 +1,6 @@
 import {} from "../../libs/lodash-4.17.21/lodash.js";
-import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
 import {} from "../../libs/uikit-3.14.3/js/uikit.min.js";
+import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
 
 import {} from "../../common/store/store.js";
 
