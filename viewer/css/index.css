@@ -8340,7 +8340,7 @@ img {
   --color__black: #000;
 }
 
-.irapha-sub-menu.--layout--column-two .irapha-sub-menu__container .irapha-sub-menu__container__inner {
+.irapha-sub-menu.--layout-column-two .irapha-sub-menu__container .irapha-sub-menu__container__inner {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
