@@ -29,5 +29,6 @@ $active-bg-color: constant.$active-bg-color;
 
   border-bottom: 4px solid $active-bg-color;
 
-  overflow: overlay;
+  overflow-x: overlay;
+  overflow-y: hidden;
 }

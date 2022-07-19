@@ -1,4 +1,8 @@
-import store from "../../common/store/store.js";
+import {} from "../../libs/lodash-4.17.21/lodash.js";
+import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
+import {} from "../../libs/uikit-3.14.3/js/uikit.min.js";
+
+import {} from "../../common/store/store.js";
 
 import { Toolbox } from "../../common/components/toolbox/index.js";
 const toolbox = new Toolbox();
@@ -44,8 +48,8 @@ document
 
 // =================================================================
 import {
-  RelatedStudyLayerPopup,
   ExportDicomLayerPopup,
+  RelatedStudyLayerPopup,
 } from "../../common/components/layer-popup/index.js";
 
 new RelatedStudyLayerPopup({
@@ -59,3 +63,85 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
+
+import { DicomViewBox } from "../../common/components/dicom-viewbox/index.js";
+import { DicomWindow } from "../../common/components/dicom-window/index.js";
+
+const createItem = ({ children }) => {
+  const div = document.createElement("div");
+  div.innerHTML = children;
+
+  return div;
+};
+
+const viewBoxes = Array.from(
+  { length: 40 },
+  (_, index) =>
+    new DicomViewBox({
+      descItems: {
+        topLeft: createItem({
+          children: `
+            O^YEONG SU
+            <br/>
+            064Y / M
+            <br/>
+            2019-11-25
+            <br/>
+            06:26:49
+        `,
+        }),
+        topCenter: "A",
+        topRight: createItem({
+          children: `
+            Test11
+            <br/>
+            Institution:VHS Medical Center 3T
+            <br/>
+            tof_cs_acc7.2
+            <br/>
+            S:5
+            <br/>
+            I:4
+        `,
+        }),
+        left: createItem({
+          children: `
+            MR
+            <br/>
+            TE:3.69
+            <br/>
+            TR: 21.00
+            <br/>
+            PP: HFS
+            <br/>
+            ST: 0.50
+            <br/>
+            SL: 104.50 / SI: 0.00`,
+        }),
+        right: "L",
+        bottomLeft: createItem({
+          children: `
+            520 X 576
+            <br/>
+            Zoom:63.54%
+          `,
+        }),
+        bottomRight: createItem({
+          children: `
+            Linear
+            <br/>
+            W:338 L:146
+            <br/>
+            MANETOM Vida
+          `,
+        }),
+      },
+      hasController: index % 2 == 0,
+    })
+);
+
+new DicomWindow({
+  element: document.querySelector("#irapha-dicom-window"),
+  items: viewBoxes.map((it) => it.getDomElement()),
+  layout$: window.store.dicomWindowLayout$,
+});

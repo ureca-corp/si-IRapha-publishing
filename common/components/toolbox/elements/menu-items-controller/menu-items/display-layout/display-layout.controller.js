@@ -1,22 +1,48 @@
 import { DisplayLayoutMenu } from "./display-layout.menu.js";
 import { DisplayLayoutConfigMenu } from "./display-layout-config.menu.js";
+import {
+  DisplayLayoutOneByOne,
+  DisplayLayoutOneByTwo,
+  DisplayLayoutTwoByOne,
+  DisplayLayoutTwoByTwo,
+} from "./sub/index.js";
 
 const SelectorIds = {
-  dlMenu: "#irapha-menu__display-layout",
-  dlOnetoOneMenu: "#irapha-menu__display-layout__1to1",
-  dlOnetoTwoMenu: "#irapha-menu__display-layout__1to2",
-  dlTwoToOneMenu: "#irapha-menu__display-layout__2to1",
-  dlTwotoTwoMenu: "#irapha-menu__display-layout__2to2",
   dlConfigMenu: "#irapha-menu__display-layout__config",
+};
+
+const Selectors = {
+  Menu: "irapha-menu__display-layout",
+  OneByOne: "irapha-menu__display-layout__1by1",
+  OneByTwo: "irapha-menu__display-layout__1by2",
+  TwoByOne: "irapha-menu__display-layout__2by1",
+  TwoByTwo: "irapha-menu__display-layout__2by2",
 };
 
 export class DisplayLayoutController {
   constructor() {
-    const displayLayoutMenu = document.querySelector(SelectorIds.dlMenu);
+    const displayLayoutMenu = document.querySelector(`#${Selectors.Menu}`);
 
     new DisplayLayoutMenu(displayLayoutMenu);
     new DisplayLayoutConfigMenu(
       displayLayoutMenu.querySelector(SelectorIds.dlConfigMenu)
     );
+
+    //
+    new DisplayLayoutOneByOne({
+      element: displayLayoutMenu.querySelector(`#${Selectors.OneByOne}`),
+    });
+
+    new DisplayLayoutOneByTwo({
+      element: displayLayoutMenu.querySelector(`#${Selectors.OneByTwo}`),
+    });
+
+    new DisplayLayoutTwoByOne({
+      element: displayLayoutMenu.querySelector(`#${Selectors.TwoByOne}`),
+    });
+
+    new DisplayLayoutTwoByTwo({
+      element: displayLayoutMenu.querySelector(`#${Selectors.TwoByTwo}`),
+    });
   }
 }
