@@ -33,10 +33,17 @@ $box-shadow: var(--box-shadow__layer-menu);
 }
 
 .irapha-context-menu__item__submenu {
-  @include menu-container;
   @include s-submenu;
-  display: none;
-
+  position: absolute;
   top: 0;
   left: 200px;
+
+  flex-direction: column;
+
+  display: none;
+
+  border-radius: 4px;
+  box-shadow: $box-shadow;
+
+  background-color: $menu-bg;
 }

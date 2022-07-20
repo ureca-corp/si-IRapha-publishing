@@ -1,5 +1,7 @@
 import { Selectors, LayoutAttributeType } from "../../common/index.js";
 
+const rx = rxjs;
+
 export class DicomWindow {
   #root;
   #items;
@@ -12,6 +14,20 @@ export class DicomWindow {
     layout$.subscribe(({ layout, grid }) =>
       this.#handleLayoutChange({ layout, grid })
     );
+
+    this.#preventOriginContextMenu();
+  }
+
+  // context menu open control
+  #preventOriginContextMenu() {
+    rx.fromEvent(this.#root, "contextmenu", true).subscribe((e) => {
+      e.preventDefault();
+      this.#openCustomContextMenu(e);
+    });
+  }
+
+  #openCustomContextMenu(e) {
+    window.store.viewboxContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
   }
 
   // handlers
