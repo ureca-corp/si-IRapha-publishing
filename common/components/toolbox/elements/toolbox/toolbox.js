@@ -26,7 +26,7 @@ export class Toolbox {
     this.#initStates();
 
     new FoldingBar({
-      element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
+      $element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
       isPreview$: this.#isPreview$,
@@ -42,7 +42,7 @@ export class Toolbox {
   // private
   #initLogo() {
     new Logo({
-      element: this.#root.querySelector(`.${Selectors.Logo}`),
+      $element: this.#root.querySelector(`.${Selectors.Logo}`),
       shrinkDirection$: this.#shrinkDirection$,
     });
   }

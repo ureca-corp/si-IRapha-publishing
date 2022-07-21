@@ -2,16 +2,20 @@
 
 // grid item
 // =================================================================
+
+$color-active: var(--color__teriary);
+$color-default: var(--color__secondary);
+
 @mixin s-grid-item {
   // 아이템 활성화
   &[irapha-grid-selector*="active: true"] {
-    background-color: var(--color__teriary);
+    background-color: $color-active;
   }
 }
 
 .irapha-grid-selector__item {
   border-radius: 4px;
-  background-color: var(--color__secondary);
+  background-color: $color-default;
 
   @include s-grid-item;
 }

@@ -1,1 +1,1 @@
-export { Tabs } from "./js/tabs.js";
+export { Tabs } from "./elements/index.js";

@@ -1,17 +1,24 @@
+/**
+ * Constructor types
+ *
+ * @type $element: Element
+ *
+ * @type isHide$: BehaviorSubject<boolean>
+ */
 export class KinSelector {
-  #root;
+  #$root;
 
-  constructor({ element, isHide$ }) {
-    this.#root = element;
+  constructor({ $element, isHide$ }) {
+    this.#$root = $element;
 
-    element.classList.add("uk-select");
+    $element.classList.add("uk-select");
 
-    isHide$.subscribe((isHide) => this.#handleVisibilityChange(isHide));
+    isHide$.subscribe((isHide) => this.#handleDisplayChange(isHide));
   }
 
-  #handleVisibilityChange(isHide) {
-    if (!!isHide) return (this.#root.style.display = "none");
+  #handleDisplayChange(isHide) {
+    if (!!isHide) return (this.#$root.style.display = "none");
 
-    return (this.#root.style.display = "unset");
+    return (this.#$root.style.display = "unset");
   }
 }

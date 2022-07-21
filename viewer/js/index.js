@@ -141,7 +141,7 @@ const viewBoxes = Array.from(
 );
 
 new DicomWindow({
-  element: document.querySelector("#irapha-dicom-window"),
+  $element: document.querySelector("#irapha-dicom-window"),
   items: viewBoxes.map((it) => it.getDomElement()),
   layout$: window.store.dicomWindowLayout$,
 });
@@ -154,5 +154,5 @@ new CustomContextMenu({
 
 import { GridSelector } from "../../common/components/selectors/index.js";
 new GridSelector({
-  element: document.querySelector("#test1234"),
+  $element: document.querySelector("#test1234"),
 });

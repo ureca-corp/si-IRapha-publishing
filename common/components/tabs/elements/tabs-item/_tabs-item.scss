@@ -108,11 +108,12 @@ $hover-bg-color: #eeeeee11;
   }
 
   .irapha____title {
-    @include typography.title-small;
+    @include typography.label-medium;
   }
 
   .irapha____description {
-    @include typography.label-small;
+    @include typography.caption;
+
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

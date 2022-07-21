@@ -3,18 +3,27 @@ import { Selectors, LayoutClassType } from "../../common/index.js";
 
 const rx = rxjs;
 
+/**
+ * Constructor types
+ *
+ * @type dropSuccessCallback: ({
+ *  isVertical: boolean,
+ *  hasElement: (id: string) => boolean
+ * }) => boolean
+ */
 export class StickyMenu {
-  #root;
+  #$root;
+  #$draggedTarget;
+
   #dropzones;
-  #draggedTarget;
 
   #dropSuccessCallback;
 
   constructor({ dropSuccessCallback }) {
-    this.#root = document.querySelector(`.${Selectors.StickyMenu}`);
+    this.#$root = document.querySelector(`.${Selectors.StickyMenu}`);
     this.#dropzones = [
       ...document.querySelectorAll(`.${Selectors.Dropzone}`),
-    ].map((it) => new Dropzone(it));
+    ].map(($element) => new Dropzone({ $element }));
 
     this.#dropSuccessCallback = dropSuccessCallback;
 
@@ -23,27 +32,27 @@ export class StickyMenu {
 
   // private
   #initEvents() {
-    rx.fromEvent(this.#root, "dragstart", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "dragstart", false).subscribe((e) =>
       this.#handleDragStart(e)
     );
 
-    rx.fromEvent(this.#root, "dragend", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "dragend", false).subscribe((e) =>
       this.#handleDragEnd(e)
     );
 
-    rx.fromEvent(this.#root, "dragover", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "dragover", false).subscribe((e) =>
       this.#handleDragOver(e)
     );
 
-    rx.fromEvent(this.#root, "dragenter", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "dragenter", false).subscribe((e) =>
       this.#handleDragEnter(e)
     );
 
-    rx.fromEvent(this.#root, "dragleave", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "dragleave", false).subscribe((e) =>
       this.#handleDragLeave(e)
     );
 
-    rx.fromEvent(this.#root, "drop", false).subscribe((e) =>
+    rx.fromEvent(this.#$root, "drop", false).subscribe((e) =>
       this.#handleItemDrop(e)
     );
   }
@@ -54,11 +63,11 @@ export class StickyMenu {
 
   // 레이아웃 컨트롤
   #setLayoutRowFirst() {
-    this.#root.classList.add(LayoutClassType.RowFirst);
+    this.#$root.classList.add(LayoutClassType.RowFirst);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.RowFirst);
+    this.#$root.classList.remove(LayoutClassType.RowFirst);
   }
 
   #updateLayout({ dropzone }) {
@@ -85,11 +94,11 @@ export class StickyMenu {
 
   // 드래그 시작 시
   #handleDragStart(e) {
-    new Dropzone(e.target.parentNode);
+    new Dropzone({ $element: e.target.parentNode });
 
     this.#appendDummyToDropZones();
 
-    this.#draggedTarget = e.target;
+    this.#$draggedTarget = e.target;
     e.target.style.opacity = 0.5;
   }
 
@@ -126,9 +135,9 @@ export class StickyMenu {
 
     if (!this.#isTargetIncludedDropZoneDummy(e.target)) return;
 
-    const draggedTarget = this.#draggedTarget;
+    const draggedTarget = this.#$draggedTarget;
     const dummyDropzone = e.target;
-    const dropzone = new Dropzone(dummyDropzone.parentNode);
+    const dropzone = new Dropzone({ $element: dummyDropzone.parentNode });
 
     dropzone.drop({
       target: draggedTarget,

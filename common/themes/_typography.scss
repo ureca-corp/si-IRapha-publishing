@@ -94,3 +94,9 @@
   line-height: 16px;
   font-weight: 700;
 }
+
+@mixin caption {
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 400;
+}

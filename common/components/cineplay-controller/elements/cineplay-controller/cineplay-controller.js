@@ -72,6 +72,8 @@ export class CinePlayController {
 }
 
 // =========================================================================
+
+// PlayType Selector
 const createControllerPlayType = () => {
   const select = document.createElement("select");
   select.classList.add(Selectors.PlayType);
@@ -91,6 +93,7 @@ const createControllerPlayType = () => {
   return select;
 };
 
+// 재생 컨트롤 박스
 const createControllerNav = () => {
   const nav = document.createElement("ul");
   nav.classList.add(Selectors.Nav);
@@ -117,6 +120,7 @@ const createControllerNav = () => {
   return nav;
 };
 
+// FPS Box
 const createFpsBox = () => {
   const fpsBox = document.createElement("div");
   fpsBox.classList.add(Selectors.FpsBox);
@@ -135,6 +139,7 @@ const createFpsBox = () => {
   return fpsBox;
 };
 
+// Loop Control Box
 const createLoopBox = () => {
   const isInMarked$ = new rx.BehaviorSubject(false);
   const toggleInMark = () => isInMarked$.next(!isInMarked$.getValue());
