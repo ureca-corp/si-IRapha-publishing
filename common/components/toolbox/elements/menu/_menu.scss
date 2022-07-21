@@ -2,7 +2,6 @@
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/typography" as typography;
 @use "../../../../themes/shape" as shapes;
-@use "../../../../themes/break-point" as break-point;
 
 @use "../../../sub-menu/style" as sub-menu;
 
@@ -35,6 +34,7 @@
 
 @mixin l-menu {
   &.--layout-column-two {
+    gap: 4px;
     grid-auto-flow: unset;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -55,10 +55,6 @@
 
   @include l-menu;
   @include s-menu;
-
-  @media (max-width: break-point.$laptop) {
-    @include name-hide;
-  }
 
   .irapha-toolbox__menu__item {
     &__content {

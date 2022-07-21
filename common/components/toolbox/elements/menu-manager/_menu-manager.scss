@@ -12,7 +12,7 @@
   &.--layout-column {
     flex: 1;
     flex-direction: column;
-    padding: 24px 0;
+    padding: 10px 0;
   }
 }
 
@@ -48,10 +48,10 @@ $color-border: var(--color__border);
 
 @mixin l-divider {
   &.--layout-column {
-    width: 65%;
+    width: 75%;
     min-height: 4px;
     padding: 0;
-    margin: 16px 0;
+    margin: 8px 0;
     align-self: unset;
   }
 }

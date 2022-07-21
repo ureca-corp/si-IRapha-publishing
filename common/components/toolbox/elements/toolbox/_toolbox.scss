@@ -13,14 +13,24 @@ $bg: var(--color__teriary-container);
 $border-color: var(--color__border);
 
 $toolbox-width: 130px;
+$toolbox-width-small: 100px;
+$toolbox-height-small: 52px;
 
 @mixin l-toolbox {
   &.--layout-column {
-    width: $toolbox-width;
+    min-width: $toolbox-width-small;
+    width: $toolbox-width-small;
     height: 100%;
 
     .irapha-toolbox__logo {
+      min-width: unset;
+      width: unset;
+      border-right: 0;
       border-bottom: 1px dashed $border-color;
+
+      .irapha-logo__logo-image {
+        top: 4px;
+      }
     }
   }
 }
@@ -40,6 +50,7 @@ $toolbox-width: 130px;
 
   &.--shrink-h {
     & {
+      min-width: fit-content;
       width: fit-content;
     }
 
@@ -73,8 +84,17 @@ $toolbox-width: 130px;
 
 // media query - laptop
 // =================================================================
-$toolbox-width-small: 100px;
-$toolbox-height-small: 52px;
+@mixin name-hide {
+  .irapha-toolbox__menu__item {
+    &__content {
+      width: fit-content;
+
+      &__name {
+        display: none;
+      }
+    }
+  }
+}
 
 @media (max-width: break-point.$laptop) {
   .irapha-toolbox {
@@ -83,6 +103,18 @@ $toolbox-height-small: 52px;
     &__logo {
       min-width: $toolbox-width-small;
       width: $toolbox-width-small;
+    }
+
+    &:not(.--layout-column) {
+      @include name-hide;
+    }
+  }
+}
+
+@media (max-height: break-point.$min-height) {
+  .irapha-toolbox {
+    &.--layout-column {
+      @include name-hide;
     }
   }
 }

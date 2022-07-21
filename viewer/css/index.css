@@ -8249,13 +8249,9 @@ table {
 
 html,
 body {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
-}
-
-body {
-  min-height: 1024px;
 }
 
 * {
@@ -8402,6 +8398,7 @@ button[disabled] {
   width: fit-content;
 }
 .irapha-toolbox__menu.--layout-column-two {
+  gap: 4px;
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -8412,16 +8409,6 @@ button[disabled] {
 }
 .irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content__name {
   display: none;
-}
-@media (max-width: 1440px) {
-  .irapha-toolbox__menu .irapha-toolbox__menu__item__content {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .irapha-toolbox__menu .irapha-toolbox__menu__item__content__name {
-    display: none;
-  }
 }
 .irapha-toolbox__menu .irapha-toolbox__menu__item__content {
   position: relative;
@@ -8487,7 +8474,7 @@ button[disabled] {
 .irapha-toolbox__menus.--layout-column {
   flex: 1;
   flex-direction: column;
-  padding: 24px 0;
+  padding: 10px 0;
 }
 .irapha-toolbox__menus.--hide {
   display: none;
@@ -8503,10 +8490,10 @@ button[disabled] {
   background-color: var(--color__border);
 }
 .irapha-toolbox__divider.--layout-column {
-  width: 65%;
+  width: 75%;
   min-height: 4px;
   padding: 0;
-  margin: 16px 0;
+  margin: 8px 0;
   align-self: unset;
 }
 .irapha-toolbox__divider.--align--self-center {
@@ -8724,7 +8711,6 @@ button[disabled] {
 .irapha-folding-bar.--layout-column {
   flex-direction: column;
   height: 100%;
-  min-width: var(--bar-size);
 }
 .irapha-folding-bar.--layout-column .irapha-drag-point.irapha-drag-point {
   justify-content: flex-start;
@@ -8751,11 +8737,18 @@ button[disabled] {
   height: 80px;
 }
 .irapha-toolbox.--layout-column {
-  width: 130px;
+  min-width: 100px;
+  width: 100px;
   height: 100%;
 }
 .irapha-toolbox.--layout-column .irapha-toolbox__logo {
+  min-width: unset;
+  width: unset;
+  border-right: 0;
   border-bottom: 1px dashed var(--color__border);
+}
+.irapha-toolbox.--layout-column .irapha-toolbox__logo .irapha-logo__logo-image {
+  top: 4px;
 }
 .irapha-toolbox.--shrink-v {
   height: -webkit-fit-content;
@@ -8770,6 +8763,9 @@ button[disabled] {
   aspect-ratio: unset;
 }
 .irapha-toolbox.--shrink-h {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -8800,6 +8796,24 @@ button[disabled] {
   .irapha-toolbox__logo {
     min-width: 100px;
     width: 100px;
+  }
+  .irapha-toolbox:not(.--layout-column) .irapha-toolbox__menu__item__content {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .irapha-toolbox:not(.--layout-column) .irapha-toolbox__menu__item__content__name {
+    display: none;
+  }
+}
+@media (max-height: 1024px) {
+  .irapha-toolbox.--layout-column .irapha-toolbox__menu__item__content {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .irapha-toolbox.--layout-column .irapha-toolbox__menu__item__content__name {
+    display: none;
   }
 }
 .irapha-kin-selector {
