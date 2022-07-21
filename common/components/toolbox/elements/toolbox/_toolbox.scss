@@ -9,7 +9,7 @@
 
 // Toolbox
 // =================================================================
-$bg: var(--color__teriary-container);
+$bg: var(--color__bg-primary);
 $border-color: var(--color__border);
 
 $toolbox-width: 130px;
@@ -45,6 +45,8 @@ $toolbox-height-small: 52px;
       min-width: unset;
       width: fit-content;
       aspect-ratio: unset;
+
+      border: 0;
     }
   }
 
@@ -60,6 +62,8 @@ $toolbox-height-small: 52px;
 
       height: fit-content;
       aspect-ratio: unset;
+
+      border: 0;
     }
   }
 }
@@ -69,6 +73,8 @@ $toolbox-height-small: 52px;
   background-color: $bg;
 
   height: 80px;
+
+  box-shadow: 0px 0px 1px #000;
 
   @include l-toolbox;
   @include s-toolbox;

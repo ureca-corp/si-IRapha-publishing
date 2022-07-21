@@ -1,4 +1,4 @@
-import { ThumbnailBoxControls } from "../controls/controls.js";
+import { KinSelector } from "../../../selectors/index.js";
 import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
 import { FoldingBar } from "../../../folding-bar/index.js";
 
@@ -32,10 +32,9 @@ export class ThumbnailBox {
       shrinkDirection$: this.#shrinkDirection$,
     });
 
-    new ThumbnailBoxControls({
-      element: this.#root.querySelector(`.${Selectors.ThumbnailBarControls}`),
-      isLayoutColumn$: this.#isLayoutColumn$,
-      shrinkDirection$: this.#shrinkDirection$,
+    new KinSelector({
+      element: this.#root.querySelector(`#${Selectors.KinSelector}`),
+      isHide$: this.#shrinkDirection$,
     });
 
     new ThumbnailList({

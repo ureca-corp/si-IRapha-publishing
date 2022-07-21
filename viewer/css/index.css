@@ -8733,8 +8733,9 @@ button[disabled] {
 
 .irapha-toolbox {
   z-index: 5;
-  background-color: var(--color__teriary-container);
+  background-color: var(--color__bg-primary);
   height: 80px;
+  box-shadow: 0px 0px 1px #000;
 }
 .irapha-toolbox.--layout-column {
   min-width: 100px;
@@ -8761,6 +8762,7 @@ button[disabled] {
   width: -moz-fit-content;
   width: fit-content;
   aspect-ratio: unset;
+  border: 0;
 }
 .irapha-toolbox.--shrink-h {
   min-width: -webkit-fit-content;
@@ -8781,6 +8783,7 @@ button[disabled] {
   height: -moz-fit-content;
   height: fit-content;
   aspect-ratio: unset;
+  border: 0;
 }
 .irapha-toolbox__logo {
   min-width: 130px;
@@ -8817,13 +8820,18 @@ button[disabled] {
   }
 }
 .irapha-kin-selector {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 16px;
   font-weight: 700;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 8px;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 4px;
   border-color: var(--color__border);
   background-color: transparent;
   color: var(--color__font-secondary);
@@ -8838,75 +8846,6 @@ button[disabled] {
   color: var(--color__font-primary);
   border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
-}
-
-.irapha-thumbnail-box__nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  width: 100%;
-}
-
-.irapha-thumbnail-box__nav__icon {
-  border: 1px solid var(--color__border);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  aspect-ratio: 1;
-  padding: 4px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-.irapha-thumbnail-box__nav__icon:hover {
-  background-color: rgba(255, 255, 255, 0.0666666667);
-  border-color: var(--color__font-primary);
-  transform: scale(1.2);
-}
-.irapha-thumbnail-box__nav__icon:hover img {
-  opacity: unset;
-}
-.irapha-thumbnail-box__nav__icon img {
-  width: 8px;
-  aspect-ratio: 1;
-  transition: all 0.3s ease-in-out;
-  opacity: 0.5;
-}
-
-.irapha-thumbnail-box__pagination-info {
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 700;
-  color: var(--color__primary);
-  display: flex;
-  gap: 2px;
-}
-
-.irapha-thumbnail-box__controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-width: 130px;
-  height: 100%;
-  padding: 8px 12px;
-  border-right: 1px;
-  border-style: dashed;
-  border-color: var(--color__border);
-  box-shadow: 0px 0px 2px var(--color__border);
-}
-.irapha-thumbnail-box__controls.--layout-column {
-  min-width: auto;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  justify-content: flex-start;
-  padding: 10% 8% 5% 8%;
-  border: 0;
-  box-shadow: none;
 }
 
 .irapha-thumbnail-list {
@@ -8977,16 +8916,45 @@ button[disabled] {
 .irapha-thumbnail-box {
   z-index: 4;
   height: var(--bar-size);
+  box-shadow: 0px 0px 1px #000;
 }
 .irapha-thumbnail-box.--layout-column {
   height: 100%;
+}
+.irapha-thumbnail-box.--layout-column .irapha-thumbnail-box__options {
+  border: 0;
 }
 .irapha-thumbnail-box.--shrink-v {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
+.irapha-thumbnail-box.--shrink-v .irapha-thumbnail-box__options {
+  border: 0;
+}
 
+.irapha-thumbnail-box__options {
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 130px;
+  border-right: 1px dashed var(--color__border);
+}
+
+@media (max-width: 1440px) {
+  .irapha-thumbnail-box.--layout-column .irapha-thumbnail-box__options {
+    flex-wrap: wrap;
+    align-items: center;
+    min-width: unset;
+  }
+  .irapha-thumbnail-box:not(.--layout-column) .irapha-thumbnail-box__options {
+    min-width: 100px;
+    max-width: 100px;
+    flex-wrap: wrap;
+  }
+}
 .irapha-sticky-menu {
   display: grid;
   width: 100%;
