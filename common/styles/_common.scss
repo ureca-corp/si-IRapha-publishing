@@ -24,6 +24,17 @@ img {
   -o-user-drag: none;
 }
 
+button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
 *::-webkit-scrollbar {
   width: 4px;
   height: 4px;

@@ -8273,6 +8273,16 @@ img {
   -o-user-drag: none;
 }
 
+button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+button[disabled] {
+  pointer-events: none;
+}
+
 *::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -9351,6 +9361,9 @@ img {
 }
 
 .irapha-context-menu__item {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -9381,6 +9394,25 @@ img {
   box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
   z-index: -1;
+}
+
+.irapha-context-menu__segment {
+  display: none;
+  flex-direction: column;
+}
+.irapha-context-menu__segment.--active {
+  display: flex;
+}
+
+.irapha-context-menu__nav {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  border-top: 1px dashed var(--color__border);
 }
 
 .irapha-context-menu__item__submenu {
@@ -9830,39 +9862,4 @@ img {
   grid-area: content;
   width: 100%;
   height: 100%;
-}
-
-.irapha-context-menu2 {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  z-index: 9999;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__secondary-container);
-}
-
-.irapha-context-menu2__list {
-  display: flex;
-  flex-direction: column;
-  max-height: 400px;
-  overflow: overlay;
-}
-
-.irapha-context-menu2__list-item {
-  display: flex;
-  min-height: 32px;
-  width: 200px;
-  border: 1px solid red;
-}
-
-.irapha-context-menu2__submenu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  flex-direction: column;
-  width: 200px;
-  height: 200px;
-  background-color: red;
 }

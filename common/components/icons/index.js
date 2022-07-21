@@ -6,5 +6,8 @@ export { ArrowPlayIcon } from "./arrow-play.icon.js";
 export { ArrowSkipNextIcon } from "./arrow-skip-next.icon.js";
 export { ArrowSkipPrevIcon } from "./arrow-skip-prev.icon.js";
 
+export { NavigateNextIcon } from "./navigate-next.icon.js";
+export { NavigateBeforeIcon } from "./navigate-before.icon.js";
+
 export { MarkStartAIcon } from "./mark-start-A.icon.js";
 export { MarkEndBIcon } from "./mark-end-B.icon.js";

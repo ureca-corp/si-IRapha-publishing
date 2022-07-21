@@ -1,4 +1,5 @@
 @use "../../../../../styles/common";
+@use "../../../../../themes/typography" as typography;
 
 @use "../menu-item/menu-item" as custom-context-menu__item;
 
@@ -21,6 +22,32 @@ $box-shadow: var(--box-shadow__layer-menu);
 .irapha-context-menu {
   @include menu-container;
   z-index: -1;
+}
+
+// context-menu-segment
+// =================================================================
+$color-border: var(--color__border);
+
+.irapha-context-menu__segment {
+  display: none;
+  flex-direction: column;
+
+  &.--active {
+    display: flex;
+  }
+}
+
+// context-menu__nav
+.irapha-context-menu__nav {
+  @include typography.label-small;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 32px;
+
+  border-top: 1px dashed $color-border;
 }
 
 // submenu
