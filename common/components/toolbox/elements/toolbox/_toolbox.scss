@@ -1,5 +1,6 @@
 @use "../../../../styles/common";
 @use "../../../../themes/colors" as colors;
+@use "../../../../themes/break-point" as break-point;
 
 @use "../menu-manager/menu-manager" as menu-manager;
 @use "../../../logo/style" as logo;
@@ -8,22 +9,28 @@
 
 // Toolbox
 // =================================================================
-$bg: var(--color__teriary-container);
+$bg: var(--color__bg-primary);
 $border-color: var(--color__border);
 
-$toolbox: (
-  width: 130px,
-  height: 80px,
-  min-size: 28px,
-);
+$toolbox-width: 130px;
+$toolbox-width-small: 100px;
+$toolbox-height-small: 52px;
 
 @mixin l-toolbox {
   &.--layout-column {
-    width: map-get($toolbox, "width");
+    min-width: $toolbox-width-small;
+    width: $toolbox-width-small;
     height: 100%;
 
     .irapha-toolbox__logo {
+      min-width: unset;
+      width: unset;
+      border-right: 0;
       border-bottom: 1px dashed $border-color;
+
+      .irapha-logo__logo-image {
+        top: 4px;
+      }
     }
   }
 }
@@ -38,11 +45,14 @@ $toolbox: (
       min-width: unset;
       width: fit-content;
       aspect-ratio: unset;
+
+      border: 0;
     }
   }
 
   &.--shrink-h {
     & {
+      min-width: fit-content;
       width: fit-content;
     }
 
@@ -52,6 +62,8 @@ $toolbox: (
 
       height: fit-content;
       aspect-ratio: unset;
+
+      border: 0;
     }
   }
 }
@@ -60,16 +72,55 @@ $toolbox: (
   z-index: 5;
   background-color: $bg;
 
-  height: map-get($toolbox, "height");
+  height: 80px;
+
+  box-shadow: 0px 0px 1px #000;
 
   @include l-toolbox;
   @include s-toolbox;
 
   &__logo {
-    min-width: map-get($toolbox, "width");
-    width: map-get($toolbox, "width");
+    min-width: $toolbox-width;
+    width: $toolbox-width;
     aspect-ratio: 16/10;
 
     border-right: 1px dashed $border-color;
+  }
+}
+
+// media query - laptop
+// =================================================================
+@mixin name-hide {
+  .irapha-toolbox__menu__item {
+    &__content {
+      width: fit-content;
+
+      &__name {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: break-point.$laptop) {
+  .irapha-toolbox {
+    height: $toolbox-height-small;
+
+    &__logo {
+      min-width: $toolbox-width-small;
+      width: $toolbox-width-small;
+    }
+
+    &:not(.--layout-column) {
+      @include name-hide;
+    }
+  }
+}
+
+@media (max-height: break-point.$min-height) {
+  .irapha-toolbox {
+    &.--layout-column {
+      @include name-hide;
+    }
   }
 }

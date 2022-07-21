@@ -1,4 +1,5 @@
 @use "../../../../styles/common";
+@use "../../../../themes/break-point" as break-point;
 
 @use "../../../icons/style" as icons;
 @use "../maximize-button/maximize-button";
@@ -77,6 +78,8 @@
 
     width: 82%;
     height: 100%;
+
+    overflow: hidden;
   }
 
   &__logo-image {
@@ -107,4 +110,14 @@
 
 .irapha-network-status {
   @include logo-icon-wrapper;
+}
+
+// media query - laptop
+// =================================================================
+@media (max-width: break-point.$laptop) {
+  .irapha-logo {
+    &__logo-image {
+      top: 4px;
+    }
+  }
 }

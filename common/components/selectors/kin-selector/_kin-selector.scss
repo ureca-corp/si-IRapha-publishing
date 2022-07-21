@@ -12,11 +12,14 @@ $color-border-default: var(--color__border);
 }
 
 .irapha-kin-selector {
-  @include typography.label-medium;
+  @include typography.label-small;
 
   width: fit-content;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
 
-  border-radius: 8px;
+  border-radius: 4px;
   border-color: $color-border-default;
 
   background-color: transparent;

@@ -51,7 +51,7 @@ $folding-bar: (
     & {
       flex-direction: column;
       height: 100%;
-      min-width: map-get($folding-bar, "width");
+      // min-width: map-get($folding-bar, "width");
 
       .irapha-drag-point {
         @include drag-point--layout-column;

@@ -1,16 +1,9 @@
-$break-points: (
-  laptop: 1440px,
-);
+@use "../themes/break-point" as break-point;
 
 :root {
   --bar-size: 130px;
 
-  @media (max-width: map-get($break-points, "laptop")) {
+  @media (max-width: break-point.$laptop) {
     --bar-size: 100px;
   }
-}
-
-// break points
-:root {
-  --break-laptop: map-get($break-points, "laptop");
 }

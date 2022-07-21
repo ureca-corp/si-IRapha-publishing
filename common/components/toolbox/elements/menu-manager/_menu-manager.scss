@@ -2,6 +2,7 @@
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/typography" as typography;
 @use "../../../../themes/shape" as shapes;
+@use "../../../../themes/break-point" as break-point;
 
 @use "../menu/menu" as menu;
 
@@ -11,7 +12,7 @@
   &.--layout-column {
     flex: 1;
     flex-direction: column;
-    padding: 24px 0;
+    padding: 10px 0;
   }
 }
 
@@ -28,7 +29,7 @@
   width: 100%;
   height: 100%;
 
-  padding: 0 24px;
+  padding: 0 8px;
 
   overflow: overlay;
 
@@ -40,20 +41,24 @@
 // =========================================================================
 $color-border: var(--color__border);
 
+@mixin align-self-center {
+  align-self: center;
+  margin: 0 8px;
+}
+
 @mixin l-divider {
   &.--layout-column {
-    width: 65%;
+    width: 75%;
     min-height: 4px;
     padding: 0;
-    margin: 16px 0;
+    margin: 8px 0;
     align-self: unset;
   }
 }
 
 @mixin s-divider {
   &.--align--self-center {
-    align-self: center;
-    margin: 16px;
+    @include align-self-center;
   }
 }
 
@@ -65,10 +70,14 @@ $color-border: var(--color__border);
   height: auto;
 
   padding: 16px 0;
-  margin: 14px 12px 0 12px;
+  margin: 14px 8px 0 8px;
 
   background-color: $color-border;
 
   @include l-divider;
   @include s-divider;
+
+  @media (max-width: break-point.$laptop) {
+    @include align-self-center;
+  }
 }
