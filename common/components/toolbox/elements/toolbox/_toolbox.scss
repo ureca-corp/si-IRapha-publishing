@@ -1,5 +1,6 @@
 @use "../../../../styles/common";
 @use "../../../../themes/colors" as colors;
+@use "../../../../themes/break-point" as break-point;
 
 @use "../menu-manager/menu-manager" as menu-manager;
 @use "../../../logo/style" as logo;
@@ -11,15 +12,11 @@
 $bg: var(--color__teriary-container);
 $border-color: var(--color__border);
 
-$toolbox: (
-  width: 130px,
-  height: 80px,
-  min-size: 28px,
-);
+$toolbox-width: 130px;
 
 @mixin l-toolbox {
   &.--layout-column {
-    width: map-get($toolbox, "width");
+    width: $toolbox-width;
     height: 100%;
 
     .irapha-toolbox__logo {
@@ -60,16 +57,32 @@ $toolbox: (
   z-index: 5;
   background-color: $bg;
 
-  height: map-get($toolbox, "height");
+  height: 80px;
 
   @include l-toolbox;
   @include s-toolbox;
 
   &__logo {
-    min-width: map-get($toolbox, "width");
-    width: map-get($toolbox, "width");
+    min-width: $toolbox-width;
+    width: $toolbox-width;
     aspect-ratio: 16/10;
 
     border-right: 1px dashed $border-color;
+  }
+}
+
+// media query - laptop
+// =================================================================
+$toolbox-width-small: 100px;
+$toolbox-height-small: 52px;
+
+@media (max-width: break-point.$laptop) {
+  .irapha-toolbox {
+    height: $toolbox-height-small;
+
+    &__logo {
+      min-width: $toolbox-width-small;
+      width: $toolbox-width-small;
+    }
   }
 }

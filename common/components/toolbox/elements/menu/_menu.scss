@@ -2,31 +2,19 @@
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/typography" as typography;
 @use "../../../../themes/shape" as shapes;
+@use "../../../../themes/break-point" as break-point;
 
 @use "../../../sub-menu/style" as sub-menu;
 
 // Menu
 // =========================================================================
-@mixin l-menu {
-  &.--layout-column-two {
-    grid-auto-flow: unset;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+@mixin name-hide {
+  .irapha-toolbox__menu__item {
+    &__content {
+      width: fit-content;
 
-@mixin s-menu {
-  &.--name-hide {
-    & {
-      gap: 8px;
-    }
-
-    .irapha-toolbox__menu__item {
-      &__content {
-        width: fit-content;
-
-        &__name {
-          display: none;
-        }
+      &__name {
+        display: none;
       }
     }
   }
@@ -45,6 +33,19 @@
   text-overflow: ellipsis;
 }
 
+@mixin l-menu {
+  &.--layout-column-two {
+    grid-auto-flow: unset;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@mixin s-menu {
+  &.--name-hide {
+    @include name-hide;
+  }
+}
+
 .irapha-toolbox__menu {
   display: grid;
   grid-auto-flow: column;
@@ -55,6 +56,10 @@
   @include l-menu;
   @include s-menu;
 
+  @media (max-width: break-point.$laptop) {
+    @include name-hide;
+  }
+
   .irapha-toolbox__menu__item {
     &__content {
       position: relative;
@@ -64,7 +69,7 @@
       align-items: center;
       gap: 4px;
 
-      width: 50px;
+      width: 40px;
 
       border: none;
 

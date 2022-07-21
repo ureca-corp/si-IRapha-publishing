@@ -8247,15 +8247,15 @@ table {
   }
 }
 
-:root {
-  --break-laptop: map-get($break-points, "laptop");
-}
-
 html,
 body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+body {
+  min-height: 1024px;
 }
 
 * {
@@ -8405,9 +8405,6 @@ button[disabled] {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-toolbox__menu.--name-hide {
-  gap: 8px;
-}
 .irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -8416,13 +8413,23 @@ button[disabled] {
 .irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content__name {
   display: none;
 }
+@media (max-width: 1440px) {
+  .irapha-toolbox__menu .irapha-toolbox__menu__item__content {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .irapha-toolbox__menu .irapha-toolbox__menu__item__content__name {
+    display: none;
+  }
+}
 .irapha-toolbox__menu .irapha-toolbox__menu__item__content {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  width: 50px;
+  width: 40px;
   border: none;
 }
 .irapha-toolbox__menu .irapha-toolbox__menu__item__content__name {
@@ -8474,7 +8481,7 @@ button[disabled] {
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 24px;
+  padding: 0 8px;
   overflow: overlay;
 }
 .irapha-toolbox__menus.--layout-column {
@@ -8492,7 +8499,7 @@ button[disabled] {
   min-width: 3px;
   height: auto;
   padding: 16px 0;
-  margin: 14px 12px 0 12px;
+  margin: 14px 8px 0 8px;
   background-color: var(--color__border);
 }
 .irapha-toolbox__divider.--layout-column {
@@ -8504,7 +8511,13 @@ button[disabled] {
 }
 .irapha-toolbox__divider.--align--self-center {
   align-self: center;
-  margin: 16px;
+  margin: 0 8px;
+}
+@media (max-width: 1440px) {
+  .irapha-toolbox__divider {
+    align-self: center;
+    margin: 0 8px;
+  }
 }
 
 .irapha-maximize__icon {
@@ -8633,6 +8646,7 @@ button[disabled] {
   transform: translate(-50%, -50%);
   width: 82%;
   height: 100%;
+  overflow: hidden;
 }
 .irapha-logo__logo-image {
   position: absolute;
@@ -8661,6 +8675,11 @@ button[disabled] {
   aspect-ratio: 1;
 }
 
+@media (max-width: 1440px) {
+  .irapha-logo__logo-image {
+    top: 4px;
+  }
+}
 .irapha-grid-selector__item {
   border-radius: 4px;
   background-color: var(--color__secondary);
@@ -8774,6 +8793,15 @@ button[disabled] {
   border-right: 1px dashed var(--color__border);
 }
 
+@media (max-width: 1440px) {
+  .irapha-toolbox {
+    height: 52px;
+  }
+  .irapha-toolbox__logo {
+    min-width: 100px;
+    width: 100px;
+  }
+}
 .irapha-kin-selector {
   font-size: 12px;
   line-height: 16px;

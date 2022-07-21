@@ -9,6 +9,11 @@ body {
   overflow: hidden;
 }
 
+body {
+  // min-width: 1439px;
+  min-height: 1024px;
+}
+
 * {
   box-sizing: border-box;
 }
