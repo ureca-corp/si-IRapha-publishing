@@ -15,7 +15,7 @@ export class DisplayLayoutConfigMenu {
 
     this.#ukDrop = UIkit.drop(element.querySelector(Selectors.dropDown));
     this.#gridSelector = new GridSelector({
-      element: element.querySelector(`.${Selectors.GridSelector}`),
+      $element: element.querySelector(`.${Selectors.GridSelector}`),
     });
   }
 }

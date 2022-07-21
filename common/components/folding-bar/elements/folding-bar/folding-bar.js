@@ -8,8 +8,22 @@ import {
 
 const rx = rxjs;
 
+/**
+ * Constructor types
+ *
+ * @type element: Element
+ *
+ * @type isLayoutColumn$: BehaviorSubject<boolean>
+ * 폴딩바 레이아웃 상태가 세로형태인지
+ *
+ * @type isPreview$: BehaviorSubject<boolean>
+ * 현재 상태가 마우스 오버로 인해 프리뷰하고 있는지
+ *
+ * @type shrinkDirection$: BehaviorSubject<ShrinkType>
+ * null이 아닌 경우 폴딩 상태를 의미, 접힌 방향 값을 가짐
+ */
 export class FoldingBar {
-  #root;
+  #$root;
 
   #isLayoutColumn$;
   #isExpanded$;
@@ -17,13 +31,13 @@ export class FoldingBar {
   #shrinkDirection$;
 
   constructor({
-    element,
+    $element,
     isLayoutColumn$,
     isExpanded$,
     isPreview$,
     shrinkDirection$,
   }) {
-    this.#root = element;
+    this.#$root = $element;
 
     this.#initStates({
       isLayoutColumn$,
@@ -56,13 +70,12 @@ export class FoldingBar {
 
   #initMouseEvent() {
     // 마우스 호버 시 임시로 보이기
-    rx.fromEvent(this.#root, "mouseenter").subscribe(() => {
-      console.log("ok");
+    rx.fromEvent(this.#$root, "mouseenter").subscribe(() => {
       if (this.#isPreview$.getValue()) return this.#isExpanded$.next(false);
     });
 
     // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent(this.#root, "mouseleave").subscribe(() => {
+    rx.fromEvent(this.#$root, "mouseleave").subscribe(() => {
       const old = this.#isExpanded$.getValue();
 
       if (this.#isPreview$.getValue()) return this.#setExpand(!old);
@@ -70,7 +83,7 @@ export class FoldingBar {
   }
 
   #initToggleIcon() {
-    const toggleExpandIcon = this.#root.querySelector(
+    const toggleExpandIcon = this.#$root.querySelector(
       `.${Selectors.ToggleIcon}`
     );
 
@@ -79,7 +92,7 @@ export class FoldingBar {
       this.#isExpanded$.subscribe((isExpanded) => isActive$.next(!isExpanded));
 
       new PinIcon({
-        element: this.#root.querySelector(`.${Selectors.ToggleIcon}`),
+        element: this.#$root.querySelector(`.${Selectors.ToggleIcon}`),
         isActive$: isActive$,
         onClick: () => this.#toggle(),
       });
@@ -113,25 +126,25 @@ export class FoldingBar {
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(LayoutClassType.Column);
+    this.#$root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.Column);
+    this.#$root.classList.remove(LayoutClassType.Column);
   }
 
   // shrink control
   #shrinkVertical() {
-    this.#root.classList.add(ShrinkClassType.Column);
+    this.#$root.classList.add(ShrinkClassType.Column);
   }
 
   #shrinkHorizontal() {
-    this.#root.classList.add(ShrinkClassType.Row);
+    this.#$root.classList.add(ShrinkClassType.Row);
   }
 
   #resetShrinkState() {
-    this.#root.classList.remove(ShrinkClassType.Column);
-    this.#root.classList.remove(ShrinkClassType.Row);
+    this.#$root.classList.remove(ShrinkClassType.Column);
+    this.#$root.classList.remove(ShrinkClassType.Row);
   }
 
   #setShrinkDirection(shrinkDirection) {

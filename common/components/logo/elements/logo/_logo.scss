@@ -13,94 +13,86 @@
   aspect-ratio: 1;
 }
 
+// 로고 상태
 @mixin s-logo {
-  // 상하 축소 상태
   &.--shrink-v {
-    &.irapha-logo {
+    width: fit-content;
+    height: 30px;
+
+    .irapha-logo__container {
       width: fit-content;
-      height: 30px;
+      height: fit-content;
+      align-self: flex-start;
+    }
 
-      .irapha-logo {
-        &__container {
-          width: fit-content;
-          height: fit-content;
-          align-self: flex-start;
-        }
-
-        &__logo-image {
-          display: none;
-        }
-      }
+    .irapha-logo__logo-image {
+      display: none;
     }
   }
 
-  // 좌우 축소 상태
   &.--shrink-h {
-    &.irapha-logo {
-      .irapha-logo {
-        &__container {
-          display: flex;
-          justify-content: flex-start;
-          align-items: flex-start;
-        }
+    .irapha-logo__container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
 
-        &__menus {
-          flex-direction: column;
-        }
+    .irapha-logo__menus {
+      flex-direction: column;
+    }
 
-        &__logo-image {
-          display: none;
-        }
-      }
+    .irapha-logo__logo-image {
+      display: none;
     }
   }
 }
 
 // logo
+// =================================================================
 .irapha-logo {
   position: relative;
   z-index: 1;
 
   @include s-logo;
+}
 
-  &__container {
-    position: relative;
+.irapha-logo__container {
+  position: relative;
 
-    height: 100%;
-    aspect-ratio: 16/10;
-  }
+  height: 100%;
+  aspect-ratio: 16/10;
+}
 
-  &__wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.irapha-logo__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    width: 82%;
-    height: 100%;
+  width: 82%;
+  height: 100%;
 
-    overflow: hidden;
-  }
+  overflow: hidden;
+}
 
-  &__logo-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.irapha-logo__logo-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 
-    border: none;
+  border: none;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: all 0.1 ease-in-out;
-  }
+  transition: all 0.1 ease-in-out;
+}
 
-  &__menus {
-    position: relative;
-    z-index: 2;
+.irapha-logo__menus {
+  position: relative;
+  z-index: 2;
 
-    display: flex;
-    padding: 4px;
-  }
+  display: flex;
+  padding: 4px;
 }
 
 // components
@@ -112,12 +104,10 @@
   @include logo-icon-wrapper;
 }
 
-// media query - laptop
+// Media query - laptop
 // =================================================================
 @media (max-width: break-point.$laptop) {
-  .irapha-logo {
-    &__logo-image {
-      top: 4px;
-    }
+  .irapha-logo__logo-image {
+    top: 4px;
   }
 }

@@ -1,12 +1,19 @@
 import { MaximizeButton } from "../maximize-button/maximize-button.js";
-
 import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
 
+/**
+ * Constructor types
+ *
+ * @type element: Element
+ *
+ * @type shrinkDirection$: BehaviorSubject<ShrinkType>
+ * null인 경우 폴딩X, 폴딩 방향 값을 보유
+ */
 export class Logo {
-  #root;
+  #$root;
 
-  constructor({ element, shrinkDirection$ }) {
-    this.#root = element;
+  constructor({ $element, shrinkDirection$ }) {
+    this.#$root = $element;
 
     this.#init();
 
@@ -18,38 +25,37 @@ export class Logo {
   // private
   #init() {
     this.#initLogoImage();
-    // this.#initViewerInfoPopup();
     this.#initMaximizeBtn();
   }
 
   #initLogoImage() {
-    const logoImage = this.#root.querySelector(`.${Selectors.LogoImage}`);
+    const logoImage = this.#$root.querySelector(`.${Selectors.LogoImage}`);
     logoImage.classList.add(Selectors.UkButton);
   }
 
   #initMaximizeBtn() {
     new MaximizeButton({
-      element: this.#root.querySelector(`.${Selectors.MaximizeButton}`),
+      $element: this.#$root.querySelector(`.${Selectors.MaximizeButton}`),
     });
   }
 
   // actions
   #shrinkVertical() {
     this.#unshrinkHorizontal();
-    this.#root.classList.add(ShrinkClassType.Column);
+    this.#$root.classList.add(ShrinkClassType.Column);
   }
 
   #unshrinkVertical() {
-    this.#root.classList.remove(ShrinkClassType.Column);
+    this.#$root.classList.remove(ShrinkClassType.Column);
   }
 
   #shrinkHorizontal() {
     this.#unshrinkVertical();
-    this.#root.classList.add(ShrinkClassType.Row);
+    this.#$root.classList.add(ShrinkClassType.Row);
   }
 
   #unshrinkHorizontal() {
-    this.#root.classList.remove(ShrinkClassType.Row);
+    this.#$root.classList.remove(ShrinkClassType.Row);
   }
 
   #removeAllShrink() {

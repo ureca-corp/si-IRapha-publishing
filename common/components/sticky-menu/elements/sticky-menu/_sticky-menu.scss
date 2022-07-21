@@ -2,7 +2,6 @@
 
 // sticky menu
 // =================================================================
-$activated-z-index: 5;
 $bg-sticky-menu: var(--color__bg-primary);
 
 @mixin l-column-first {
@@ -21,31 +20,14 @@ $bg-sticky-menu: var(--color__bg-primary);
     "left bottom bottom right";
 }
 
+// 스티키 메뉴 레이아웃 상태
 @mixin l-sticky-menu {
   &.--layout-column-first {
     @include l-column-first;
-
-    .irapha-sticky-menu__dropzone {
-      &.--left {
-        z-index: $activated-z-index;
-      }
-      &.--right {
-        z-index: $activated-z-index;
-      }
-    }
   }
 
   &.--layout-row-first {
     @include l-row-first;
-
-    .irapha-sticky-menu__dropzone {
-      &.--top {
-        z-index: $activated-z-index;
-      }
-      &.--bottom {
-        z-index: $activated-z-index;
-      }
-    }
   }
 }
 
@@ -82,7 +64,7 @@ $dropzone-min-size: 48px;
   &.--left {
     grid-area: left;
     justify-self: flex-start;
-    z-index: 3;
+    z-index: 5;
 
     display: flex;
     width: fit-content;
@@ -92,7 +74,7 @@ $dropzone-min-size: 48px;
   &.--right {
     grid-area: right;
     justify-self: flex-end;
-    z-index: 3;
+    z-index: 5;
 
     display: flex;
     flex-direction: row-reverse;

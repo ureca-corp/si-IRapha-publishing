@@ -4,11 +4,11 @@ import { LayoutAttributeType } from "../../../../dicom-window/common/index.js";
 const MatrixSize = 5;
 
 export class GridSelector {
-  #root;
+  #$root;
   #gridItems;
 
-  constructor({ element }) {
-    this.#root = element;
+  constructor({ $element }) {
+    this.#$root = $element;
 
     this.#initGridItems();
   }
@@ -22,7 +22,7 @@ export class GridSelector {
       .flat()
       .map((it) => GridSelectorItem.createGridSelectorItemElement(it))
       .map((it) => this.#appendChildToGridContainer(it))
-      .map((it) => new GridSelectorItem(it));
+      .map(($element) => new GridSelectorItem({ $element }));
     this.#gridItems = gridItems;
 
     this.#initGridItemsEventListener();
@@ -31,10 +31,10 @@ export class GridSelector {
   #initGridItemsEventListener() {
     this.#gridItems.forEach((it) => {
       it.setOnMouseEnterListener({
-        callback: () => this.#activeGridItems(it.getRowCol()),
+        callback: () => this.#activeGridMatrix(it.getRowCol()),
       });
 
-      it.setOnMouseLeaveListener({ callback: () => this.#resetAllGridItems() });
+      it.setOnMouseLeaveListener({ callback: () => this.#resetGridMatrix() });
 
       it.setOnClickListener({
         callback: () => this.#handleGridItemClick(it.getRowCol()),
@@ -42,18 +42,18 @@ export class GridSelector {
     });
   }
 
-  #activeGridItems({ row, col }) {
+  #activeGridMatrix({ row, col }) {
     this.#gridItems
-      .filter((it) => it.isTargetToBeActivated({ row, col }))
+      .filter((it) => it.isTargetTobeActivated({ row, col }))
       .forEach((it) => it.setActive(true));
   }
 
   #appendChildToGridContainer(element) {
-    this.#root.appendChild(element);
+    this.#$root.appendChild(element);
     return element;
   }
 
-  #resetAllGridItems() {
+  #resetGridMatrix() {
     this.#gridItems.forEach((it) => it.setActive(false));
   }
 
@@ -63,6 +63,7 @@ export class GridSelector {
   }
 
   #mutateDicomWindowLayout({ row, col }) {
+    // dicom window layout mode 전역 상태 변경하기
     window.store.dicomWindowLayout$.next({
       layout: LayoutAttributeType.Custom,
       grid: {

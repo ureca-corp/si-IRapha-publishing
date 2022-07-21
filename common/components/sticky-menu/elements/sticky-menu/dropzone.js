@@ -12,8 +12,8 @@ const VeticalDropzoneClasses = [
 export class Dropzone {
   #root;
 
-  constructor(element) {
-    this.#root = element;
+  constructor({ $element }) {
+    this.#root = $element;
   }
 
   // private
@@ -51,6 +51,7 @@ export class Dropzone {
     return element.getAttribute(Attributes.Priority);
   }
 
+  // 우선 순위 높은 순으로 정렬
   #getSortedChildByHighPriority() {
     return [...this.#root.children].sort(
       (a, b) =>
@@ -69,6 +70,10 @@ export class Dropzone {
     this.#removeAllChild();
 
     sortedTargets.forEach((it) => dropzone.appendChild(it));
+  }
+
+  #hasElement(id) {
+    return !!this.#root.querySelector(id);
   }
 
   // public
@@ -96,10 +101,6 @@ export class Dropzone {
     );
   }
 
-  hasElement(id) {
-    return !!this.#root.querySelector(id);
-  }
-
   // 백그라운드 초기화
   invalidateBackground() {
     this.#root.style.background = "";
@@ -111,7 +112,7 @@ export class Dropzone {
 
     return dropSuccessCallback({
       isVertical: this.isTypeVertical(),
-      hasElement: (id) => this.hasElement(id),
+      hasElement: (id) => this.#hasElement(id),
     });
   }
 }

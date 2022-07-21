@@ -1,5 +1,16 @@
 const rx = rxjs;
 
+/**
+ * Constructor types
+ *
+ * @type element: Element
+ *
+ * @type isActive$: BehaviorSubject<boolean>
+ *
+ * @type disabled$: BehaviorSubject<boolean>
+ *
+ * @type onClick$: () => void
+ */
 export class BaseIcon {
   #root;
 

@@ -25,7 +25,7 @@ export class ThumbnailBox {
     this.#initStates();
 
     new FoldingBar({
-      element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
+      $element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
       isPreview$: this.#isPreview$,
@@ -33,7 +33,7 @@ export class ThumbnailBox {
     });
 
     new KinSelector({
-      element: this.#root.querySelector(`#${Selectors.KinSelector}`),
+      $element: this.#root.querySelector(`#${Selectors.KinSelector}`),
       isHide$: this.#shrinkDirection$,
     });
 

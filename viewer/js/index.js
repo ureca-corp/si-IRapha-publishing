@@ -154,5 +154,5 @@ new CustomContextMenu({
 
 import { GridSelector } from "../../common/components/selectors/index.js";
 new GridSelector({
-  element: document.querySelector("#test1234"),
+  $element: document.querySelector("#test1234"),
 });
