@@ -1,4 +1,4 @@
-import { TabItem } from "../elements/tabs-item/tabs-item.js";
+import { TabItem } from "../tabs-item/tabs-item.js";
 
 const rx = rxjs;
 

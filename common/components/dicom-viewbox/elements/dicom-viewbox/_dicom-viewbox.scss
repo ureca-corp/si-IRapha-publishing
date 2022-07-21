@@ -12,9 +12,11 @@ $color-yellow: var(--color__yellow);
 $color-orange: var(--color__orange);
 
 $color-border: var(--color__border);
+$color-border-weak: #eeeeee22;
 
 $min-width: 360px;
 
+// viewbox 상태 처리
 @mixin s-viewbox {
   &.--active {
     color: $color-font;
@@ -35,7 +37,7 @@ $min-width: 360px;
   min-width: $min-width;
   height: 100%;
 
-  border: 2px solid #eeeeee22;
+  border: 2px solid $color-border-weak;
 
   transition: all 0.3s ease-in-out;
 
@@ -44,6 +46,8 @@ $min-width: 360px;
   }
 }
 
+// dicom viewbox screen
+// =================================================================
 .irapha-dicom-viewbox__screen {
   position: relative;
   display: grid;
@@ -68,6 +72,8 @@ $min-width: 360px;
 
 // dicom viewbox desc
 // =================================================================
+
+// description position 대응
 @mixin position-desc {
   &.--position {
     &-top-left {
@@ -125,7 +131,7 @@ $min-width: 360px;
   }
 }
 
-.irapha-dicom-viewbox .irapha-dicom-viewbox__desc {
+.irapha-dicom-viewbox__desc {
   @include position-desc;
   @include typography.label-small;
 

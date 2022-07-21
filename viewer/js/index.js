@@ -141,7 +141,7 @@ const viewBoxes = Array.from(
 );
 
 new DicomWindow({
-  element: document.querySelector("#irapha-dicom-window"),
+  $element: document.querySelector("#irapha-dicom-window"),
   items: viewBoxes.map((it) => it.getDomElement()),
   layout$: window.store.dicomWindowLayout$,
 });

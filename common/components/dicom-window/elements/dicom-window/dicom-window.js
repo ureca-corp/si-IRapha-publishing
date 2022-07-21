@@ -1,33 +1,26 @@
 import { Selectors, LayoutAttributeType } from "../../common/index.js";
 
-const rx = rxjs;
-
+/**
+ * Constructor types
+ *
+ * @type element: Element
+ *
+ * @type items: Element[]
+ * 뷰박스 아이템 개수
+ *
+ * @type layout$: BehaviorSubject<LayoutAttributeType>
+ */
 export class DicomWindow {
   #root;
   #items;
 
-  constructor({ element, items, layout$ }) {
-    this.#root = element;
-
+  constructor({ $element, items, layout$ }) {
+    this.#root = $element;
     this.#items = items.map((element) => createDicomWindowItem(element));
 
     layout$.subscribe(({ layout, grid }) =>
       this.#handleLayoutChange({ layout, grid })
     );
-
-    this.#preventOriginContextMenu();
-  }
-
-  // context menu open control
-  #preventOriginContextMenu() {
-    rx.fromEvent(this.#root, "contextmenu", true).subscribe((e) => {
-      e.preventDefault();
-      this.#openCustomContextMenu(e);
-    });
-  }
-
-  #openCustomContextMenu(e) {
-    window.store.viewboxContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
   }
 
   // handlers
@@ -134,7 +127,7 @@ export class DicomWindow {
     }
   }
 
-  // set Layout
+  // Layout Control
   #clearLayoutItems() {
     this.#root.innerHTML = "";
     this.#root.setAttribute(LayoutAttributeType.Key, "");
@@ -172,6 +165,7 @@ export class DicomWindow {
   }
 }
 
+// =================================================================
 const createDicomWindowGrid = ({ items, chunkSize, layoutType }) => {
   return _.chunk(items, chunkSize).map((elements) => {
     const ul = document.createElement("div");
