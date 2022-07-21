@@ -9,6 +9,7 @@ const store = {};
  */
 store.thumbnailContextMenuOpen$ = new rx.BehaviorSubject();
 store.tabsContextMenuOpen$ = new rx.BehaviorSubject();
+store.viewboxContextMenuOpen$ = new rx.BehaviorSubject();
 
 /**
  * Layer Popup

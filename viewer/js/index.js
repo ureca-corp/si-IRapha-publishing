@@ -145,3 +145,14 @@ new DicomWindow({
   items: viewBoxes.map((it) => it.getDomElement()),
   layout$: window.store.dicomWindowLayout$,
 });
+
+new CustomContextMenu({
+  element: document.querySelector("#irapha-viewbox-context-menu"),
+  open$: window.store.viewboxContextMenuOpen$,
+  autoClose: false,
+});
+
+import { GridSelector } from "../../common/components/selectors/index.js";
+new GridSelector({
+  element: document.querySelector("#test1234"),
+});

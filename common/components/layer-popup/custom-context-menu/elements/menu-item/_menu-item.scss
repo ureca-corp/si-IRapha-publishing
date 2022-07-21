@@ -1,4 +1,5 @@
 @use "../../../../../styles/common";
+@use "../../../../../themes/typography" as typography;
 
 $item-hover-bg: #eeeeee11;
 $color-font1: var(--color__font-secondary);
@@ -17,12 +18,14 @@ $color-font2: var(--color__font-primary);
 }
 
 .irapha-context-menu__item {
+  @include typography.body-medium;
   @include s-menu-item;
 
   position: relative;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   width: 200px;
   height: 32px;

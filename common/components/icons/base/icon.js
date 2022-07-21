@@ -3,12 +3,13 @@ const rx = rxjs;
 export class BaseIcon {
   #root;
 
-  constructor({ element, isActive$, onClick }) {
+  constructor({ element, isActive$, disabled$, onClick }) {
     this.#root = element;
 
     this.#init({ isClickable: !!onClick });
 
     isActive$?.subscribe((isActive) => this.#handleActiveChange(isActive));
+    disabled$?.subscribe((disabled) => this.#handleDisabledChange(disabled));
 
     if (onClick) rx.fromEvent(element, "click").subscribe((e) => onClick(e));
   }
@@ -20,17 +21,22 @@ export class BaseIcon {
     if (isClickable) this.#root.style.cursor = "pointer";
   }
 
-  #active() {
-    this.#root.classList.add("--active");
-  }
-
-  #inActive() {
-    this.#root.classList.remove("--active");
-  }
-
   #handleActiveChange(isActive) {
-    if (isActive) return this.#active();
+    const root = this.#root;
 
-    return this.#inActive();
+    if (isActive) return root.classList.add("--active");
+    return root.classList.remove("--active");
+  }
+
+  #handleDisabledChange(disabled) {
+    const root = this.#root;
+
+    if (disabled) return root.setAttribute("disabled", true);
+    return root.removeAttribute("disabled", true);
+  }
+
+  // public
+  getDomElement() {
+    return this.#root;
   }
 }

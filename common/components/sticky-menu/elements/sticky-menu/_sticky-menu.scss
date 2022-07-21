@@ -22,7 +22,7 @@ $bg-sticky-menu: var(--color__bg-primary);
 }
 
 @mixin l-sticky-menu {
-  &.--layout--column-first {
+  &.--layout-column-first {
     @include l-column-first;
 
     .irapha-sticky-menu__dropzone {
@@ -35,7 +35,7 @@ $bg-sticky-menu: var(--color__bg-primary);
     }
   }
 
-  &.--layout--row-first {
+  &.--layout-row-first {
     @include l-row-first;
 
     .irapha-sticky-menu__dropzone {
