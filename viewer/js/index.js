@@ -31,7 +31,7 @@ new StickyMenu({
 
 import { CustomContextMenu } from "../../common/components/layer-popup/index.js";
 new CustomContextMenu({
-  element: document.querySelector("#irapha-thumbnail-context-menu"),
+  $element: document.querySelector("#irapha-thumbnail-context-menu"),
   open$: window.store.thumbnailContextMenuOpen$,
 });
 
@@ -40,7 +40,7 @@ import { Tabs } from "../../common/components/tabs/index.js";
 new Tabs({ $element: document.querySelector(".irapha-tabs") });
 
 new CustomContextMenu({
-  element: document.querySelector("#irapha-tabs-context-menu"),
+  $element: document.querySelector("#irapha-tabs-context-menu"),
   open$: window.store.tabsContextMenuOpen$,
 });
 
@@ -57,12 +57,12 @@ import {
 } from "../../common/components/layer-popup/index.js";
 
 new RelatedStudyLayerPopup({
-  element: document.querySelector("#irapha-related-study-popup"),
+  $element: document.querySelector("#irapha-related-study-popup"),
   open$: window.store.relatedStudyOpen$,
 });
 
 new ExportDicomLayerPopup({
-  element: document.querySelector("#irapha-export-dicom-popup"),
+  $element: document.querySelector("#irapha-export-dicom-popup"),
   open$: window.store.exportDicomOpen$,
 });
 
@@ -151,7 +151,7 @@ new DicomWindow({
 });
 
 new CustomContextMenu({
-  element: document.querySelector("#irapha-viewbox-context-menu"),
+  $element: document.querySelector("#irapha-viewbox-context-menu"),
   open$: window.store.viewboxContextMenuOpen$,
   autoClose: false,
 });

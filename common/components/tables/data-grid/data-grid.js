@@ -1,10 +1,10 @@
 export class DataGrid {
-  #root;
+  #$root;
 
-  constructor({ element }) {
-    this.#root = element;
+  constructor({ $element }) {
+    this.#$root = $element;
 
-    this.#root.classList.add("uk-table");
-    this.#root.classList.add("uk-table-divider");
+    this.#$root.classList.add("uk-table");
+    this.#$root.classList.add("uk-table-divider");
   }
 }

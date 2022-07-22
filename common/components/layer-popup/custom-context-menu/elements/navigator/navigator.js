@@ -7,14 +7,26 @@ import { Selectors } from "../../common/index.js";
 const rx = rxjs;
 const PageMinNumber = 1;
 
+/**
+ * Constructor types
+ *
+ * @type $element: Element
+ *
+ * @type currentPage$: BehaviorSubject<number>
+ *
+ * @type onChangeCurrentPage: (currentPage: number) => void
+ *
+ * @type options: {
+ *   chunkSize: number,
+ *   itemsCount: number
+ * }
+ */
 export class Navigator {
   #$navigator;
   #$navPageCount;
 
   #navBeforeDisabled$ = new rx.BehaviorSubject(false);
-
   #navNextDisabled$ = new rx.BehaviorSubject(false);
-
   #currentPage$;
 
   #pagesCount;

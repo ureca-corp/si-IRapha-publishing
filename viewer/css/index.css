@@ -9144,36 +9144,43 @@ button[disabled] {
   border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
 }
-.irapha-related-study__inner .irapha____top {
+
+.irapha-related-study__header {
   position: relative;
   padding: 16px;
   border-bottom: 1px dashed var(--color__border);
   cursor: move;
 }
-.irapha-related-study__inner .irapha____top .irapha____close {
+
+.irapha-related-study__close {
   position: absolute;
   top: 16px;
   right: 16px;
 }
-.irapha-related-study__inner .irapha____user-info {
+
+.irapha-related-study__user-info {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.irapha-related-study__inner .irapha____user-info .irapha____row {
+
+.irapha-related-study__user-info__row {
   display: flex;
   gap: 24px;
 }
-.irapha-related-study__inner .irapha____user-info .irapha____row__item {
+
+.irapha-related-study__user-info__item {
   width: 20%;
   white-space: nowrap;
 }
-.irapha-related-study__inner .irapha____user-info .irapha____title {
+
+.irapha-related-study__user-info__title {
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
 }
-.irapha-related-study__inner .irapha____user-info .irapha____data {
+
+.irapha-related-study__user-info__data {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
@@ -9198,7 +9205,7 @@ button[disabled] {
   background-color: #ccc;
 }
 
-.irapha-export-dicom__inner {
+.irapha-export-dicom__form {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
@@ -9206,7 +9213,7 @@ button[disabled] {
   background-color: #333;
 }
 
-.irapha-export-dicom__inner .irapha____title {
+.irapha-export-dicom__title {
   position: relative;
   display: flex;
   align-items: center;
@@ -9214,20 +9221,22 @@ button[disabled] {
   border-bottom: 1px dashed var(--color__border);
   cursor: move;
 }
-.irapha-export-dicom__inner .irapha____title .irapha____title__text {
+
+.irapha-export-dicom__title__text {
   font-size: 16px;
   line-height: 22px;
   font-weight: 700;
   padding: 8px;
 }
-.irapha-export-dicom__inner .irapha____title .irapha____close {
+
+.irapha-export-dicom__close {
   position: absolute;
   top: 50%;
   right: 16px;
   transform: translateY(-50%);
 }
 
-.irapha-export-dicom__inner .irapha____content {
+.irapha-export-dicom__content {
   display: grid;
   grid-template-areas: "first first second" "first first second" "first first third";
   row-gap: 16px;
@@ -9235,7 +9244,7 @@ button[disabled] {
        column-gap: 36px;
   padding: 24px;
 }
-.irapha-export-dicom__inner .irapha____content label {
+.irapha-export-dicom__content label {
   font-size: 12px;
   line-height: 16px;
   font-weight: 700;
@@ -9247,7 +9256,7 @@ button[disabled] {
   width: fit-content;
   cursor: pointer;
 }
-.irapha-export-dicom__inner .irapha____content input[type=text] {
+.irapha-export-dicom__content input[type=text] {
   width: 50%;
   padding: 0px 4px;
   margin-left: 4px;
@@ -9257,51 +9266,57 @@ button[disabled] {
   color: var(--color__font-primary);
   transition: all 0.3s ease-in-out;
 }
-.irapha-export-dicom__inner .irapha____content input[type=text]:focus {
+.irapha-export-dicom__content input[type=text]:focus {
   background-color: rgba(238, 238, 238, 0.2);
   border-color: var(--color__teriary);
 }
-.irapha-export-dicom__inner .irapha____content input[type=checkbox][disabled] {
+.irapha-export-dicom__content input[type=checkbox][disabled] {
   opacity: 0.3;
 }
-.irapha-export-dicom__inner .irapha____content .irapha____content-first {
+
+.irapha-export-dicom__content-first {
   grid-area: first;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.irapha-export-dicom__inner .irapha____content .irapha____content-second {
+
+.irapha-export-dicom__content-second {
   grid-area: second;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.irapha-export-dicom__inner .irapha____content .irapha____content-third {
+
+.irapha-export-dicom__content-third {
   grid-area: third;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.irapha-export-dicom__inner .irapha____content .irapha____content-title {
+
+.irapha-export-dicom__content-title {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
   color: var(--color__font-secondary);
 }
-.irapha-export-dicom__inner .irapha____content .irapha____content-list {
+
+.irapha-export-dicom__content-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.irapha-export-dicom__inner .irapha____footer {
+.irapha-export-dicom__footer {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   padding: 12px;
   border-top: 1px dashed var(--color__border);
 }
-.irapha-export-dicom__inner .irapha____footer .irapha____cancel {
+
+.irapha-export-dicom__cancel {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
@@ -9313,13 +9328,14 @@ button[disabled] {
   color: var(--color__border);
   background-color: transparent;
 }
-.irapha-export-dicom__inner .irapha____footer .irapha____cancel:hover {
+.irapha-export-dicom__cancel:hover {
   background-color: var(--color__border);
 }
-.irapha-export-dicom__inner .irapha____footer .irapha____cancel:hover {
+.irapha-export-dicom__cancel:hover {
   color: var(--color__font-secondary);
 }
-.irapha-export-dicom__inner .irapha____footer .irapha____export {
+
+.irapha-export-dicom__export {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
@@ -9331,7 +9347,7 @@ button[disabled] {
   cursor: pointer;
   background-color: var(--color__teriary);
 }
-.irapha-export-dicom__inner .irapha____footer .irapha____export:hover {
+.irapha-export-dicom__export:hover {
   opacity: 0.7;
 }
 

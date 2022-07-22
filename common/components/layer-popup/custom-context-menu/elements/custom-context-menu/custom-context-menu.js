@@ -2,7 +2,7 @@ import { LayerPopup } from "../../../base/js/layer-popup.js";
 import { ContextMenuItem } from "../menu-item/menu-item.js";
 import { Navigator } from "../navigator/navigator.js";
 
-import { Selectors } from "../../common/index.js";
+import { Selectors, ActiveClassType } from "../../common/index.js";
 
 const rx = rxjs;
 
@@ -11,22 +11,24 @@ export class CustomContextMenu extends LayerPopup {
   #$segments;
 
   #currentPage$ = new rx.BehaviorSubject(1);
+  #open$;
 
   // 서브메뉴 오픈 방향 왼쪽 상태
   #submenuDirectionLeft$ = new rx.BehaviorSubject();
 
-  constructor({ element, open$, autoClose = true }) {
-    super({ element, open$ });
-    this.#$root = element;
+  constructor({ $element, open$, autoClose = true }) {
+    super({ $element, open$ });
+    this.#$root = $element;
     this.#$segments = this.#$root.querySelectorAll(`.${Selectors.Segment}`);
+    this.#open$ = open$;
 
-    this.#init({ open$, autoClose });
+    this.#init({ autoClose });
   }
 
   // private
-  #init({ open$, autoClose }) {
+  #init({ autoClose }) {
     // 메뉴 오픈 상태 핸들링
-    open$.subscribe((point) => {
+    this.#open$.subscribe((point) => {
       this.handleOpen(point);
       this.#setSubmenuDirectionLeft_IfContextMenuLocatedRight();
     });
@@ -36,30 +38,37 @@ export class CustomContextMenu extends LayerPopup {
       rx.fromEvent(this.#$root, "mouseleave").subscribe(() => open$.next(null));
 
     // 메뉴 외 영역 클릭 핸들링
-    rx.fromEvent(document, "click").subscribe((e) => {
-      const parentTree = e.path;
-      const me = parentTree.find((element) => element.id === this.#$root.id);
+    rx.fromEvent(document, "click").subscribe((e) =>
+      this.#handleOutsideClick(e)
+    );
 
-      if (!me) return open$.next(null);
-    });
-
-    this.#currentPage$.subscribe((currentPage) => {
-      this.#$segments.forEach(($ele, index) => {
-        if (index + 1 !== currentPage) return $ele.classList.remove("--active");
-
-        $ele.classList.add("--active");
-      });
-    });
+    this.#currentPage$.subscribe((currentPage) =>
+      this.#handleCurrentPageChange(currentPage)
+    );
 
     this.#initMenuItems();
+    this.#initNavigator();
+  }
 
+  #initMenuItems() {
+    [...this.#$root.querySelectorAll(`.${Selectors.ContextMenuItem}`)].map(
+      ($element) =>
+        new ContextMenuItem({
+          $element,
+          directionLeft$: this.#submenuDirectionLeft$,
+        })
+    );
+  }
+
+  #initNavigator() {
+    const ChunkSize = 10;
     const $navigator = this.#$root.querySelector(`.${Selectors.Navigator}`);
 
     if (!!$navigator) {
       new Navigator({
         $element: $navigator,
         options: {
-          chunkSize: 10,
+          chunkSize: ChunkSize,
           itemsCount: this.#getMenuItemsCount(),
         },
         currentPage$: this.#currentPage$,
@@ -69,14 +78,21 @@ export class CustomContextMenu extends LayerPopup {
     }
   }
 
-  #initMenuItems() {
-    [...this.#$root.querySelectorAll(`.${Selectors.ContextMenuItem}`)].map(
-      (element) =>
-        new ContextMenuItem({
-          element,
-          directionLeft$: this.#submenuDirectionLeft$,
-        })
-    );
+  // handlers
+  #handleOutsideClick(e) {
+    const parentTree = e.path;
+    const me = parentTree.find((element) => element.id === this.#$root.id);
+
+    if (!me) return this.#open$.next(null);
+  }
+
+  #handleCurrentPageChange(currentPage) {
+    this.#$segments.forEach((it, index) => {
+      if (index + 1 !== currentPage)
+        return it.classList.remove(ActiveClassType.Active);
+
+      it.classList.add(ActiveClassType.Active);
+    });
   }
 
   #getMenuItemsCount() {
