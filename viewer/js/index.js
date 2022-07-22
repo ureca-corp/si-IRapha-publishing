@@ -33,7 +33,7 @@ new CustomContextMenu({
 
 // =================================================================
 import { Tabs } from "../../common/components/tabs/index.js";
-new Tabs({ element: document.querySelector(".irapha-tabs") });
+new Tabs({ $element: document.querySelector(".irapha-tabs") });
 
 new CustomContextMenu({
   element: document.querySelector("#irapha-tabs-context-menu"),
