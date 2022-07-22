@@ -1,22 +1,38 @@
 import { ThumbnailItem } from "./thumbnail-item.js";
-
 import { Selectors, LayoutClassType } from "../../../common/index.js";
 
+/**
+ * Constructor types
+ *
+ * @type $element: Element
+ *
+ * @type isLayoutColumn$: BehaviorSubject<boolean>
+ * 레이아웃 세로형 여부
+ *
+ * @type isHide$: BehaviorSubject<boolean>
+ * 폴딩 여부
+ */
 export class ThumbnailList {
-  #root;
+  #$root;
 
-  constructor({ element, isLayoutColumn$, isHide$ }) {
-    this.#root = element;
+  constructor({ $element, isLayoutColumn$, isHide$ }) {
+    this.#$root = $element;
 
-    [...element.querySelectorAll(`.${Selectors.ThumbnailListItem}`)].map(
-      (it) => new ThumbnailItem({ element: it, isLayoutColumn$ })
-    );
+    this.#initThumbnailItems({ isLayoutColumn$ });
 
     isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
     );
 
     isHide$.subscribe((isHide) => this.#handleVisibilityChange(isHide));
+  }
+
+  // private
+  #initThumbnailItems({ isLayoutColumn$ }) {
+    const $items = [
+      ...this.#$root.querySelectorAll(`.${Selectors.ThumbnailListItem}`),
+    ];
+    $items.map(($element) => new ThumbnailItem({ $element, isLayoutColumn$ }));
   }
 
   // handler
@@ -34,19 +50,19 @@ export class ThumbnailList {
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(LayoutClassType.Column);
+    this.#$root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.Column);
+    this.#$root.classList.remove(LayoutClassType.Column);
   }
 
   // visibility control
   #hide() {
-    this.#root.style.display = "none";
+    this.#$root.style.display = "none";
   }
 
   #visible() {
-    this.#root.style.display = "flex";
+    this.#$root.style.display = "flex";
   }
 }

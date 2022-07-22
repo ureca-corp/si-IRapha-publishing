@@ -8,7 +8,9 @@ import { Toolbox } from "../../common/components/toolbox/index.js";
 const toolbox = new Toolbox();
 
 import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
-const thumbnailBox = new ThumbnailBox();
+const thumbnailBox = new ThumbnailBox({
+  $element: document.querySelector("#irapha-thumbnail-box"),
+});
 
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 new StickyMenu({
