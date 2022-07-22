@@ -1,10 +1,10 @@
 export class LayerPopup {
-  #root;
+  #$root;
   #style;
 
-  constructor({ element, open$ }) {
-    this.#root = element;
-    this.#style = this.#root.style;
+  constructor({ $element, open$ }) {
+    this.#$root = $element;
+    this.#style = this.#$root.style;
 
     this.#init({ open$ });
   }
@@ -46,7 +46,7 @@ export class LayerPopup {
     const margin = "8px";
     const style = this.#style;
 
-    const rect = this.#root.getBoundingClientRect();
+    const rect = this.#$root.getBoundingClientRect();
 
     const overflowLeft = rect.left < 0;
     const overflowRight = rect.right > window.innerWidth;

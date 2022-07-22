@@ -1,6 +1,6 @@
 import { FoldingBar } from "../../../folding-bar/index.js";
 import { Logo } from "../../../logo/index.js";
-import { ToolboxMenusManager } from "../menu-manager/menu-manager.js";
+import { ToolboxMenusContainer } from "../menus-container/menus-container.js";
 
 import {
   Selectors,
@@ -12,98 +12,76 @@ import {
 const rx = rxjs;
 
 export class Toolbox {
-  #root;
+  #$root;
 
-  #isLayoutColumn$;
-  #isExpanded$;
-  #isPreview$;
-  #shrinkDirection$;
-  #isHideIconName$;
+  #isLayoutColumn$ = new rx.BehaviorSubject();
+  #isExpanded$ = new rx.BehaviorSubject();
+  #isPreview$ = new rx.BehaviorSubject(false);
+  #shrinkDirection$ = new rx.BehaviorSubject();
+  #isHideIconName$ = new rx.BehaviorSubject();
 
-  constructor() {
-    this.#root = document.querySelector(`#${Selectors.Toolbox}`);
+  constructor({ $element }) {
+    this.#$root = $element;
 
     this.#initStates();
+    this.#initChilds();
+  }
+
+  // private
+  #initChilds() {
+    const $root = this.#$root;
+
+    new Logo({
+      $element: $root.querySelector(`.${Selectors.Logo}`),
+      shrinkDirection$: this.#shrinkDirection$,
+    });
+
+    new ToolboxMenusContainer({
+      $element: $root.querySelector(`.${Selectors.Menus}`),
+      isLayoutColumn$: this.#isLayoutColumn$,
+      isHideIconName$: this.#isHideIconName$,
+      shrinkDirection$: this.#shrinkDirection$,
+    });
 
     new FoldingBar({
-      $element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
+      $element: $root.querySelector(`.${Selectors.FoldingBar}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
       isPreview$: this.#isPreview$,
       shrinkDirection$: this.#shrinkDirection$,
     });
-
-    this.#initLogo();
-    this.#initMenusManager();
-
-    //this.setHideIconName(true);
-  }
-
-  // private
-  #initLogo() {
-    new Logo({
-      $element: this.#root.querySelector(`.${Selectors.Logo}`),
-      shrinkDirection$: this.#shrinkDirection$,
-    });
-  }
-
-  #initMenusManager() {
-    new ToolboxMenusManager({
-      element: this.#root.querySelector(`.${Selectors.Menus}`),
-      isLayoutColumn$: this.#isLayoutColumn$,
-      isHideIconName$: this.#isHideIconName$,
-      shrinkDirection$: this.#shrinkDirection$,
-    });
   }
 
   #initStates() {
-    const isLayoutColumn$ = new rx.BehaviorSubject();
-    this.#isLayoutColumn$ = isLayoutColumn$;
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
+    this.#isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
     );
 
-    const shrinkDirection$ = new rx.BehaviorSubject();
-    this.#shrinkDirection$ = shrinkDirection$;
-    shrinkDirection$.subscribe((shrinkDirection) =>
+    this.#shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
-
-    const isPreview$ = new rx.BehaviorSubject(false);
-    this.#isPreview$ = isPreview$;
-
-    const isExpanded$ = new rx.BehaviorSubject();
-    this.#isExpanded$ = isExpanded$;
-
-    const isHideIconName$ = new rx.BehaviorSubject();
-    this.#isHideIconName$ = isHideIconName$;
   }
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) return this.#layoutColumn();
+    const rootClassList = this.#$root.classList;
 
-    return this.#resetLayout();
+    if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
+
+    return rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
+    const rootClassList = this.#$root.classList;
+
     if (shrinkDirection === ShrinkType.Vertical)
-      return this.#root.classList.add(ShrinkClassType.Column);
+      return rootClassList.add(ShrinkClassType.Column);
 
     if (shrinkDirection === ShrinkType.Horizontal)
-      return this.#root.classList.add(ShrinkClassType.Row);
+      return rootClassList.add(ShrinkClassType.Row);
 
-    this.#root.classList.remove(ShrinkClassType.Column);
-    this.#root.classList.remove(ShrinkClassType.Row);
-  }
-
-  // layout control
-  #layoutColumn() {
-    this.#root.classList.add(LayoutClassType.Column);
-  }
-
-  #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.Column);
+    rootClassList.remove(ShrinkClassType.Column);
+    rootClassList.remove(ShrinkClassType.Row);
   }
 
   // public

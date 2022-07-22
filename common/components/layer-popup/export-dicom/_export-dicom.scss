@@ -11,7 +11,7 @@ $color-bg: #333;
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
 
-.irapha-export-dicom__inner {
+.irapha-export-dicom__form {
   display: flex;
   flex-direction: column;
 
@@ -23,7 +23,7 @@ $color-font2: var(--color__font-primary);
 
 // Title
 // =================================================================
-.irapha-export-dicom__inner .irapha____title {
+.irapha-export-dicom__title {
   position: relative;
 
   display: flex;
@@ -33,19 +33,19 @@ $color-font2: var(--color__font-primary);
   border-bottom: 1px dashed $color-border;
 
   cursor: move;
+}
 
-  .irapha____title__text {
-    @include typography.title-medium;
-    padding: 8px;
-  }
+.irapha-export-dicom__title__text {
+  @include typography.title-medium;
+  padding: 8px;
+}
 
-  .irapha____close {
-    position: absolute;
-    top: 50%;
-    right: 16px;
+.irapha-export-dicom__close {
+  position: absolute;
+  top: 50%;
+  right: 16px;
 
-    transform: translateY(-50%);
-  }
+  transform: translateY(-50%);
 }
 
 // Content
@@ -95,7 +95,7 @@ $color-font2: var(--color__font-primary);
   }
 }
 
-.irapha-export-dicom__inner .irapha____content {
+.irapha-export-dicom__content {
   display: grid;
   grid-template-areas:
     "first first second"
@@ -108,37 +108,37 @@ $color-font2: var(--color__font-primary);
 
   @include content-label;
   @include content-input;
+}
 
-  .irapha____content-first {
-    grid-area: first;
-    @include content-section;
-  }
+.irapha-export-dicom__content-first {
+  grid-area: first;
+  @include content-section;
+}
 
-  .irapha____content-second {
-    grid-area: second;
-    @include content-section;
-  }
+.irapha-export-dicom__content-second {
+  grid-area: second;
+  @include content-section;
+}
 
-  .irapha____content-third {
-    grid-area: third;
-    @include content-section;
-  }
+.irapha-export-dicom__content-third {
+  grid-area: third;
+  @include content-section;
+}
 
-  .irapha____content-title {
-    @include typography.title-small;
-    color: $color-font1;
-  }
+.irapha-export-dicom__content-title {
+  @include typography.title-small;
+  color: $color-font1;
+}
 
-  .irapha____content-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+.irapha-export-dicom__content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 // Footer
 // =================================================================
-.irapha-export-dicom__inner .irapha____footer {
+.irapha-export-dicom__footer {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -146,17 +146,17 @@ $color-font2: var(--color__font-primary);
   padding: 12px;
 
   border-top: 1px dashed $color-border;
+}
 
-  .irapha____cancel {
-    @include buttons.outlined-button;
+.irapha-export-dicom__cancel {
+  @include buttons.outlined-button;
 
-    &:hover {
-      color: $color-font1;
-    }
+  &:hover {
+    color: $color-font1;
   }
+}
 
-  .irapha____export {
-    @include buttons.contained-button;
-    background-color: var(--color__teriary);
-  }
+.irapha-export-dicom__export {
+  @include buttons.contained-button;
+  background-color: var(--color__teriary);
 }

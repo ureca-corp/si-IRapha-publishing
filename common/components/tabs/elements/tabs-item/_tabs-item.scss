@@ -40,7 +40,7 @@ $hover-bg-color: #eeeeee11;
 }
 
 @mixin item-dummy-pseudo {
-  .irapha-tabs__list__item__dummy {
+  .irapha-tabs__item__dummy {
     &::before {
       content: "";
       background-color: $active-bg-color;
@@ -75,7 +75,7 @@ $hover-bg-color: #eeeeee11;
   }
 }
 
-.irapha-tabs__list__item {
+.irapha-tabs__item {
   @include s-list-item;
 
   position: relative;
@@ -97,21 +97,21 @@ $hover-bg-color: #eeeeee11;
       background-color: $hover-bg-color;
     }
 
-    .irapha-tabs__list__item__menus {
+    .irapha-tabs__item__menus {
       opacity: 1;
     }
   }
 
-  .irapha____title-container {
+  .irapha-tabs__item__title-container {
     display: flex;
     justify-content: space-between;
   }
 
-  .irapha____title {
+  .irapha-tabs__item__title {
     @include typography.label-medium;
   }
 
-  .irapha____description {
+  .irapha-tabs__item__desc {
     @include typography.caption;
 
     white-space: nowrap;
@@ -122,6 +122,7 @@ $hover-bg-color: #eeeeee11;
   }
 }
 
+// List items menu
 // =========================================================================
 @mixin menus-item {
   width: 12px;
@@ -136,7 +137,7 @@ $hover-bg-color: #eeeeee11;
   }
 }
 
-.irapha-tabs__list__item__menus {
+.irapha-tabs__item__menus {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -144,15 +145,15 @@ $hover-bg-color: #eeeeee11;
   opacity: 0;
   transition: all 0.3s ease-in-out;
 
-  .irapha____cid {
+  .irapha-tabs__cid {
     @include menus-item;
   }
 
-  .irapha____related-study {
+  .irapha-tabs__related-study {
     @include menus-item;
   }
 
-  .irapha____close {
+  .irapha-tabs__close {
     @include menus-item;
   }
 }

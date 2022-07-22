@@ -63,7 +63,7 @@
               </div>
             </div>
 
-            <div class="irapha-toolbox__menus">
+            <div class="irapha-toolbox__menus-container">
               <!-- 메뉴 첫 번째 섹션 -->
               <ul class="irapha-toolbox__menu">
                 <!-- WorkList -->
@@ -2115,67 +2115,67 @@
           <!-- Tabs -->
           <div class="irapha-tabs">
             <ul class="irapha-tabs__list">
-              <li class="irapha-tabs__list__item">
-                <div class="irapha____title-container">
-                  <p class="irapha____title">Patient Name</p>
+              <li class="irapha-tabs__item">
+                <div class="irapha-tabs__item__title-container">
+                  <p class="irapha-tabs__item__title">Patient Name</p>
 
-                  <ul class="irapha-tabs__list__item__menus">
-                    <li class="irapha____cid"></li>
-                    <li class="irapha____related-study"></li>
-                    <li class="irapha____close"></li>
+                  <ul class="irapha-tabs__item__menus">
+                    <li class="irapha-tabs__cid"></li>
+                    <li class="irapha-tabs__related-study"></li>
+                    <li class="irapha-tabs__close"></li>
                   </ul>
                 </div>
 
-                <p class="irapha____description">Patient ID / Age / Sex</p>
-                <p class="irapha____description">
+                <p class="irapha-tabs__item__desc">Patient ID / Age / Sex</p>
+                <p class="irapha-tabs__item__desc">
                   Study Date / Modality / Study description
                 </p>
               </li>
-              <li class="irapha-tabs__list__item">
-                <div class="irapha____title-container">
-                  <p class="irapha____title">Patient Name</p>
+              <li class="irapha-tabs__item">
+                <div class="irapha-tabs__item__title-container">
+                  <p class="irapha-tabs__item__title">Patient Name</p>
 
-                  <ul class="irapha-tabs__list__item__menus">
-                    <li class="irapha____cid"></li>
-                    <li class="irapha____related-study"></li>
-                    <li class="irapha____close"></li>
+                  <ul class="irapha-tabs__item__menus">
+                    <li class="irapha-tabs__cid"></li>
+                    <li class="irapha-tabs__related-study"></li>
+                    <li class="irapha-tabs__close"></li>
                   </ul>
                 </div>
 
-                <p class="irapha____description">Patient ID / Age / Sex</p>
-                <p class="irapha____description">
+                <p class="irapha-tabs__item__desc">Patient ID / Age / Sex</p>
+                <p class="irapha-tabs__item__desc">
                   Study Date / Modality / Study description
                 </p>
               </li>
-              <li class="irapha-tabs__list__item">
-                <div class="irapha____title-container">
-                  <p class="irapha____title">Patient Name</p>
+              <li class="irapha-tabs__item">
+                <div class="irapha-tabs__item__title-container">
+                  <p class="irapha-tabs__item__title">Patient Name</p>
 
-                  <ul class="irapha-tabs__list__item__menus">
-                    <li class="irapha____cid"></li>
-                    <li class="irapha____related-study"></li>
-                    <li class="irapha____close"></li>
+                  <ul class="irapha-tabs__item__menus">
+                    <li class="irapha-tabs__cid"></li>
+                    <li class="irapha-tabs__related-study"></li>
+                    <li class="irapha-tabs__close"></li>
                   </ul>
                 </div>
 
-                <p class="irapha____description">Patient ID / Age / Sex</p>
-                <p class="irapha____description">
+                <p class="irapha-tabs__item__desc">Patient ID / Age / Sex</p>
+                <p class="irapha-tabs__item__desc">
                   Study Date / Modality / Study description
                 </p>
               </li>
-              <li class="irapha-tabs__list__item">
-                <div class="irapha____title-container">
-                  <p class="irapha____title">Patient Name</p>
+              <li class="irapha-tabs__item">
+                <div class="irapha-tabs__item__title-container">
+                  <p class="irapha-tabs__item__title">Patient Name</p>
 
-                  <ul class="irapha-tabs__list__item__menus">
-                    <li class="irapha____cid"></li>
-                    <li class="irapha____related-study"></li>
-                    <li class="irapha____close"></li>
+                  <ul class="irapha-tabs__item__menus">
+                    <li class="irapha-tabs__cid"></li>
+                    <li class="irapha-tabs__related-study"></li>
+                    <li class="irapha-tabs__close"></li>
                   </ul>
                 </div>
 
-                <p class="irapha____description">Patient ID / Age / Sex</p>
-                <p class="irapha____description">
+                <p class="irapha-tabs__item__desc">Patient ID / Age / Sex</p>
+                <p class="irapha-tabs__item__desc">
                   Study Date / Modality / Study description
                 </p>
               </li>
@@ -3239,44 +3239,52 @@
       <!-- Related Study Layer Popup -->
       <div id="irapha-related-study-popup" class="irapha-layer-popup">
         <div class="irapha-related-study__inner">
-          <div class="irapha____top">
-            <div class="irapha____user-info">
-              <div class="irapha____row">
-                <div class="irapha____row__item">
-                  <div class="irapha____title">Name</div>
-                  <div class="irapha____data">User Name 1</div>
-                </div>
+          <div class="irapha-related-study__header">
+            <div class="irapha-related-study__user-info">
+              <div class="irapha-related-study__user-info__row">
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">Name</dt>
+                  <dd class="irapha-related-study__user-info__data">
+                    User Name 1
+                  </dd>
+                </dl>
 
-                <div class="irapha____row__item">
-                  <div class="irapha____title">ID</div>
-                  <div class="irapha____data">120</div>
-                </div>
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">ID</dt>
+                  <dd class="irapha-related-study__user-info__data">120</dd>
+                </dl>
 
-                <div class="irapha____row__item">
-                  <div class="irapha____title">Gender</div>
-                  <div class="irapha____data">M</div>
-                </div>
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">Gender</dt>
+                  <dd class="irapha-related-study__user-info__data">M</dd>
+                </dl>
               </div>
 
-              <div class="irapha____row">
-                <div class="irapha____row__item">
-                  <div class="irapha____title">Date</div>
-                  <div class="irapha____data">2022-02-21 13:00:00</div>
-                </div>
+              <div class="irapha-related-study__user-info__row">
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">Date</dt>
+                  <dd class="irapha-related-study__user-info__data">
+                    2022-02-21 13:00:00
+                  </dd>
+                </dl>
 
-                <div class="irapha____row__item">
-                  <div class="irapha____title">Modality</div>
-                  <div class="irapha____data">CT</div>
-                </div>
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">
+                    Modality
+                  </dt>
+                  <dd class="irapha-related-study__user-info__data">CT</dd>
+                </dl>
 
-                <div class="irapha____row__item">
-                  <div class="irapha____title">Desc</div>
-                  <div class="irapha____data">Abdomen-Pelvic(e) MDCT</div>
-                </div>
+                <dl class="irapha-related-study__user-info__item">
+                  <dt class="irapha-related-study__user-info__title">Desc</dt>
+                  <dd class="irapha-related-study__user-info__data">
+                    Abdomen-Pelvic(e) MDCT
+                  </dd>
+                </dl>
               </div>
             </div>
 
-            <button class="irapha____close" uk-close></button>
+            <button class="irapha-related-study__close"></button>
           </div>
 
           <div class="irapha-related-study__data-grid">
@@ -3361,17 +3369,17 @@
 
       <!-- Export DICOM AS Layer Popup -->
       <div id="irapha-export-dicom-popup" class="irapha-layer-popup">
-        <form class="irapha-export-dicom__inner" onsubmit="return false">
-          <div aria-label="header" class="irapha____title">
-            <div class="irapha____title__text">Export DICOM AS</div>
-            <button class="irapha____close" uk-close></button>
+        <form class="irapha-export-dicom__form">
+          <div class="irapha-export-dicom__title">
+            <div class="irapha-export-dicom__title__text">Export DICOM AS</div>
+            <button class="irapha-export-dicom__close"></button>
           </div>
 
-          <div aria-label="content" class="irapha____content">
+          <div class="irapha-export-dicom__content">
             <!-- File Format -->
-            <div class="irapha____content-first">
-              <div class="irapha____content-title">File Format</div>
-              <div class="irapha____content-list">
+            <div class="irapha-export-dicom__content-first">
+              <div class="irapha-export-dicom__content-title">File Format</div>
+              <div class="irapha-export-dicom__content-list">
                 <label>
                   <input
                     class="uk-radio"
@@ -3425,9 +3433,11 @@
             </div>
 
             <!-- Filename Format -->
-            <div class="irapha____content-second">
-              <div class="irapha____content-title">Filename Format</div>
-              <div class="irapha____content-list">
+            <div class="irapha-export-dicom__content-second">
+              <div class="irapha-export-dicom__content-title">
+                Filename Format
+              </div>
+              <div class="irapha-export-dicom__content-list">
                 <label>
                   <input
                     class="uk-checkbox"
@@ -3507,9 +3517,9 @@
             </div>
 
             <!-- ETC -->
-            <div class="irapha____content-third">
-              <div class="irapha____content-title">ETC</div>
-              <div class="irapha____content-list">
+            <div class="irapha-export-dicom__content-third">
+              <div class="irapha-export-dicom__content-title">ETC</div>
+              <div class="irapha-export-dicom__content-list">
                 <label>
                   <input class="uk-checkbox" type="checkbox" name="ETC" />
                   Export Image Annotations
@@ -3518,9 +3528,9 @@
             </div>
           </div>
 
-          <div aria-label="footer" class="irapha____footer">
-            <button class="irapha____cancel">Cancel</button>
-            <button class="irapha____export" type="submit">Export</button>
+          <div class="irapha-export-dicom__footer">
+            <button class="irapha-export-dicom__cancel">Cancel</button>
+            <button class="irapha-export-dicom__export">Export</button>
           </div>
         </form>
       </div>

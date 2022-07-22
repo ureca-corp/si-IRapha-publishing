@@ -12,20 +12,26 @@ import {
 const rx = rxjs;
 
 export class ThumbnailBox {
-  #root;
+  #$root;
 
-  #isLayoutColumn$;
-  #isExpanded$;
-  #isPreview$;
-  #shrinkDirection$;
+  #isLayoutColumn$ = new rx.BehaviorSubject();
+  #isExpanded$ = new rx.BehaviorSubject();
+  #isPreview$ = new rx.BehaviorSubject(false);
+  #shrinkDirection$ = new rx.BehaviorSubject();
 
-  constructor() {
-    this.#root = document.querySelector(`#${Selectors.ThumbnailBar}`);
+  constructor({ $element }) {
+    this.#$root = $element;
 
     this.#initStates();
+    this.#initChilds();
 
+    this.#isLayoutColumn$.next(true);
+  }
+
+  // private
+  #initChilds() {
     new FoldingBar({
-      $element: this.#root.querySelector(`.${Selectors.FoldingBar}`),
+      $element: this.#$root.querySelector(`.${Selectors.FoldingBar}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isExpanded$: this.#isExpanded$,
       isPreview$: this.#isPreview$,
@@ -33,38 +39,25 @@ export class ThumbnailBox {
     });
 
     new KinSelector({
-      $element: this.#root.querySelector(`#${Selectors.KinSelector}`),
+      $element: this.#$root.querySelector(`#${Selectors.KinSelector}`),
       isHide$: this.#shrinkDirection$,
     });
 
     new ThumbnailList({
-      element: this.#root.querySelector(`.${Selectors.ThumbnailList}`),
+      $element: this.#$root.querySelector(`.${Selectors.ThumbnailList}`),
       isLayoutColumn$: this.#isLayoutColumn$,
       isHide$: this.#isExpanded$,
     });
-
-    this.#isLayoutColumn$.next(true);
   }
 
-  // private
   #initStates() {
-    const isLayoutColumn$ = new rx.BehaviorSubject();
-    this.#isLayoutColumn$ = isLayoutColumn$;
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
+    this.#isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
     );
 
-    const shrinkDirection$ = new rx.BehaviorSubject();
-    this.#shrinkDirection$ = shrinkDirection$;
-    shrinkDirection$.subscribe((shrinkDirection) =>
+    this.#shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
     );
-
-    const isPreview$ = new rx.BehaviorSubject(false);
-    this.#isPreview$ = isPreview$;
-
-    const isExpanded$ = new rx.BehaviorSubject();
-    this.#isExpanded$ = isExpanded$;
   }
 
   // handler
@@ -76,18 +69,18 @@ export class ThumbnailBox {
 
   #handleShrinkDirectionChange(shrinkDirection) {
     if (shrinkDirection === ShrinkType.Vertical)
-      return this.#root.classList.add(ShrinkClassType.Column);
+      return this.#$root.classList.add(ShrinkClassType.Column);
 
-    this.#root.classList.remove(ShrinkClassType.Column);
+    this.#$root.classList.remove(ShrinkClassType.Column);
   }
 
   // layout control
   #layoutColumn() {
-    this.#root.classList.add(LayoutClassType.Column);
+    this.#$root.classList.add(LayoutClassType.Column);
   }
 
   #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.Column);
+    this.#$root.classList.remove(LayoutClassType.Column);
   }
 
   // public

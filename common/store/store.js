@@ -20,7 +20,12 @@ store.exportDicomOpen$ = new rx.BehaviorSubject();
 
 /**
  * DicomWindow Layout Mode
- * type of ({ layout: LayoutAttributeType, grid: { row: number, col: number} || null } || null)
+ * type of (
+ *   {
+ *     layout: LayoutAttributeType,
+ *     grid: { row: number, col: number} || null
+ *   } || null
+ * )
  */
 store.dicomWindowLayout$ = new rx.BehaviorSubject({ layout: "1:1" });
 

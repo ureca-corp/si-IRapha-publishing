@@ -11,50 +11,52 @@ $color-bg: #333;
 
   border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
-
-  .irapha____top {
-    position: relative;
-    padding: 16px;
-
-    border-bottom: 1px dashed $color-border;
-
-    cursor: move;
-
-    .irapha____close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-    }
-  }
-
-  .irapha____user-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    .irapha____row {
-      display: flex;
-      gap: 24px;
-    }
-
-    .irapha____row__item {
-      width: 20%;
-
-      white-space: nowrap;
-    }
-
-    .irapha____title {
-      @include typography.body-small;
-    }
-
-    .irapha____data {
-      @include typography.title-small;
-
-      color: #ccc;
-    }
-  }
 }
 
+.irapha-related-study__header {
+  position: relative;
+  padding: 16px;
+
+  border-bottom: 1px dashed $color-border;
+
+  cursor: move;
+}
+
+.irapha-related-study__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.irapha-related-study__user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.irapha-related-study__user-info__row {
+  display: flex;
+  gap: 24px;
+}
+
+.irapha-related-study__user-info__item {
+  width: 20%;
+
+  white-space: nowrap;
+}
+
+.irapha-related-study__user-info__title {
+  @include typography.body-small;
+}
+
+.irapha-related-study__user-info__data {
+  @include typography.title-small;
+
+  color: #ccc;
+}
+
+// data grid
+// =========================================================================
 .irapha-related-study__data-grid {
   max-height: 286px;
   overflow: auto;
@@ -76,5 +78,3 @@ $color-bg: #333;
     }
   }
 }
-
-// =========================================================================
