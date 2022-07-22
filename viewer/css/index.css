@@ -9856,3 +9856,26 @@ button[disabled] {
   width: 100%;
   height: 100%;
 }
+
+.irapha-virtual-layout {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.irapha-virtual-layout[layout=vertical] {
+  grid-template-columns: repeat(2, 1fr);
+}
+.irapha-virtual-layout[layout=horizontal] {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.irapha-virtual-layout__item {
+  overflow: hidden;
+}
+.irapha-virtual-layout__item:nth-child(1) {
+  background-color: red;
+}
+.irapha-virtual-layout__item:nth-child(2) {
+  background-color: blue;
+}

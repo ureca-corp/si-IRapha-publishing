@@ -160,3 +160,32 @@ import { GridSelector } from "../../common/components/selectors/index.js";
 new GridSelector({
   $element: document.querySelector("#test1234"),
 });
+
+// =================================================================
+
+class VirtualLayout {
+  #$root;
+  #$item;
+
+  constructor({ $element, layout$ }) {
+    this.#$root = $element;
+    this.#$item = this.#$root.querySelector(".irapha-virtual-layout__item");
+
+    layout$.subscribe(({ layout }) => this.#handleLayoutChange(layout));
+  }
+
+  #handleLayoutChange(layout) {
+    this.#$root.setAttribute("layout", layout);
+
+    if (layout === "vertical") {
+    }
+
+    if (layout === "horizontal") {
+    }
+  }
+}
+
+new VirtualLayout({
+  $element: document.querySelector("#irapha-virtual-layout"),
+  layout$: window.store.virtualLayoutMode$,
+});

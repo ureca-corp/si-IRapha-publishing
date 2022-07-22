@@ -1,7 +1,16 @@
-export class VirtualLayoutNormalMenu {
-  #element;
+const rx = rxjs;
 
-  constructor(element) {
-    this.#element = element;
+export class VirtualLayoutNormalMenu {
+  #$root;
+
+  constructor({ $element }) {
+    this.#$root = $element;
+
+    rx.fromEvent(this.#$root, "click").subscribe((e) => this.#handleClick(e));
+  }
+
+  #handleClick() {
+    // mutate global state
+    window.store.virtualLayoutMode$.next({ layout: "normal" });
   }
 }

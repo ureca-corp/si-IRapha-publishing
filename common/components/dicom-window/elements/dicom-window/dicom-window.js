@@ -163,6 +163,11 @@ export class DicomWindow {
 
     this.#root.append(...gridList);
   }
+
+  // public
+  getDomElement() {
+    return this.#root;
+  }
 }
 
 // =================================================================

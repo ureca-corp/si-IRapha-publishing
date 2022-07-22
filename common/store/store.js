@@ -22,7 +22,7 @@ store.exportDicomOpen$ = new rx.BehaviorSubject();
  * DicomWindow Layout Mode
  * type of (
  *   {
- *     layout: LayoutAttributeType,
+ *     layout: DicomWindow/LayoutAttributeType,
  *     grid: { row: number, col: number} || null
  *   } || null
  * )
@@ -34,6 +34,12 @@ store.dicomWindowLayout$ = new rx.BehaviorSubject({ layout: "1:1" });
  * type of boolean
  */
 store.cinePlayControllerHide$ = new rx.BehaviorSubject(false);
+
+/**
+ * Virtual Layout Mode
+ * type of ({ layout: VirtualLayout/LayoutAttributeType } || null)
+ */
+store.virtualLayoutMode$ = new rx.BehaviorSubject({ layout: "normal" });
 
 //
 window.store = store;

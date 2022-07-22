@@ -15,14 +15,14 @@ export class VirtualLayoutController {
     const virtualLayoutMenu = document.querySelector(SelectorIds.vlMenu);
 
     new VirtualLayoutMenu(virtualLayoutMenu);
-    new VirtualLayoutNormalMenu(
-      virtualLayoutMenu.querySelector(SelectorIds.vlNormalMenu)
-    );
-    new VirtualLayoutVerticalMenu(
-      virtualLayoutMenu.querySelector(SelectorIds.vlVerticalMenu)
-    );
-    new VirtualLayoutHorizontalMenu(
-      virtualLayoutMenu.querySelector(SelectorIds.vlHorizontalMenu)
-    );
+    new VirtualLayoutNormalMenu({
+      $element: virtualLayoutMenu.querySelector(SelectorIds.vlNormalMenu),
+    });
+    new VirtualLayoutVerticalMenu({
+      $element: virtualLayoutMenu.querySelector(SelectorIds.vlVerticalMenu),
+    });
+    new VirtualLayoutHorizontalMenu({
+      $element: virtualLayoutMenu.querySelector(SelectorIds.vlHorizontalMenu),
+    });
   }
 }
