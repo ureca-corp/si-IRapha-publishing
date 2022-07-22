@@ -5,7 +5,9 @@ import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
 import {} from "../../common/store/store.js";
 
 import { Toolbox } from "../../common/components/toolbox/index.js";
-const toolbox = new Toolbox();
+const toolbox = new Toolbox({
+  $element: document.querySelector("#irapha-toolbox"),
+});
 
 import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
 const thumbnailBox = new ThumbnailBox({

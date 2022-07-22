@@ -2,7 +2,7 @@
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/break-point" as break-point;
 
-@use "../menu-manager/menu-manager" as menu-manager;
+@use "../menus-container/menus-container" as menus-container;
 @use "../../../logo/style" as logo;
 @use "../../../selectors/grid-selector/style" as grid-selector;
 @use "../../../folding-bar/style" as folding-bar;

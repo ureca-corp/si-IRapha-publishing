@@ -1,62 +1,42 @@
-import {
-  HideClassType,
-  LayoutClassType,
-  LayoutType,
-} from "../../common/index.js";
+import { HideClassType, LayoutClassType } from "../../common/index.js";
 
-const rx = rxjs;
-
+/**
+ * Constructor types
+ *
+ * @type $element: Element
+ *
+ * @type isLayoutColumnTwo$: BehaviorSubject<boolean>
+ * 레이아웃 모드 2열 배치
+ *
+ * @type isHideIconName$: BehaviorSubject<boolean>
+ */
 export class ToolboxMenu {
-  #root;
+  #$root;
 
-  #layout$;
-  #isHideIconName$;
+  constructor({ $element, isLayoutColumnTwo$, isHideIconName$ }) {
+    this.#$root = $element;
 
-  constructor(element) {
-    this.#root = element;
+    isLayoutColumnTwo$.subscribe((isLayoutColumnTwo) =>
+      this.#handleLayoutChange(isLayoutColumnTwo)
+    );
 
-    this.#initStates();
-  }
-
-  // private
-  #initStates() {
-    const layout$ = new rx.BehaviorSubject();
-    layout$.subscribe((layout) => this.#handleLayoutChange(layout));
-    this.#layout$ = layout$;
-
-    const isHideIconName$ = new rx.BehaviorSubject();
-    isHideIconName$.subscribe((hide) => this.#handleHideIconNameChange(hide));
-    this.#isHideIconName$ = isHideIconName$;
-  }
-
-  #setLayoutColumnTwo() {
-    this.#root.classList.add(LayoutClassType.ColumnTwo);
-  }
-
-  #resetLayout() {
-    this.#root.classList.remove(LayoutClassType.ColumnTwo);
+    isHideIconName$.subscribe((isHideIconName) =>
+      this.#handleHideIconNameChange(isHideIconName)
+    );
   }
 
   // handler
-  #handleLayoutChange(layout) {
-    if (layout === LayoutType.ColumnTwo) return this.#setLayoutColumnTwo();
+  #handleLayoutChange(isLayoutColumnTwo) {
+    const rootClassList = this.#$root.classList;
 
-    return this.#resetLayout();
+    if (isLayoutColumnTwo) return rootClassList.add(LayoutClassType.ColumnTwo);
+    return rootClassList.remove(LayoutClassType.ColumnTwo);
   }
 
   #handleHideIconNameChange(isHideIconName) {
-    if (isHideIconName)
-      return this.#root.classList.add(HideClassType.HideIconName);
+    const rootClassList = this.#$root.classList;
 
-    return this.#root.classList.remove(HideClassType.HideIconName);
-  }
-
-  // public
-  setLayout(layout) {
-    this.#layout$.next(layout);
-  }
-
-  setHideIconName(isHideIconName) {
-    this.#isHideIconName$.next(isHideIconName);
+    if (isHideIconName) return rootClassList.add(HideClassType.HideIconName);
+    return rootClassList.remove(HideClassType.HideIconName);
   }
 }

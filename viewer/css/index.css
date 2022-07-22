@@ -8463,7 +8463,7 @@ button[disabled] {
   transform: scale(0.4);
 }
 
-.irapha-toolbox__menus {
+.irapha-toolbox__menus-container {
   display: flex;
   align-items: center;
   width: 100%;
@@ -8471,12 +8471,12 @@ button[disabled] {
   padding: 0 8px;
   overflow: overlay;
 }
-.irapha-toolbox__menus.--layout-column {
+.irapha-toolbox__menus-container.--layout-column {
   flex: 1;
   flex-direction: column;
   padding: 10px 0;
 }
-.irapha-toolbox__menus.--hide {
+.irapha-toolbox__menus-container.--hide {
   display: none;
 }
 
