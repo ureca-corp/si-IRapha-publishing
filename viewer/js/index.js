@@ -37,7 +37,35 @@ new CustomContextMenu({
 
 // =================================================================
 import { Tabs } from "../../common/components/tabs/index.js";
-new Tabs({ $element: document.querySelector(".irapha-tabs") });
+const tabs = new Tabs({
+  data: [
+    {
+      id: 1,
+      title: "Patient Name 1",
+      topDesc: "Patient ID / Age / Sex",
+      bottomDesc: "Study Date / Modality / Study description",
+    },
+    {
+      id: 2,
+      title: "Patient Name 2",
+      topDesc: "Patient ID / Age / Sex",
+      bottomDesc: "Study Date / Modality / Study description",
+    },
+    {
+      id: 3,
+      title: "Patient Name 3",
+      topDesc: "Patient ID / Age / Sex",
+      bottomDesc: "Study Date / Modality / Study description",
+    },
+    {
+      id: 4,
+      title: "Patient Name 4",
+      topDesc: "Patient ID / Age / Sex",
+      bottomDesc: "Study Date / Modality / Study description",
+    },
+  ],
+});
+document.querySelector("#test-layout").appendChild(tabs.getRootElement());
 
 new CustomContextMenu({
   $element: document.querySelector("#irapha-tabs-context-menu"),
