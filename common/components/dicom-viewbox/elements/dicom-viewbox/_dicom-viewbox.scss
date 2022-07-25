@@ -79,46 +79,54 @@ $min-width: 360px;
     &-top-left {
       grid-area: tl;
       justify-content: flex-start;
+      text-align: start;
     }
 
     &-top-center {
       grid-area: tc;
       align-items: center;
+      text-align: center;
     }
 
     &-top-right {
       grid-area: tr;
       align-items: flex-end;
+      text-align: end;
     }
 
     &-left {
       grid-area: l;
       justify-content: center;
       align-items: flex-start;
+      text-align: start;
     }
 
     &-right {
       grid-area: r;
       justify-content: center;
       align-items: flex-end;
+      text-align: end;
     }
 
     &-bottom-left {
       grid-area: bl;
       justify-content: flex-end;
       align-items: flex-start;
+      text-align: start;
     }
 
     &-bottom-center {
       grid-area: bc;
       justify-content: flex-end;
       align-items: center;
+      text-align: center;
     }
 
     &-bottom-right {
       grid-area: br;
       justify-content: flex-end;
       align-items: flex-end;
+      text-align: end;
     }
   }
 }

@@ -9810,39 +9810,47 @@ button[disabled] {
 .irapha-dicom-viewbox__desc.--position-top-left {
   grid-area: tl;
   justify-content: flex-start;
+  text-align: start;
 }
 .irapha-dicom-viewbox__desc.--position-top-center {
   grid-area: tc;
   align-items: center;
+  text-align: center;
 }
 .irapha-dicom-viewbox__desc.--position-top-right {
   grid-area: tr;
   align-items: flex-end;
+  text-align: end;
 }
 .irapha-dicom-viewbox__desc.--position-left {
   grid-area: l;
   justify-content: center;
   align-items: flex-start;
+  text-align: start;
 }
 .irapha-dicom-viewbox__desc.--position-right {
   grid-area: r;
   justify-content: center;
   align-items: flex-end;
+  text-align: end;
 }
 .irapha-dicom-viewbox__desc.--position-bottom-left {
   grid-area: bl;
   justify-content: flex-end;
   align-items: flex-start;
+  text-align: start;
 }
 .irapha-dicom-viewbox__desc.--position-bottom-center {
   grid-area: bc;
   justify-content: flex-end;
   align-items: center;
+  text-align: center;
 }
 .irapha-dicom-viewbox__desc.--position-bottom-right {
   grid-area: br;
   justify-content: flex-end;
   align-items: flex-end;
+  text-align: end;
 }
 
 .irapha-main-layout {
