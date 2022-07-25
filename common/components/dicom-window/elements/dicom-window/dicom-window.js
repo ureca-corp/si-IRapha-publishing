@@ -1,21 +1,25 @@
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../base/base-element.js";
 import { Selectors, LayoutAttributeType } from "../../common/index.js";
 
 /**
  * Constructor types
  *
- * @type element: Element
- *
  * @type items: Element[]
- * 뷰박스 아이템 개수
+ * 뷰박스 Elements
  *
  * @type layout$: BehaviorSubject<LayoutAttributeType>
  */
-export class DicomWindow {
-  #root;
+
+export class DicomWindow extends BaseElement {
+  static template = `
+  <div class="${Selectors.DicomWindow}"></div>
+  `;
+
   #items;
 
-  constructor({ $element, items, layout$ }) {
-    this.#root = $element;
+  constructor({ items, layout$ }) {
+    super({ $element: createElementFromHTML(DicomWindow.template) });
     this.#items = items.map((element) => createDicomWindowItem(element));
 
     layout$.subscribe(({ layout, grid }) =>
@@ -129,8 +133,8 @@ export class DicomWindow {
 
   // Layout Control
   #clearLayoutItems() {
-    this.#root.innerHTML = "";
-    this.#root.setAttribute(LayoutAttributeType.Key, "");
+    this.getRootElement().innerHTML = "";
+    this.getRootElement().setAttribute(LayoutAttributeType.Key, "");
   }
 
   #setLayout({ chunkSize, layoutType }) {
@@ -142,7 +146,7 @@ export class DicomWindow {
       layoutType,
     });
 
-    this.#root.append(...gridList);
+    this.getRootElement().append(...gridList);
   }
 
   #setCustomLayout({ row, col }) {
@@ -161,7 +165,7 @@ export class DicomWindow {
       `;
     });
 
-    this.#root.append(...gridList);
+    this.getRootElement().append(...gridList);
   }
 }
 

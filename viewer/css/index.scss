@@ -14,6 +14,9 @@
 @use "../../common/components/dicom-window/style" as dicom-window;
 @use "../../common/components/dicom-viewbox/style" as dicom-viewbox;
 
+@use "../../common/components/main-layout/style" as main-layout;
+@use "../../common/components/virtual-layout/style" as virtual-layout;
+
 .content {
   grid-area: content;
 

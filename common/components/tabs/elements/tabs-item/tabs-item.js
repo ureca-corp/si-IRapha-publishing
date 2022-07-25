@@ -1,33 +1,85 @@
 import { TabMenus } from "../tab-menus/tab-menus.js";
 import { Selectors } from "../../common/index.js";
+import { useCustomContextMenu } from "../../../layer-popup/custom-context-menu/index.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
+import { BaseElement } from "../../../base/index.js";
 
 const rx = rxjs;
 
 /**
  * Constructor types
  *
- * @type $element: Element
+ * @type data: {
+ *   id: string,
+ *   title: string,
+ *   topDesc: string,
+ *   bottomDesc: string
+ * }
  *
  * @type isActive$: BehaviorSubject<boolean>
  * 현재 탭 활성화 여부
  *
  * @type onClick: () => void
  */
-export class TabItem {
-  #$root;
-  #$dummy;
 
-  constructor({ $element, isActive$, onClick }) {
-    this.#$root = $element;
-    this.#$dummy = createDummy();
+export class TabItem extends BaseElement {
+  static template = `
+    <li class="${Selectors.TabItem}">
+      <div class="${Selectors.TabItemTitleContainer}">
+        <p class="${Selectors.TabItemTitle}"></p>
+      </div>
 
-    new TabMenus({ $element: $element.querySelector(`.${Selectors.Menus}`) });
+      <p class="${Selectors.TabItemDesc}" index="1"></p>
+      <p class="${Selectors.TabItemDesc}" index="2"></p>
+    </li>
+  `;
+
+  constructor({ data, isActive$, onClick }) {
+    super({
+      $element: createElementFromHTML(TabItem.template),
+    });
+
+    this.#getTitleContainer().appendChild(new TabMenus().getRootElement());
+
+    this.#setData({ data });
 
     isActive$.subscribe((isActive) => this.#handleActiveChange(isActive));
 
-    rx.fromEvent(this.#$root, "click").subscribe(() => onClick());
+    rx.fromEvent(this.getRootElement(), "click").subscribe(() => onClick());
 
-    this.#preventOriginContextMenu();
+    useCustomContextMenu({
+      $emitter: this.getRootElement(),
+      contextMenuOpen$: window.store.tabsContextMenuOpen$,
+    });
+  }
+
+  #setData({ data }) {
+    const { title, topDesc, bottomDesc } = data;
+
+    this.#getTitle().innerHTML = title;
+    this.#getTopDescription().innerHTML = topDesc;
+    this.#getBottomDescription().innerHTML = bottomDesc;
+  }
+
+  // Elements
+  #getTitleContainer() {
+    return this.getElementByClassName(Selectors.TabItemTitleContainer);
+  }
+
+  #getTitle() {
+    return this.getElementByClassName(Selectors.TabItemTitle);
+  }
+
+  #getTopDescription() {
+    return this.getRootElement().querySelector(
+      `.${Selectors.TabItemDesc}[index="1"]`
+    );
+  }
+
+  #getBottomDescription() {
+    return this.getRootElement().querySelector(
+      `.${Selectors.TabItemDesc}[index="2"]`
+    );
   }
 
   // handler
@@ -38,34 +90,27 @@ export class TabItem {
   }
 
   #active() {
-    this.#$root.appendChild(this.#$dummy);
-    this.#$root.classList.add("--active");
+    const $root = this.getRootElement();
+
+    $root.appendChild(createDummy());
+    $root.classList.add("--active");
   }
 
   #inactive() {
-    const oldDummy = this.#$root.querySelector(`.${Selectors.Dummy}`);
-    if (!oldDummy) return;
+    const $root = this.getRootElement();
 
-    this.#$root.removeChild(oldDummy);
-    this.#$root.classList.remove("--active");
-  }
+    const oldDummy = $root.querySelector(`.${Selectors.Dummy}`);
+    oldDummy && $root.removeChild(oldDummy);
 
-  // context menu control
-  #preventOriginContextMenu() {
-    rx.fromEvent(this.#$root, "contextmenu", false).subscribe((e) => {
-      e.preventDefault();
-      this.#openCustomContextMenu(e);
-    });
-  }
-
-  #openCustomContextMenu(e) {
-    window.store.tabsContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
+    $root.classList.remove("--active");
   }
 }
 
 // =================================================================
 const createDummy = () => {
-  const dummy = document.createElement("div");
-  dummy.className = Selectors.Dummy;
-  return dummy;
+  const template = `
+    <div class="${Selectors.Dummy}"></div>
+  `;
+
+  return createElementFromHTML(template);
 };

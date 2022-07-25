@@ -1,33 +1,57 @@
 import { TabItem } from "../tabs-item/tabs-item.js";
 import { Selectors } from "../../common/index.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
 const rx = rxjs;
 
-export class Tabs {
-  #$root;
+/**
+ * Constructor types
+ *
+ * @type data: {
+ *   id: string,
+ *   title: string,
+ *   topDesc: string,
+ *   bottomDesc: string
+ * }[]
+ *
+ */
+export class Tabs extends BaseElement {
+  static template = `
+  <div class="${Selectors.Tabs}">
+    <ul class="${Selectors.TabsList}"></ul>
+  </div>
+  `;
 
   #selectedTabIndex$ = new rx.BehaviorSubject(0);
 
-  constructor({ $element }) {
-    this.#$root = $element;
+  constructor({ data }) {
+    super({
+      $element: createElementFromHTML(Tabs.template),
+    });
 
-    this.#initTabItems();
+    this.#initTabItems({ data });
   }
 
-  #initTabItems() {
-    [...this.#$root.querySelectorAll(`.${Selectors.TabItem}`)].map(
-      ($element, index) => {
-        const isActive$ = new rx.BehaviorSubject(false);
-        this.#selectedTabIndex$.subscribe((tabIndex) =>
-          isActive$.next(tabIndex === index)
-        );
+  #initTabItems({ data }) {
+    const tabItems = data.map((_data, index) => {
+      const isActive$ = new rx.BehaviorSubject(false);
+      this.#selectedTabIndex$.subscribe((tabIndex) =>
+        isActive$.next(tabIndex === index)
+      );
 
-        return new TabItem({
-          $element,
-          isActive$,
-          onClick: () => this.#selectedTabIndex$.next(index),
-        });
-      }
-    );
+      return new TabItem({
+        data: _data,
+        isActive$,
+        onClick: () => this.#selectedTabIndex$.next(index),
+      });
+    });
+
+    this.#getTabsList().append(...tabItems.map((it) => it.getRootElement()));
+  }
+
+  // Elements
+  #getTabsList() {
+    return this.getElementByClassName(Selectors.TabsList);
   }
 }
