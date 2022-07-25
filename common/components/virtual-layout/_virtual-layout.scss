@@ -25,12 +25,4 @@
 
 .irapha-virtual-layout__item {
   overflow: hidden;
-
-  &:nth-child(1) {
-    background-color: red;
-  }
-
-  &:nth-child(2) {
-    background-color: blue;
-  }
 }
