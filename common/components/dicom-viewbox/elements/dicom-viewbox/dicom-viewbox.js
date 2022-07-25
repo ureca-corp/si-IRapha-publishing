@@ -8,14 +8,14 @@ import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHT
  * Constructor types
  *
  * @type descItems: {
- *  topLeft: Element,
- *  topCenter: Element,
- *  topRight: Element,
- *  left: Element,
- *  right: Element,
- *  bottomLeft: Element,
- *  bottomCenter: Element,
- *  bottomRight: Element,
+ *  topLeft: string[],
+ *  topCenter: string[],
+ *  topRight: string[],
+ *  left: string[],
+ *  right: string[],
+ *  bottomLeft: string[],
+ *  bottomCenter: string[],
+ *  bottomRight: string[],
  * }
  *
  * @type hasController: boolean
@@ -47,44 +47,44 @@ export class DicomViewBox extends BaseElement {
   #initGrid({ descItems }) {
     const $grid = createGrid();
 
-    const $topLeft = createDesc({
+    const $topLeft = createDescription({
       positionClassName: PositionClassType.TopLeft,
-      children: descItems?.topLeft,
+      data: descItems?.topLeft,
     });
 
-    const $topCenter = createDesc({
+    const $topCenter = createDescription({
       positionClassName: PositionClassType.TopCenter,
-      children: descItems?.topCenter,
+      data: descItems?.topCenter,
     });
 
-    const $topRight = createDesc({
+    const $topRight = createDescription({
       positionClassName: PositionClassType.TopRight,
-      children: descItems?.topRight,
+      data: descItems?.topRight,
     });
 
-    const $left = createDesc({
+    const $left = createDescription({
       positionClassName: PositionClassType.Left,
-      children: descItems?.left,
+      data: descItems?.left,
     });
 
-    const $right = createDesc({
+    const $right = createDescription({
       positionClassName: PositionClassType.Right,
-      children: descItems?.right,
+      data: descItems?.right,
     });
 
-    const $bottomLeft = createDesc({
+    const $bottomLeft = createDescription({
       positionClassName: PositionClassType.BottomLeft,
-      children: descItems?.bottomLeft,
+      data: descItems?.bottomLeft,
     });
 
-    const $bottomCenter = createDesc({
+    const $bottomCenter = createDescription({
       positionClassName: PositionClassType.BottomCenter,
-      children: descItems?.bottomCenter,
+      data: descItems?.bottomCenter,
     });
 
-    const $bottomRight = createDesc({
+    const $bottomRight = createDescription({
       positionClassName: PositionClassType.BottomRight,
-      children: descItems?.bottomRight,
+      data: descItems?.bottomRight,
     });
 
     const $canvas = document.createElement("canvas");
@@ -125,11 +125,21 @@ const createGrid = () => {
   return createElementFromHTML(template);
 };
 
-const createDesc = ({ children, positionClassName }) => {
+const createDescription = ({ data, positionClassName }) => {
   const template = `<div class="${Selectors.ViewBoxDesc} ${positionClassName}"></div>`;
-  const $desc = createElementFromHTML(template);
+  const $description = createElementFromHTML(template);
 
-  if (children) $desc.append(children);
+  if (data) {
+    const $data = data.map((it) => createDiv(it));
+    $description.append(...$data);
+  }
 
-  return $desc;
+  return $description;
+};
+
+const createDiv = (children) => {
+  const div = document.createElement("div");
+  div.innerHTML = children;
+
+  return div;
 };

@@ -63,7 +63,6 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
-
 new CustomContextMenu({
   $element: document.querySelector("#irapha-viewbox-context-menu"),
   open$: window.store.viewboxContextMenuOpen$,
@@ -76,137 +75,21 @@ new GridSelector({
 });
 
 // =================================================================
-
-// =================================================================
+import { tabsDummyData, windowDummyData } from "../../common/data/index.js";
 import { MainLayout } from "../../common/components/main-layout/main-layout.js";
-const createItem = ({ children }) => {
-  const div = document.createElement("div");
-  div.innerHTML = children;
-
-  return div;
-};
-
-const windowData = Array.from({ length: 40 }, (_, index) => ({
-  descItems: {
-    topLeft: createItem({
-      children: `
-      O^YEONG SU
-      <br/>
-      064Y / M
-      <br/>
-      2019-11-25
-      <br/>
-      06:26:49
-  `,
-    }),
-    topCenter: "A",
-    topRight: createItem({
-      children: `
-      Test11
-      <br/>
-      Institution:VHS Medical Center 3T
-      <br/>
-      tof_cs_acc7.2
-      <br/>
-      S:5
-      <br/>
-      I:4
-  `,
-    }),
-    left: createItem({
-      children: `
-      MR
-      <br/>
-      TE:3.69
-      <br/>
-      TR: 21.00
-      <br/>
-      PP: HFS
-      <br/>
-      ST: 0.50
-      <br/>
-      SL: 104.50 / SI: 0.00`,
-    }),
-    right: "L",
-    bottomLeft: createItem({
-      children: `
-      520 X 576
-      <br/>
-      Zoom:63.54%
-    `,
-    }),
-    bottomRight: createItem({
-      children: `
-      Linear
-      <br/>
-      W:338 L:146
-      <br/>
-      MANETOM Vida
-    `,
-    }),
-  },
-  hasController: index % 2 === 0,
-}));
 
 const mainLayout = new MainLayout({
   data: {
-    tabsData: [
-      {
-        id: 1,
-        title: "Patient Name 1",
-        topDesc: "Patient ID / Age / Sex",
-        bottomDesc: "Study Date / Modality / Study description",
-      },
-      {
-        id: 2,
-        title: "Patient Name 2",
-        topDesc: "Patient ID / Age / Sex",
-        bottomDesc: "Study Date / Modality / Study description",
-      },
-      {
-        id: 3,
-        title: "Patient Name 3",
-        topDesc: "Patient ID / Age / Sex",
-        bottomDesc: "Study Date / Modality / Study description",
-      },
-      {
-        id: 4,
-        title: "Patient Name 4",
-        topDesc: "Patient ID / Age / Sex",
-        bottomDesc: "Study Date / Modality / Study description",
-      },
-    ],
-    windowData: windowData,
+    tabsData: tabsDummyData,
+    windowData: windowDummyData,
   },
 });
 
-document.querySelector("#testAAA").appendChild(mainLayout.getRootElement());
-
 // =================================================================
-
-class VirtualLayout {
-  #$root;
-  #$item;
-
-  constructor({ $element, layout$ }) {
-    this.#$root = $element;
-    this.#$item = this.#$root.querySelector(".irapha-virtual-layout__item");
-
-    layout$.subscribe(({ layout }) => this.#handleLayoutChange(layout));
-  }
-
-  #handleLayoutChange(layout) {
-    this.#$root.setAttribute("layout", layout);
-
-    if (layout === "vertical") {
-    }
-
-    if (layout === "horizontal") {
-    }
-  }
-}
-
-new VirtualLayout({
-  $element: document.querySelector("#irapha-virtual-layout"),
+import { VirtualLayout } from "../../common/components/virtual-layout/index.js";
+const virtualLayout = new VirtualLayout({
   layout$: window.store.virtualLayoutMode$,
+  children: mainLayout,
 });
+
+document.querySelector("#testBBB").appendChild(virtualLayout.getRootElement());

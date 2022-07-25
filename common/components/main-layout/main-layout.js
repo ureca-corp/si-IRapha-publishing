@@ -13,8 +13,11 @@ export class MainLayout extends BaseElement {
     <div class="${Selectors.MainLayout}"></div>
     `;
 
+  #data;
+
   constructor({ data }) {
     super({ $element: createElementFromHTML(MainLayout.template) });
+    this.#data = data;
 
     const { tabsData, windowData } = data;
 
@@ -44,5 +47,10 @@ export class MainLayout extends BaseElement {
     });
 
     this.getRootElement().appendChild(dicomWindow.getRootElement());
+  }
+
+  // public
+  clone() {
+    return new MainLayout({ data: this.#data });
   }
 }
