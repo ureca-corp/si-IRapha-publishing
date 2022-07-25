@@ -78,53 +78,45 @@ $min-width: 360px;
   &.--position {
     &-top-left {
       grid-area: tl;
-      display: flex;
       justify-content: flex-start;
     }
 
     &-top-center {
       grid-area: tc;
-      display: flex;
-      justify-content: center;
+      align-items: center;
     }
 
     &-top-right {
       grid-area: tr;
-      display: flex;
-      justify-content: flex-end;
+      align-items: flex-end;
     }
 
     &-left {
       grid-area: l;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     &-right {
       grid-area: r;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    &-bottom-left {
-      grid-area: bl;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-    }
-
-    &-bottom-center {
-      grid-area: bc;
-      display: flex;
       justify-content: center;
       align-items: flex-end;
     }
 
+    &-bottom-left {
+      grid-area: bl;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    &-bottom-center {
+      grid-area: bc;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
     &-bottom-right {
       grid-area: br;
-      display: flex;
       justify-content: flex-end;
       align-items: flex-end;
     }
@@ -134,6 +126,9 @@ $min-width: 360px;
 .irapha-dicom-viewbox__desc {
   @include position-desc;
   @include typography.label-small;
+
+  display: flex;
+  flex-direction: column;
 
   z-index: 1;
   margin: 8px;
