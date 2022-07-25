@@ -1,7 +1,8 @@
 import { Selectors, PositionClassType } from "../../common/index.js";
 import { CinePlayController } from "../../../cineplay-controller/index.js";
-
-const rx = rxjs;
+import { BaseElement } from "../../../base/base-element.js";
+import { useCustomContextMenu } from "../../../layer-popup/custom-context-menu/index.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 
 /**
  * Constructor types
@@ -21,86 +22,88 @@ const rx = rxjs;
  * 현재 뷰박스가 CineController를 보유해야 하는지 여부
  * false인 경우 툴박스에서 Cine 메뉴를 눌러도 해당 뷰박스는 CineController를 보여주지 않음
  */
-export class DicomViewBox {
-  #root;
+
+export class DicomViewBox extends BaseElement {
+  static template = `
+  <div class="${Selectors.ViewBox}"></div>
+  `;
 
   constructor({ descItems, hasController = true }) {
-    this.#initRoot();
+    super({ $element: createElementFromHTML(DicomViewBox.template) });
+
     this.#initGrid({ descItems });
 
     if (hasController) this.#initCinePlayController();
 
-    this.#preventOriginContextMenu();
+    useCustomContextMenu({
+      $emitter: this.getRootElement(),
+      contextMenuOpen$: window.store.viewboxContextMenuOpen$,
+    });
   }
 
   // private
-  #initRoot() {
-    const root = document.createElement("div");
-    root.classList.add(Selectors.ViewBox);
-    this.#root = root;
-  }
 
   // grid container 생성, desc 배치
   #initGrid({ descItems }) {
-    const grid = createGrid();
+    const $grid = createGrid();
 
-    const topLeft = createDesc({
+    const $topLeft = createDesc({
       positionClassName: PositionClassType.TopLeft,
       children: descItems?.topLeft,
     });
 
-    const topCenter = createDesc({
+    const $topCenter = createDesc({
       positionClassName: PositionClassType.TopCenter,
       children: descItems?.topCenter,
     });
 
-    const topRight = createDesc({
+    const $topRight = createDesc({
       positionClassName: PositionClassType.TopRight,
       children: descItems?.topRight,
     });
 
-    const left = createDesc({
+    const $left = createDesc({
       positionClassName: PositionClassType.Left,
       children: descItems?.left,
     });
 
-    const right = createDesc({
+    const $right = createDesc({
       positionClassName: PositionClassType.Right,
       children: descItems?.right,
     });
 
-    const bottomLeft = createDesc({
+    const $bottomLeft = createDesc({
       positionClassName: PositionClassType.BottomLeft,
       children: descItems?.bottomLeft,
     });
 
-    const bottomCenter = createDesc({
+    const $bottomCenter = createDesc({
       positionClassName: PositionClassType.BottomCenter,
       children: descItems?.bottomCenter,
     });
 
-    const bottomRight = createDesc({
+    const $bottomRight = createDesc({
       positionClassName: PositionClassType.BottomRight,
       children: descItems?.bottomRight,
     });
 
-    const canvas = document.createElement("canvas");
+    const $canvas = document.createElement("canvas");
 
-    grid.append(
+    $grid.append(
       ...[
-        topLeft,
-        topCenter,
-        topRight,
-        left,
-        right,
-        bottomLeft,
-        bottomCenter,
-        bottomRight,
-        canvas,
+        $topLeft,
+        $topCenter,
+        $topRight,
+        $left,
+        $right,
+        $bottomLeft,
+        $bottomCenter,
+        $bottomRight,
+        $canvas,
       ]
     );
 
-    this.#root.append(grid);
+    this.getRootElement().append($grid);
   }
 
   #initCinePlayController() {
@@ -111,41 +114,22 @@ export class DicomViewBox {
       isHideController$: globalCineControllerHide$,
     });
 
-    this.#root.append(cinePlayController.getDomElement());
-  }
-
-  // context menu - open control
-  #preventOriginContextMenu() {
-    rx.fromEvent(this.#root, "contextmenu", true).subscribe((e) => {
-      e.preventDefault();
-      this.#openCustomContextMenu(e);
-    });
-  }
-
-  #openCustomContextMenu(e) {
-    // 전역 상태 변경하기 - 뷰 박스 ContextMenu 열기
-    window.store.viewboxContextMenuOpen$.next({ x: e.clientX, y: e.clientY });
-  }
-
-  getDomElement() {
-    return this.#root;
+    this.getRootElement().append(cinePlayController.getDomElement());
   }
 }
 
 // =================================================================
 const createGrid = () => {
-  const div = document.createElement("div");
-  div.classList.add(Selectors.ViewBoxScreen);
+  const template = `<div class="${Selectors.ViewBoxScreen}"></div>`;
 
-  return div;
+  return createElementFromHTML(template);
 };
 
 const createDesc = ({ children, positionClassName }) => {
-  const div = document.createElement("div");
-  div.classList.add(Selectors.ViewBoxDesc);
-  div.classList.add(positionClassName);
+  const template = `<div class="${Selectors.ViewBoxDesc} ${positionClassName}"></div>`;
+  const $desc = createElementFromHTML(template);
 
-  if (children) div.append(children);
+  if (children) $desc.append(children);
 
-  return div;
+  return $desc;
 };

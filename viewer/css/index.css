@@ -9851,6 +9851,13 @@ button[disabled] {
   align-items: flex-end;
 }
 
+.irapha-main-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   grid-area: content;
   width: 100%;
