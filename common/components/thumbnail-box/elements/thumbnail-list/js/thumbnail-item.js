@@ -1,14 +1,67 @@
+import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../../base/base-element.js";
 import { useCustomContextMenu } from "../../../../layer-popup/custom-context-menu/index.js";
+import { Selectors, TextPositionClassType } from "../../../common/index.js";
 
-export class ThumbnailItem {
-  #$root;
+/**
+ * Constructor types
+ *
+ * @type model: {
+ *   topLeft: string[],
+ *   topRight: string[],
+ *   bottomLeft: string[],
+ * },
+ */
+export class ThumbnailItem extends BaseElement {
+  static template = `
+  <li class="${Selectors.ThumbnailListItem}">
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopLeft}"></div>
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopRight}"></div>
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.BottomLeft}"></div>
+    <canvas class="${Selectors.ThumbnailListItemCanvas}"></canvas>
+  </li>
+  `;
 
-  constructor({ $element }) {
-    this.#$root = $element;
+  #model;
+
+  constructor({ model }) {
+    super({ $element: createElementFromHTML(ThumbnailItem.template) });
+    this.#model = model;
+
+    this.#initModel();
 
     useCustomContextMenu({
-      $emitter: this.#$root,
+      $emitter: this.getRootElement(),
       contextMenuOpen$: window.store.thumbnailContextMenuOpen$,
     });
+  }
+
+  #initModel() {
+    const $topLeft = this.#getTopLeft();
+    const $topRight = this.#getTopRight();
+    const $bottomLeft = this.#getBottomLeft();
+
+    const { topLeft, topRight, bottomLeft } = this.#model;
+    $topLeft.innerHTML = topLeft;
+    $topRight.innerHTML = topRight;
+    $bottomLeft.innerHTML = bottomLeft;
+  }
+
+  #getTopLeft() {
+    return this.getElementByClassName(
+      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopLeft}`
+    );
+  }
+
+  #getTopRight() {
+    return this.getElementByClassName(
+      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopRight}`
+    );
+  }
+
+  #getBottomLeft() {
+    return this.getElementByClassName(
+      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.BottomLeft}`
+    );
   }
 }

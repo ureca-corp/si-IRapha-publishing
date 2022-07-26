@@ -38,16 +38,30 @@ export class ThumbnailBox {
       shrinkDirection$: this.#shrinkDirection$,
     });
 
-    new KinSelector({
-      $element: this.#$root.querySelector(`#${Selectors.KinSelector}`),
+    const kinSelector = new KinSelector({
+      items: ["Option 01", "Option 02"],
       isHide$: this.#shrinkDirection$,
     });
+    this.#$root
+      .querySelector(".irapha-thumbnail-box__options")
+      .appendChild(kinSelector.getRootElement());
 
-    new ThumbnailList({
-      $element: this.#$root.querySelector(`.${Selectors.ThumbnailList}`),
+    // =================================================================
+    const models = Array.from({ length: 10 }, (_, index) => ({
+      id: index + 1,
+      topLeft: ["S:0", "#1"],
+      topRight: ["US"],
+      bottomLeft: ["Cardiology"],
+    }));
+
+    const thumbnailList = new ThumbnailList({
+      models,
       isLayoutColumn$: this.#isLayoutColumn$,
       isHide$: this.#isExpanded$,
     });
+    this.#$root
+      .querySelector("#testCCC")
+      .appendChild(thumbnailList.getRootElement());
   }
 
   #initStates() {

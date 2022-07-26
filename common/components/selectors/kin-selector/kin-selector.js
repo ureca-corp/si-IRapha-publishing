@@ -1,24 +1,46 @@
+import { createElementFromHTML } from "../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../base/index.js";
+
+const Selectors = {
+  KinSelector: "irapha-kin-selector",
+
+  UkSelect: "uk-select",
+};
+
 /**
  * Constructor types
  *
- * @type $element: Element
+ * @type items: string[]
  *
  * @type isHide$: BehaviorSubject<boolean>
  */
-export class KinSelector {
-  #$root;
+export class KinSelector extends BaseElement {
+  static template = `
+  <select class="${Selectors.KinSelector} ${Selectors.UkSelect}" title="KIN selector"></select>
+  `;
 
-  constructor({ $element, isHide$ }) {
-    this.#$root = $element;
+  constructor({ items, isHide$ }) {
+    super({ $element: createElementFromHTML(KinSelector.template) });
 
-    $element.classList.add("uk-select");
+    const options = items.map((it) => createSelectorItem(it));
+
+    this.getRootElement().append(...options);
 
     isHide$.subscribe((isHide) => this.#handleDisplayChange(isHide));
   }
 
   #handleDisplayChange(isHide) {
-    if (!!isHide) return (this.#$root.style.display = "none");
+    const style = this.getRootElement().style;
 
-    return (this.#$root.style.display = "unset");
+    if (!!isHide) return (style.display = "none");
+    return (style.display = "unset");
   }
 }
+
+// =================================================================
+const createSelectorItem = (children) => {
+  const $option = document.createElement("option");
+  $option.innerHTML = children;
+
+  return $option;
+};
