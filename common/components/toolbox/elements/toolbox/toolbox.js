@@ -31,10 +31,17 @@ export class Toolbox {
   #initChilds() {
     const $root = this.#$root;
 
-    new Logo({
-      $element: $root.querySelector(`.${Selectors.Logo}`),
-      shrinkDirection$: this.#shrinkDirection$,
+    const logo = new Logo({
+      states: {
+        shrinkDirection$: this.#shrinkDirection$,
+      },
+      events: {
+        onPinClick: () => this.#toggle(),
+      },
     });
+    $root
+      .querySelector(".irapha-toolbox__logo")
+      .appendChild(logo.getRootElement());
 
     new ToolboxMenusContainer({
       $element: $root.querySelector(`.${Selectors.Menus}`),
@@ -82,6 +89,16 @@ export class Toolbox {
 
     rootClassList.remove(ShrinkClassType.Column);
     rootClassList.remove(ShrinkClassType.Row);
+  }
+
+  #toggle() {
+    const isPreview = this.#isPreview$.getValue();
+
+    if (!isPreview) {
+      this.#isExpanded$.next(!this.#isExpanded$.getValue());
+    }
+
+    this.#isPreview$.next(!isPreview);
   }
 
   // public

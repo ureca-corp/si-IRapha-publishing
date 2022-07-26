@@ -2,16 +2,8 @@
 @use "../../../../themes/break-point" as break-point;
 
 @use "../../../icons/style" as icons;
-@use "../maximize-button/maximize-button";
 @use "../network-status/network-status";
 @use "../../../viewer-info/style" as viewer-info;
-
-@mixin logo-icon-wrapper {
-  position: relative;
-
-  width: 20px;
-  aspect-ratio: 1;
-}
 
 // 로고 상태
 @mixin s-logo {
@@ -92,16 +84,8 @@
   z-index: 2;
 
   display: flex;
+  align-items: center;
   padding: 4px;
-}
-
-// components
-.irapha-maximize__icon {
-  @include logo-icon-wrapper;
-}
-
-.irapha-network-status {
-  @include logo-icon-wrapper;
 }
 
 // Media query - laptop

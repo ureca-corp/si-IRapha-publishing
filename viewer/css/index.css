@@ -8507,19 +8507,12 @@ button[disabled] {
   }
 }
 
-.irapha-maximize__icon {
-  cursor: pointer;
-}
-.irapha-maximize__icon__image {
-  position: absolute;
-  width: 100%;
-  aspect-ratio: 1;
-}
-
 .irapha-network-status {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 20px;
+  aspect-ratio: 1;
   padding: 4px;
 }
 .irapha-network-status__icon {
@@ -8527,10 +8520,10 @@ button[disabled] {
   aspect-ratio: 1;
   border-radius: 50%;
 }
-.irapha-network-status__icon.--status-red {
+.irapha-network-status__icon.--status-danger {
   background-color: var(--color__status-danger);
 }
-.irapha-network-status__icon.--status-yellow {
+.irapha-network-status__icon.--status-warning {
   background-color: var(--color__status-warning);
 }
 .irapha-network-status__icon.--status-green {
@@ -8651,19 +8644,8 @@ button[disabled] {
   position: relative;
   z-index: 2;
   display: flex;
+  align-items: center;
   padding: 4px;
-}
-
-.irapha-maximize__icon {
-  position: relative;
-  width: 20px;
-  aspect-ratio: 1;
-}
-
-.irapha-network-status {
-  position: relative;
-  width: 20px;
-  aspect-ratio: 1;
 }
 
 @media (max-width: 1440px) {

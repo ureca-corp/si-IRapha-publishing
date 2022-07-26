@@ -10,7 +10,7 @@ import { Selectors, TextPositionClassType } from "../../../common/index.js";
  *   topLeft: string[],
  *   topRight: string[],
  *   bottomLeft: string[],
- * },
+ * }
  */
 export class ThumbnailItem extends BaseElement {
   static template = `
