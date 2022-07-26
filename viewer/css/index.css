@@ -8347,10 +8347,6 @@ button[disabled] {
   --color__black: #000;
 }
 
-.irapha-sub-menu.--layout-column-two .irapha-sub-menu__container__inner {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
 .irapha-sub-menu .irapha-sub-menu__container {
   background-color: var(--color__bg-primary);
   border-radius: 4px;
@@ -8364,6 +8360,10 @@ button[disabled] {
   flex-direction: column;
   gap: 12px;
   padding: 12px 16px;
+}
+.irapha-sub-menu.--layout-column-two .irapha-sub-menu__container__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .irapha-sub-menu__item__dl {
