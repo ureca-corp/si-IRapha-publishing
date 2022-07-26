@@ -9121,23 +9121,22 @@ button[disabled] {
   position: absolute;
 }
 
-.irapha-related-study__inner {
+.irapha-related-study__data-grid {
+  max-height: 286px;
+  overflow: auto;
+}
+.irapha-related-study__data-grid thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   background-color: #333;
-  border-radius: 4px;
-  box-shadow: var(--box-shadow__layer-menu);
 }
-
-.irapha-related-study__header {
-  position: relative;
-  padding: 16px;
-  border-bottom: 1px dashed var(--color__border);
-  cursor: move;
+.irapha-related-study__data-grid tbody tr {
+  border-color: var(--color__border) !important;
+  cursor: pointer;
 }
-
-.irapha-related-study__close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.irapha-related-study__data-grid tbody tr:hover {
+  background-color: #ccc;
 }
 
 .irapha-related-study__user-info {
@@ -9169,22 +9168,23 @@ button[disabled] {
   color: #ccc;
 }
 
-.irapha-related-study__data-grid {
-  max-height: 286px;
-  overflow: auto;
-}
-.irapha-related-study__data-grid thead {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+.irapha-related-study__inner {
   background-color: #333;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow__layer-menu);
 }
-.irapha-related-study__data-grid tbody tr {
-  border-color: var(--color__border) !important;
-  cursor: pointer;
+
+.irapha-related-study__header {
+  position: relative;
+  padding: 16px;
+  border-bottom: 1px dashed var(--color__border);
+  cursor: move;
 }
-.irapha-related-study__data-grid tbody tr:hover {
-  background-color: #ccc;
+
+.irapha-related-study__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 .irapha-export-dicom__form {

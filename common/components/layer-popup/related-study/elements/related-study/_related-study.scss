@@ -1,0 +1,30 @@
+@use "../../../../../styles/common";
+
+@use "../../../base/scss/layer-popup";
+@use "../data-grid/data-grid";
+@use "../user-info/user-info";
+
+$color-border: var(--color__border);
+$color-bg: #333;
+
+.irapha-related-study__inner {
+  background-color: $color-bg;
+
+  border-radius: 4px;
+  box-shadow: var(--box-shadow__layer-menu);
+}
+
+.irapha-related-study__header {
+  position: relative;
+  padding: 16px;
+
+  border-bottom: 1px dashed $color-border;
+
+  cursor: move;
+}
+
+.irapha-related-study__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}

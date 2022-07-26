@@ -52,10 +52,12 @@ import {
   RelatedStudyLayerPopup,
 } from "../../common/components/layer-popup/index.js";
 
-new RelatedStudyLayerPopup({
-  $element: document.querySelector("#irapha-related-study-popup"),
+const relatedStudyLayerPopup = new RelatedStudyLayerPopup({
   open$: window.store.relatedStudyOpen$,
 });
+document
+  .querySelector("#global-popup-group")
+  .appendChild(relatedStudyLayerPopup.getRootElement());
 
 new ExportDicomLayerPopup({
   $element: document.querySelector("#irapha-export-dicom-popup"),
