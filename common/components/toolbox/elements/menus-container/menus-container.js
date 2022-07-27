@@ -7,6 +7,7 @@ import {
   LayoutClassType,
   Selectors,
 } from "../../common/index.js";
+import { getFirstMenus } from "../menu/get-menus.js";
 
 /**
  * Constructor types
@@ -42,22 +43,24 @@ export class ToolboxMenusContainer {
 
   // private
   #init({ isLayoutColumn$, isHideIconName$ }) {
-    [...document.querySelectorAll(`.${Selectors.Menu}`)].map(
-      ($element) =>
-        new ToolboxMenu({
-          $element,
-          isLayoutColumnTwo$: isLayoutColumn$,
-          isHideIconName$,
-        })
-    );
-
-    new MenusDivider({
-      $element: this.#$root.querySelector(`.${Selectors.Divider}`),
-      isLayoutColumn$,
-      isAlignSelfCenter$: isHideIconName$,
+    const firstMenu = new ToolboxMenu({
+      states: {
+        isLayoutColumnTwo$: isLayoutColumn$,
+        isHideIconName$,
+      },
+      items: getFirstMenus(),
     });
 
-    new ToolboxMenuItemsController();
+    const menusDivider = new MenusDivider({
+      states: {
+        isLayoutColumn$,
+        isAlignSelfCenter$: isHideIconName$,
+      },
+    });
+
+    this.#$root.append(
+      ...[firstMenu.getRootElement(), menusDivider.getRootElement()]
+    );
   }
 
   // handler
