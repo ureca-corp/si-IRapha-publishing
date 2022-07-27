@@ -1,5 +1,5 @@
-import { BaseElement } from "../../../base/base-element.js";
-import { FullScreenMenu } from "../../../menus/menu-items/index.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { FullScreenMenu } from "../../../../menus/menu-items/index.js";
 
 export class ToolboxFullScreenMenu extends BaseElement {
   constructor() {

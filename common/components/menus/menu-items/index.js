@@ -29,3 +29,16 @@ export {
   DisplayInfoAnnotationMenu,
   DisplayInfoMeasurementsMenu,
 } from "./first/index.js";
+
+export {
+  KeyImageNoteMenu,
+  SelectorMenu,
+  WindowLevelMenu,
+  ZoomMenu,
+  PanningMenu,
+  FitMenu,
+  RotateLeftMenu,
+  RotateRightMenu,
+  LengthMenu,
+  AngleMenu,
+} from "./second/index.js";

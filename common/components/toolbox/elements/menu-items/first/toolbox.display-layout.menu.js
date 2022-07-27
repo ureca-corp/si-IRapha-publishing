@@ -1,4 +1,4 @@
-import { BaseElement } from "../../../base/index.js";
+import { BaseElement } from "../../../../base/index.js";
 import {
   DisplayLayoutConfigMenu,
   DisplayLayoutMenu,
@@ -6,8 +6,8 @@ import {
   DisplayLayoutOneByTwoMenu,
   DisplayLayoutTwoByOneMenu,
   DisplayLayoutTwoByTwoMenu,
-} from "../../../menus/menu-items/index.js";
-import { SubMenuItem, SubMenu } from "../../../sub-menu/index.js";
+} from "../../../../menus/menu-items/index.js";
+import { SubMenuItem, SubMenu } from "../../../../sub-menu/index.js";
 
 export class ToolboxDisplayLayoutMenu extends BaseElement {
   constructor() {

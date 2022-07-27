@@ -12,6 +12,16 @@ import {
   ToolboxCineMenu,
   ToolboxNaviMenu,
   ToolboxDisplayInfoMenu,
+  ToolboxKeyImageNoteMenu,
+  ToolboxSelectorMenu,
+  ToolboxWindowLevelMenu,
+  ToolboxZoomMenu,
+  ToolboxPanningMenu,
+  ToolboxFitMenu,
+  ToolboxRotateLeftMenu,
+  ToolboxRotateRightMenu,
+  ToolboxLengthMenu,
+  ToolboxAngleMenu,
 } from "../menu-items/index.js";
 
 export const getFirstMenus = () => {
@@ -49,6 +59,38 @@ export const getFirstMenus = () => {
     cineMenu,
 
     displayInfoMenu,
+  ];
+
+  return menus;
+};
+
+export const getSecondMenus = () => {
+  const keyImageNoteMenu = new ToolboxKeyImageNoteMenu();
+  const selectorMenu = new ToolboxSelectorMenu();
+  const windowLevelMenu = new ToolboxWindowLevelMenu();
+  const zoomMenu = new ToolboxZoomMenu();
+
+  const panningMenu = new ToolboxPanningMenu();
+  const fitMenu = new ToolboxFitMenu();
+
+  const rotateLeft = new ToolboxRotateLeftMenu();
+  const rotateRight = new ToolboxRotateRightMenu();
+  const lengthMenu = new ToolboxLengthMenu();
+  const angleMenu = new ToolboxAngleMenu();
+
+  const menus = [
+    keyImageNoteMenu,
+    selectorMenu,
+    windowLevelMenu,
+    zoomMenu,
+
+    panningMenu,
+    fitMenu,
+    rotateLeft,
+    rotateRight,
+
+    lengthMenu,
+    angleMenu,
   ];
 
   return menus;

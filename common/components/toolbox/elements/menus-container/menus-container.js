@@ -7,7 +7,7 @@ import {
   LayoutClassType,
   Selectors,
 } from "../../common/index.js";
-import { getFirstMenus } from "../menu/get-menus.js";
+import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
 
 /**
  * Constructor types
@@ -51,6 +51,14 @@ export class ToolboxMenusContainer {
       items: getFirstMenus(),
     });
 
+    const secondMenu = new ToolboxMenu({
+      states: {
+        isLayoutColumnTwo$: isLayoutColumn$,
+        isHideIconName$,
+      },
+      items: getSecondMenus(),
+    });
+
     const menusDivider = new MenusDivider({
       states: {
         isLayoutColumn$,
@@ -59,7 +67,11 @@ export class ToolboxMenusContainer {
     });
 
     this.#$root.append(
-      ...[firstMenu.getRootElement(), menusDivider.getRootElement()]
+      ...[
+        firstMenu.getRootElement(),
+        menusDivider.getRootElement(),
+        secondMenu.getRootElement(),
+      ]
     );
   }
 

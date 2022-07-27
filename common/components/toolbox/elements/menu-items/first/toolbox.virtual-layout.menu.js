@@ -1,11 +1,11 @@
-import { BaseElement } from "../../../base/index.js";
+import { BaseElement } from "../../../../base/index.js";
 import {
   VirtualLayoutMenu,
   VirtualLayoutNormalMenu,
   VirtualLayoutVerticalMenu,
   VirtualLayoutHorizontalMenu,
-} from "../../../menus/menu-items/index.js";
-import { SubMenu, SubMenuItem } from "../../../sub-menu/index.js";
+} from "../../../../menus/menu-items/index.js";
+import { SubMenu, SubMenuItem } from "../../../../sub-menu/index.js";
 
 export class ToolboxVirtualLayoutMenu extends BaseElement {
   constructor() {

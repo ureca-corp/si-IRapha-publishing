@@ -1,5 +1,5 @@
-import { BaseElement } from "../../../base/base-element.js";
-import { WindowModeMenu } from "../../../menus/menu-items/index.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { WindowModeMenu } from "../../../../menus/menu-items/index.js";
 
 export class ToolboxWindowModeMenu extends BaseElement {
   constructor() {

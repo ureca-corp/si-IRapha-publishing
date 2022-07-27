@@ -1,4 +1,4 @@
-import { BaseElement } from "../../../base/base-element.js";
+import { BaseElement } from "../../../../base/base-element.js";
 import {
   DisplayInfoAnnotationMenu,
   DisplayInfoHideAllMenu,
@@ -6,8 +6,8 @@ import {
   DisplayInfoMeasurementsMenu,
   DisplayInfoMenu,
   DisplayInfoShowAllMenu,
-} from "../../../menus/menu-items/index.js";
-import { SubMenu, SubMenuItem } from "../../../sub-menu/index.js";
+} from "../../../../menus/menu-items/index.js";
+import { SubMenu, SubMenuItem } from "../../../../sub-menu/index.js";
 
 export class ToolboxDisplayInfoMenu extends BaseElement {
   constructor() {

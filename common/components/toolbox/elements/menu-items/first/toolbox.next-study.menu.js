@@ -1,5 +1,5 @@
-import { BaseElement } from "../../../base/base-element.js";
-import { NextStudyMenu } from "../../../menus/menu-items/index.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { NextStudyMenu } from "../../../../menus/menu-items/index.js";
 
 export class ToolboxNextStudyMenu extends BaseElement {
   constructor() {
