@@ -41,4 +41,13 @@ export {
   RotateRightMenu,
   LengthMenu,
   AngleMenu,
+  TransformationsMenu,
+  TransformationsReverseMenu,
+  TransformationsFlipMenu,
+  TransformationsRotateLeftMenu,
+  TransformationsRotateRightMenu,
+  TransformationsInvertMenu,
+  TransformationsSharpeningMenu,
+  TransformationsSmoothingMenu,
+  TransformationsPseudoColorMenu,
 } from "./second/index.js";

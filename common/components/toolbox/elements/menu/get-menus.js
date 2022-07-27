@@ -22,6 +22,7 @@ import {
   ToolboxRotateRightMenu,
   ToolboxLengthMenu,
   ToolboxAngleMenu,
+  ToolboxTransformationsMenu,
 } from "../menu-items/index.js";
 
 export const getFirstMenus = () => {
@@ -73,10 +74,12 @@ export const getSecondMenus = () => {
   const panningMenu = new ToolboxPanningMenu();
   const fitMenu = new ToolboxFitMenu();
 
-  const rotateLeft = new ToolboxRotateLeftMenu();
-  const rotateRight = new ToolboxRotateRightMenu();
+  const rotateLeftMenu = new ToolboxRotateLeftMenu();
+  const rotateRightMenu = new ToolboxRotateRightMenu();
   const lengthMenu = new ToolboxLengthMenu();
   const angleMenu = new ToolboxAngleMenu();
+
+  const transformationsMenu = new ToolboxTransformationsMenu();
 
   const menus = [
     keyImageNoteMenu,
@@ -86,11 +89,12 @@ export const getSecondMenus = () => {
 
     panningMenu,
     fitMenu,
-    rotateLeft,
-    rotateRight,
+    rotateLeftMenu,
+    rotateRightMenu,
 
     lengthMenu,
     angleMenu,
+    transformationsMenu,
   ];
 
   return menus;

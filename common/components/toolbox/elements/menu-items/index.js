@@ -25,4 +25,5 @@ export {
   ToolboxRotateRightMenu,
   ToolboxLengthMenu,
   ToolboxAngleMenu,
+  ToolboxTransformationsMenu,
 } from "./second/index.js";

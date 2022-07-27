@@ -10,3 +10,15 @@ export { RotateRightMenu } from "./rotate-right/index.js";
 
 export { LengthMenu } from "./length/index.js";
 export { AngleMenu } from "./angle/index.js";
+
+export {
+  TransformationsMenu,
+  TransformationsReverseMenu,
+  TransformationsFlipMenu,
+  TransformationsRotateLeftMenu,
+  TransformationsRotateRightMenu,
+  TransformationsInvertMenu,
+  TransformationsSharpeningMenu,
+  TransformationsSmoothingMenu,
+  TransformationsPseudoColorMenu,
+} from "./transformations/index.js";

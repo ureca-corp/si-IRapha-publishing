@@ -32,11 +32,13 @@ export class SubMenu extends BaseElement {
   #initOptions() {
     if (!this.#options) return;
 
-    const { padding } = this.#options;
+    const { padding, isLayoutColumnTwo } = this.#options;
 
+    const $root = this.getRootElement();
     const $inner = this.#getContainerInnerElement();
 
     if (padding != undefined) $inner.style.padding = padding;
+    if (isLayoutColumnTwo) $root.classList.add("--layout-column-two");
   }
 
   #getContainerInnerElement() {
