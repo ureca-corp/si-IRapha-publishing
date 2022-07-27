@@ -37,3 +37,18 @@ export {
   MeasurementsPixelValueMenu,
   MeasurementsMagnifyingMenu,
 } from "./measurements/index.js";
+
+export {
+  AnnotationsMenu,
+  AnnotationsLineMenu,
+  AnnotationsArrowLineMenu,
+  AnnotationsCurveMenu,
+  AnnotationsArrowCurveMenu,
+  AnnotationsFreeLineMenu,
+  AnnotationsClosedShapeMenu,
+  AnnotationsCircleMenu,
+  AnnotationsEllipseMenu,
+  AnnotationsRectangleMenu,
+  AnnotationsLocalizationMenu,
+  AnnotationsTextMenu,
+} from "./annotations/index.js";

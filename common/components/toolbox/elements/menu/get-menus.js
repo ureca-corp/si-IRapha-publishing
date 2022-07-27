@@ -24,6 +24,7 @@ import {
   ToolboxAngleMenu,
   ToolboxTransformationsMenu,
   ToolboxMeasurementsMenu,
+  ToolboxAnnotationsMenu,
 } from "../menu-items/index.js";
 
 export const getFirstMenus = () => {
@@ -82,6 +83,8 @@ export const getSecondMenus = () => {
   const transformationsMenu = new ToolboxTransformationsMenu();
   const measurementsMenu = new ToolboxMeasurementsMenu();
 
+  const annotationsMenu = new ToolboxAnnotationsMenu();
+
   const menus = [
     keyImageNoteMenu,
     selectorMenu,
@@ -97,6 +100,8 @@ export const getSecondMenus = () => {
     angleMenu,
     transformationsMenu,
     measurementsMenu,
+
+    annotationsMenu,
   ];
 
   return menus;

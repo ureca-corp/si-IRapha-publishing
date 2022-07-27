@@ -27,4 +27,5 @@ export {
   ToolboxAngleMenu,
   ToolboxTransformationsMenu,
   ToolboxMeasurementsMenu,
+  ToolboxAnnotationsMenu,
 } from "./second/index.js";

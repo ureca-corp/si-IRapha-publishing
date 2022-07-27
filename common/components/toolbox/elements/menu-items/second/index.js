@@ -12,3 +12,5 @@ export { ToolboxLengthMenu } from "./toolbox.length.menu.js";
 export { ToolboxAngleMenu } from "./toolbox.angle.menu.js";
 export { ToolboxTransformationsMenu } from "./toolbox.transformations.menu.js";
 export { ToolboxMeasurementsMenu } from "./toolbox.measurements.menu.js";
+
+export { ToolboxAnnotationsMenu } from "./toolbox.annotations.menu.js";
