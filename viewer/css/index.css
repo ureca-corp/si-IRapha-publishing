@@ -9865,6 +9865,7 @@ button[disabled] {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  width: 40px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -9874,6 +9875,7 @@ button[disabled] {
 .irapha-menu-item.--horizontal {
   flex-direction: row;
   gap: 8px;
+  width: unset;
 }
 .irapha-menu-item.--horizontal .irapha-menu-item__name {
   text-align: start;

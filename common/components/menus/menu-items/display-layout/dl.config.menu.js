@@ -1,4 +1,4 @@
-import { GridSelector } from "../../../selectors/grid-selector/elements/grid-selector/grid-selector2.js";
+import { GridSelector } from "../../../selectors/index.js";
 import { SubMenu } from "../../../sub-menu/index.js";
 import { BaseMenuItem } from "../base/base-menu-item.js";
 

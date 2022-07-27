@@ -1,4 +1,7 @@
+import { LayoutAttributeType } from "../../../dicom-window/index.js";
 import { BaseMenuItem } from "../base/base-menu-item.js";
+
+const rx = rxjs;
 
 export class DisplayLayoutTwoByOneMenu extends BaseMenuItem {
   constructor() {
@@ -11,6 +14,16 @@ export class DisplayLayoutTwoByOneMenu extends BaseMenuItem {
       options: {
         horizontal: true,
       },
+    });
+
+    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
+      this.#mutateDicomWindowLayout()
+    );
+  }
+
+  #mutateDicomWindowLayout() {
+    window.store.dicomWindowLayout$.next({
+      layout: LayoutAttributeType.TwoByOne,
     });
   }
 }

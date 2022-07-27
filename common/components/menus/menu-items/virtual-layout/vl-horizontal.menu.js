@@ -1,5 +1,7 @@
 import { BaseMenuItem } from "../base/base-menu-item.js";
 
+const rx = rxjs;
+
 export class VirtualLayoutHorizontalMenu extends BaseMenuItem {
   constructor() {
     super({
@@ -12,6 +14,15 @@ export class VirtualLayoutHorizontalMenu extends BaseMenuItem {
         horizontal: true,
       },
     });
+
+    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
+      this.#handleClick()
+    );
+  }
+
+  #handleClick() {
+    // mutate global state
+    window.store.virtualLayoutMode$.next({ layout: "horizontal" });
   }
 }
 

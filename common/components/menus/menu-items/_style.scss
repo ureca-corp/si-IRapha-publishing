@@ -5,6 +5,8 @@
     flex-direction: row;
     gap: 8px;
 
+    width: unset;
+
     .irapha-menu-item__name {
       text-align: start;
     }
@@ -18,6 +20,8 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
+
+  width: 40px;
 
   cursor: pointer;
 
