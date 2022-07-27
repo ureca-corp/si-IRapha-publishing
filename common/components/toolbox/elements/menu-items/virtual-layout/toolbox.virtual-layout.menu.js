@@ -25,10 +25,10 @@ export class ToolboxVirtualLayoutMenu extends BaseElement {
       new VirtualLayoutHorizontalMenu(),
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
-    const virtualLayoutSubMenu = new SubMenu({ subMenuItems });
-    UIkit.drop(virtualLayoutSubMenu.getRootElement());
+    const subMenu = new SubMenu({ subMenuItems });
+    UIkit.drop(subMenu.getRootElement());
 
     $root.appendChild(virtualLayoutMenu.getRootElement());
-    $root.appendChild(virtualLayoutSubMenu.getRootElement());
+    $root.appendChild(subMenu.getRootElement());
   }
 }

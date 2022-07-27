@@ -34,12 +34,17 @@ export class BaseMenuItem extends BaseElement {
   }
 
   #initData() {
-    const { title, name, icon } = this.#data;
+    const $root = this.getRootElement();
+    const $name = this.#getNameElement();
+    const $icon = this.#getIconElement();
 
-    this.getRootElement().setAttribute("title", title);
-    this.#getNameElement().innerHTML = name;
+    const { title, name, icon, subMenu } = this.#data;
 
-    this.#getIconElement().innerHTML = icon;
+    $root.setAttribute("title", title);
+    $name.innerHTML = name;
+    $icon.innerHTML = icon;
+
+    if (subMenu) $root.appendChild(subMenu.getRootElement());
   }
 
   #getNameElement() {
