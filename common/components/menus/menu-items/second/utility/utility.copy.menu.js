@@ -8,7 +8,7 @@ export class UtilityCopyMenu extends BaseMenuItem {
         name: "Copy",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

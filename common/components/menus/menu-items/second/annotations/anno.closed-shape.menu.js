@@ -8,7 +8,7 @@ export class AnnotationsClosedShapeMenu extends BaseMenuItem {
         name: "Closed Shape",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

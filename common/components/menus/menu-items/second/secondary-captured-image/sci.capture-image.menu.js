@@ -8,7 +8,7 @@ export class SciCaptureImageMenu extends BaseMenuItem {
         name: "Capture Image",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

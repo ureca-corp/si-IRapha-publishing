@@ -8,7 +8,10 @@ export class MeasurementsPolyLineMenu extends BaseMenuItem {
         name: "PolyLine",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

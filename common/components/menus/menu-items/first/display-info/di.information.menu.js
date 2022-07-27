@@ -10,6 +10,7 @@ export class DisplayInfoInformationMenu extends BaseMenuItem {
       },
       options: {
         horizontal: true,
+        hidableName: false,
       },
     });
   }

@@ -8,7 +8,10 @@ export class MeasurementsEllipseMenu extends BaseMenuItem {
         name: "Ellipse",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

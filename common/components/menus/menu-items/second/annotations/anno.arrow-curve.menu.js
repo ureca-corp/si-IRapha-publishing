@@ -8,7 +8,7 @@ export class AnnotationsArrowCurveMenu extends BaseMenuItem {
         name: "Arrow Curve",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

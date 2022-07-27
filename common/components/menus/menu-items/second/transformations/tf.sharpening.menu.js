@@ -8,7 +8,10 @@ export class TransformationsSharpeningMenu extends BaseMenuItem {
         name: "Sharpening",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

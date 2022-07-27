@@ -8,7 +8,7 @@ export class AnnotationsCircleMenu extends BaseMenuItem {
         name: "Circle",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

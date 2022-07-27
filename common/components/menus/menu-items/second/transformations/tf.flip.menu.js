@@ -8,7 +8,10 @@ export class TransformationsFlipMenu extends BaseMenuItem {
         name: "Flip",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

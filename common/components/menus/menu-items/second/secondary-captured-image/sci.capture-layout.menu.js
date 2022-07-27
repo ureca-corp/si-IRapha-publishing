@@ -8,7 +8,7 @@ export class SciCaptureLayoutMenu extends BaseMenuItem {
         name: "Capture Layout",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

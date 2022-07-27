@@ -11,7 +11,10 @@ export class DisplayLayoutConfigMenu extends BaseMenuItem {
         icon: svgIcon,
         subMenu: createSubMenu(),
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

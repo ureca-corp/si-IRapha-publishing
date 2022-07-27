@@ -13,6 +13,7 @@ export class DisplayLayoutTwoByOneMenu extends BaseMenuItem {
       },
       options: {
         horizontal: true,
+        hidableName: false,
       },
     });
 

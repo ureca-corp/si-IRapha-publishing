@@ -8,7 +8,10 @@ export class MeasurementsMagnifyingMenu extends BaseMenuItem {
         name: "Magnifying",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

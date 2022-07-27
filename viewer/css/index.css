@@ -8402,65 +8402,8 @@ button[disabled] {
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.irapha-toolbox__menu.--name-hide .irapha-toolbox__menu__item__content__name {
+.irapha-toolbox__menu.--name-hide .irapha-menu-item__name {
   display: none;
-}
-.irapha-toolbox__menu .irapha-toolbox__menu__item__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  width: 40px;
-  border: none;
-}
-.irapha-toolbox__menu .irapha-toolbox__menu__item__content__name {
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 700;
-  color: var(--color__font-secondary);
-  text-align: center;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.irapha-menu-icon {
-  position: relative;
-  border-radius: 4px;
-  width: 36px;
-  min-width: 24px;
-  aspect-ratio: 1;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  cursor: pointer;
-}
-.irapha-menu-icon img {
-  width: 100%;
-  height: 100%;
-}
-.irapha-menu-icon:hover {
-  opacity: 0.7;
-  transform: scale(1.2);
-}
-.irapha-menu-icon.--wrapped {
-  padding: 4px;
-  border: 2px solid rgba(238, 238, 238, 0.1333333333);
-}
-.irapha-menu-icon.--more::after {
-  content: "▼";
-  position: absolute;
-  bottom: -4px;
-  right: -2px;
-  font-size: 14px;
-  color: var(--color__primary);
-  transform: scale(0.4);
 }
 
 .irapha-toolbox__menus-container {
@@ -8759,22 +8702,12 @@ button[disabled] {
     min-width: 100px;
     width: 100px;
   }
-  .irapha-toolbox:not(.--layout-column) .irapha-toolbox__menu__item__content {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .irapha-toolbox:not(.--layout-column) .irapha-toolbox__menu__item__content__name {
+  .irapha-toolbox:not(.--layout-column) .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
     display: none;
   }
 }
 @media (max-height: 1024px) {
-  .irapha-toolbox.--layout-column .irapha-toolbox__menu__item__content {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-  .irapha-toolbox.--layout-column .irapha-toolbox__menu__item__content__name {
+  .irapha-toolbox.--layout-column .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
     display: none;
   }
 }

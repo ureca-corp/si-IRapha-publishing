@@ -8,7 +8,10 @@ export class TransformationsInvertMenu extends BaseMenuItem {
         name: "Invert",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

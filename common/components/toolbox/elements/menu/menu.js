@@ -52,7 +52,7 @@ export class ToolboxMenu extends BaseElement {
   #initItems() {
     if (!this.#items) return;
 
-    const $items = this.#items.map((it) => it.getRootElement());
+    const $items = this.#items.map((it) => createLI(it.getRootElement()));
     this.getRootElement().append(...$items);
   }
 
@@ -71,3 +71,11 @@ export class ToolboxMenu extends BaseElement {
     return rootClassList.remove(HideClassType.HideIconName);
   }
 }
+
+// =================================================================
+const createLI = (children) => {
+  const $li = document.createElement("li");
+  $li.appendChild(children);
+
+  return $li;
+};

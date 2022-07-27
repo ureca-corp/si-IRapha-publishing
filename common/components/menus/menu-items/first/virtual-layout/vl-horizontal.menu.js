@@ -12,6 +12,7 @@ export class VirtualLayoutHorizontalMenu extends BaseMenuItem {
       },
       options: {
         horizontal: true,
+        hidableName: false,
       },
     });
 

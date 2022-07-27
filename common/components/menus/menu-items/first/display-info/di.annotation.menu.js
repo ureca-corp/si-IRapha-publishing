@@ -10,6 +10,7 @@ export class DisplayInfoAnnotationMenu extends BaseMenuItem {
       },
       options: {
         horizontal: true,
+        hidableName: false,
       },
     });
   }

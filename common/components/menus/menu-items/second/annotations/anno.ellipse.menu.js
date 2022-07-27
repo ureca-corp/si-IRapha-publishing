@@ -8,7 +8,7 @@ export class AnnotationsEllipseMenu extends BaseMenuItem {
         name: "Ellipse",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

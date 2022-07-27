@@ -91,13 +91,9 @@ $toolbox-height-small: 52px;
 // media query - laptop
 // =================================================================
 @mixin name-hide {
-  .irapha-toolbox__menu__item {
-    &__content {
-      width: fit-content;
-
-      &__name {
-        display: none;
-      }
+  .irapha-menu-item[hidable-name="true"] {
+    .irapha-menu-item__name {
+      display: none;
     }
   }
 }

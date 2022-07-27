@@ -8,7 +8,7 @@ export class AnnotationsCurveMenu extends BaseMenuItem {
         name: "Curve",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

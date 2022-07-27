@@ -8,7 +8,10 @@ export class TransformationsSmoothingMenu extends BaseMenuItem {
         name: "Smoothing",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

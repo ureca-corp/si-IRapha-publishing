@@ -8,7 +8,7 @@ export class AnnotationsArrowLineMenu extends BaseMenuItem {
         name: "Arrow Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

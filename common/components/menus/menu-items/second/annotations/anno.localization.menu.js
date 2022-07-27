@@ -8,7 +8,7 @@ export class AnnotationsLocalizationMenu extends BaseMenuItem {
         name: "Localization",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

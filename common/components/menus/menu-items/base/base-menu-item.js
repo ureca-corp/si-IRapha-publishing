@@ -54,7 +54,7 @@ export class BaseMenuItem extends BaseElement {
   #initOptions() {
     if (!this.#options) return;
 
-    const { outlined, more, horizontal } = this.#options;
+    const { outlined, more, horizontal, hidableName = true } = this.#options;
 
     const $root = this.getRootElement();
     const $icon = this.#getIconElement();
@@ -62,6 +62,8 @@ export class BaseMenuItem extends BaseElement {
     if (outlined) $icon.classList.add("--oulined");
     if (more) $icon.classList.add("--more");
     if (horizontal) $root.classList.add("--horizontal");
+
+    $root.setAttribute("hidable-name", hidableName);
   }
 
   #getIconElement() {

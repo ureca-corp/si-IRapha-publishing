@@ -8,7 +8,10 @@ export class TransformationsPseudoColorMenu extends BaseMenuItem {
         name: "Pseudo Color",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

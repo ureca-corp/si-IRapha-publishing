@@ -8,7 +8,10 @@ export class MeasurementsCtRatioMenu extends BaseMenuItem {
         name: "CT Ratio",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

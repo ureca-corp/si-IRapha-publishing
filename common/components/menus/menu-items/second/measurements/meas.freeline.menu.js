@@ -8,7 +8,10 @@ export class MeasurementsFreeLineMenu extends BaseMenuItem {
         name: "Free Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

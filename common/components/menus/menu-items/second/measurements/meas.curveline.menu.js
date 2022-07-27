@@ -8,7 +8,10 @@ export class MeasurementsCurveLineMenu extends BaseMenuItem {
         name: "Curve Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

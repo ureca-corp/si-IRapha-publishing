@@ -8,7 +8,10 @@ export class MeasurementsPixelValueMenu extends BaseMenuItem {
         name: "Pixel Value",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

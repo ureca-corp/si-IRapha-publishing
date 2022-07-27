@@ -8,7 +8,10 @@ export class TransformationsReverseMenu extends BaseMenuItem {
         name: "Reverse",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

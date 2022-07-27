@@ -8,7 +8,7 @@ export class AnnotationsLineMenu extends BaseMenuItem {
         name: "Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

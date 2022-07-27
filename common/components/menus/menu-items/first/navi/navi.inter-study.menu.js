@@ -8,7 +8,10 @@ export class NaviInterStudyMenu extends BaseMenuItem {
         name: "Inter Study",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

@@ -8,7 +8,10 @@ export class MeasurementsAnglePointMenu extends BaseMenuItem {
         name: "Angle(3 Points)",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

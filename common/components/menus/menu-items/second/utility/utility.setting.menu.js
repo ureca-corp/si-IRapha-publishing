@@ -8,7 +8,7 @@ export class UtilitySettingMenu extends BaseMenuItem {
         name: "Setting",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

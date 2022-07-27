@@ -12,6 +12,7 @@ export class VirtualLayoutNormalMenu extends BaseMenuItem {
       },
       options: {
         horizontal: true,
+        hidableName: false,
       },
     });
 

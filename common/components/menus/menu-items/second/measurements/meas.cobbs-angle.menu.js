@@ -8,7 +8,10 @@ export class MeasurementsCobbsAngleMenu extends BaseMenuItem {
         name: "Cobb's Angle",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

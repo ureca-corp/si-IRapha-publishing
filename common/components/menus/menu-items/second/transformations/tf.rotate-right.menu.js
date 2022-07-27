@@ -8,7 +8,10 @@ export class TransformationsRotateRightMenu extends BaseMenuItem {
         name: "Rotate Right",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

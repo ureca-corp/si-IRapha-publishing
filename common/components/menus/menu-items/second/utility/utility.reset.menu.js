@@ -8,7 +8,7 @@ export class UtilityResetMenu extends BaseMenuItem {
         name: "Reset",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

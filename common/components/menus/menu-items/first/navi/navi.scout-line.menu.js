@@ -8,7 +8,10 @@ export class NaviScoutLineMenu extends BaseMenuItem {
         name: "Scout Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

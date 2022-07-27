@@ -8,7 +8,10 @@ export class MeasurementsCenterLineMenu extends BaseMenuItem {
         name: "Center Line",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

@@ -8,7 +8,10 @@ export class MeasurementsRectangleMenu extends BaseMenuItem {
         name: "Rectangle",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

@@ -8,7 +8,7 @@ export class SciCaptureViewerMenu extends BaseMenuItem {
         name: "Capture Viewer Layout",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }

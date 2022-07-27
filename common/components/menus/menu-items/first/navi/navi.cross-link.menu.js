@@ -8,7 +8,10 @@ export class NaviCrossLinkMenu extends BaseMenuItem {
         name: "Cross Link",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: {
+        horizontal: true,
+        hidableName: false,
+      },
     });
   }
 }

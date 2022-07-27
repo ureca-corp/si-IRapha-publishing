@@ -8,7 +8,7 @@ export class UtilityDicomMenu extends BaseMenuItem {
         name: "Dicom",
         icon: svgIcon,
       },
-      options: { horizontal: true },
+      options: { horizontal: true, hidableName: false },
     });
   }
 }
