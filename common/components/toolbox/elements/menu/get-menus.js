@@ -25,6 +25,11 @@ import {
   ToolboxTransformationsMenu,
   ToolboxMeasurementsMenu,
   ToolboxAnnotationsMenu,
+  ToolboxRefreshMenu,
+  ToolboxUndoMenu,
+  ToolboxSecondaryCapturedImageMenu,
+  ToolboxReviseMenu,
+  ToolboxUtilityMenu,
 } from "../menu-items/index.js";
 
 export const getFirstMenus = () => {
@@ -84,6 +89,12 @@ export const getSecondMenus = () => {
   const measurementsMenu = new ToolboxMeasurementsMenu();
 
   const annotationsMenu = new ToolboxAnnotationsMenu();
+  const refreshMenu = new ToolboxRefreshMenu();
+  const undoMenu = new ToolboxUndoMenu();
+  const sciMenu = new ToolboxSecondaryCapturedImageMenu();
+
+  const reviseMenu = new ToolboxReviseMenu();
+  const utilityMenu = new ToolboxUtilityMenu();
 
   const menus = [
     keyImageNoteMenu,
@@ -102,6 +113,12 @@ export const getSecondMenus = () => {
     measurementsMenu,
 
     annotationsMenu,
+    refreshMenu,
+    undoMenu,
+    sciMenu,
+
+    reviseMenu,
+    utilityMenu,
   ];
 
   return menus;

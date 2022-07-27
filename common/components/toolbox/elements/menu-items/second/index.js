@@ -14,3 +14,9 @@ export { ToolboxTransformationsMenu } from "./toolbox.transformations.menu.js";
 export { ToolboxMeasurementsMenu } from "./toolbox.measurements.menu.js";
 
 export { ToolboxAnnotationsMenu } from "./toolbox.annotations.menu.js";
+export { ToolboxRefreshMenu } from "./toolbox.refresh.menu.js";
+export { ToolboxUndoMenu } from "./toolbox.undo.menu.js";
+export { ToolboxSecondaryCapturedImageMenu } from "./toolbox.secondary-captured-image.menu.js";
+
+export { ToolboxReviseMenu } from "./toolbox.revise.menu.js";
+export { ToolboxUtilityMenu } from "./toolbox.utility.menu.js";

@@ -28,4 +28,9 @@ export {
   ToolboxTransformationsMenu,
   ToolboxMeasurementsMenu,
   ToolboxAnnotationsMenu,
+  ToolboxRefreshMenu,
+  ToolboxUndoMenu,
+  ToolboxSecondaryCapturedImageMenu,
+  ToolboxReviseMenu,
+  ToolboxUtilityMenu,
 } from "./second/index.js";
