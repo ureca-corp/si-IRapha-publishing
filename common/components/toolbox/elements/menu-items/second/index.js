@@ -11,3 +11,4 @@ export { ToolboxRotateRightMenu } from "./toolbox.rotate-right.menu.js";
 export { ToolboxLengthMenu } from "./toolbox.length.menu.js";
 export { ToolboxAngleMenu } from "./toolbox.angle.menu.js";
 export { ToolboxTransformationsMenu } from "./toolbox.transformations.menu.js";
+export { ToolboxMeasurementsMenu } from "./toolbox.measurements.menu.js";

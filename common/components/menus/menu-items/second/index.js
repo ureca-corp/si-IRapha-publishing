@@ -22,3 +22,18 @@ export {
   TransformationsSmoothingMenu,
   TransformationsPseudoColorMenu,
 } from "./transformations/index.js";
+
+export {
+  MeasurementsMenu,
+  MeasurementsPolyLineMenu,
+  MeasurementsFreeLineMenu,
+  MeasurementsCenterLineMenu,
+  MeasurementsCurveLineMenu,
+  MeasurementsRectangleMenu,
+  MeasurementsEllipseMenu,
+  MeasurementsAnglePointMenu,
+  MeasurementsCobbsAngleMenu,
+  MeasurementsCtRatioMenu,
+  MeasurementsPixelValueMenu,
+  MeasurementsMagnifyingMenu,
+} from "./measurements/index.js";
