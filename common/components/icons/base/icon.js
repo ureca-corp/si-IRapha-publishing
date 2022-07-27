@@ -110,8 +110,6 @@ export class BaseIcon2 extends BaseElement {
   #handleActiveChange(isActive) {
     const $root = this.getRootElement();
 
-    console.log(isActive);
-
     if (isActive) return $root.classList.add("--active");
     return $root.classList.remove("--active");
   }

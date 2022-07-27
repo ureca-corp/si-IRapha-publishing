@@ -17,6 +17,9 @@
 @use "../../common/components/main-layout/style" as main-layout;
 @use "../../common/components/virtual-layout/style" as virtual-layout;
 
+@use "../../common/components/menus/menu-items/style" as menu-items;
+
+// =================================================================
 .content {
   grid-area: content;
 

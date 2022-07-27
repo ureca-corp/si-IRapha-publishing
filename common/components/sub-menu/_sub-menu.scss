@@ -1,5 +1,5 @@
-@use "../../../styles/common";
-@use "../../../themes/typography" as typography;
+@use "../../styles/common";
+@use "../../themes/typography" as typography;
 
 @mixin menu-name {
   @include typography.label-small;

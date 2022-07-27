@@ -1,4 +1,5 @@
 import { HideClassType, LayoutClassType } from "../../common/index.js";
+import { initializeMenus } from "./initialize-menus.js";
 
 /**
  * Constructor types
@@ -23,6 +24,8 @@ export class ToolboxMenu {
     isHideIconName$.subscribe((isHideIconName) =>
       this.#handleHideIconNameChange(isHideIconName)
     );
+
+    initializeMenus(this.#$root);
   }
 
   // handler
