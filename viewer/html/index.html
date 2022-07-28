@@ -88,799 +88,331 @@
       <!-- Viewbox Context Menu -->
       <div id="irapha-viewbox-context-menu" class="irapha-context-menu">
         <div class="irapha-context-menu__segment-container">
-          <div class="irapha-context-menu__segment">
-            <!-- Select -->
-            <div class="irapha-context-menu__item">Select</div>
+          ok
+          <!-- Annotations -->
+          <div class="irapha-context-menu__item">
+            <p>Annotations</p>
 
-            <!-- W/L -->
-            <div class="irapha-context-menu__item">W/L</div>
+            <div
+              class="irapha-context-menu__item__submenu irapha-sub-menu --layout-column-two"
+            >
+              <div class="irapha-sub-menu__container">
+                <ul class="irapha-sub-menu__container__inner">
+                  <!-- Annotations : Line -->
+                  <li
+                    id="irapha-menu__annotations__line"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Line">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--line.svg"
+                          alt="Line"
+                        />
+                      </dt>
 
-            <!-- W/L Preset -->
-            <div class="irapha-context-menu__item">
-              <p>W/L Preset</p>
+                      <dd class="irapha-sub-menu__item__name">Line</dd>
+                    </dl>
+                  </li>
 
-              <div class="irapha-context-menu__item__submenu irapha-sub-menu">
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- W/L Preset - Bone -->
-                    <li class="irapha-sub-menu__item">
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Normal Layout"
-                      >
-                        <dt class="irapha-sub-menu__item__name">Bone</dt>
+                  <!-- Annotations : Arrow Line -->
+                  <li
+                    id="irapha-menu__annotations__arrowline"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Arrow Line">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--arrow.svg"
+                          alt="Arrow Line"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">100/120</dd>
-                      </dl>
-                    </li>
+                      <dd class="irapha-sub-menu__item__name">Arrow Line</dd>
+                    </dl>
+                  </li>
 
-                    <!-- W/L Preset - Brain -->
-                    <li class="irapha-sub-menu__item">
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Vertical Layout"
-                      >
-                        <dt class="irapha-sub-menu__item__name">Brain</dt>
+                  <!-- Annotations : Curve -->
+                  <li
+                    id="irapha-menu__annotations__curve"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Curve">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--curve.svg"
+                          alt="Curve"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">80/40</dd>
-                      </dl>
-                    </li>
+                      <dd class="irapha-sub-menu__item__name">Curve</dd>
+                    </dl>
+                  </li>
 
-                    <!-- W/L Preset - Lungs -->
-                    <li class="irapha-sub-menu__item">
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Horizontal Layout"
-                      >
-                        <dt class="irapha-sub-menu__item__name">Lungs</dt>
+                  <!-- Annotations : Arrow Curve -->
+                  <li
+                    id="irapha-menu__annotations__arrow-curve"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Arrow Curve">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--arrow_curve.svg"
+                          alt="Arrow Curve"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">1500/-600</dd>
-                      </dl>
-                    </li>
+                      <dd class="irapha-sub-menu__item__name">Arrow Curve</dd>
+                    </dl>
+                  </li>
 
-                    <!-- W/L Preset - Liver -->
-                    <li class="irapha-sub-menu__item">
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Horizontal Layout"
-                      >
-                        <dt class="irapha-sub-menu__item__name">Liver</dt>
+                  <!-- Annotations : Free Line -->
+                  <li
+                    id="irapha-menu__annotations__freeline"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Free Line">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--freeline.svg"
+                          alt="Free Line"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">150/30</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+                      <dd class="irapha-sub-menu__item__name">Free Line</dd>
+                    </dl>
+                  </li>
 
-            <!-- Zoom -->
-            <div class="irapha-context-menu__item">Zoom</div>
+                  <!-- Annotations : Closed Shape -->
+                  <li
+                    id="irapha-menu__annotations__closed-shape"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Closed Shape">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--closed_shape.svg"
+                          alt="Closed Shape"
+                        />
+                      </dt>
 
-            <!-- Pan -->
-            <div class="irapha-context-menu__item">Pan</div>
+                      <dd class="irapha-sub-menu__item__name">Closed Shape</dd>
+                    </dl>
+                  </li>
 
-            <!-- Fit -->
-            <div class="irapha-context-menu__item">Fit</div>
+                  <!-- Annotations : Circle -->
+                  <li
+                    id="irapha-menu__annotations__circle"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Circle">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--circle.svg"
+                          alt="Circle"
+                        />
+                      </dt>
 
-            <!-- Length -->
-            <div class="irapha-context-menu__item">Length</div>
+                      <dd class="irapha-sub-menu__item__name">Circle</dd>
+                    </dl>
+                  </li>
 
-            <!-- Angle -->
-            <div class="irapha-context-menu__item">Angle</div>
+                  <!-- Annotations : Ellipse -->
+                  <li
+                    id="irapha-menu__annotations__ellipse"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Ellipse">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--ellipse.svg"
+                          alt="Ellipse"
+                        />
+                      </dt>
 
-            <!-- Transformations -->
-            <div class="irapha-context-menu__item">
-              <p>Transformations</p>
+                      <dd class="irapha-sub-menu__item__name">Ellipse</dd>
+                    </dl>
+                  </li>
 
-              <div
-                class="irapha-context-menu__item__submenu irapha-sub-menu --layout-column-two"
-              >
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- Transformations : Reverse -->
-                    <li
-                      id="irapha-menu__transformations__reverse"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Reverse">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--reverse.svg"
-                            alt="Reverse"
-                          />
-                        </dt>
+                  <!-- Annotations : Rectangle -->
+                  <li
+                    id="irapha-menu__annotations__rectangle"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Rectangle">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--rect.svg"
+                          alt="Rectangle"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">Reverse</dd>
-                      </dl>
-                    </li>
+                      <dd class="irapha-sub-menu__item__name">Rectangle</dd>
+                    </dl>
+                  </li>
 
-                    <!-- Transformations : Flip -->
-                    <li
-                      id="irapha-menu__transformations__flip"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Flip">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--flip.svg"
-                            alt="Flip"
-                          />
-                        </dt>
+                  <!-- Annotations : Localization -->
+                  <li
+                    id="irapha-menu__annotations__localization"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Localization">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--localization.svg"
+                          alt="Localization"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">Flip</dd>
-                      </dl>
-                    </li>
+                      <dd class="irapha-sub-menu__item__name">Localization</dd>
+                    </dl>
+                  </li>
 
-                    <!-- Transformations : Rotate Left -->
-                    <li
-                      id="irapha-menu__transformations__rotate-left"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Rotate Left">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_rotate_left.svg"
-                            alt="Rotate Left"
-                          />
-                        </dt>
+                  <!-- Annotations : Text -->
+                  <li
+                    id="irapha-menu__annotations__text"
+                    class="irapha-sub-menu__item"
+                  >
+                    <dl class="irapha-sub-menu__item__dl" title="Text">
+                      <dt class="irapha-menu-icon">
+                        <img
+                          src="../../assets/icons/ic_annotations--text.svg"
+                          alt="Text"
+                        />
+                      </dt>
 
-                        <dd class="irapha-sub-menu__item__name">Rotate Left</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Transformations : Rotate Right -->
-                    <li
-                      id="irapha-menu__transformations__rotate-right"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Rotate Right"
-                      >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_rotate_right.svg"
-                            alt="Rotate Right"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">
-                          Rotate Right
-                        </dd>
-                      </dl>
-                    </li>
-
-                    <!-- Transformations : Invert -->
-                    <li
-                      id="irapha-menu__transformations__invert"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Invert">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--invert.svg"
-                            alt="Invert"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Invert</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Transformations : Sharpening -->
-                    <li
-                      id="irapha-menu__transformations__sharpening"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Sharpening">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--sharp.svg"
-                            alt="Sharpening"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Sharpening</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Transformations : Smoothing -->
-                    <li
-                      id="irapha-menu__transformations__smoothing"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Smoothing">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--smoothing.svg"
-                            alt="Smoothing"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Smoothing</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Transformations : Pseudo Color -->
-                    <li
-                      id="irapha-menu__transformations__pseudo-color"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Pseudo Color"
-                      >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_transformations--pseudo.svg"
-                            alt="Pseudo Color"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">
-                          Pseudo Color
-                        </dd>
-                      </dl>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Measurements -->
-            <div class="irapha-context-menu__item">
-              <p>Measurements</p>
-
-              <div
-                class="irapha-context-menu__item__submenu irapha-sub-menu --layout-column-two"
-              >
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- Measurements : PolyLine -->
-                    <li
-                      id="irapha-menu__measurements__polyline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="PolyLine">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--polyline.svg"
-                            alt="PolyLine"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">PolyLine</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Free Line -->
-                    <li
-                      id="irapha-menu__measurements__freeline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Free Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--freeline.svg"
-                            alt="Free Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Free Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Center Line -->
-                    <li
-                      id="irapha-menu__measurements__centerline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Center Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--center.svg"
-                            alt="Center Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Center Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Curve Line -->
-                    <li
-                      id="irapha-menu__measurements__curveline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Curve Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--curve.svg"
-                            alt="Curve Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Curve Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Rectangle -->
-                    <li
-                      id="irapha-menu__measurements__rectangle"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Rectangle">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--rect.svg"
-                            alt="Rectangle"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Rectangle</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Ellipse -->
-                    <li
-                      id="irapha-menu__measurements__ellipse"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Ellipse">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--ellipse.svg"
-                            alt="Ellipse"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Ellipse</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Angle(3 Points) -->
-                    <li
-                      id="irapha-menu__measurements__angle-3points"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Angle(3 Points)"
-                      >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--angle.svg"
-                            alt="Angle(3 Points)"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">
-                          Angle(3 Points)
-                        </dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Cobb's Angle -->
-                    <li
-                      id="irapha-menu__measurements__cobbs-angle"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Cobb's Angle"
-                      >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--cobbs_angle.svg"
-                            alt="Cobb's Angle"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">
-                          Cobb's Angle
-                        </dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : CT Ratio -->
-                    <li
-                      id="irapha-menu__measurements__CT-ratio"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="CT Ratio">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--ct.svg"
-                            alt="CT Ratio"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">CT Ratio</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Pixel Value -->
-                    <li
-                      id="irapha-menu__measurements__pixel-value"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Pixel Value">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--pixel.svg"
-                            alt="Pixel Value"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Pixel Value</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Measurements : Magnifying -->
-                    <li
-                      id="irapha-menu__measurements__magnifying"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Magnifying">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_measurements--magnifying.svg"
-                            alt="Magnifying"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Magnifying</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                </div>
+                      <dd class="irapha-sub-menu__item__name">Text</dd>
+                    </dl>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
-          <div class="irapha-context-menu__segment">
-            <!-- Annotations -->
-            <div class="irapha-context-menu__item">
-              <p>Annotations</p>
+          <!-- Refresh -->
+          <div class="irapha-context-menu__item">Refresh</div>
 
-              <div
-                class="irapha-context-menu__item__submenu irapha-sub-menu --layout-column-two"
-              >
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- Annotations : Line -->
-                    <li
-                      id="irapha-menu__annotations__line"
-                      class="irapha-sub-menu__item"
+          <!-- Undo -->
+          <div class="irapha-context-menu__item">Undo</div>
+
+          <!-- Reset -->
+          <div class="irapha-context-menu__item">Reset</div>
+
+          <!-- Delete Image -->
+          <div class="irapha-context-menu__item">Delete Image</div>
+
+          <!-- DICOM -->
+          <div class="irapha-context-menu__item">DICOM</div>
+
+          <!-- Copy -->
+          <div class="irapha-context-menu__item">Copy</div>
+
+          <!-- Move -->
+          <div class="irapha-context-menu__item">
+            <p>Move</p>
+
+            <div class="irapha-context-menu__item__submenu irapha-sub-menu">
+              <div class="irapha-sub-menu__container">
+                <ul class="irapha-sub-menu__container__inner">
+                  <!-- Move - First -->
+                  <li class="irapha-sub-menu__item">
+                    <div
+                      class="irapha-sub-menu__item__dl"
+                      title="Move to First"
                     >
-                      <dl class="irapha-sub-menu__item__dl" title="Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--line.svg"
-                            alt="Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Arrow Line -->
-                    <li
-                      id="irapha-menu__annotations__arrowline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Arrow Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--arrow.svg"
-                            alt="Arrow Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Arrow Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Curve -->
-                    <li
-                      id="irapha-menu__annotations__curve"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Curve">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--curve.svg"
-                            alt="Curve"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Curve</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Arrow Curve -->
-                    <li
-                      id="irapha-menu__annotations__arrow-curve"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Arrow Curve">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--arrow_curve.svg"
-                            alt="Arrow Curve"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Arrow Curve</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Free Line -->
-                    <li
-                      id="irapha-menu__annotations__freeline"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Free Line">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--freeline.svg"
-                            alt="Free Line"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Free Line</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Closed Shape -->
-                    <li
-                      id="irapha-menu__annotations__closed-shape"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Closed Shape"
+                      <span class="irapha-sub-menu__item__name"
+                        >Move to First</span
                       >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--closed_shape.svg"
-                            alt="Closed Shape"
-                          />
-                        </dt>
+                    </div>
+                  </li>
 
-                        <dd class="irapha-sub-menu__item__name">
-                          Closed Shape
-                        </dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Circle -->
-                    <li
-                      id="irapha-menu__annotations__circle"
-                      class="irapha-sub-menu__item"
+                  <!-- Move - Prev -->
+                  <li class="irapha-sub-menu__item">
+                    <div
+                      class="irapha-sub-menu__item__dl"
+                      title="Move to Previous"
                     >
-                      <dl class="irapha-sub-menu__item__dl" title="Circle">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--circle.svg"
-                            alt="Circle"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Circle</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Ellipse -->
-                    <li
-                      id="irapha-menu__annotations__ellipse"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Ellipse">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--ellipse.svg"
-                            alt="Ellipse"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Ellipse</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Rectangle -->
-                    <li
-                      id="irapha-menu__annotations__rectangle"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Rectangle">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--rect.svg"
-                            alt="Rectangle"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Rectangle</dd>
-                      </dl>
-                    </li>
-
-                    <!-- Annotations : Localization -->
-                    <li
-                      id="irapha-menu__annotations__localization"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl
-                        class="irapha-sub-menu__item__dl"
-                        title="Localization"
+                      <span class="irapha-sub-menu__item__name"
+                        >Move to Previous</span
                       >
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--localization.svg"
-                            alt="Localization"
-                          />
-                        </dt>
+                    </div>
+                  </li>
 
-                        <dd class="irapha-sub-menu__item__name">
-                          Localization
-                        </dd>
-                      </dl>
-                    </li>
+                  <!-- Move - Next -->
+                  <li class="irapha-sub-menu__item">
+                    <div class="irapha-sub-menu__item__dl" title="Move to Next">
+                      <span class="irapha-sub-menu__item__name"
+                        >Move to Next</span
+                      >
+                    </div>
+                  </li>
 
-                    <!-- Annotations : Text -->
-                    <li
-                      id="irapha-menu__annotations__text"
-                      class="irapha-sub-menu__item"
-                    >
-                      <dl class="irapha-sub-menu__item__dl" title="Text">
-                        <dt class="irapha-menu-icon">
-                          <img
-                            src="../../assets/icons/ic_annotations--text.svg"
-                            alt="Text"
-                          />
-                        </dt>
-
-                        <dd class="irapha-sub-menu__item__name">Text</dd>
-                      </dl>
-                    </li>
-                  </ul>
-                </div>
+                  <!-- Move - Last -->
+                  <li class="irapha-sub-menu__item">
+                    <div class="irapha-sub-menu__item__dl" title="Move to Last">
+                      <span class="irapha-sub-menu__item__name"
+                        >Move to Last</span
+                      >
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
 
-            <!-- Refresh -->
-            <div class="irapha-context-menu__item">Refresh</div>
+          <!-- Save -->
+          <div class="irapha-context-menu__item">
+            <p>Save</p>
 
-            <!-- Undo -->
-            <div class="irapha-context-menu__item">Undo</div>
-
-            <!-- Reset -->
-            <div class="irapha-context-menu__item">Reset</div>
-
-            <!-- Delete Image -->
-            <div class="irapha-context-menu__item">Delete Image</div>
-
-            <!-- DICOM -->
-            <div class="irapha-context-menu__item">DICOM</div>
-
-            <!-- Copy -->
-            <div class="irapha-context-menu__item">Copy</div>
-
-            <!-- Move -->
-            <div class="irapha-context-menu__item">
-              <p>Move</p>
-
-              <div class="irapha-context-menu__item__submenu irapha-sub-menu">
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- Move - First -->
-                    <li class="irapha-sub-menu__item">
-                      <div
-                        class="irapha-sub-menu__item__dl"
-                        title="Move to First"
+            <div class="irapha-context-menu__item__submenu irapha-sub-menu">
+              <div class="irapha-sub-menu__container">
+                <ul class="irapha-sub-menu__container__inner">
+                  <!-- Save - Annotations -->
+                  <li class="irapha-sub-menu__item">
+                    <div
+                      class="irapha-sub-menu__item__dl"
+                      title="Save Annotations"
+                    >
+                      <span class="irapha-sub-menu__item__name"
+                        >Save Annotations</span
                       >
-                        <span class="irapha-sub-menu__item__name"
-                          >Move to First</span
-                        >
-                      </div>
-                    </li>
+                    </div>
+                  </li>
 
-                    <!-- Move - Prev -->
-                    <li class="irapha-sub-menu__item">
-                      <div
-                        class="irapha-sub-menu__item__dl"
-                        title="Move to Previous"
-                      >
-                        <span class="irapha-sub-menu__item__name"
-                          >Move to Previous</span
-                        >
-                      </div>
-                    </li>
-
-                    <!-- Move - Next -->
-                    <li class="irapha-sub-menu__item">
-                      <div
-                        class="irapha-sub-menu__item__dl"
-                        title="Move to Next"
-                      >
-                        <span class="irapha-sub-menu__item__name"
-                          >Move to Next</span
-                        >
-                      </div>
-                    </li>
-
-                    <!-- Move - Last -->
-                    <li class="irapha-sub-menu__item">
-                      <div
-                        class="irapha-sub-menu__item__dl"
-                        title="Move to Last"
-                      >
-                        <span class="irapha-sub-menu__item__name"
-                          >Move to Last</span
-                        >
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                  <!-- Save - As -->
+                  <li class="irapha-sub-menu__item">
+                    <div class="irapha-sub-menu__item__dl" title="Save As">
+                      <span class="irapha-sub-menu__item__name">Save As</span>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
 
-            <!-- Save -->
-            <div class="irapha-context-menu__item">
-              <p>Save</p>
+          <!-- External -->
+          <div class="irapha-context-menu__item">
+            <p>External</p>
 
-              <div class="irapha-context-menu__item__submenu irapha-sub-menu">
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- Save - Annotations -->
-                    <li class="irapha-sub-menu__item">
-                      <div
-                        class="irapha-sub-menu__item__dl"
-                        title="Save Annotations"
+            <div class="irapha-context-menu__item__submenu irapha-sub-menu">
+              <div class="irapha-sub-menu__container">
+                <ul class="irapha-sub-menu__container__inner">
+                  <!-- External - best image -->
+                  <li class="irapha-sub-menu__item">
+                    <div class="irapha-sub-menu__item__dl" title="Best Image">
+                      <span class="irapha-sub-menu__item__name"
+                        >Best Image</span
                       >
-                        <span class="irapha-sub-menu__item__name"
-                          >Save Annotations</span
-                        >
-                      </div>
-                    </li>
+                    </div>
+                  </li>
 
-                    <!-- Save - As -->
-                    <li class="irapha-sub-menu__item">
-                      <div class="irapha-sub-menu__item__dl" title="Save As">
-                        <span class="irapha-sub-menu__item__name">Save As</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- External -->
-            <div class="irapha-context-menu__item">
-              <p>External</p>
-
-              <div class="irapha-context-menu__item__submenu irapha-sub-menu">
-                <div class="irapha-sub-menu__container">
-                  <ul class="irapha-sub-menu__container__inner">
-                    <!-- External - best image -->
-                    <li class="irapha-sub-menu__item">
-                      <div class="irapha-sub-menu__item__dl" title="Best Image">
-                        <span class="irapha-sub-menu__item__name"
-                          >Best Image</span
-                        >
-                      </div>
-                    </li>
-
-                    <!-- External - As -->
-                    <li class="irapha-sub-menu__item">
-                      <div class="irapha-sub-menu__item__dl" title="sample">
-                        <span class="irapha-sub-menu__item__name">Sample</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                  <!-- External - As -->
+                  <li class="irapha-sub-menu__item">
+                    <div class="irapha-sub-menu__item__dl" title="sample">
+                      <span class="irapha-sub-menu__item__name">Sample</span>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

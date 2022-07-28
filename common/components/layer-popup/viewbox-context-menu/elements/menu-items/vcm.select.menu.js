@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFro
 import { BaseElement } from "../../../../base/index.js";
 import { MenuTemplate } from "./common.js";
 
-export class ViewboxReportMenu extends BaseElement {
+export class ViewboxSelectMenu extends BaseElement {
   constructor() {
     super({ $element: createElementFromHTML(MenuTemplate) });
 
@@ -12,7 +12,7 @@ export class ViewboxReportMenu extends BaseElement {
   #init() {
     const $root = this.getRootElement();
 
-    const $label = createLabel("Report");
+    const $label = createLabel("Select");
 
     $root.appendChild($label);
   }
