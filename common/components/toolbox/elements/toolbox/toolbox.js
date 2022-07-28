@@ -1,4 +1,4 @@
-import { FoldingBar2 } from "../../../folding-bar/index.js";
+import { FoldingBar } from "../../../folding-bar/index.js";
 import { Logo } from "../../../logo/index.js";
 import { ToolboxMenusContainer } from "../menus-container/menus-container.js";
 
@@ -45,7 +45,7 @@ export class Toolbox extends BaseElement {
       },
     });
 
-    const foldingbar = new FoldingBar2({
+    const foldingbar = new FoldingBar({
       states: {
         isLayoutColumn$: this.#isLayoutColumn$,
         isExpanded$: this.#isExpanded$,
@@ -98,11 +98,6 @@ export class Toolbox extends BaseElement {
     isNotPreview && isExpanded$.next(!isExpanded$.getValue());
 
     this.#isPreview$.next(isNotPreview);
-  }
-
-  // public
-  setLayoutColumn(isLayoutColumn) {
-    this.#isLayoutColumn$.next(isLayoutColumn);
   }
 }
 

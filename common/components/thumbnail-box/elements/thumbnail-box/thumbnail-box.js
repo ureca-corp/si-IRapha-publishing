@@ -1,26 +1,31 @@
+import { FoldingBar } from "../../../folding-bar/index.js";
 import { KinSelector } from "../../../selectors/index.js";
 import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
-import { FoldingBar } from "../../../folding-bar/index.js";
 
-import {
-  Selectors,
-  LayoutClassType,
-  ShrinkClassType,
-  ShrinkType,
-} from "../../common/index.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { PinIcon2 } from "../../../icons/pin.icon.js";
+import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
 
 const rx = rxjs;
 
-export class ThumbnailBox {
-  #$root;
+const Template = `
+<div class="${Selectors.ThumbnailBox}" draggable="true" priority="2"></div>
+`;
 
-  #isLayoutColumn$ = new rx.BehaviorSubject();
+export class ThumbnailBox extends BaseElement {
+  #model;
+
+  #isLayoutColumn$;
+
   #isExpanded$ = new rx.BehaviorSubject();
   #isPreview$ = new rx.BehaviorSubject(false);
   #shrinkDirection$ = new rx.BehaviorSubject();
 
-  constructor({ $element }) {
-    this.#$root = $element;
+  constructor({ isLayoutColumn$, model }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#isLayoutColumn$ = isLayoutColumn$;
+    this.#model = model;
 
     this.#initStates();
     this.#initChilds();
@@ -30,38 +35,41 @@ export class ThumbnailBox {
 
   // private
   #initChilds() {
-    new FoldingBar({
-      $element: this.#$root.querySelector(`.${Selectors.FoldingBar}`),
-      isLayoutColumn$: this.#isLayoutColumn$,
-      isExpanded$: this.#isExpanded$,
-      isPreview$: this.#isPreview$,
-      shrinkDirection$: this.#shrinkDirection$,
+    const { kinModels, thumbnailModels } = this.#model;
+
+    const pinIcon = new PinIcon2({
+      options: {
+        events: {
+          onClick: () => this.#toggle(),
+        },
+      },
     });
 
     const kinSelector = new KinSelector({
-      items: ["Option 01", "Option 02"],
+      items: kinModels,
       isHide$: this.#shrinkDirection$,
     });
-    this.#$root
-      .querySelector(".irapha-thumbnail-box__options")
-      .appendChild(kinSelector.getRootElement());
-
-    // =================================================================
-    const models = Array.from({ length: 10 }, (_, index) => ({
-      id: index + 1,
-      topLeft: ["S:0", "#1"],
-      topRight: ["US"],
-      bottomLeft: ["Cardiology"],
-    }));
 
     const thumbnailList = new ThumbnailList({
-      models,
+      models: thumbnailModels,
       isLayoutColumn$: this.#isLayoutColumn$,
       isHide$: this.#isExpanded$,
     });
-    this.#$root
-      .querySelector("#testCCC")
-      .appendChild(thumbnailList.getRootElement());
+
+    const foldingbar = new FoldingBar({
+      states: {
+        isLayoutColumn$: this.#isLayoutColumn$,
+        isExpanded$: this.#isExpanded$,
+        isPreview$: this.#isPreview$,
+        shrinkDirection$: this.#shrinkDirection$,
+      },
+      $children: createInnerElement({
+        $options: createOptionsElement([pinIcon, kinSelector]),
+        $thumbnailList: thumbnailList.getRootElement(),
+      }),
+    });
+
+    this.getRootElement().appendChild(foldingbar.getRootElement());
   }
 
   #initStates() {
@@ -76,29 +84,47 @@ export class ThumbnailBox {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) return this.#layoutColumn();
+    const rootClassList = this.getRootElement().classList;
 
-    return this.#resetLayout();
+    isLayoutColumn
+      ? rootClassList.add(LayoutClassType.Column)
+      : rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    if (shrinkDirection === ShrinkType.Vertical)
-      return this.#$root.classList.add(ShrinkClassType.Column);
+    const { Vertical } = ShrinkType;
+    const $root = this.getRootElement();
 
-    this.#$root.classList.remove(ShrinkClassType.Column);
+    shrinkDirection === Vertical.value
+      ? $root.classList.add(Vertical.className)
+      : $root.classList.remove(Vertical.className);
   }
 
-  // layout control
-  #layoutColumn() {
-    this.#$root.classList.add(LayoutClassType.Column);
-  }
+  #toggle() {
+    const isNotPreview = !this.#isPreview$.getValue();
+    const isExpanded$ = this.#isExpanded$;
 
-  #resetLayout() {
-    this.#$root.classList.remove(LayoutClassType.Column);
-  }
+    isNotPreview && isExpanded$.next(!isExpanded$.getValue());
 
-  // public
-  setLayoutColumn(isLayoutColumn) {
-    this.#isLayoutColumn$.next(isLayoutColumn);
+    this.#isPreview$.next(isNotPreview);
   }
 }
+
+// =================================================================================================
+const createOptionsElement = (items) => {
+  const template = `
+  <div class="${Selectors.ThumbnailOptions}"></div>
+  `;
+  const $template = createElementFromHTML(template);
+
+  $template.append(...items.map((it) => it.getRootElement()));
+
+  return $template;
+};
+
+const createInnerElement = ({ $options, $thumbnailList }) => {
+  const $div = document.createElement("div");
+  $div.append(...[$options, $thumbnailList]);
+
+  return $div;
+};

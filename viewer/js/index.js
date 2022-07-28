@@ -6,15 +6,26 @@ import {} from "../../common/store/store.js";
 
 const rx = rxjs;
 // =================================================================
+import { Toolbox } from "../../common/components/toolbox/index.js";
+import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
 
 const toolboxLayoutColumn$ = new rx.BehaviorSubject();
+const thumbnailboxLayoutColumn$ = new rx.BehaviorSubject();
 
-import { Toolbox } from "../../common/components/toolbox/index.js";
+const thumbnailBoxModel = {
+  kinModels: ["Option 01", "Option 02"],
+  thumbnailModels: Array.from({ length: 10 }, (_, index) => ({
+    id: index + 1,
+    topLeft: ["S:0", "#1"],
+    topRight: ["US"],
+    bottomLeft: ["Cardiology"],
+  })),
+};
+
 const toolbox = new Toolbox({ isLayoutColumn$: toolboxLayoutColumn$ });
-
-import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
 const thumbnailBox = new ThumbnailBox({
-  $element: document.querySelector("#irapha-thumbnail-box"),
+  isLayoutColumn$: thumbnailboxLayoutColumn$,
+  model: thumbnailBoxModel,
 });
 
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
@@ -25,7 +36,7 @@ new StickyMenu({
     }
 
     if (hasElement("#irapha-thumbnail-box")) {
-      thumbnailBox.setLayoutColumn(isVertical);
+      thumbnailboxLayoutColumn$.next(isVertical);
     }
   },
 });
@@ -33,6 +44,10 @@ new StickyMenu({
 document
   .querySelector(".irapha-sticky-menu__dropzone.--top")
   .appendChild(toolbox.getRootElement());
+
+document
+  .querySelector(".irapha-sticky-menu__dropzone.--left")
+  .appendChild(thumbnailBox.getRootElement());
 
 // =================================================================
 
