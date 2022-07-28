@@ -3,7 +3,6 @@
 .irapha-dicom-window {
   display: flex;
   flex-direction: column;
-  gap: 48px;
 
   width: 100%;
   height: 100%;
@@ -271,10 +270,8 @@
     }
   }
 
-  &[layout="custom"] {
-    height: fit-content;
-    min-height: fit-content;
-  }
+  // &[layout="custom"] {
+  // }
 }
 
 .irapha-dicom-window__grid {

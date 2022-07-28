@@ -3,13 +3,24 @@
 // Virtual Layout
 // =========================================================================
 
+@mixin shaped {
+  .irapha-virtual-layout__item {
+    border-radius: 8px 8px 4px 4px;
+    box-shadow: 0px 2px 12px #000;
+
+    margin: 12px;
+  }
+}
+
 @mixin l-virtual-layout {
   &[layout="vertical"] {
     grid-template-columns: repeat(2, 1fr);
+    @include shaped;
   }
 
   &[layout="horizontal"] {
     grid-template-rows: repeat(2, 1fr);
+    @include shaped;
   }
 }
 

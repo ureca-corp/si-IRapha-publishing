@@ -1,6 +1,10 @@
 import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { Selectors, LayoutAttributeType } from "../../common/index.js";
+import {
+  CustomSwiper,
+  createSwiperSlide,
+} from "../../../custom-swiper/index.js";
 
 /**
  * Constructor types
@@ -16,15 +20,28 @@ export class DicomWindow extends BaseElement {
   <div class="${Selectors.DicomWindow}"></div>
   `;
 
+  #swiper;
   #items;
 
   constructor({ items, layout$ }) {
     super({ $element: createElementFromHTML(DicomWindow.template) });
     this.#items = items.map((element) => createDicomWindowItem(element));
 
+    this.#initSwiper();
+
     layout$.subscribe(({ layout, grid }) =>
       this.#handleLayoutChange({ layout, grid })
     );
+  }
+
+  // private
+  #initSwiper() {
+    const swiper = new CustomSwiper();
+    const $root = this.getRootElement();
+
+    $root.append(swiper.getRootElement());
+
+    this.#swiper = swiper;
   }
 
   // handlers
@@ -133,51 +150,58 @@ export class DicomWindow extends BaseElement {
 
   // Layout Control
   #clearLayoutItems() {
-    this.getRootElement().innerHTML = "";
-    this.getRootElement().setAttribute(LayoutAttributeType.Key, "");
+    const $root = this.getRootElement();
+    const $swiper = this.#swiper;
+
+    $swiper.clearItems();
+    $root.setAttribute(LayoutAttributeType.Key, "");
   }
 
   #setLayout({ chunkSize, layoutType }) {
     this.#clearLayoutItems();
 
-    const gridList = createDicomWindowGrid({
+    const $gridList = createDicomWindowGrid({
       items: this.#items,
       chunkSize,
       layoutType,
     });
 
-    this.getRootElement().append(...gridList);
+    const $swiperSlides = $gridList.map((grid) => createSwiperSlide(grid));
+
+    this.#swiper.append($swiperSlides);
   }
 
   #setCustomLayout({ row, col }) {
     this.#clearLayoutItems();
 
-    const gridList = createDicomWindowGrid({
+    const $gridList = createDicomWindowGrid({
       items: this.#items,
       chunkSize: row * col,
       layoutType: LayoutAttributeType.Custom,
     });
 
-    gridList.forEach((element) => {
+    $gridList.forEach((element) => {
       element.style.cssText = `
         grid-template-columns: repeat(${col}, 1fr);
         grid-template-rows: repeat(${row}, 1fr);
       `;
     });
 
-    this.getRootElement().append(...gridList);
+    const $swiperSlides = $gridList.map((grid) => createSwiperSlide(grid));
+
+    this.#swiper.append($swiperSlides);
   }
 }
 
 // =================================================================
 const createDicomWindowGrid = ({ items, chunkSize, layoutType }) => {
   return _.chunk(items, chunkSize).map((elements) => {
-    const ul = document.createElement("div");
-    ul.classList.add(Selectors.WindowGrid);
-    ul.append(...elements);
-    ul.setAttribute(LayoutAttributeType.Key, layoutType);
+    const $grid = document.createElement("div");
+    $grid.classList.add(Selectors.WindowGrid);
+    $grid.append(...elements);
+    $grid.setAttribute(LayoutAttributeType.Key, layoutType);
 
-    return ul;
+    return $grid;
   });
 };
 
