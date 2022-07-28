@@ -1,10 +1,16 @@
 import { ThumbnailItem } from "./thumbnail-item.js";
 import { Selectors, LayoutClassType } from "../../../common/index.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
 
 /**
  * Constructor types
  *
- * @type $element: Element
+ * @type models: {
+ *   topLeft: string[],
+ *   topRight: string[],
+ *   bottomLeft: string[],
+ * }[]
  *
  * @type isLayoutColumn$: BehaviorSubject<boolean>
  * 레이아웃 세로형 여부
@@ -12,13 +18,15 @@ import { Selectors, LayoutClassType } from "../../../common/index.js";
  * @type isHide$: BehaviorSubject<boolean>
  * 폴딩 여부
  */
-export class ThumbnailList {
-  #$root;
+export class ThumbnailList extends BaseElement {
+  static template = `
+  <ul class="${Selectors.ThumbnailList}"></ul>
+  `;
 
-  constructor({ $element, isLayoutColumn$, isHide$ }) {
-    this.#$root = $element;
+  constructor({ models, isLayoutColumn$, isHide$ }) {
+    super({ $element: createElementFromHTML(ThumbnailList.template) });
 
-    this.#initThumbnailItems({ isLayoutColumn$ });
+    this.#initThumbnailItems({ models });
 
     isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
@@ -28,41 +36,27 @@ export class ThumbnailList {
   }
 
   // private
-  #initThumbnailItems({ isLayoutColumn$ }) {
-    const $items = [
-      ...this.#$root.querySelectorAll(`.${Selectors.ThumbnailListItem}`),
-    ];
-    $items.map(($element) => new ThumbnailItem({ $element, isLayoutColumn$ }));
+  #initThumbnailItems({ models }) {
+    const items = models.map((model) => new ThumbnailItem({ model }));
+    const $items = items.map((it) => it.getRootElement());
+
+    this.getRootElement().append(...$items);
   }
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    if (isLayoutColumn) return this.#layoutColumn();
+    const rootClassList = this.getRootElement().classList;
 
-    return this.#resetLayout();
+    if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
+
+    return rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleVisibilityChange(isHide) {
-    if (isHide) return this.#hide();
+    const style = this.getRootElement().style;
 
-    return this.#visible();
-  }
+    if (isHide) return (style.display = "none");
 
-  // layout control
-  #layoutColumn() {
-    this.#$root.classList.add(LayoutClassType.Column);
-  }
-
-  #resetLayout() {
-    this.#$root.classList.remove(LayoutClassType.Column);
-  }
-
-  // visibility control
-  #hide() {
-    this.#$root.style.display = "none";
-  }
-
-  #visible() {
-    this.#$root.style.display = "flex";
+    return (style.display = "flex");
   }
 }

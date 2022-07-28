@@ -4,28 +4,50 @@ import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
 
 import {} from "../../common/store/store.js";
 
+const rx = rxjs;
+// =================================================================
 import { Toolbox } from "../../common/components/toolbox/index.js";
-const toolbox = new Toolbox({
-  $element: document.querySelector("#irapha-toolbox"),
-});
-
 import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
+
+const toolboxLayoutColumn$ = new rx.BehaviorSubject();
+const thumbnailboxLayoutColumn$ = new rx.BehaviorSubject();
+
+const thumbnailBoxModel = {
+  kinModels: ["Option 01", "Option 02"],
+  thumbnailModels: Array.from({ length: 10 }, (_, index) => ({
+    id: index + 1,
+    topLeft: ["S:0", "#1"],
+    topRight: ["US"],
+    bottomLeft: ["Cardiology"],
+  })),
+};
+
+const toolbox = new Toolbox({ isLayoutColumn$: toolboxLayoutColumn$ });
 const thumbnailBox = new ThumbnailBox({
-  $element: document.querySelector("#irapha-thumbnail-box"),
+  isLayoutColumn$: thumbnailboxLayoutColumn$,
+  model: thumbnailBoxModel,
 });
 
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 new StickyMenu({
   dropSuccessCallback: ({ isVertical, hasElement }) => {
-    if (hasElement("#irapha-toolbox")) {
-      toolbox.setLayoutColumn(isVertical);
+    if (hasElement(".irapha-toolbox")) {
+      toolboxLayoutColumn$.next(isVertical);
     }
 
     if (hasElement("#irapha-thumbnail-box")) {
-      thumbnailBox.setLayoutColumn(isVertical);
+      thumbnailboxLayoutColumn$.next(isVertical);
     }
   },
 });
+
+document
+  .querySelector(".irapha-sticky-menu__dropzone.--top")
+  .appendChild(toolbox.getRootElement());
+
+document
+  .querySelector(".irapha-sticky-menu__dropzone.--left")
+  .appendChild(thumbnailBox.getRootElement());
 
 // =================================================================
 
@@ -52,10 +74,12 @@ import {
   RelatedStudyLayerPopup,
 } from "../../common/components/layer-popup/index.js";
 
-new RelatedStudyLayerPopup({
-  $element: document.querySelector("#irapha-related-study-popup"),
+const relatedStudyLayerPopup = new RelatedStudyLayerPopup({
   open$: window.store.relatedStudyOpen$,
 });
+document
+  .querySelector("#global-popup-group")
+  .appendChild(relatedStudyLayerPopup.getRootElement());
 
 new ExportDicomLayerPopup({
   $element: document.querySelector("#irapha-export-dicom-popup"),
@@ -63,16 +87,13 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
-new CustomContextMenu({
-  $element: document.querySelector("#irapha-viewbox-context-menu"),
-  open$: window.store.viewboxContextMenuOpen$,
-  autoClose: false,
-});
+import { ViewboxContextMenu } from "../../common/components/layer-popup/index.js";
 
-import { GridSelector } from "../../common/components/selectors/index.js";
-new GridSelector({
-  $element: document.querySelector("#test1234"),
-});
+const viewboxContextMenu = new ViewboxContextMenu();
+
+document
+  .querySelector("#global-popup-group")
+  .appendChild(viewboxContextMenu.getRootElement());
 
 // =================================================================
 import { tabsDummyData, windowDummyData } from "../../common/data/index.js";

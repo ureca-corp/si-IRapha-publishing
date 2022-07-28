@@ -1,0 +1,98 @@
+@use "../../../themes//typography" as typography;
+
+@mixin s-menu-item {
+  &.--horizontal {
+    flex-direction: row;
+    gap: 8px;
+
+    width: unset;
+
+    .irapha-menu-item__name {
+      text-align: start;
+    }
+  }
+
+  &:hover {
+    .irapha-menu-item__icon {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+
+    .irapha-menu-item__name {
+      opacity: 0.6;
+    }
+  }
+}
+
+.irapha-menu-item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  width: 40px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+
+  @include s-menu-item;
+}
+
+// menu item icon
+// =================================================================
+@mixin s-menu-icon {
+  &.--oulined {
+    padding: 4px;
+    border: 2px solid #eeeeee22;
+  }
+
+  &.--more {
+    &::after {
+      content: "▼";
+      position: absolute;
+      bottom: -4px;
+      right: -2px;
+
+      font-size: 14px;
+
+      color: var(--color__primary);
+
+      transform: scale(0.4);
+    }
+  }
+}
+
+.irapha-menu-item__icon {
+  position: relative;
+  border-radius: 4px;
+
+  width: 36px;
+  min-width: 24px;
+  aspect-ratio: 1;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+
+  @include s-menu-icon;
+}
+
+// menu item name
+.irapha-menu-item__name {
+  @include typography.label-small;
+  color: var(--color__font-secondary);
+
+  text-align: center;
+
+  width: 100%;
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: all 0.3s ease-in-out;
+}

@@ -1,3 +1,5 @@
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../base/base-element.js";
 import { HideClassType, LayoutClassType } from "../../common/index.js";
 
 /**
@@ -10,33 +12,70 @@ import { HideClassType, LayoutClassType } from "../../common/index.js";
  *
  * @type isHideIconName$: BehaviorSubject<boolean>
  */
-export class ToolboxMenu {
-  #$root;
 
-  constructor({ $element, isLayoutColumnTwo$, isHideIconName$ }) {
-    this.#$root = $element;
+const Template = `
+<ul class="irapha-toolbox__menu"></ul>
+`;
 
-    isLayoutColumnTwo$.subscribe((isLayoutColumnTwo) =>
+export class ToolboxMenu extends BaseElement {
+  #states;
+  #items;
+
+  constructor({ states, items }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#states = states;
+    this.#items = items;
+
+    this.#init();
+  }
+
+  // private
+  #init() {
+    this.#initStates();
+    this.#initItems();
+  }
+
+  #initStates() {
+    if (!this.#states) return;
+
+    const { isLayoutColumnTwo$, isHideIconName$ } = this.#states;
+
+    isLayoutColumnTwo$?.subscribe((isLayoutColumnTwo) =>
       this.#handleLayoutChange(isLayoutColumnTwo)
     );
 
-    isHideIconName$.subscribe((isHideIconName) =>
+    isHideIconName$?.subscribe((isHideIconName) =>
       this.#handleHideIconNameChange(isHideIconName)
     );
   }
 
+  #initItems() {
+    if (!this.#items) return;
+
+    const $items = this.#items.map((it) => createLI(it.getRootElement()));
+    this.getRootElement().append(...$items);
+  }
+
   // handler
   #handleLayoutChange(isLayoutColumnTwo) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (isLayoutColumnTwo) return rootClassList.add(LayoutClassType.ColumnTwo);
     return rootClassList.remove(LayoutClassType.ColumnTwo);
   }
 
   #handleHideIconNameChange(isHideIconName) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (isHideIconName) return rootClassList.add(HideClassType.HideIconName);
     return rootClassList.remove(HideClassType.HideIconName);
   }
 }
+
+// =================================================================
+const createLI = (children) => {
+  const $li = document.createElement("li");
+  $li.appendChild(children);
+
+  return $li;
+};

@@ -1,14 +1,19 @@
 import { GridSelectorItem } from "../item/grid-selector.item.js";
 import { LayoutAttributeType } from "../../../../dicom-window/common/index.js";
+import { BaseElement } from "../../../../base/index.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 
 const MatrixSize = 5;
 
-export class GridSelector {
-  #$root;
+const Template = `
+<div class="irapha-grid-selector"></div>
+`;
+
+export class GridSelector extends BaseElement {
   #gridItems;
 
-  constructor({ $element }) {
-    this.#$root = $element;
+  constructor() {
+    super({ $element: createElementFromHTML(Template) });
 
     this.#initGridItems();
   }
@@ -49,7 +54,7 @@ export class GridSelector {
   }
 
   #appendChildToGridContainer(element) {
-    this.#$root.appendChild(element);
+    this.getRootElement().appendChild(element);
     return element;
   }
 

@@ -1,13 +1,20 @@
-import { BaseIcon } from "./base/icon.js";
+import { BaseIcon, BaseIcon2 } from "./base/icon.js";
 
 export class PinIcon extends BaseIcon {
   constructor({ element, isActive$, onClick }) {
     super({ element, isActive$, onClick });
-    element.innerHTML = pinSvgIcon;
+    element.innerHTML = svgIcon;
+  }
+}
+export class PinIcon2 extends BaseIcon2 {
+  constructor({ states, options }) {
+    super({ states, options });
+
+    this.getRootElement().innerHTML = svgIcon;
   }
 }
 
-const pinSvgIcon = `
+const svgIcon = `
 <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

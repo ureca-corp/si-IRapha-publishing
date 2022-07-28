@@ -1,4 +1,3 @@
-import { ToolboxMenuItemsController } from "../menu-items-controller/index.js";
 import { ToolboxMenu } from "../menu/menu.js";
 import { MenusDivider } from "./menus-divider.js";
 
@@ -7,6 +6,9 @@ import {
   LayoutClassType,
   Selectors,
 } from "../../common/index.js";
+import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 
 /**
  * Constructor types
@@ -19,17 +21,64 @@ import {
  *
  * @type shrinkDirection$: BehaviorSubject<Truthy || Falsy>
  */
-export class ToolboxMenusContainer {
-  #$root;
 
-  constructor({
-    $element,
-    isLayoutColumn$,
-    isHideIconName$,
-    shrinkDirection$,
-  }) {
-    this.#$root = $element;
-    this.#init({ isLayoutColumn$, isHideIconName$ });
+const Template = `
+<div class="${Selectors.MenusContainer}"></div>
+`;
+
+export class ToolboxMenusContainer extends BaseElement {
+  #states;
+
+  constructor({ states }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#states = states;
+
+    this.#init();
+  }
+
+  // private
+  #init() {
+    this.#initChilds();
+    this.#initStates();
+  }
+
+  #initChilds() {
+    const { isLayoutColumn$, isHideIconName$ } = this.#states;
+
+    const firstMenu = new ToolboxMenu({
+      states: {
+        isLayoutColumnTwo$: isLayoutColumn$,
+        isHideIconName$,
+      },
+      items: getFirstMenus(),
+    });
+
+    const secondMenu = new ToolboxMenu({
+      states: {
+        isLayoutColumnTwo$: isLayoutColumn$,
+        isHideIconName$,
+      },
+      items: getSecondMenus(),
+    });
+
+    const menusDivider = new MenusDivider({
+      states: {
+        isLayoutColumn$,
+        isAlignSelfCenter$: isHideIconName$,
+      },
+    });
+
+    this.getRootElement().append(
+      ...[
+        firstMenu.getRootElement(),
+        menusDivider.getRootElement(),
+        secondMenu.getRootElement(),
+      ]
+    );
+  }
+
+  #initStates() {
+    const { isLayoutColumn$, shrinkDirection$ } = this.#states;
 
     isLayoutColumn$.subscribe((isLayoutColumn) =>
       this.#handleLayoutChange(isLayoutColumn)
@@ -40,36 +89,16 @@ export class ToolboxMenusContainer {
     );
   }
 
-  // private
-  #init({ isLayoutColumn$, isHideIconName$ }) {
-    [...document.querySelectorAll(`.${Selectors.Menu}`)].map(
-      ($element) =>
-        new ToolboxMenu({
-          $element,
-          isLayoutColumnTwo$: isLayoutColumn$,
-          isHideIconName$,
-        })
-    );
-
-    new MenusDivider({
-      $element: this.#$root.querySelector(`.${Selectors.Divider}`),
-      isLayoutColumn$,
-      isAlignSelfCenter$: isHideIconName$,
-    });
-
-    new ToolboxMenuItemsController();
-  }
-
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
     return rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (!shrinkDirection) return rootClassList.remove(HideClassType.Hide);
     return rootClassList.add(HideClassType.Hide);

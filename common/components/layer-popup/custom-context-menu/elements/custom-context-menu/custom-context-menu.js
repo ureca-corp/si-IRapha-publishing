@@ -35,7 +35,9 @@ export class CustomContextMenu extends LayerPopup {
 
     // 메뉴에서 마우스 벗어난 상태 핸들링
     if (autoClose)
-      rx.fromEvent(this.#$root, "mouseleave").subscribe(() => open$.next(null));
+      rx.fromEvent(this.#$root, "mouseleave").subscribe(() =>
+        this.#open$.next(null)
+      );
 
     // 메뉴 외 영역 클릭 핸들링
     rx.fromEvent(document, "click").subscribe((e) =>

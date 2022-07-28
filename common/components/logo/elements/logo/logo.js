@@ -1,88 +1,122 @@
-import { MaximizeButton } from "../maximize-button/maximize-button.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { PinIcon2 } from "../../../icons/pin.icon.js";
 import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
+import { FullScreenToggleButton } from "../fullscreen-toggle-button/fullscreen-toggle-button.js";
+import { NetworkStatus } from "../network-status/network-status.js";
+
+const rx = rxjs;
 
 /**
  * Constructor types
  *
- * @type element: Element
+ * @type states: {
+ *   shrinkDirection$: BehaviorSubject<ShrinkType>
+ * }
  *
- * @type shrinkDirection$: BehaviorSubject<ShrinkType>
- * null인 경우 폴딩X, 폴딩 방향 값을 보유
+ * @type events: {
+ *   onPinClick: () => void
+ * }
  */
-export class Logo {
-  #$root;
+export class Logo extends BaseElement {
+  static template = `
+  <div class="${Selectors.Logo}">
+    <div class="${Selectors.LogoContainer}">
+      <div class="${Selectors.LogoWrapper}"></div>
 
-  constructor({ $element, shrinkDirection$ }) {
-    this.#$root = $element;
+      <ul class="${Selectors.LogoMenus}"></ul>
+    </div>
+  </div>
+  `;
 
+  #states;
+  #events;
+
+  constructor({ states, events }) {
+    super({ $element: createElementFromHTML(Logo.template) });
+
+    this.#states = states;
+    this.#events = events;
     this.#init();
+  }
+
+  // private
+  #init() {
+    this.#initStates();
+
+    this.#initLogoImage();
+    this.#initMenus();
+  }
+
+  #initStates() {
+    const { shrinkDirection$ } = this.#states;
 
     shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkChange(shrinkDirection)
     );
   }
 
-  // private
-  #init() {
-    this.#initLogoImage();
-    this.#initMaximizeBtn();
-  }
-
   #initLogoImage() {
-    const logoImage = this.#$root.querySelector(`.${Selectors.LogoImage}`);
-    logoImage.classList.add(Selectors.UkButton);
+    this.#getLogoWrapper().appendChild(createLogoImage());
   }
 
-  #initMaximizeBtn() {
-    new MaximizeButton({
-      $element: this.#$root.querySelector(`.${Selectors.MaximizeButton}`),
+  #initMenus() {
+    const { onPinClick } = this.#events;
+
+    const pinIcon = new PinIcon2({
+      states: { isActive$: new rx.BehaviorSubject(true) },
+      options: { events: { onClick: onPinClick } },
     });
+
+    const $pinIcon = pinIcon.getRootElement();
+    const $fullscreenToggleButton =
+      new FullScreenToggleButton().getRootElement();
+    const $networkStatus = new NetworkStatus().getRootElement();
+
+    this.#getElementOfMenus().append(
+      ...[$pinIcon, $fullscreenToggleButton, $networkStatus]
+    );
   }
 
-  // actions
-  #shrinkVertical() {
-    this.#unshrinkHorizontal();
-    this.#$root.classList.add(ShrinkClassType.Column);
+  #getLogoWrapper() {
+    return this.getRootElement().querySelector(`.${Selectors.LogoWrapper}`);
   }
 
-  #unshrinkVertical() {
-    this.#$root.classList.remove(ShrinkClassType.Column);
-  }
-
-  #shrinkHorizontal() {
-    this.#unshrinkVertical();
-    this.#$root.classList.add(ShrinkClassType.Row);
-  }
-
-  #unshrinkHorizontal() {
-    this.#$root.classList.remove(ShrinkClassType.Row);
+  #getElementOfMenus() {
+    return this.getRootElement().querySelector(`.${Selectors.LogoMenus}`);
   }
 
   #removeAllShrink() {
-    this.#unshrinkVertical();
-    this.#unshrinkHorizontal();
+    const rootClassList = this.getRootElement().classList;
+
+    rootClassList.remove(ShrinkClassType.Column);
+    rootClassList.remove(ShrinkClassType.Row);
   }
 
   // handler
-  #handleShrinkHorizontalChange(isShrinkHorizontal) {
-    if (!isShrinkHorizontal) return this.#unshrinkHorizontal();
-
-    return this.#shrinkHorizontal();
-  }
-
-  #handleShrinkVerticalChange(isShrinkVertical) {
-    if (!isShrinkVertical) return this.#unshrinkVertical();
-
-    return this.#shrinkVertical();
-  }
-
   #handleShrinkChange(shrinkDirection) {
+    const rootClassList = this.getRootElement().classList;
+
+    this.#removeAllShrink();
+
     if (shrinkDirection === ShrinkType.Vertical)
-      return this.#handleShrinkVerticalChange(shrinkDirection);
+      return rootClassList.add(ShrinkClassType.Column);
 
     if (shrinkDirection === ShrinkType.Horizontal)
-      return this.#handleShrinkHorizontalChange(shrinkDirection);
-
-    return this.#removeAllShrink();
+      return rootClassList.add(ShrinkClassType.Row);
   }
 }
+
+// =========================================================================
+const createLogoImage = () => {
+  const template = `
+  <img
+    class="${Selectors.LogoImage} ${Selectors.UkButton}"
+    src="../../assets/images/logo.svg"
+    alt="logo"
+    uk-toggle="target: #irapha-viewer-info-popup"
+  />
+  `;
+
+  return createElementFromHTML(template);
+};
