@@ -1,27 +1,28 @@
-import { FoldingBar } from "../../../folding-bar/index.js";
+import { FoldingBar2 } from "../../../folding-bar/index.js";
 import { Logo } from "../../../logo/index.js";
 import { ToolboxMenusContainer } from "../menus-container/menus-container.js";
 
-import {
-  Selectors,
-  LayoutClassType,
-  ShrinkClassType,
-  ShrinkType,
-} from "../../common/index.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
 
 const rx = rxjs;
 
-export class Toolbox {
-  #$root;
+const Template = `
+<div class="${Selectors.Toolbox}" draggable="true" priority="1"></div>
+`;
 
-  #isLayoutColumn$ = new rx.BehaviorSubject();
+export class Toolbox extends BaseElement {
+  #isLayoutColumn$;
+
   #isExpanded$ = new rx.BehaviorSubject();
   #isPreview$ = new rx.BehaviorSubject(false);
   #shrinkDirection$ = new rx.BehaviorSubject();
   #isHideIconName$ = new rx.BehaviorSubject();
 
-  constructor({ $element }) {
-    this.#$root = $element;
+  constructor({ isLayoutColumn$ }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#isLayoutColumn$ = isLayoutColumn$;
 
     this.#initStates();
     this.#initChilds();
@@ -29,34 +30,32 @@ export class Toolbox {
 
   // private
   #initChilds() {
-    const $root = this.#$root;
+    const $root = this.getRootElement();
 
     const logo = new Logo({
+      states: { shrinkDirection$: this.#shrinkDirection$ },
+      events: { onPinClick: () => this.#toggle() },
+    });
+
+    const menusContainer = new ToolboxMenusContainer({
       states: {
+        isLayoutColumn$: this.#isLayoutColumn$,
+        isHideIconName$: this.#isHideIconName$,
         shrinkDirection$: this.#shrinkDirection$,
       },
-      events: {
-        onPinClick: () => this.#toggle(),
+    });
+
+    const foldingbar = new FoldingBar2({
+      states: {
+        isLayoutColumn$: this.#isLayoutColumn$,
+        isExpanded$: this.#isExpanded$,
+        isPreview$: this.#isPreview$,
+        shrinkDirection$: this.#shrinkDirection$,
       },
-    });
-    $root
-      .querySelector(".irapha-toolbox__logo")
-      .appendChild(logo.getRootElement());
-
-    new ToolboxMenusContainer({
-      $element: $root.querySelector(`.${Selectors.Menus}`),
-      isLayoutColumn$: this.#isLayoutColumn$,
-      isHideIconName$: this.#isHideIconName$,
-      shrinkDirection$: this.#shrinkDirection$,
+      $children: createInner({ logo, menusContainer }),
     });
 
-    new FoldingBar({
-      $element: $root.querySelector(`.${Selectors.FoldingBar}`),
-      isLayoutColumn$: this.#isLayoutColumn$,
-      isExpanded$: this.#isExpanded$,
-      isPreview$: this.#isPreview$,
-      shrinkDirection$: this.#shrinkDirection$,
-    });
+    $root.appendChild(foldingbar.getRootElement());
   }
 
   #initStates() {
@@ -71,7 +70,7 @@ export class Toolbox {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
 
@@ -79,34 +78,46 @@ export class Toolbox {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
+    const { Vertical, Horizontal } = ShrinkType;
 
-    if (shrinkDirection === ShrinkType.Vertical)
-      return rootClassList.add(ShrinkClassType.Column);
+    if (shrinkDirection === Vertical.value)
+      return rootClassList.add(Vertical.className);
 
-    if (shrinkDirection === ShrinkType.Horizontal)
-      return rootClassList.add(ShrinkClassType.Row);
+    if (shrinkDirection === Horizontal.value)
+      return rootClassList.add(Horizontal.className);
 
-    rootClassList.remove(ShrinkClassType.Column);
-    rootClassList.remove(ShrinkClassType.Row);
+    rootClassList.remove(Vertical.className);
+    rootClassList.remove(Horizontal.className);
   }
 
   #toggle() {
-    const isPreview = this.#isPreview$.getValue();
+    const isNotPreview = !this.#isPreview$.getValue();
+    const isExpanded$ = this.#isExpanded$;
 
-    if (!isPreview) {
-      this.#isExpanded$.next(!this.#isExpanded$.getValue());
-    }
+    isNotPreview && isExpanded$.next(!isExpanded$.getValue());
 
-    this.#isPreview$.next(!isPreview);
+    this.#isPreview$.next(isNotPreview);
   }
 
   // public
   setLayoutColumn(isLayoutColumn) {
     this.#isLayoutColumn$.next(isLayoutColumn);
   }
-
-  setHideIconName(isHideIconName) {
-    this.#isHideIconName$.next(isHideIconName);
-  }
 }
+
+// =================================================================
+const createInner = ({ logo, menusContainer }) => {
+  const template = `
+  <div>
+    <div class="${Selectors.Logo}"></div>
+  </div>
+  `;
+  const $template = createElementFromHTML(template);
+  const $logoContainer = $template.querySelector(`.${Selectors.Logo}`);
+
+  $logoContainer.appendChild(logo.getRootElement());
+  $template.appendChild(menusContainer.getRootElement());
+
+  return $template;
+};

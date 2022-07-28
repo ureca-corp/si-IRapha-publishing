@@ -1,9 +1,13 @@
 import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { AlignClassType, LayoutClassType } from "../../common/index.js";
+import {
+  AlignClassType,
+  LayoutClassType,
+  Selectors,
+} from "../../common/index.js";
 
 const Template = `
-<div class="irapha-toolbox__divider"></div>
+<div class="${Selectors.MenusDivider}"></div>
 `;
 
 /**

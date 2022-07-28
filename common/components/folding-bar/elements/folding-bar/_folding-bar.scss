@@ -7,7 +7,8 @@ $min-size: 28px;
 // 폴딩바 레이아웃
 @mixin l-folding-bar {
   &.--layout-column {
-    & {
+    &,
+    & > * {
       flex-direction: column;
       height: 100%;
     }
@@ -35,6 +36,10 @@ $min-size: 28px;
   width: 100%;
   height: 100%;
   z-index: 4;
+
+  & > * {
+    display: flex;
+  }
 
   @include l-folding-bar;
   @include s-folding-bar;

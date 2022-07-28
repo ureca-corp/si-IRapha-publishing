@@ -8621,7 +8621,10 @@ button[disabled] {
   height: 100%;
   z-index: 4;
 }
-.irapha-folding-bar.--layout-column {
+.irapha-folding-bar > * {
+  display: flex;
+}
+.irapha-folding-bar.--layout-column, .irapha-folding-bar.--layout-column > * {
   flex-direction: column;
   height: 100%;
 }

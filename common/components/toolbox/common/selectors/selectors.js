@@ -1,8 +1,11 @@
 export const Selectors = {
-  Logo: "irapha-logo",
-  Menus: "irapha-toolbox__menus-container",
+  Toolbox: "irapha-toolbox",
+
+  MenusContainer: "irapha-toolbox__menus-container",
+  MenusDivider: "irapha-toolbox__divider",
   Menu: "irapha-toolbox__menu",
-  Divider: "irapha-toolbox__divider",
+
+  Logo: "irapha-toolbox__logo",
 
   FoldingBar: "irapha-folding-bar",
 };

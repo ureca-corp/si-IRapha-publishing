@@ -1,8 +1,14 @@
 import { ToolboxMenu } from "../menu/menu.js";
 import { MenusDivider } from "./menus-divider.js";
 
-import { HideClassType, LayoutClassType } from "../../common/index.js";
+import {
+  HideClassType,
+  LayoutClassType,
+  Selectors,
+} from "../../common/index.js";
 import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 
 /**
  * Constructor types
@@ -15,29 +21,30 @@ import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
  *
  * @type shrinkDirection$: BehaviorSubject<Truthy || Falsy>
  */
-export class ToolboxMenusContainer {
-  #$root;
 
-  constructor({
-    $element,
-    isLayoutColumn$,
-    isHideIconName$,
-    shrinkDirection$,
-  }) {
-    this.#$root = $element;
-    this.#init({ isLayoutColumn$, isHideIconName$ });
+const Template = `
+<div class="${Selectors.MenusContainer}"></div>
+`;
 
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
+export class ToolboxMenusContainer extends BaseElement {
+  #states;
 
-    shrinkDirection$.subscribe((shrinkDirection) =>
-      this.#handleShrinkDirectionChange(shrinkDirection)
-    );
+  constructor({ states }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#states = states;
+
+    this.#init();
   }
 
   // private
-  #init({ isLayoutColumn$, isHideIconName$ }) {
+  #init() {
+    this.#initChilds();
+    this.#initStates();
+  }
+
+  #initChilds() {
+    const { isLayoutColumn$, isHideIconName$ } = this.#states;
+
     const firstMenu = new ToolboxMenu({
       states: {
         isLayoutColumnTwo$: isLayoutColumn$,
@@ -61,7 +68,7 @@ export class ToolboxMenusContainer {
       },
     });
 
-    this.#$root.append(
+    this.getRootElement().append(
       ...[
         firstMenu.getRootElement(),
         menusDivider.getRootElement(),
@@ -70,16 +77,28 @@ export class ToolboxMenusContainer {
     );
   }
 
+  #initStates() {
+    const { isLayoutColumn$, shrinkDirection$ } = this.#states;
+
+    isLayoutColumn$.subscribe((isLayoutColumn) =>
+      this.#handleLayoutChange(isLayoutColumn)
+    );
+
+    shrinkDirection$.subscribe((shrinkDirection) =>
+      this.#handleShrinkDirectionChange(shrinkDirection)
+    );
+  }
+
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
     return rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.#$root.classList;
+    const rootClassList = this.getRootElement().classList;
 
     if (!shrinkDirection) return rootClassList.remove(HideClassType.Hide);
     return rootClassList.add(HideClassType.Hide);

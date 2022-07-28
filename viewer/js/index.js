@@ -4,10 +4,13 @@ import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
 
 import {} from "../../common/store/store.js";
 
+const rx = rxjs;
+// =================================================================
+
+const toolboxLayoutColumn$ = new rx.BehaviorSubject();
+
 import { Toolbox } from "../../common/components/toolbox/index.js";
-const toolbox = new Toolbox({
-  $element: document.querySelector("#irapha-toolbox"),
-});
+const toolbox = new Toolbox({ isLayoutColumn$: toolboxLayoutColumn$ });
 
 import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
 const thumbnailBox = new ThumbnailBox({
@@ -17,8 +20,8 @@ const thumbnailBox = new ThumbnailBox({
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
 new StickyMenu({
   dropSuccessCallback: ({ isVertical, hasElement }) => {
-    if (hasElement("#irapha-toolbox")) {
-      toolbox.setLayoutColumn(isVertical);
+    if (hasElement(".irapha-toolbox")) {
+      toolboxLayoutColumn$.next(isVertical);
     }
 
     if (hasElement("#irapha-thumbnail-box")) {
@@ -26,6 +29,10 @@ new StickyMenu({
     }
   },
 });
+
+document
+  .querySelector(".irapha-sticky-menu__dropzone.--top")
+  .appendChild(toolbox.getRootElement());
 
 // =================================================================
 

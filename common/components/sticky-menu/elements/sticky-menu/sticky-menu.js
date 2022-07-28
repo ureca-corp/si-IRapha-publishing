@@ -58,7 +58,9 @@ export class StickyMenu {
   }
 
   #isTargetIncludedDropZoneDummy(target) {
-    return target.className.includes(Selectors.DropzoneDummy);
+    const targetClassList = [...target.classList];
+
+    return targetClassList.find((it) => it === Selectors.DropzoneDummy);
   }
 
   // 레이아웃 컨트롤
