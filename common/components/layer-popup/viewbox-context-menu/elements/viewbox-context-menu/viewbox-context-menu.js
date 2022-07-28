@@ -4,11 +4,25 @@ import { CustomContextMenu } from "../../../custom-context-menu/index.js";
 import { getMenus } from "./get-menus.js";
 import { Selectors as CustomContextMenuSelectors } from "../../../custom-context-menu/index.js";
 
+const Template = `
+<div id="irapha-viewbox-context-menu" class="${CustomContextMenuSelectors.ContextMenu}">
+  <div class="${CustomContextMenuSelectors.SegmentContainer}"></div>
+
+  <div class="${CustomContextMenuSelectors.Navigator}">
+    <button class="${CustomContextMenuSelectors.NavBefore}"></button>
+
+    <div>
+      <span>Menu</span>
+      <span class="${CustomContextMenuSelectors.NavPageCount}">(0/0)</span>
+    </div>
+
+    <button class="${CustomContextMenuSelectors.NavNext}"></button>
+  </div>
+</div>
+`;
 export class ViewboxContextMenu extends BaseElement {
   constructor() {
-    super({
-      $element: document.querySelector("#irapha-viewbox-context-menu"),
-    });
+    super({ $element: createElementFromHTML(Template) });
 
     this.#init();
   }
@@ -34,9 +48,8 @@ export class ViewboxContextMenu extends BaseElement {
       createContextMenuSegment(chunk)
     );
 
-    //
     this.getRootElement()
-      .querySelector(".irapha-context-menu__segment-container")
+      .querySelector(`.${CustomContextMenuSelectors.SegmentContainer}`)
       .append(...$segments);
   }
 }

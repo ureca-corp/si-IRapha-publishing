@@ -24,3 +24,18 @@ export { ViewboxAngleMenu } from "./vcm.angle.menu.js";
 
 export { ViewboxTransformationsMenu } from "./vcm.transformations.menu.js";
 export { ViewboxMeasurementsMenu } from "./vcm.measurements.menu.js";
+
+//
+export { ViewboxAnnotationsMenu } from "./vcm.annotations.menu.js";
+export { ViewboxRefreshMenu } from "./vcm.refresh.menu.js";
+export { ViewboxUndoMenu } from "./vcm.undo.menu.js";
+export { ViewboxResetMenu } from "./vcm.reset.menu.js";
+
+export { ViewboxDeleteImageMenu } from "./vcm.delete-image.menu.js";
+export { ViewboxDicomMenu } from "./vcm.dicom.menu.js";
+export { ViewboxCopyMenu } from "./vcm.copy.menu.js";
+export { ViewboxMoveMenu } from "./vcm.move.menu.js";
+
+export { ViewboxSaveMenu } from "./vcm.save.menu.js";
+export { ViewboxExternalMenu } from "./vcm.external.menu.js";
+export { ViewboxSettingMenu } from "./vcm.setting.menu.js";

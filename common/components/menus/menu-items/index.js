@@ -1,3 +1,5 @@
+export { BaseMenuItem } from "./base/base-menu-item.js";
+
 export {
   WorkListMenu,
   ReportMenu,

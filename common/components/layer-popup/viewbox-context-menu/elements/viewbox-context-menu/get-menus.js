@@ -19,6 +19,17 @@ import {
   ViewboxAngleMenu,
   ViewboxTransformationsMenu,
   ViewboxMeasurementsMenu,
+  ViewboxAnnotationsMenu,
+  ViewboxRefreshMenu,
+  ViewboxUndoMenu,
+  ViewboxResetMenu,
+  ViewboxDeleteImageMenu,
+  ViewboxDicomMenu,
+  ViewboxCopyMenu,
+  ViewboxMoveMenu,
+  ViewboxSaveMenu,
+  ViewboxExternalMenu,
+  ViewboxSettingMenu,
 } from "../menu-items/index.js";
 
 export const getMenus = () => {
@@ -49,6 +60,21 @@ export const getMenus = () => {
   const transformationsMenu = new ViewboxTransformationsMenu();
   const measurementsMenu = new ViewboxMeasurementsMenu();
 
+  //
+  const annotationsMenu = new ViewboxAnnotationsMenu();
+  const refreshMenu = new ViewboxRefreshMenu();
+  const undoMenu = new ViewboxUndoMenu();
+  const resetMenu = new ViewboxResetMenu();
+
+  const deleteImageMenu = new ViewboxDeleteImageMenu();
+  const dicomMenu = new ViewboxDicomMenu();
+  const copyMenu = new ViewboxCopyMenu();
+  const moveMenu = new ViewboxMoveMenu();
+
+  const saveMenu = new ViewboxSaveMenu();
+  const externalMenu = new ViewboxExternalMenu();
+  const settingMenu = new ViewboxSettingMenu();
+
   const menus = [
     workListMenu,
     reportMenu,
@@ -76,6 +102,21 @@ export const getMenus = () => {
 
     transformationsMenu,
     measurementsMenu,
+
+    //
+    annotationsMenu,
+    refreshMenu,
+    undoMenu,
+    resetMenu,
+
+    deleteImageMenu,
+    dicomMenu,
+    copyMenu,
+    moveMenu,
+
+    saveMenu,
+    externalMenu,
+    settingMenu,
   ];
 
   return menus;

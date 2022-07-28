@@ -24,7 +24,7 @@ const createSubMenu = () => {
     subMenuItems: [new GridSelector()],
     options: { padding: 0 },
   });
-  UIkit.drop(subMenu.getRootElement());
+  UIkit.drop(subMenu.getRootElement(), { offset: 0 });
 
   return subMenu;
 };

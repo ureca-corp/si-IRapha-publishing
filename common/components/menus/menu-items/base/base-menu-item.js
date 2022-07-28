@@ -8,10 +8,7 @@ const Selectors = {
 };
 
 const Template = `
-<dl class="${Selectors.Root}">
-  <dt class="${Selectors.Icon}"></dt>
-  <dd class="${Selectors.Name}"></dd>
-</dl>
+<dl class="${Selectors.Root}"></dl>
 `;
 
 export class BaseMenuItem extends BaseElement {
@@ -35,20 +32,14 @@ export class BaseMenuItem extends BaseElement {
 
   #initData() {
     const $root = this.getRootElement();
-    const $name = this.#getNameElement();
-    const $icon = this.#getIconElement();
 
     const { title, name, icon, subMenu } = this.#data;
 
     $root.setAttribute("title", title);
-    $name.innerHTML = name;
-    $icon.innerHTML = icon;
 
-    if (subMenu) $root.appendChild(subMenu.getRootElement());
-  }
-
-  #getNameElement() {
-    return this.getElementByClassName(Selectors.Name);
+    icon && $root.appendChild(createIconElement(icon));
+    name && $root.appendChild(createNameElement(name));
+    subMenu && $root.appendChild(subMenu.getRootElement());
   }
 
   #initOptions() {
@@ -70,3 +61,14 @@ export class BaseMenuItem extends BaseElement {
     return this.getElementByClassName(Selectors.Icon);
   }
 }
+
+//
+const createNameElement = (name) => {
+  const template = `<dd class="${Selectors.Name}">${name}</dd>`;
+  return createElementFromHTML(template);
+};
+
+const createIconElement = (icon) => {
+  const template = `<dt class="${Selectors.Icon}">${icon}</dt>`;
+  return createElementFromHTML(template);
+};
