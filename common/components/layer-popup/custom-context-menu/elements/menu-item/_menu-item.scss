@@ -41,4 +41,8 @@ $color-font2: var(--color__font-primary);
     background-color: $item-hover-bg;
     color: $color-font2;
   }
+
+  & > {
+    width: 100%;
+  }
 }

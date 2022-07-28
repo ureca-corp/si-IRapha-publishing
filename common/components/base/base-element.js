@@ -12,4 +12,8 @@ export class BaseElement {
   getElementByClassName(className) {
     return this.#$root.querySelector(`.${className}`);
   }
+
+  addClassName(className) {
+    return this.#$root.classList.add(className);
+  }
 }

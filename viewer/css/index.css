@@ -9290,6 +9290,9 @@ button[disabled] {
   background-color: rgba(238, 238, 238, 0.0666666667);
   color: var(--color__font-primary);
 }
+.irapha-context-menu__item > {
+  width: 100%;
+}
 
 .irapha-context-menu {
   position: absolute;

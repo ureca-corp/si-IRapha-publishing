@@ -1,12 +1,7 @@
-import { ToolboxMenuItemsController } from "../menu-items-controller/index.js";
 import { ToolboxMenu } from "../menu/menu.js";
 import { MenusDivider } from "./menus-divider.js";
 
-import {
-  HideClassType,
-  LayoutClassType,
-  Selectors,
-} from "../../common/index.js";
+import { HideClassType, LayoutClassType } from "../../common/index.js";
 import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
 
 /**

@@ -65,16 +65,20 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
-new CustomContextMenu({
-  $element: document.querySelector("#irapha-viewbox-context-menu"),
-  open$: window.store.viewboxContextMenuOpen$,
-  autoClose: false,
-});
+import { ViewboxContextMenu } from "../../common/components/layer-popup/index.js";
 
-import { GridSelector } from "../../common/components/selectors/index.js";
-new GridSelector({
-  $element: document.querySelector("#test1234"),
-});
+new ViewboxContextMenu();
+
+// new CustomContextMenu({
+//   $element: document.querySelector("#irapha-viewbox-context-menu"),
+//   open$: window.store.viewboxContextMenuOpen$,
+//   autoClose: false,
+// });
+
+// import { GridSelector } from "../../common/components/selectors/index.js";
+// new GridSelector({
+//   $element: document.querySelector("#test1234"),
+// });
 
 // =================================================================
 import { tabsDummyData, windowDummyData } from "../../common/data/index.js";
