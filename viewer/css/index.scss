@@ -20,6 +20,11 @@
 @use "../../common/components/menus/menu-items/style" as menu-items;
 
 // =================================================================
+#irapha-app {
+  width: 100%;
+  height: 100%;
+}
+
 .content {
   grid-area: content;
 

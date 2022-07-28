@@ -9860,6 +9860,11 @@ button[disabled] {
   text-overflow: ellipsis;
 }
 
+#irapha-app {
+  width: 100%;
+  height: 100%;
+}
+
 .content {
   grid-area: content;
   width: 100%;
