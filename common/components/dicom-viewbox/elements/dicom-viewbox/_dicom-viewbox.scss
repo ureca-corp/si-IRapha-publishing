@@ -14,8 +14,6 @@ $color-orange: var(--color__orange);
 $color-border: var(--color__border);
 $color-border-weak: #eeeeee22;
 
-$min-width: 360px;
-
 // viewbox 상태 처리
 @mixin s-viewbox {
   &.--active {
@@ -34,7 +32,6 @@ $min-width: 360px;
 
   display: flex;
   flex-direction: column;
-  min-width: $min-width;
   height: 100%;
 
   border: 2px solid $color-border-weak;

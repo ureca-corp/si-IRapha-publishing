@@ -9348,7 +9348,7 @@ button[disabled] {
   gap: 48px;
   width: 100%;
   height: 100%;
-  overflow: overlay;
+  overflow: hidden;
 }
 
 .irapha-dicom-window__grid {
@@ -9546,6 +9546,7 @@ button[disabled] {
 .irapha-dicom-window__item {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .irapha-dicom-window__item canvas {
   background-color: #000;
@@ -9688,7 +9689,6 @@ button[disabled] {
 .irapha-dicom-viewbox {
   display: flex;
   flex-direction: column;
-  min-width: 360px;
   height: 100%;
   border: 2px solid rgba(238, 238, 238, 0.1333333333);
   transition: all 0.3s ease-in-out;
