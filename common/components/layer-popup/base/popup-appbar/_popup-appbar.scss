@@ -1,0 +1,26 @@
+@use "../../../../styles/common";
+@use "../../../../themes/typography" as typography;
+
+.irapha-popup-appbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px dashed var(--color__border);
+  cursor: move;
+}
+
+.irapha-popup-appbar__title {
+  @include typography.title-medium;
+  padding: 8px;
+
+  pointer-events: none;
+}
+
+.irapha-popup-appbar__close {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+
+  transform: translateY(-50%);
+}

@@ -29,9 +29,11 @@ export class AnnotationContextMenu extends BaseElement {
   }
 
   #init() {
+    const open$ = window.store.annotationContextMenuOpen$;
+
     new CustomContextMenu({
       $element: this.getEl(),
-      open$: window.store.annotationContextMenuOpen$,
+      open$,
       autoClose: false,
     });
 

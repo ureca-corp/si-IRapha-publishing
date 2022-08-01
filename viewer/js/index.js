@@ -124,3 +124,10 @@ document
   .appendChild(annotationContextMenu.getEl());
 
 window.store.annotationContextMenuOpen$.next({ x: 200, y: 200 });
+
+// =================================================================
+import { ReviseLayerPopup } from "../../common/components/layer-popup/index.js";
+const reviseLayerPopup = new ReviseLayerPopup();
+document
+  .querySelector("#global-popup-group")
+  .appendChild(reviseLayerPopup.getEl());

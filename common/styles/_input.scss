@@ -10,6 +10,8 @@ $color-bg-focus: #ffffff11;
 }
 
 @mixin input-style {
+  flex: 1;
+
   height: fit-content !important;
   padding-top: 4px;
   padding-bottom: 4px;

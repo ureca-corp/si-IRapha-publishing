@@ -1,5 +1,7 @@
 import { BaseMenuItem } from "../../base/base-menu-item.js";
 
+const rx = rxjs;
+
 export class ReviseMenu extends BaseMenuItem {
   constructor() {
     super({
@@ -10,6 +12,17 @@ export class ReviseMenu extends BaseMenuItem {
       },
       options: { outlined: true },
     });
+
+    this.#init();
+  }
+
+  #init() {
+    rx.fromEvent(this.getEl(), "click").subscribe(() =>
+      window.store.reviseOpen$.next({
+        x: window.innerWidth / 3,
+        y: window.innerHeight / 5,
+      })
+    );
   }
 }
 

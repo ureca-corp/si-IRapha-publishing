@@ -18,6 +18,7 @@ store.annotationContextMenuOpen$ = new rx.BehaviorSubject();
  */
 store.relatedStudyOpen$ = new rx.BehaviorSubject();
 store.exportDicomOpen$ = new rx.BehaviorSubject();
+store.reviseOpen$ = new rx.BehaviorSubject();
 
 /**
  * DicomWindow Layout Mode
