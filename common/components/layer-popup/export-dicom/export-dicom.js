@@ -49,8 +49,6 @@ export class ExportDicomLayerPopup {
   #initSubmitButton() {
     const $submitBtn = this.#$root.querySelector(`.${Selectors.SubmitButton}`);
     rx.fromEvent($submitBtn, "click").subscribe((e) => {
-      e.preventDefault();
-
       alert("Todo");
     });
   }

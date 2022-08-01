@@ -1,6 +1,15 @@
 @use "./base/scss/layer-popup";
+@use "../../styles/input" as input;
 
 @use "./related-study/style" as related-study-popup;
 @use "./export-dicom/export-dicom";
 @use "./custom-context-menu/style" as custom-context-menu;
 @use "./annotation-context-menu/style" as annotation-context-menu;
+
+//
+.irapha-viewbox-cm__menu-zoom {
+  @include input.input-style;
+
+  width: 100%;
+  padding-left: 4px;
+}

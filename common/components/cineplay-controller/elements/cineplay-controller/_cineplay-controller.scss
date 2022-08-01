@@ -1,33 +1,14 @@
 @use "../../../../styles/common";
+@use "../../../../styles/input" as input;
 @use "../../../../themes/typography" as typography;
 
 // cineplay-controller
 // =================================================================
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
-$color-bg-focus: #ffffff11;
 $color-border-default: var(--color__border);
 $color-black: var(--color__black);
 $color-orange: var(--color__orange);
-
-@mixin input-style {
-  height: fit-content !important;
-  padding-top: 4px;
-  padding-bottom: 4px;
-
-  background-color: transparent;
-
-  border-radius: 4px;
-  border: 1px solid $color-border-default;
-
-  transition: all 0.3s ease-in-out;
-}
-
-@mixin focus {
-  color: $color-font2;
-  border-color: $color-font1;
-  background-color: $color-bg-focus;
-}
 
 .irapha-cineplay-controller {
   display: flex;
@@ -64,7 +45,7 @@ $color-orange: var(--color__orange);
 // play-type
 // =========================================================================
 .irapha-cineplay-controller__play-type {
-  @include input-style;
+  @include input.input-style;
   @include typography.label-small;
 
   min-width: 60px;
@@ -74,12 +55,8 @@ $color-orange: var(--color__orange);
 
   cursor: pointer;
 
-  &:hover {
-    @include focus;
-  }
-
   &.uk-select:focus {
-    @include focus;
+    @include input.focus;
   }
 }
 
@@ -116,30 +93,12 @@ $color-orange: var(--color__orange);
     position: relative;
 
     input {
-      @include input-style;
+      @include input.input-style;
 
       width: 68px;
 
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-
-      &:hover {
-        @include focus;
-      }
-
       &:focus {
-        @include focus;
-
         width: 88px;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: auto;
-          margin: unset;
-        }
       }
     }
   }

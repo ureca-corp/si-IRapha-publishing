@@ -21,11 +21,14 @@ $color-font2: var(--color__font-primary);
   @include typography.body-medium;
   @include s-menu-item;
 
+  white-space: nowrap;
+
   position: relative;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 
   width: 200px;
   height: 32px;

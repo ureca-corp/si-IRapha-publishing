@@ -9858,18 +9858,38 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-export-dicom__content input[type=text] {
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
   width: 50%;
   padding: 0px 4px;
   margin-left: 4px;
-  background-color: rgba(238, 238, 238, 0.0666666667);
-  border: 1px solid var(--color__border);
   border-radius: 2px;
+}
+.irapha-export-dicom__content input[type=text]::-webkit-outer-spin-button, .irapha-export-dicom__content input[type=text]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.irapha-export-dicom__content input[type=text]:hover {
   color: var(--color__font-primary);
-  transition: all 0.3s ease-in-out;
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-export-dicom__content input[type=text]:focus {
-  background-color: rgba(238, 238, 238, 0.2);
-  border-color: var(--color__teriary);
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-export-dicom__content input[type=text]:focus::-webkit-outer-spin-button, .irapha-export-dicom__content input[type=text]:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
 }
 .irapha-export-dicom__content input[type=checkbox][disabled] {
   opacity: 0.3;
@@ -9956,10 +9976,12 @@ button[disabled] {
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
+  white-space: nowrap;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   width: 200px;
   height: 32px;
   padding: 8px;
@@ -10044,11 +10066,58 @@ button[disabled] {
   border-radius: 4px;
   border: 1px solid var(--color__border);
   transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
 }
-.irapha-annotation-cm__input:hover, .irapha-annotation-cm__input:focus {
+.irapha-annotation-cm__input::-webkit-outer-spin-button, .irapha-annotation-cm__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.irapha-annotation-cm__input:hover {
   color: var(--color__font-primary);
   border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-annotation-cm__input:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-annotation-cm__input:focus::-webkit-outer-spin-button, .irapha-annotation-cm__input:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
+}
+
+.irapha-viewbox-cm__menu-zoom {
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
+  width: 100%;
+  padding-left: 4px;
+}
+.irapha-viewbox-cm__menu-zoom::-webkit-outer-spin-button, .irapha-viewbox-cm__menu-zoom::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.irapha-viewbox-cm__menu-zoom:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-viewbox-cm__menu-zoom:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-viewbox-cm__menu-zoom:focus::-webkit-outer-spin-button, .irapha-viewbox-cm__menu-zoom:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
 }
 
 .irapha-dicom-window {
@@ -10290,6 +10359,7 @@ button[disabled] {
   border-radius: 4px;
   border: 1px solid var(--color__border);
   transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -10300,10 +10370,23 @@ button[disabled] {
   color: var(--color__font-secondary);
   cursor: pointer;
 }
+.irapha-cineplay-controller__play-type::-webkit-outer-spin-button, .irapha-cineplay-controller__play-type::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .irapha-cineplay-controller__play-type:hover {
   color: var(--color__font-primary);
   border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-cineplay-controller__play-type:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-cineplay-controller__play-type:focus::-webkit-outer-spin-button, .irapha-cineplay-controller__play-type:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
 }
 .irapha-cineplay-controller__play-type.uk-select:focus {
   color: var(--color__font-primary);
@@ -10346,6 +10429,7 @@ button[disabled] {
   border-radius: 4px;
   border: 1px solid var(--color__border);
   transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
   width: 68px;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-inner-spin-button {
@@ -10361,11 +10445,13 @@ button[disabled] {
   color: var(--color__font-primary);
   border-color: var(--color__font-secondary);
   background-color: rgba(255, 255, 255, 0.0666666667);
-  width: 88px;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-inner-spin-button {
   -webkit-appearance: auto;
   margin: unset;
+}
+.irapha-cineplay-controller__FPS-box__input-wrapper input:focus {
+  width: 88px;
 }
 .irapha-cineplay-controller__FPS-box__frame-count {
   font-size: 11px;

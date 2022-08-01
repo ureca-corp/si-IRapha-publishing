@@ -1,0 +1,44 @@
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-border-default: var(--color__border);
+$color-bg-focus: #ffffff11;
+
+@mixin focus {
+  color: $color-font2;
+  border-color: $color-font1;
+  background-color: $color-bg-focus;
+}
+
+@mixin input-style {
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  background-color: transparent;
+
+  border-radius: 4px;
+  border: 1px solid $color-border-default;
+
+  transition: all 0.3s ease-in-out;
+  color: $color-font2;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:hover {
+    @include focus;
+  }
+
+  &:focus {
+    @include focus;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: auto;
+      margin: unset;
+    }
+  }
+}

@@ -12,10 +12,20 @@ export class ViewboxZoomMenu extends BaseElement {
   #init() {
     const $root = this.getRootElement();
 
-    const $label = createLabel("Zoom");
+    const $label = createLabel("Zoom (%)");
+    const $input = createInput();
 
-    $root.appendChild($label);
+    $root.append(...[$label, $input]);
   }
 }
 
 const createLabel = (label) => createElementFromHTML(`<p>${label}</p>`);
+const createInput = () => {
+  const template = `
+  <input type="number" class="irapha-viewbox-cm__menu-zoom"/>
+  `;
+
+  const $input = createElementFromHTML(template);
+
+  return $input;
+};

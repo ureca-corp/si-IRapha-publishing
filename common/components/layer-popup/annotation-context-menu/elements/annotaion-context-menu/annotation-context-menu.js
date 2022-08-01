@@ -12,6 +12,8 @@ const HelpText = `
 - Enter 키를 누르면 작성한 내용이 적용됩니다.
 `;
 
+const PlaceHolder = "Label";
+
 const Template = `
 <div 
   id="${Selectors.RootId}" 
@@ -40,7 +42,10 @@ export class AnnotationContextMenu extends BaseElement {
   #initInput() {
     const template = `
     <div class="${Selectors.InputWrapper}">
-      <input class="${Selectors.Input} ${Selectors.UkInput}">
+      <input 
+        class="${Selectors.Input} ${Selectors.UkInput}"
+        placeholder="${PlaceHolder}"
+      >
       <div title="${HelpText}" style="cursor: help">
       ${svgIcon}
       </div>

@@ -1,6 +1,7 @@
 @use "../../../styles/common";
 @use "../../../themes/colors" as colors;
 @use "../../../themes/typography" as typography;
+@use "../../../styles/input" as input;
 
 @use "../../../styles/buttons" as buttons;
 @use "../base/scss/layer-popup";
@@ -72,22 +73,12 @@ $color-font2: var(--color__font-primary);
 
 @mixin content-input {
   input[type="text"] {
+    @include input.input-style;
     width: 50%;
     padding: 0px 4px;
     margin-left: 4px;
 
-    background-color: #eeeeee11;
-    border: 1px solid $color-border;
     border-radius: 2px;
-
-    color: $color-font2;
-
-    transition: all 0.3s ease-in-out;
-
-    &:focus {
-      background-color: #eeeeee33;
-      border-color: var(--color__teriary);
-    }
   }
 
   input[type="checkbox"][disabled] {
