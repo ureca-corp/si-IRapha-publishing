@@ -1,10 +1,12 @@
 import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { Selectors, LayoutAttributeType } from "../../common/index.js";
 import {
-  CustomSwiper,
   createSwiperSlide,
+  CustomSwiper,
 } from "../../../custom-swiper/index.js";
+import { LayoutAttributeType, Selectors } from "../../common/index.js";
+
+const rx = rxjs;
 
 /**
  * Constructor types
@@ -17,7 +19,7 @@ import {
 
 export class DicomWindow extends BaseElement {
   static template = `
-  <div class="${Selectors.DicomWindow}"></div>
+  <div class="${Selectors.DicomWindow}" layout-active="true"></div>
   `;
 
   #swiper;
@@ -28,6 +30,10 @@ export class DicomWindow extends BaseElement {
     this.#items = items.map((element) => createDicomWindowItem(element));
 
     this.#initSwiper();
+
+    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
+      this.#handleLayoutActive()
+    );
 
     layout$.subscribe(({ layout, grid }) =>
       this.#handleLayoutChange({ layout, grid })
@@ -46,6 +52,11 @@ export class DicomWindow extends BaseElement {
 
   // handlers
   #handleLayoutChange({ layout, grid }) {
+    const isLayoutActive = JSON.parse(
+      this.getRootElement().getAttribute("layout-active")
+    );
+    if (!isLayoutActive) return;
+
     switch (layout) {
       case LayoutAttributeType.OneByTwo:
         return this.#setLayout({
@@ -148,13 +159,31 @@ export class DicomWindow extends BaseElement {
     }
   }
 
+  #handleLayoutActive() {
+    this.#disableAllLayoutActive();
+    this.#activeLayout();
+  }
+
+  // Layout Active
+  #activeLayout() {
+    this.getRootElement().setAttribute("layout-active", true);
+  }
+
+  #disableAllLayoutActive() {
+    this.#getAllDicomWIndowItemsEl().forEach(($el) => {
+      $el.setAttribute("layout-active", false);
+    });
+  }
+
+  #getAllDicomWIndowItemsEl() {
+    return [...document.querySelectorAll(`.${Selectors.DicomWindow}`)];
+  }
+
   // Layout Control
   #clearLayoutItems() {
-    const $root = this.getRootElement();
     const $swiper = this.#swiper;
 
     $swiper.clearItems();
-    $root.setAttribute(LayoutAttributeType.Key, "");
   }
 
   #setLayout({ chunkSize, layoutType }) {

@@ -8,6 +8,11 @@
   height: 100%;
 
   overflow: hidden;
+  border: 1px solid transparent;
+
+  &[layout-active="true"] {
+    border: 1px solid var(--color__primary);
+  }
 }
 
 // dicom window grid
