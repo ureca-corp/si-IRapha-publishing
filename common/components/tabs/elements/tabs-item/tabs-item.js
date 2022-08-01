@@ -39,16 +39,16 @@ export class TabItem extends BaseElement {
       $element: createElementFromHTML(TabItem.template),
     });
 
-    this.#getTitleContainer().appendChild(new TabMenus().getRootElement());
+    this.#getTitleContainer().appendChild(new TabMenus().getEl());
 
     this.#setData({ data });
 
     isActive$.subscribe((isActive) => this.#handleActiveChange(isActive));
 
-    rx.fromEvent(this.getRootElement(), "click").subscribe(() => onClick());
+    rx.fromEvent(this.getEl(), "click").subscribe(() => onClick());
 
     useCustomContextMenu({
-      $emitter: this.getRootElement(),
+      $emitter: this.getEl(),
       contextMenuOpen$: window.store.tabsContextMenuOpen$,
     });
   }
@@ -71,15 +71,11 @@ export class TabItem extends BaseElement {
   }
 
   #getTopDescription() {
-    return this.getRootElement().querySelector(
-      `.${Selectors.TabItemDesc}[index="1"]`
-    );
+    return this.getEl().querySelector(`.${Selectors.TabItemDesc}[index="1"]`);
   }
 
   #getBottomDescription() {
-    return this.getRootElement().querySelector(
-      `.${Selectors.TabItemDesc}[index="2"]`
-    );
+    return this.getEl().querySelector(`.${Selectors.TabItemDesc}[index="2"]`);
   }
 
   // handler
@@ -90,14 +86,14 @@ export class TabItem extends BaseElement {
   }
 
   #active() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     $root.appendChild(createDummy());
     $root.classList.add("--active");
   }
 
   #inactive() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const oldDummy = $root.querySelector(`.${Selectors.Dummy}`);
     oldDummy && $root.removeChild(oldDummy);

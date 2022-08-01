@@ -31,7 +31,7 @@ export class ThumbnailItem extends BaseElement {
     this.#initModel();
 
     useCustomContextMenu({
-      $emitter: this.getRootElement(),
+      $emitter: this.getEl(),
       contextMenuOpen$: window.store.thumbnailContextMenuOpen$,
     });
   }

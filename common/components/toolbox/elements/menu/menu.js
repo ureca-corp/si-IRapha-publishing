@@ -52,20 +52,20 @@ export class ToolboxMenu extends BaseElement {
   #initItems() {
     if (!this.#items) return;
 
-    const $items = this.#items.map((it) => createLI(it.getRootElement()));
-    this.getRootElement().append(...$items);
+    const $items = this.#items.map((it) => createLI(it.getEl()));
+    this.getEl().append(...$items);
   }
 
   // handler
   #handleLayoutChange(isLayoutColumnTwo) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isLayoutColumnTwo) return rootClassList.add(LayoutClassType.ColumnTwo);
     return rootClassList.remove(LayoutClassType.ColumnTwo);
   }
 
   #handleHideIconNameChange(isHideIconName) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isHideIconName) return rootClassList.add(HideClassType.HideIconName);
     return rootClassList.remove(HideClassType.HideIconName);

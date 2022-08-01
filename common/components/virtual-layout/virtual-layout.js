@@ -18,13 +18,13 @@ export class VirtualLayout extends BaseElement {
     this.#children = children;
 
     const $item = this.#createItemAndSetChildren({ children });
-    this.getRootElement().appendChild($item);
+    this.getEl().appendChild($item);
 
     layout$.subscribe(({ layout }) => this.#handleLayoutChange(layout));
   }
 
   #handleLayoutChange(layout) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     $root.setAttribute("layout", layout);
 
     this.#resetLayoutChildren();
@@ -39,7 +39,7 @@ export class VirtualLayout extends BaseElement {
   }
 
   #resetLayoutChildren() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     const $items = $root.querySelectorAll(`.${Selectors.VirtualLayoutItem}`);
 
     if ($items.length > 1) {
@@ -51,7 +51,7 @@ export class VirtualLayout extends BaseElement {
 
   #createItemAndSetChildren({ children }) {
     const $item = createVirtualLayoutItem();
-    $item.appendChild(children.getRootElement());
+    $item.appendChild(children.getEl());
 
     return $item;
   }

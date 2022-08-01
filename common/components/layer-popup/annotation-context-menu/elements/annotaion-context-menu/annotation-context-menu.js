@@ -30,7 +30,7 @@ export class AnnotationContextMenu extends BaseElement {
 
   #init() {
     new CustomContextMenu({
-      $element: this.getRootElement(),
+      $element: this.getEl(),
       open$: window.store.annotationContextMenuOpen$,
       autoClose: false,
     });
@@ -54,7 +54,7 @@ export class AnnotationContextMenu extends BaseElement {
 
     const $template = createElementFromHTML(template);
 
-    this.getRootElement().append($template);
+    this.getEl().append($template);
   }
 
   #initMenus() {
@@ -76,7 +76,7 @@ export class AnnotationContextMenu extends BaseElement {
       }),
     ];
 
-    this.getRootElement().append(...$items);
+    this.getEl().append(...$items);
   }
 }
 

@@ -43,7 +43,7 @@ export class NetworkStatus extends BaseElement {
   }
 
   #handleTooltipChange(tooltip) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     $root.setAttribute("title", tooltip);
   }
 
@@ -53,6 +53,6 @@ export class NetworkStatus extends BaseElement {
   }
 
   #getIcon() {
-    return this.getRootElement().querySelector(`.${Selectors.Icon}`);
+    return this.getEl().querySelector(`.${Selectors.Icon}`);
   }
 }

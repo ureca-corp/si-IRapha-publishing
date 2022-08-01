@@ -68,10 +68,9 @@ export class Logo extends BaseElement {
       options: { events: { onClick: onPinClick } },
     });
 
-    const $pinIcon = pinIcon.getRootElement();
-    const $fullscreenToggleButton =
-      new FullScreenToggleButton().getRootElement();
-    const $networkStatus = new NetworkStatus().getRootElement();
+    const $pinIcon = pinIcon.getEl();
+    const $fullscreenToggleButton = new FullScreenToggleButton().getEl();
+    const $networkStatus = new NetworkStatus().getEl();
 
     this.#getElementOfMenus().append(
       ...[$pinIcon, $fullscreenToggleButton, $networkStatus]
@@ -79,15 +78,15 @@ export class Logo extends BaseElement {
   }
 
   #getLogoWrapper() {
-    return this.getRootElement().querySelector(`.${Selectors.LogoWrapper}`);
+    return this.getEl().querySelector(`.${Selectors.LogoWrapper}`);
   }
 
   #getElementOfMenus() {
-    return this.getRootElement().querySelector(`.${Selectors.LogoMenus}`);
+    return this.getEl().querySelector(`.${Selectors.LogoMenus}`);
   }
 
   #removeAllShrink() {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     rootClassList.remove(ShrinkClassType.Column);
     rootClassList.remove(ShrinkClassType.Row);
@@ -95,7 +94,7 @@ export class Logo extends BaseElement {
 
   // handler
   #handleShrinkChange(shrinkDirection) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     this.#removeAllShrink();
 

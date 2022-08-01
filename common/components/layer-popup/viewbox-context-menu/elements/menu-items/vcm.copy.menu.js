@@ -10,7 +10,7 @@ export class ViewboxCopyMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Copy");
 

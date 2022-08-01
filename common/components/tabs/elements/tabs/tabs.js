@@ -47,7 +47,7 @@ export class Tabs extends BaseElement {
       });
     });
 
-    this.#getTabsList().append(...tabItems.map((it) => it.getRootElement()));
+    this.#getTabsList().append(...tabItems.map((it) => it.getEl()));
   }
 
   // Elements

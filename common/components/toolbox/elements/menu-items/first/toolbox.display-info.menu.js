@@ -17,7 +17,7 @@ export class ToolboxDisplayInfoMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const menu = new DisplayInfoMenu();
 
@@ -30,9 +30,9 @@ export class ToolboxDisplayInfoMenu extends BaseElement {
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
     const subMenu = new SubMenu({ subMenuItems });
-    UIkit.drop(subMenu.getRootElement());
+    UIkit.drop(subMenu.getEl());
 
-    $root.appendChild(menu.getRootElement());
-    $root.appendChild(subMenu.getRootElement());
+    $root.appendChild(menu.getEl());
+    $root.appendChild(subMenu.getEl());
   }
 }

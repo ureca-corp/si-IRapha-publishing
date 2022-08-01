@@ -10,7 +10,7 @@ export class ViewboxZoomMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Zoom (%)");
     const $input = createInput();

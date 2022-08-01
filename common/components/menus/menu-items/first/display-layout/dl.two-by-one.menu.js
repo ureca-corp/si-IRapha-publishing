@@ -17,7 +17,7 @@ export class DisplayLayoutTwoByOneMenu extends BaseMenuItem {
       },
     });
 
-    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
+    rx.fromEvent(this.getEl(), "click").subscribe(() =>
       this.#mutateDicomWindowLayout()
     );
   }

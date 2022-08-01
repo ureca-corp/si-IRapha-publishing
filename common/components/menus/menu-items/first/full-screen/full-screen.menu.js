@@ -1,5 +1,7 @@
+import { useFullScreen } from "../../../../../hooks/index.js";
 import { BaseMenuItem } from "../../base/base-menu-item.js";
 
+const rx = rxjs;
 export class FullScreenMenu extends BaseMenuItem {
   constructor() {
     super({
@@ -10,6 +12,13 @@ export class FullScreenMenu extends BaseMenuItem {
       },
       options: { outlined: true },
     });
+
+    this.#init();
+  }
+
+  #init() {
+    const { toggle } = useFullScreen();
+    rx.fromEvent(this.getEl(), "click").subscribe(() => toggle());
   }
 }
 

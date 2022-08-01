@@ -36,7 +36,7 @@ export class DicomViewBox extends BaseElement {
     if (hasController) this.#initCinePlayController();
 
     useCustomContextMenu({
-      $emitter: this.getRootElement(),
+      $emitter: this.getEl(),
       contextMenuOpen$: window.store.viewboxContextMenuOpen$,
     });
   }
@@ -103,7 +103,7 @@ export class DicomViewBox extends BaseElement {
       ]
     );
 
-    this.getRootElement().append($grid);
+    this.getEl().append($grid);
   }
 
   #initCinePlayController() {
@@ -114,7 +114,7 @@ export class DicomViewBox extends BaseElement {
       isHideController$: globalCineControllerHide$,
     });
 
-    this.getRootElement().append(cinePlayController.getDomElement());
+    this.getEl().append(cinePlayController.getDomElement());
   }
 }
 

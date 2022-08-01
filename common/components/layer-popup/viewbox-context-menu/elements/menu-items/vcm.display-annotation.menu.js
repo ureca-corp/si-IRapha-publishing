@@ -10,7 +10,7 @@ export class ViewboxDisplayAnnotationMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Display Annotation");
     const $checkbox = createCheckbox();

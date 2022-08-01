@@ -28,20 +28,20 @@ export class BaseIcon extends BaseElement {
 
   // private
   #init({ isClickable }) {
-    this.getRootElement().classList.add("irapha-icon");
+    this.getEl().classList.add("irapha-icon");
 
-    if (isClickable) this.getRootElement().style.cursor = "pointer";
+    if (isClickable) this.getEl().style.cursor = "pointer";
   }
 
   #handleActiveChange(isActive) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (isActive) return $root.classList.add("--active");
     return $root.classList.remove("--active");
   }
 
   #handleDisabledChange(disabled) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (disabled) return $root.setAttribute("disabled", true);
     return $root.removeAttribute("disabled", true);
@@ -89,7 +89,7 @@ export class BaseIcon2 extends BaseElement {
   }
 
   #initSizeOptions(size) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (size === "small") return $root.classList.add("--small");
   }
@@ -97,7 +97,7 @@ export class BaseIcon2 extends BaseElement {
   #initEvents(events) {
     if (!events) return;
 
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const { onClick } = events;
 
@@ -108,14 +108,14 @@ export class BaseIcon2 extends BaseElement {
   }
 
   #handleActiveChange(isActive) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (isActive) return $root.classList.add("--active");
     return $root.classList.remove("--active");
   }
 
   #handleDisabledChange(disabled) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (disabled) return $root.setAttribute("disabled", true);
     return $root.removeAttribute("disabled", true);

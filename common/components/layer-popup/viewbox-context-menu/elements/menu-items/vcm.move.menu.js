@@ -21,7 +21,7 @@ export class ViewboxMoveMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel(Label);
     const subMenuItems = createSubMenuItems();
@@ -30,7 +30,7 @@ export class ViewboxMoveMenu extends BaseElement {
     subMenu.addClassName(CustomContextMenuSelectors.Submenu);
 
     $root.appendChild($label);
-    $root.appendChild(subMenu.getRootElement());
+    $root.appendChild(subMenu.getEl());
   }
 }
 

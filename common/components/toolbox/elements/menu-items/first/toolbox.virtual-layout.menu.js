@@ -15,7 +15,7 @@ export class ToolboxVirtualLayoutMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const virtualLayoutMenu = new VirtualLayoutMenu();
 
@@ -26,9 +26,9 @@ export class ToolboxVirtualLayoutMenu extends BaseElement {
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
     const subMenu = new SubMenu({ subMenuItems });
-    UIkit.drop(subMenu.getRootElement());
+    UIkit.drop(subMenu.getEl());
 
-    $root.appendChild(virtualLayoutMenu.getRootElement());
-    $root.appendChild(subMenu.getRootElement());
+    $root.appendChild(virtualLayoutMenu.getEl());
+    $root.appendChild(subMenu.getEl());
   }
 }

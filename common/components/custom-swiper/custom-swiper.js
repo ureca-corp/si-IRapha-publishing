@@ -23,7 +23,7 @@ export class CustomSwiper extends BaseElement {
   constructor() {
     super({ $element: createElementFromHTML(CustomSwiper.template) });
 
-    this.#swiper = new Swiper(this.getRootElement(), {
+    this.#swiper = new Swiper(this.getEl(), {
       direction: "vertical",
       slidesPerView: 1,
       spaceBetween: 30,

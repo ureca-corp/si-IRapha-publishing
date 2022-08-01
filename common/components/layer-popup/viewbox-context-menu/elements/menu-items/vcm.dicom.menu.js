@@ -10,7 +10,7 @@ export class ViewboxDicomMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Dicom");
 

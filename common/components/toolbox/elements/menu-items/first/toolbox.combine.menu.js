@@ -9,10 +9,10 @@ export class ToolboxCombineMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const menu = new CombineMenu();
 
-    $root.appendChild(menu.getRootElement());
+    $root.appendChild(menu.getEl());
   }
 }

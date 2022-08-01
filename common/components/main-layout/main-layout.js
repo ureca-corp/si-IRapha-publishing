@@ -29,7 +29,7 @@ export class MainLayout extends BaseElement {
   #initTabs({ tabsData }) {
     const tabs = new Tabs({ data: tabsData });
 
-    this.getRootElement().appendChild(tabs.getRootElement());
+    this.getEl().appendChild(tabs.getEl());
   }
 
   #initDicomWindow({ windowData }) {
@@ -42,11 +42,11 @@ export class MainLayout extends BaseElement {
     );
 
     const dicomWindow = new DicomWindow({
-      items: viewBoxes.map((it) => it.getRootElement()),
+      items: viewBoxes.map((it) => it.getEl()),
       layout$: window.store.dicomWindowLayout$,
     });
 
-    this.getRootElement().appendChild(dicomWindow.getRootElement());
+    this.getEl().appendChild(dicomWindow.getEl());
   }
 
   // public

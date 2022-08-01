@@ -43,11 +43,11 @@ new StickyMenu({
 
 document
   .querySelector(".irapha-sticky-menu__dropzone.--top")
-  .appendChild(toolbox.getRootElement());
+  .appendChild(toolbox.getEl());
 
 document
   .querySelector(".irapha-sticky-menu__dropzone.--left")
-  .appendChild(thumbnailBox.getRootElement());
+  .appendChild(thumbnailBox.getEl());
 
 // =================================================================
 
@@ -79,7 +79,7 @@ const relatedStudyLayerPopup = new RelatedStudyLayerPopup({
 });
 document
   .querySelector("#global-popup-group")
-  .appendChild(relatedStudyLayerPopup.getRootElement());
+  .appendChild(relatedStudyLayerPopup.getEl());
 
 new ExportDicomLayerPopup({
   $element: document.querySelector("#irapha-export-dicom-popup"),
@@ -93,7 +93,7 @@ const viewboxContextMenu = new ViewboxContextMenu();
 
 document
   .querySelector("#global-popup-group")
-  .appendChild(viewboxContextMenu.getRootElement());
+  .appendChild(viewboxContextMenu.getEl());
 
 // =================================================================
 import { tabsDummyData, windowDummyData } from "../../common/data/index.js";
@@ -113,7 +113,7 @@ const virtualLayout = new VirtualLayout({
   children: mainLayout,
 });
 
-document.querySelector("#testBBB").appendChild(virtualLayout.getRootElement());
+document.querySelector("#testBBB").appendChild(virtualLayout.getEl());
 
 // =================================================================
 import { AnnotationContextMenu } from "../../common/components/layer-popup/index.js";
@@ -121,6 +121,6 @@ import { AnnotationContextMenu } from "../../common/components/layer-popup/index
 const annotationContextMenu = new AnnotationContextMenu();
 document
   .querySelector("#global-popup-group")
-  .appendChild(annotationContextMenu.getRootElement());
+  .appendChild(annotationContextMenu.getEl());
 
 window.store.annotationContextMenuOpen$.next({ x: 200, y: 200 });

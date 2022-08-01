@@ -34,7 +34,7 @@ export class RelatedStudyLayerPopup extends BaseElement {
 
   // private
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     new LayerPopup({ $element: $root, open$: this.#open$ });
 
@@ -47,32 +47,28 @@ export class RelatedStudyLayerPopup extends BaseElement {
   }
 
   #initUserInfo() {
-    const $header = this.getRootElement().querySelector(`.${Selectors.Header}`);
+    const $header = this.getEl().querySelector(`.${Selectors.Header}`);
 
     const userInfo = new UserInfo({ currentStudy$: this.#currentStudy$ });
-    $header.appendChild(userInfo.getRootElement());
+    $header.appendChild(userInfo.getEl());
   }
 
   #initDataGrid() {
-    const $inner = this.getRootElement().querySelector(`.${Selectors.Inner}`);
+    const $inner = this.getEl().querySelector(`.${Selectors.Inner}`);
 
     const dataGrid = new DataGrid({ studyInfoList$: this.#studyInfoList$ });
-    $inner.appendChild(dataGrid.getRootElement());
+    $inner.appendChild(dataGrid.getEl());
   }
 
   #initCloseButton() {
-    const $closeBtn = this.getRootElement().querySelector(
-      `.${Selectors.CloseButton}`
-    );
+    const $closeBtn = this.getEl().querySelector(`.${Selectors.CloseButton}`);
 
     rx.fromEvent($closeBtn, "click").subscribe(() => this.#open$.next(null));
   }
 
   // mouse drag
   #initMouseDrag() {
-    const $dragArea = this.getRootElement().querySelector(
-      `.${Selectors.TopArea}`
-    );
+    const $dragArea = this.getEl().querySelector(`.${Selectors.TopArea}`);
 
     setOnMouseDragListener({
       emitter: $dragArea,
@@ -81,8 +77,8 @@ export class RelatedStudyLayerPopup extends BaseElement {
   }
 
   #handleMouseDrag(event) {
-    const rect = this.getRootElement().getBoundingClientRect();
-    const style = this.getRootElement().style;
+    const rect = this.getEl().getBoundingClientRect();
+    const style = this.getEl().style;
 
     style.top = `${rect.top + event.movementY}px`;
     style.bottom = "unset";

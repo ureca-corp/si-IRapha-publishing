@@ -9,10 +9,10 @@ export class ToolboxFitMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const menu = new FitMenu();
 
-    $root.appendChild(menu.getRootElement());
+    $root.appendChild(menu.getEl());
   }
 }

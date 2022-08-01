@@ -1,3 +1,4 @@
+import { useFullScreen } from "../../../../hooks/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/index.js";
 import { FullScreenIcon } from "../../../icons/fullscreen.icon.js";
@@ -19,23 +20,17 @@ export class FullScreenToggleButton extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
+    const { toggle } = useFullScreen();
 
     const fullscreenIcon = new FullScreenIcon({
       options: {
         size: "small",
         events: {
-          onClick: () => this.#toggleFullScreen(),
+          onClick: () => toggle(),
         },
       },
     });
-    $root.appendChild(fullscreenIcon.getRootElement());
-  }
-
-  #toggleFullScreen() {
-    if (!document.fullscreenElement)
-      return document.documentElement.requestFullscreen();
-
-    if (document.exitFullscreen) return document.exitFullscreen();
+    $root.appendChild(fullscreenIcon.getEl());
   }
 }

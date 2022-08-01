@@ -25,7 +25,7 @@ export class ViewboxAnnotationsMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Annotations");
     const subMenuItems = createSubMenuItems();
@@ -37,7 +37,7 @@ export class ViewboxAnnotationsMenu extends BaseElement {
     subMenu.addClassName(CustomContextMenuSelectors.Submenu);
 
     $root.appendChild($label);
-    $root.appendChild(subMenu.getRootElement());
+    $root.appendChild(subMenu.getEl());
   }
 }
 

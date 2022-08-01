@@ -5,7 +5,7 @@ export class BaseElement {
     this.#$root = $element;
   }
 
-  getRootElement() {
+  getEl() {
     return this.#$root;
   }
 

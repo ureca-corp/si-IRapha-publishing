@@ -30,7 +30,7 @@ export class Toolbox extends BaseElement {
 
   // private
   #initChilds() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const logo = new Logo({
       states: { shrinkDirection$: this.#shrinkDirection$ },
@@ -55,7 +55,7 @@ export class Toolbox extends BaseElement {
       $children: createInner({ logo, menusContainer }),
     });
 
-    $root.appendChild(foldingbar.getRootElement());
+    $root.appendChild(foldingbar.getEl());
   }
 
   #initStates() {
@@ -70,7 +70,7 @@ export class Toolbox extends BaseElement {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
 
@@ -78,7 +78,7 @@ export class Toolbox extends BaseElement {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
     const { Vertical, Horizontal } = ShrinkType;
 
     if (shrinkDirection === Vertical.value)
@@ -111,8 +111,8 @@ const createInner = ({ logo, menusContainer }) => {
   const $template = createElementFromHTML(template);
   const $logoContainer = $template.querySelector(`.${Selectors.Logo}`);
 
-  $logoContainer.appendChild(logo.getRootElement());
-  $template.appendChild(menusContainer.getRootElement());
+  $logoContainer.appendChild(logo.getEl());
+  $template.appendChild(menusContainer.getEl());
 
   return $template;
 };

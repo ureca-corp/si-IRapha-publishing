@@ -42,7 +42,7 @@ export class MenusDivider extends BaseElement {
   }
 
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isLayoutColumn) {
       return rootClassList.add(LayoutClassType.Column);
@@ -52,7 +52,7 @@ export class MenusDivider extends BaseElement {
   }
 
   #handleAlignSelfCenter(isAlignSelfCenter) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isAlignSelfCenter) return rootClassList.add(AlignClassType.SelfCenter);
     return rootClassList.remove(AlignClassType.SelfCenter);

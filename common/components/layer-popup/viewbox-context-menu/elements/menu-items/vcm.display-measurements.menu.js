@@ -10,7 +10,7 @@ export class ViewboxDisplayMeasurementsMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("Display Measurements");
     const $checkbox = createCheckbox();

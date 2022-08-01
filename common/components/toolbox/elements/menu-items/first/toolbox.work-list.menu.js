@@ -9,10 +9,10 @@ export class ToolboxWorkListMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const worklistMenu = new WorkListMenu();
 
-    $root.appendChild(worklistMenu.getRootElement());
+    $root.appendChild(worklistMenu.getEl());
   }
 }

@@ -31,7 +31,7 @@ export class ViewboxContextMenu extends BaseElement {
     this.#initMenus();
 
     new CustomContextMenu({
-      $element: this.getRootElement(),
+      $element: this.getEl(),
       open$: window.store.viewboxContextMenuOpen$,
       autoClose: false,
     });
@@ -39,7 +39,7 @@ export class ViewboxContextMenu extends BaseElement {
 
   #initMenus() {
     const menus = getMenus();
-    const $menus = menus.map((it) => it.getRootElement());
+    const $menus = menus.map((it) => it.getEl());
 
     const ChunkSize = 10;
     const chunkedMenus = _.chunk($menus, ChunkSize);
@@ -48,7 +48,7 @@ export class ViewboxContextMenu extends BaseElement {
       createContextMenuSegment(chunk)
     );
 
-    this.getRootElement()
+    this.getEl()
       .querySelector(`.${CustomContextMenuSelectors.SegmentContainer}`)
       .append(...$segments);
   }

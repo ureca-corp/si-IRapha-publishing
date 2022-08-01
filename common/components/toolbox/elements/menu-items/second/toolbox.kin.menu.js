@@ -9,10 +9,10 @@ export class ToolboxKeyImageNoteMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const menu = new KeyImageNoteMenu();
 
-    $root.appendChild(menu.getRootElement());
+    $root.appendChild(menu.getEl());
   }
 }

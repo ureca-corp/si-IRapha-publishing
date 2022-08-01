@@ -31,7 +31,7 @@ export class BaseMenuItem extends BaseElement {
   }
 
   #initData() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const { title, name, icon, subMenu } = this.#data;
 
@@ -39,7 +39,7 @@ export class BaseMenuItem extends BaseElement {
 
     icon && $root.appendChild(createIconElement(icon));
     name && $root.appendChild(createNameElement(name));
-    subMenu && $root.appendChild(subMenu.getRootElement());
+    subMenu && $root.appendChild(subMenu.getEl());
   }
 
   #initOptions() {
@@ -47,7 +47,7 @@ export class BaseMenuItem extends BaseElement {
 
     const { outlined, more, horizontal, hidableName = true } = this.#options;
 
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     const $icon = this.#getIconElement();
 
     if (outlined) $icon.classList.add("--oulined");

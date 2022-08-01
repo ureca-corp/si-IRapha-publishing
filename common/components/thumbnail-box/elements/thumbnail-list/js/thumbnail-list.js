@@ -38,14 +38,14 @@ export class ThumbnailList extends BaseElement {
   // private
   #initThumbnailItems({ models }) {
     const items = models.map((model) => new ThumbnailItem({ model }));
-    const $items = items.map((it) => it.getRootElement());
+    const $items = items.map((it) => it.getEl());
 
-    this.getRootElement().append(...$items);
+    this.getEl().append(...$items);
   }
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
 
@@ -53,7 +53,7 @@ export class ThumbnailList extends BaseElement {
   }
 
   #handleVisibilityChange(isHide) {
-    const style = this.getRootElement().style;
+    const style = this.getEl().style;
 
     if (isHide) return (style.display = "none");
 

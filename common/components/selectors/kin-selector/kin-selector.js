@@ -24,13 +24,13 @@ export class KinSelector extends BaseElement {
 
     const options = items.map((it) => createSelectorItem(it));
 
-    this.getRootElement().append(...options);
+    this.getEl().append(...options);
 
     isHide$.subscribe((isHide) => this.#handleDisplayChange(isHide));
   }
 
   #handleDisplayChange(isHide) {
-    const style = this.getRootElement().style;
+    const style = this.getEl().style;
 
     if (!!isHide) return (style.display = "none");
     return (style.display = "unset");

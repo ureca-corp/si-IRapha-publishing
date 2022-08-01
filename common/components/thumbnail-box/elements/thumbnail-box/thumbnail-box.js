@@ -65,11 +65,11 @@ export class ThumbnailBox extends BaseElement {
       },
       $children: createInnerElement({
         $options: createOptionsElement([pinIcon, kinSelector]),
-        $thumbnailList: thumbnailList.getRootElement(),
+        $thumbnailList: thumbnailList.getEl(),
       }),
     });
 
-    this.getRootElement().appendChild(foldingbar.getRootElement());
+    this.getEl().appendChild(foldingbar.getEl());
   }
 
   #initStates() {
@@ -84,7 +84,7 @@ export class ThumbnailBox extends BaseElement {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     isLayoutColumn
       ? rootClassList.add(LayoutClassType.Column)
@@ -93,7 +93,7 @@ export class ThumbnailBox extends BaseElement {
 
   #handleShrinkDirectionChange(shrinkDirection) {
     const { Vertical } = ShrinkType;
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     shrinkDirection === Vertical.value
       ? $root.classList.add(Vertical.className)
@@ -117,7 +117,7 @@ const createOptionsElement = (items) => {
   `;
   const $template = createElementFromHTML(template);
 
-  $template.append(...items.map((it) => it.getRootElement()));
+  $template.append(...items.map((it) => it.getEl()));
 
   return $template;
 };

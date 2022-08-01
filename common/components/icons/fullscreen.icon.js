@@ -4,7 +4,7 @@ export class FullScreenIcon extends BaseIcon2 {
   constructor({ states, options }) {
     super({ states, options });
 
-    this.getRootElement().innerHTML = svgIcon;
+    this.getEl().innerHTML = svgIcon;
   }
 }
 

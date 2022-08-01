@@ -54,7 +54,7 @@ export class GridSelector extends BaseElement {
   }
 
   #appendChildToGridContainer(element) {
-    this.getRootElement().appendChild(element);
+    this.getEl().appendChild(element);
     return element;
   }
 

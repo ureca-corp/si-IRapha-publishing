@@ -13,7 +13,7 @@ export class ViewboxWLPresetMenu extends BaseElement {
   }
 
   #init() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     const $label = createLabel("W/L Preset");
     const subMenuItems = createSubMenuItems();
@@ -22,7 +22,7 @@ export class ViewboxWLPresetMenu extends BaseElement {
     subMenu.addClassName(CustomContextMenuSelectors.Submenu);
 
     $root.appendChild($label);
-    $root.appendChild(subMenu.getRootElement());
+    $root.appendChild(subMenu.getEl());
   }
 }
 

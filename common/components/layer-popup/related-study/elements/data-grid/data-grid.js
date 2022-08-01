@@ -32,7 +32,7 @@ export class DataGrid extends BaseElement {
   }
 
   #handleStudyInfoListChange(studyInfoList) {
-    const $tbody = this.getRootElement().querySelector("tbody");
+    const $tbody = this.getEl().querySelector("tbody");
     $tbody.innerHTML = "";
 
     const $trList = studyInfoList.map((it) =>

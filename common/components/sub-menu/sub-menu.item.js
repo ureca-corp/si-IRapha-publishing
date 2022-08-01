@@ -9,6 +9,6 @@ export class SubMenuItem extends BaseElement {
   constructor({ menuItem }) {
     super({ $element: createElementFromHTML(Template) });
 
-    this.getRootElement().appendChild(menuItem.getRootElement());
+    this.getEl().appendChild(menuItem.getEl());
   }
 }

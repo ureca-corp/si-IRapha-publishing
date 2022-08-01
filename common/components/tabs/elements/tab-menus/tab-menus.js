@@ -14,7 +14,7 @@ export class TabMenus extends BaseElement {
   constructor() {
     super({ $element: createElementFromHTML(TabMenus.template) });
 
-    this.getRootElement().append(
+    this.getEl().append(
       ...[createCidIcon(), createRelatedStudyIcon(), createCloseIcon()]
     );
   }

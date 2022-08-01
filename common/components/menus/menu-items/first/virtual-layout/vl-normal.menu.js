@@ -16,9 +16,7 @@ export class VirtualLayoutNormalMenu extends BaseMenuItem {
       },
     });
 
-    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
-      this.#handleClick()
-    );
+    rx.fromEvent(this.getEl(), "click").subscribe(() => this.#handleClick());
   }
 
   #handleClick() {

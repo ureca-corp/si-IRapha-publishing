@@ -31,7 +31,7 @@ export class DicomWindow extends BaseElement {
 
     this.#initSwiper();
 
-    rx.fromEvent(this.getRootElement(), "click").subscribe(() =>
+    rx.fromEvent(this.getEl(), "click").subscribe(() =>
       this.#handleLayoutActive()
     );
 
@@ -43,9 +43,9 @@ export class DicomWindow extends BaseElement {
   // private
   #initSwiper() {
     const swiper = new CustomSwiper();
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
-    $root.append(swiper.getRootElement());
+    $root.append(swiper.getEl());
 
     this.#swiper = swiper;
   }
@@ -53,7 +53,7 @@ export class DicomWindow extends BaseElement {
   // handlers
   #handleLayoutChange({ layout, grid }) {
     const isLayoutActive = JSON.parse(
-      this.getRootElement().getAttribute("layout-active")
+      this.getEl().getAttribute("layout-active")
     );
     if (!isLayoutActive) return;
 
@@ -166,7 +166,7 @@ export class DicomWindow extends BaseElement {
 
   // Layout Active
   #activeLayout() {
-    this.getRootElement().setAttribute("layout-active", true);
+    this.getEl().setAttribute("layout-active", true);
   }
 
   #disableAllLayoutActive() {

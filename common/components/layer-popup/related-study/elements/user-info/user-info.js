@@ -54,7 +54,7 @@ export class UserInfo extends BaseElement {
   #handleCurrentStudy(currentStudy) {
     if (!currentStudy) return;
 
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     const $name = $root.querySelector("[data-name='name']");
     const $patientId = $root.querySelector("[data-name='patientId']");
     const $gender = $root.querySelector("[data-name='gender']");

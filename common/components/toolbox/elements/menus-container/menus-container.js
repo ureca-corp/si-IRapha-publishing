@@ -68,12 +68,8 @@ export class ToolboxMenusContainer extends BaseElement {
       },
     });
 
-    this.getRootElement().append(
-      ...[
-        firstMenu.getRootElement(),
-        menusDivider.getRootElement(),
-        secondMenu.getRootElement(),
-      ]
+    this.getEl().append(
+      ...[firstMenu.getEl(), menusDivider.getEl(), secondMenu.getEl()]
     );
   }
 
@@ -91,14 +87,14 @@ export class ToolboxMenusContainer extends BaseElement {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
     return rootClassList.remove(LayoutClassType.Column);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.getRootElement().classList;
+    const rootClassList = this.getEl().classList;
 
     if (!shrinkDirection) return rootClassList.remove(HideClassType.Hide);
     return rootClassList.add(HideClassType.Hide);

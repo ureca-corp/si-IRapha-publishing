@@ -61,7 +61,7 @@ export class FoldingBar extends BaseElement {
   }
 
   #initMouseEvent() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     const { isPreview$, isExpanded$ } = this.#states;
 
     const handleMouseEnter = () =>
@@ -78,7 +78,7 @@ export class FoldingBar extends BaseElement {
   }
 
   #initChildren() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
     const children = this.#$children;
 
     $root.appendChild(children);
@@ -86,7 +86,7 @@ export class FoldingBar extends BaseElement {
 
   // handler
   #handleLayoutChange(isLayoutColumn) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (isLayoutColumn) return $root.classList.add(LayoutClassType.Column);
 
@@ -105,7 +105,7 @@ export class FoldingBar extends BaseElement {
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     if (shrinkDirection === ShrinkType.Vertical)
       return $root.classList.add(ShrinkClassType.Column);
@@ -118,7 +118,7 @@ export class FoldingBar extends BaseElement {
 
   // shrink control
   #resetShrinkState() {
-    const $root = this.getRootElement();
+    const $root = this.getEl();
 
     $root.classList.remove(ShrinkClassType.Column);
     $root.classList.remove(ShrinkClassType.Row);
