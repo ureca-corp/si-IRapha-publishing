@@ -10025,6 +10025,32 @@ button[disabled] {
   right: 200px;
 }
 
+.irapha-annotation-cm__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 200px;
+  padding: 8px 8px 12px 8px;
+  border-bottom: 1px dashed var(--color__border);
+}
+
+.irapha-annotation-cm__input {
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+}
+.irapha-annotation-cm__input:hover, .irapha-annotation-cm__input:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+
 .irapha-dicom-window {
   display: flex;
   flex-direction: column;

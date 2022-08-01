@@ -1,0 +1,46 @@
+@use "../../../../../styles/common";
+@use "../../../../../themes/typography" as typography;
+
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-focus: #ffffff11;
+$color-border-default: var(--color__border);
+
+@mixin focus {
+  color: $color-font2;
+  border-color: $color-font1;
+  background-color: $color-bg-focus;
+}
+
+// .irapha-annotation-cm {
+// }
+
+.irapha-annotation-cm__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 200px;
+
+  padding: 8px 8px 12px 8px;
+
+  border-bottom: 1px dashed $color-border-default;
+}
+
+.irapha-annotation-cm__input {
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  background-color: transparent;
+
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    @include focus;
+  }
+}

@@ -114,3 +114,13 @@ const virtualLayout = new VirtualLayout({
 });
 
 document.querySelector("#testBBB").appendChild(virtualLayout.getRootElement());
+
+// =================================================================
+import { AnnotationContextMenu } from "../../common/components/layer-popup/index.js";
+
+const annotationContextMenu = new AnnotationContextMenu();
+document
+  .querySelector("#global-popup-group")
+  .appendChild(annotationContextMenu.getRootElement());
+
+window.store.annotationContextMenuOpen$.next({ x: 200, y: 200 });
