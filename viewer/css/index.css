@@ -10134,6 +10134,140 @@ button[disabled] {
   opacity: 0.7;
 }
 
+.irapha-search-container {
+  position: relative;
+}
+.irapha-search-container > .irapha-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.irapha-search__input {
+  flex: 1;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color__border);
+  transition: all 0.3s ease-in-out;
+  color: var(--color__font-primary);
+  padding: 8px;
+}
+.irapha-search__input::-webkit-outer-spin-button, .irapha-search__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.irapha-search__input:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-search__input:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-search__input:focus::-webkit-outer-spin-button, .irapha-search__input:focus::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: unset;
+}
+
+.irapha-dicom-info__inner {
+  width: 800px;
+}
+
+.irapha-dicom-info__search-bar {
+  padding: 12px 8px 8px 8px;
+}
+
+.irapha-dicom-info__data-grid .uk-table {
+  max-height: 286px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+}
+.irapha-dicom-info__data-grid .uk-table table {
+  table-layout: fixed;
+  width: 100%;
+}
+.irapha-dicom-info__data-grid .uk-table table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #333;
+}
+.irapha-dicom-info__data-grid .uk-table table thead th:nth-child(1) {
+  width: 8%;
+}
+.irapha-dicom-info__data-grid .uk-table table thead th:nth-child(2) {
+  width: 15%;
+}
+.irapha-dicom-info__data-grid .uk-table table thead th:nth-child(3) {
+  width: 22%;
+}
+.irapha-dicom-info__data-grid .uk-table table thead th:nth-child(4) {
+  width: 7%;
+}
+.irapha-dicom-info__data-grid .uk-table table thead th:nth-child(5) {
+  width: 10%;
+}
+.irapha-dicom-info__data-grid .uk-table table tbody tr {
+  border-color: var(--color__border) !important;
+  cursor: pointer;
+}
+.irapha-dicom-info__data-grid .uk-table table tbody tr:hover {
+  background-color: #ccc;
+}
+.irapha-dicom-info__data-grid .uk-table table tbody tr td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.irapha-dicom-info__data-grid__captions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 12px 16px;
+}
+
+.irapha-dicom-info__data-grid__total {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: var(--color__font-primary);
+}
+
+.irapha-dicom-info__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+  border-top: 1px dashed var(--color__border);
+}
+
+.irapha-dicom-info__close-btn {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid var(--color__border);
+  color: var(--color__border);
+  background-color: transparent;
+}
+.irapha-dicom-info__close-btn:hover {
+  background-color: var(--color__border);
+}
+.irapha-dicom-info__close-btn:hover {
+  color: var(--color__font-secondary);
+}
+
 .irapha-context-menu__item {
   font-size: 14px;
   line-height: 18px;

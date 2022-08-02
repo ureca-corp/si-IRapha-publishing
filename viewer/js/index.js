@@ -131,3 +131,11 @@ const reviseLayerPopup = new ReviseLayerPopup();
 document
   .querySelector("#global-popup-group")
   .appendChild(reviseLayerPopup.getEl());
+
+// =================================================================
+import { DicomInformationLayerPopup } from "../../common/components/layer-popup/dicom-information/index.js";
+const dicomInfoLayerPopup = new DicomInformationLayerPopup();
+document
+  .querySelector("#global-popup-group")
+  .appendChild(dicomInfoLayerPopup.getEl());
+window.store.dicomInformationsOpen$.next({ x: 400, y: 600 });
