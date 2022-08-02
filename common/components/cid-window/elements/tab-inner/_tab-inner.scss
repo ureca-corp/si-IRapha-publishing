@@ -1,0 +1,20 @@
+@use "../../../../themes/typography" as typography;
+
+$color-font1: var(--color__font-secondary);
+
+.irapha-cid-window__tab-inner {
+  display: flex;
+  flex-direction: column;
+
+  width: 100px;
+  min-width: 100px;
+}
+
+.irapha-cid-window__tab-inner__title {
+  @include typography.title-small;
+}
+
+.irapha-cid-window__tab-inner__desc {
+  @include typography.body-small;
+  color: $color-font1;
+}

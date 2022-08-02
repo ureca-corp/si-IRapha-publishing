@@ -1,0 +1,87 @@
+@use "../../../../themes/typography" as typography;
+
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-border: var(--color__border);
+$active-bg-color: rgb(54, 54, 58);
+$color-bg2: #eeeeee11;
+
+.irapha-cid-window__content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 8px;
+
+  background-color: $active-bg-color;
+
+  .uk-accordion {
+    & > li {
+      margin-top: 0;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $color-border;
+
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: $color-bg2;
+      }
+
+      &.uk-open {
+        background-color: $color-bg2;
+      }
+    }
+  }
+
+  .uk-accordion-title {
+    @include typography.title-small;
+    color: $color-font1;
+
+    padding: 16px 16px 0px 16px;
+
+    opacity: 0.8;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: $color-font2;
+    }
+
+    &[aria-expanded="true"] {
+      @include typography.title-medium;
+      color: $color-font2;
+
+      opacity: 1;
+    }
+  }
+
+  .uk-accordion-content {
+    margin-top: 0;
+
+    padding: 8px 16px 0px 16px;
+  }
+}
+
+.irapha-cid-window__content-list {
+  flex: 1;
+  overflow: auto;
+}
+
+.irapha-cid-window__content-list__title-container {
+  display: flex;
+  gap: 8px;
+}
+
+.irapha-cid-window__content-list__content {
+  @include typography.body-medium;
+  color: $color-font1;
+
+  background-color: $color-bg2;
+  padding: 8px;
+
+  border-radius: 4px;
+
+  white-space: pre-line;
+}

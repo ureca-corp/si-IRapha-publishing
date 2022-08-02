@@ -13,8 +13,6 @@
 .irapha-popup-appbar__title {
   @include typography.title-medium;
   padding: 8px;
-
-  pointer-events: none;
 }
 
 .irapha-popup-appbar__close {

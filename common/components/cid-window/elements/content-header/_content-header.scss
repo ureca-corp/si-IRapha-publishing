@@ -1,0 +1,46 @@
+@use "../../../../themes/typography" as typography;
+
+$color-border: var(--color__border);
+
+.irapha-cid-window__content-header {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 8px;
+
+  border: 1px solid $color-border;
+  border-radius: 4px;
+}
+
+.irapha-cid-window__content-header__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.irapha-cid-window__content-header__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.irapha-cid-window__content-header__title {
+  @include typography.title-small;
+}
+
+.irapha-cid-window__content-header__cid {
+  @include typography.label-small;
+
+  padding: 2px 4px;
+
+  border: 1px solid $color-border;
+  border-radius: 4px;
+}
+
+.irapha-cid-window__content-header__created-at {
+  @include typography.body-medium;
+}
+
+.irapha-cid-window__content-header__author {
+  @include typography.body-medium;
+}

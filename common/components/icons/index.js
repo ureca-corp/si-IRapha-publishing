@@ -14,3 +14,4 @@ export { MarkEndBIcon } from "./mark-end-B.icon.js";
 
 export { FullScreenIcon } from "./fullscreen.icon.js";
 export { SearchIcon } from "./search.icon.js";
+export { ClipBoardCopyIcon } from "./clipboard-copy.icon.js";

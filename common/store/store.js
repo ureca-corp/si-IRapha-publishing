@@ -46,4 +46,8 @@ store.virtualLayoutMode$ = new rx.BehaviorSubject({ layout: "normal" });
 
 //
 window.store = store;
+
+//
+window.openCidWindow = () =>
+  window.open("./cid.html", "", "width=800, height=800");
 export default {};

@@ -31,7 +31,9 @@ const createCidIcon = () => {
 
   const $cidIcon = createElementFromHTML(template);
 
-  rx.fromEvent($cidIcon, "click").subscribe(() => window.openCidWindow());
+  rx.fromEvent($cidIcon, "click").subscribe((e) => {
+    alert("Todo: show CID Popup");
+  });
 
   return $cidIcon;
 };
