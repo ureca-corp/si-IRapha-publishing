@@ -8,13 +8,18 @@ import {
   MarkStartAIcon,
   MarkEndBIcon,
 } from "../../../icons/index.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 
-const rx = rxjs;
+const { BehaviorSubject, fromEvent } = rxjs;
 
-export class CinePlayController {
-  #root;
+const Template = `
+<div class="${Selectors.CinePlayController}"></div>
+`;
 
+export class CinePlayController extends BaseElement {
   constructor({ isHideController$ }) {
+    super({ $element: createElementFromHTML(Template) });
     this.#init();
 
     isHideController$?.subscribe((isHideController) =>
@@ -24,146 +29,181 @@ export class CinePlayController {
 
   // private
   #init() {
-    this.#root = document.createElement("div");
-    this.#root.classList.add(Selectors.CinePlayController);
-
-    this.#initProgressbar();
-    this.#initControl();
-  }
-
-  #initProgressbar() {
-    const progress = document.createElement("progress");
-    progress.classList.add(Selectors.Progress);
-    progress.classList.add(Selectors.UkProgress);
-
-    progress.setAttribute("min", 0);
-    progress.setAttribute("max", 100);
-    progress.setAttribute("value", 30);
-
-    this.#root.append(progress);
-  }
-
-  #initControl() {
-    const control = document.createElement("div");
-    control.classList.add(Selectors.Wrapper);
-    control.append(
-      ...[
-        createControllerPlayType(),
-        createControllerNav(),
-        createFpsBox(),
-        createLoopBox(),
-      ]
-    );
-
-    this.#root.append(control);
+    const $root = this.getEl();
+    $root.append(...[createProgressBar(), createControl()]);
   }
 
   // handlers
   #handleHideControllerChange(isHideController) {
-    if (isHideController) return (this.#root.style.display = "none");
+    const rootStyle = this.getEl().style;
 
-    return (this.#root.style.display = "flex");
-  }
-
-  // public
-  getDomElement() {
-    return this.#root;
+    isHideController
+      ? (rootStyle.display = "none")
+      : (rootStyle.display = "flex");
   }
 }
 
 // =========================================================================
 
+// Progress bar
+const createProgressBar = () => {
+  const min = 0;
+  const max = 100;
+  const value = 30;
+
+  return createElementFromHTML(
+    `
+    <progress 
+      class="${Selectors.Progress} ${Selectors.UkProgress}"
+      min="${min}"
+      max="${max}"
+      value="${value}"
+    />
+    `
+  );
+};
+
+// Control Container
+const createControl = () => {
+  const $control = createElementFromHTML(
+    `<div class="${Selectors.Wrapper}"></div>`
+  );
+
+  $control.append(
+    ...[
+      createControllerPlayType(),
+      createControllerNav(),
+      createFpsBox(),
+      createLoopBox(),
+    ]
+  );
+
+  return $control;
+};
+
 // PlayType Selector
 const createControllerPlayType = () => {
-  const select = document.createElement("select");
-  select.classList.add(Selectors.PlayType);
-  select.classList.add(Selectors.UkSelect);
+  const $select = createElementFromHTML(
+    `<select class="${Selectors.PlayType} ${Selectors.UkSelect}"></select>`
+  );
 
   const items = ["Loop", "Yoyo"];
-  const options = items.map((it) => {
-    const option = document.createElement("option");
-    option.value = it;
-    option.innerHTML = it;
+  const $options = items.map((it) =>
+    createElementFromHTML(`<option value="${it}">${it}</option>`)
+  );
 
-    return option;
-  });
+  $select.append(...$options);
 
-  select.append(...options);
+  // TODO PlayType Change
+  fromEvent($select, "change").subscribe((e) =>
+    alert(`Todo ${e.target.value}`)
+  );
 
-  return select;
+  return $select;
 };
 
 // 재생 컨트롤 박스
 const createControllerNav = () => {
-  const nav = document.createElement("ul");
-  nav.classList.add(Selectors.Nav);
+  const $nav = createElementFromHTML(`<ul class="${Selectors.Nav}"></ul>`);
 
-  const skipPrevIcon = document.createElement("li");
-  new ArrowSkipPrevIcon({ element: skipPrevIcon });
+  // TODO Skip Prev
+  const $skipPrevIcon = new ArrowSkipPrevIcon({
+    element: document.createElement("li"),
+    onClick: () => alert("Todo Skip Prev"),
+  }).getEl();
 
-  const skipNextIcon = document.createElement("li");
-  new ArrowSkipNextIcon({ element: skipNextIcon });
+  // TODO Skip Next
+  const $skipNextIcon = new ArrowSkipNextIcon({
+    element: document.createElement("li"),
+    onClick: () => alert("Todo Skip Next"),
+  }).getEl();
 
-  const playIcon = document.createElement("li");
-  new ArrowPlayIcon({ element: playIcon });
+  // TODO Play
+  const $playIcon = new ArrowPlayIcon({
+    element: document.createElement("li"),
+    onClick: () => alert("Todo Play"),
+  }).getEl();
 
-  const leftDoubleIcon = document.createElement("li");
-  new ArrowLeftDoubleIcon({ element: leftDoubleIcon });
+  // TODO Left Double
+  const $leftDoubleIcon = new ArrowLeftDoubleIcon({
+    element: document.createElement("li"),
+    onClick: () => alert("Todo Left Double"),
+  }).getEl();
 
-  const rightDoubleIcon = document.createElement("li");
-  new ArrowRightDoubleIcon({ element: rightDoubleIcon });
+  // TODO Right Double
+  const $rightDoubleIcon = new ArrowRightDoubleIcon({
+    element: document.createElement("li"),
+    onClick: () => alert("Todo Right Double"),
+  }).getEl();
 
-  nav.append(
-    ...[skipPrevIcon, leftDoubleIcon, playIcon, rightDoubleIcon, skipNextIcon]
+  $nav.append(
+    ...[
+      $skipPrevIcon,
+      $leftDoubleIcon,
+      $playIcon,
+      $rightDoubleIcon,
+      $skipNextIcon,
+    ]
   );
 
-  return nav;
+  return $nav;
 };
 
 // FPS Box
 const createFpsBox = () => {
-  const fpsBox = document.createElement("div");
-  fpsBox.classList.add(Selectors.FpsBox);
+  const $fpsBox = createElementFromHTML(
+    `
+    <div class="${Selectors.FpsBox}">
+      <div class="${Selectors.FpsBoxInputWrapper}">
+        <span class="${Selectors.UkFormIcon}">FPS</span>
+        <input class="${Selectors.UkInput}" type="number" />
+      </div>
 
-  fpsBox.innerHTML = `
-    <div class="${Selectors.FpsBoxInputWrapper}">
-      <span class="${Selectors.UkFormIcon}">FPS</span>
-      <input class="${Selectors.UkInput}" type="number" />
+      <div class="${Selectors.FpsBoxFrameCount}">
+        32 / 91
+      </div>
     </div>
+    `
+  );
 
-    <div class="${Selectors.FpsBoxFrameCount}">
-      32 / 91
-    </div>
-  `;
-
-  return fpsBox;
+  return $fpsBox;
 };
 
 // Loop Control Box
 const createLoopBox = () => {
-  const isInMarked$ = new rx.BehaviorSubject(false);
-  const toggleInMark = () => isInMarked$.next(!isInMarked$.getValue());
-  const resetInMark = () => isInMarked$.next(false);
+  const isMarked$ = new BehaviorSubject(false);
+  const toggleInMark = () => isMarked$.next(!isMarked$.getValue());
+  const resetInMark = () => isMarked$.next(false);
 
-  const loopBox = document.createElement("div");
-  loopBox.classList.add(Selectors.LoopBox);
+  const $loopBox = createElementFromHTML(
+    `<div class="${Selectors.LoopBox}"></div>`
+  );
 
-  const aStartIcon = document.createElement("div");
-  aStartIcon.classList.add(Selectors.LoopBoxItem);
-  new MarkStartAIcon({ element: aStartIcon, onClick: () => toggleInMark() });
+  const loopBoxItemTemplate = `
+  <div class="${Selectors.LoopBoxItem}"></div>
+  `;
 
-  const bEndIcon = document.createElement("div");
-  bEndIcon.classList.add(Selectors.LoopBoxItem);
-  new MarkEndBIcon({ element: bEndIcon, onClick: () => resetInMark() });
+  const $markStartWrapper = createElementFromHTML(loopBoxItemTemplate);
+  const $markEndWrapper = createElementFromHTML(loopBoxItemTemplate);
+
+  $markStartWrapper.appendChild(
+    new MarkStartAIcon({
+      options: { events: { onClick: () => toggleInMark() } },
+    }).getEl()
+  );
+
+  $markEndWrapper.appendChild(
+    new MarkEndBIcon({
+      options: { events: { onClick: () => resetInMark() } },
+    }).getEl()
+  );
 
   //
-  loopBox.append(...[aStartIcon, bEndIcon]);
+  $loopBox.append(...[$markStartWrapper, $markEndWrapper]);
 
-  isInMarked$.subscribe((isInMarked) => {
-    if (isInMarked) return aStartIcon.classList.add("--active");
+  isMarked$.subscribe((isMarked) =>
+    $markStartWrapper.setAttribute("marked", isMarked)
+  );
 
-    aStartIcon.classList.remove("--active");
-  });
-
-  return loopBox;
+  return $loopBox;
 };

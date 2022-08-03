@@ -10671,9 +10671,7 @@ button[disabled] {
   line-height: 16px;
   font-weight: 700;
   min-width: 60px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 60px;
   color: var(--color__font-secondary);
   cursor: pointer;
 }
@@ -10707,8 +10705,8 @@ button[disabled] {
   fill: var(--color__font-secondary);
 }
 .irapha-cineplay-controller__nav > li {
-  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .irapha-cineplay-controller__nav > li:hover {
   transform: scale(1.2);
@@ -10773,14 +10771,13 @@ button[disabled] {
   align-items: center;
 }
 .irapha-cineplay-controller__loop-box__item {
-  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .irapha-cineplay-controller__loop-box__item:hover {
   transform: scale(1.2);
-  fill: var(--color__font-primary);
 }
-.irapha-cineplay-controller__loop-box__item.--active {
+.irapha-cineplay-controller__loop-box__item[marked=true] svg {
   fill: var(--color__orange);
 }
 

@@ -114,7 +114,7 @@ export class DicomViewBox extends BaseElement {
       isHideController$: globalCineControllerHide$,
     });
 
-    this.getEl().append(cinePlayController.getDomElement());
+    this.getEl().append(cinePlayController.getEl());
   }
 }
 

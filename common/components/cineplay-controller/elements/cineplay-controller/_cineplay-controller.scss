@@ -1,4 +1,5 @@
 @use "../../../../styles/common";
+@use "../../../../styles/anim" as anim;
 @use "../../../../styles/input" as input;
 @use "../../../../themes/typography" as typography;
 
@@ -6,7 +7,7 @@
 // =================================================================
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
-$color-border-default: var(--color__border);
+$color-border: var(--color__border);
 $color-black: var(--color__black);
 $color-orange: var(--color__orange);
 
@@ -17,7 +18,7 @@ $color-orange: var(--color__orange);
 
   width: 100%;
 
-  border-top: 1px dashed $color-border-default;
+  border-top: 1px dashed $color-border;
   padding: 8px;
 
   background-color: $color-black;
@@ -39,7 +40,7 @@ $color-orange: var(--color__orange);
   background: transparent;
 
   border-radius: 2px;
-  border: 1px solid $color-border-default;
+  border: 1px solid $color-border;
 }
 
 // play-type
@@ -49,7 +50,7 @@ $color-orange: var(--color__orange);
   @include typography.label-small;
 
   min-width: 60px;
-  width: fit-content;
+  max-width: 60px;
 
   color: $color-font1;
 
@@ -69,9 +70,8 @@ $color-orange: var(--color__orange);
   fill: $color-font1;
 
   & > li {
+    @include anim.basic-transition;
     cursor: pointer;
-
-    transition: all 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1.2);
@@ -116,17 +116,17 @@ $color-orange: var(--color__orange);
   align-items: center;
 
   &__item {
+    @include anim.basic-transition;
     cursor: pointer;
-
-    transition: all 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1.2);
-      fill: $color-font2;
     }
 
-    &.--active {
-      fill: $color-orange;
+    &[marked="true"] {
+      svg {
+        fill: $color-orange;
+      }
     }
   }
 }

@@ -1,9 +1,10 @@
-import { BaseIcon } from "./base/icon.js";
+import { BaseIcon2 } from "./base/icon.js";
 
-export class MarkStartAIcon extends BaseIcon {
-  constructor({ element, isActive$, onClick }) {
-    super({ element, isActive$, onClick });
-    element.innerHTML = svgIcon;
+export class MarkStartAIcon extends BaseIcon2 {
+  constructor({ states, options }) {
+    super({ states, options });
+
+    this.getEl().innerHTML = svgIcon;
   }
 }
 
