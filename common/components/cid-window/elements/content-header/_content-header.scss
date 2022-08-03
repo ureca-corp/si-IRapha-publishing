@@ -1,15 +1,17 @@
 @use "../../../../themes/typography" as typography;
+@use "../../../../themes/shape" as shape;
 
 $color-border: var(--color__border);
 
 .irapha-cid-window__content-header {
+  @include shape.small;
+
   display: flex;
   justify-content: space-between;
 
   padding: 8px;
 
   border: 1px solid $color-border;
-  border-radius: 4px;
 }
 
 .irapha-cid-window__content-header__left {
@@ -29,12 +31,12 @@ $color-border: var(--color__border);
 }
 
 .irapha-cid-window__content-header__cid {
+  @include shape.small;
   @include typography.label-small;
 
   padding: 2px 4px;
 
   border: 1px solid $color-border;
-  border-radius: 4px;
 }
 
 .irapha-cid-window__content-header__created-at {

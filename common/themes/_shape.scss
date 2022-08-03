@@ -2,3 +2,15 @@
 $small: 4px;
 $medium: 8px;
 $large: 12px;
+
+@mixin small {
+  border-radius: 4px;
+}
+
+@mixin medium {
+  border-radius: 8px;
+}
+
+@mixin large {
+  border-radius: 12px;
+}

@@ -9,6 +9,7 @@
 
 $color-border: var(--color__border);
 $color-font1: var(--color__font-secondary);
+$color-bg: var(--color__secondary-container);
 
 #irapha-cid-window {
   width: 100%;
@@ -22,7 +23,7 @@ $color-font1: var(--color__font-secondary);
   width: 100%;
   height: 100%;
 
-  background-color: var(--color__secondary-container);
+  background-color: $color-bg;
 
   .irapha-popup-appbar {
     cursor: unset;

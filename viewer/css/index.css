@@ -9027,6 +9027,8 @@ button[disabled] {
   --color__font-primary: #ffffffcc;
   --color__font-secondary: #eeeeee99;
   --color__bg-primary: #333;
+  --color__bg-secondary: #eeeeee11;
+  --color__active-bg-primary: rgb(54, 54, 58);
   --color__red: #ff3b30;
   --color__orange: #ff9500;
   --color__yellow: #ffcc00;

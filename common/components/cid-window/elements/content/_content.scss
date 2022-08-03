@@ -1,10 +1,12 @@
+@use "../../../../styles/anim" as anim;
 @use "../../../../themes/typography" as typography;
+@use "../../../../themes/shape" as shape;
 
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
 $color-border: var(--color__border);
-$active-bg-color: rgb(54, 54, 58);
-$color-bg2: #eeeeee11;
+$color-active-bg: var(--color__active-bg-primary);
+$color-bg2: var(--color__bg-secondary);
 
 .irapha-cid-window__content {
   display: flex;
@@ -15,15 +17,14 @@ $color-bg2: #eeeeee11;
 
   padding: 8px;
 
-  background-color: $active-bg-color;
+  background-color: $color-active-bg;
 
   .uk-accordion {
     & > li {
-      margin-top: 0;
-      padding-bottom: 16px;
-      border-bottom: 1px solid $color-border;
+      @include anim.basic-transition;
 
-      transition: all 0.3s ease-in-out;
+      margin-top: 0;
+      border-bottom: 1px solid $color-border;
 
       &:hover {
         background-color: $color-bg2;
@@ -36,14 +37,13 @@ $color-bg2: #eeeeee11;
   }
 
   .uk-accordion-title {
+    @include anim.basic-transition;
     @include typography.title-small;
     color: $color-font1;
 
-    padding: 16px 16px 0px 16px;
+    padding: 16px;
 
     opacity: 0.8;
-
-    transition: all 0.3s ease-in-out;
 
     &:hover {
       color: $color-font2;
@@ -60,7 +60,7 @@ $color-bg2: #eeeeee11;
   .uk-accordion-content {
     margin-top: 0;
 
-    padding: 8px 16px 0px 16px;
+    padding: 0 16px 16px 16px;
   }
 }
 
@@ -75,13 +75,12 @@ $color-bg2: #eeeeee11;
 }
 
 .irapha-cid-window__content-list__content {
+  @include shape.small;
   @include typography.body-medium;
   color: $color-font1;
 
   background-color: $color-bg2;
   padding: 8px;
-
-  border-radius: 4px;
 
   white-space: pre-line;
 }

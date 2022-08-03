@@ -7,7 +7,7 @@ import { getViewModel } from "./cid-window.vm.js";
 import { Content } from "./elements/content/content.js";
 import { TabInner } from "./elements/tab-inner/tab-inner.js";
 
-const rx = rxjs;
+const { tap, map } = rxjs;
 
 const Selectors = {
   Root: "irapha-cid-window",
@@ -48,8 +48,8 @@ export class CidWindow extends BaseElement {
 
     appbarModel$
       .pipe(
-        rx.tap(() => ($appbarWrapper.innerHTML = "")),
-        rx.map(({ title }) =>
+        tap(() => ($appbarWrapper.innerHTML = "")),
+        map(({ title }) =>
           new PopupAppbar({
             title,
             onClose: () => window.close(),
@@ -74,8 +74,8 @@ export class CidWindow extends BaseElement {
 
     tabsModels$
       .pipe(
-        rx.map((models) => models.map((model) => new TabInner(model).getEl())),
-        rx.map(($tabInners) => new Tabs({ $items: $tabInners }).getEl())
+        map((models) => models.map((model) => new TabInner(model).getEl())),
+        map(($tabInners) => new Tabs({ $items: $tabInners }).getEl())
       )
       .subscribe(($tabs) => $contentContainer.appendChild($tabs));
   }

@@ -14,6 +14,11 @@ const Template = `
 </div>
 `;
 
+/**
+ * Constructor types
+ *
+ * @type model: { title: string, desc: string }
+ */
 export class TabInner extends BaseElement {
   #$title = this.getElementByClassName(Selectors.Title);
   #$desc = this.getElementByClassName(Selectors.Desc);

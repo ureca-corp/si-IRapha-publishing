@@ -1,11 +1,11 @@
-const rx = rxjs;
+const { BehaviorSubject } = rxjs;
 
 const CidWindowViewModel = {
-  appbarModel$: new rx.BehaviorSubject({
+  appbarModel$: new BehaviorSubject({
     title: "CID (55667788)",
   }),
 
-  tabsModels$: new rx.BehaviorSubject(
+  tabsModels$: new BehaviorSubject(
     Array.from({ length: 20 }, (_, index) => ({
       id: index + 1,
       title: "CID_1",
@@ -13,14 +13,14 @@ const CidWindowViewModel = {
     }))
   ),
 
-  contentHeaderModel$: new rx.BehaviorSubject({
+  contentHeaderModel$: new BehaviorSubject({
     title: "Tech note",
     cid: "#CID_1",
     createdAt: "2022-06-21 19:07",
     author: "test bm01",
   }),
 
-  contentItemModels$: new rx.BehaviorSubject(
+  contentItemModels$: new BehaviorSubject(
     Array.from({ length: 25 }, (_, index) => ({
       id: index + 1,
       question: "question 1",

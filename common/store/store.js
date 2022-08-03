@@ -1,4 +1,4 @@
-const rx = rxjs;
+const { BehaviorSubject } = rxjs;
 
 // Global State Store
 const store = {};
@@ -7,19 +7,19 @@ const store = {};
  * Context Menu Popup
  * type of ({ x: number, y: number } || null)
  */
-store.thumbnailContextMenuOpen$ = new rx.BehaviorSubject();
-store.tabsContextMenuOpen$ = new rx.BehaviorSubject();
-store.viewboxContextMenuOpen$ = new rx.BehaviorSubject();
-store.annotationContextMenuOpen$ = new rx.BehaviorSubject();
+store.thumbnailContextMenuOpen$ = new BehaviorSubject();
+store.tabsContextMenuOpen$ = new BehaviorSubject();
+store.viewboxContextMenuOpen$ = new BehaviorSubject();
+store.annotationContextMenuOpen$ = new BehaviorSubject();
 
 /**
  * Layer Popup
  * type of ({ x: number, y: number } || null)
  */
-store.relatedStudyOpen$ = new rx.BehaviorSubject();
-store.exportDicomOpen$ = new rx.BehaviorSubject();
-store.reviseOpen$ = new rx.BehaviorSubject();
-store.dicomInformationsOpen$ = new rx.BehaviorSubject();
+store.relatedStudyOpen$ = new BehaviorSubject();
+store.exportDicomOpen$ = new BehaviorSubject();
+store.reviseOpen$ = new BehaviorSubject();
+store.dicomInformationsOpen$ = new BehaviorSubject();
 
 /**
  * DicomWindow Layout Mode
@@ -30,19 +30,19 @@ store.dicomInformationsOpen$ = new rx.BehaviorSubject();
  *   } || null
  * )
  */
-store.dicomWindowLayout$ = new rx.BehaviorSubject({ layout: "1:1" });
+store.dicomWindowLayout$ = new BehaviorSubject({ layout: "1:1" });
 
 /**
  * Cine Play Controller - Hide Mode
  * type of boolean
  */
-store.cinePlayControllerHide$ = new rx.BehaviorSubject(false);
+store.cinePlayControllerHide$ = new BehaviorSubject(false);
 
 /**
  * Virtual Layout Mode
  * type of ({ layout: VirtualLayout/LayoutAttributeType } || null)
  */
-store.virtualLayoutMode$ = new rx.BehaviorSubject({ layout: "normal" });
+store.virtualLayoutMode$ = new BehaviorSubject({ layout: "normal" });
 
 //
 window.store = store;

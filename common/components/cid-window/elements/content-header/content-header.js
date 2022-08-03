@@ -54,6 +54,7 @@ export class ContentHeader extends BaseElement {
         },
       },
     }).getEl();
+
     const $copyIcon = this.#$copyIcon;
     $copyIcon.appendChild($clipboardCopy);
 

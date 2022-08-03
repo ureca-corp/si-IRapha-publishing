@@ -4,7 +4,7 @@ import { createAccordion } from "../../../kit/index.js";
 import { getViewModel } from "../../cid-window.vm.js";
 import { ContentHeader } from "../content-header/content-header.js";
 
-const rx = rxjs;
+const { tap, map } = rxjs;
 
 const Selectors = {
   Root: "irapha-cid-window__content",
@@ -52,20 +52,20 @@ export class Content extends BaseElement {
 
     contentItemModels$
       .pipe(
-        rx.tap(() => clearList()),
-        rx.map((models) =>
+        tap(() => clearList()),
+        map((models) =>
           models.map((model, index) => ({
             $title: createTitle({ title: model.question, index: index + 1 }),
             $content: createContent(model.answer),
           }))
         ),
-        rx.map((accordionItemModels) => createAccordion(accordionItemModels))
+        map((accordionItemModels) => createAccordion(accordionItemModels))
       )
       .subscribe(($accordion) => $contentList.appendChild($accordion));
   }
 }
 
-//
+// =================================================================
 const createTitle = ({ title, index }) => {
   return createElementFromHTML(
     `<div class="${Selectors.ContentListItemTitleContainer}">

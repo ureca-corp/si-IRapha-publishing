@@ -9120,6 +9120,8 @@ button[disabled] {
   --color__font-primary: #ffffffcc;
   --color__font-secondary: #eeeeee99;
   --color__bg-primary: #333;
+  --color__bg-secondary: #eeeeee11;
+  --color__active-bg-primary: rgb(54, 54, 58);
   --color__red: #ff3b30;
   --color__orange: #ff9500;
   --color__yellow: #ffcc00;
@@ -9818,6 +9820,7 @@ button[disabled] {
   flex-direction: column;
   width: 100px;
   min-width: 100px;
+  cursor: pointer;
 }
 
 .irapha-cid-window__tab-inner__title {
@@ -9839,28 +9842,27 @@ button[disabled] {
   width: 100%;
   height: 100%;
   padding: 8px;
-  background-color: rgb(54, 54, 58);
+  background-color: var(--color__active-bg-primary);
 }
 .irapha-cid-window__content .uk-accordion > li {
-  margin-top: 0;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color__border);
   transition: all 0.3s ease-in-out;
+  margin-top: 0;
+  border-bottom: 1px solid var(--color__border);
 }
 .irapha-cid-window__content .uk-accordion > li:hover {
-  background-color: rgba(238, 238, 238, 0.0666666667);
+  background-color: var(--color__bg-secondary);
 }
 .irapha-cid-window__content .uk-accordion > li.uk-open {
-  background-color: rgba(238, 238, 238, 0.0666666667);
+  background-color: var(--color__bg-secondary);
 }
 .irapha-cid-window__content .uk-accordion-title {
+  transition: all 0.3s ease-in-out;
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
   color: var(--color__font-secondary);
-  padding: 16px 16px 0px 16px;
+  padding: 16px;
   opacity: 0.8;
-  transition: all 0.3s ease-in-out;
 }
 .irapha-cid-window__content .uk-accordion-title:hover {
   color: var(--color__font-primary);
@@ -9874,7 +9876,7 @@ button[disabled] {
 }
 .irapha-cid-window__content .uk-accordion-content {
   margin-top: 0;
-  padding: 8px 16px 0px 16px;
+  padding: 0 16px 16px 16px;
 }
 
 .irapha-cid-window__content-list {
@@ -9888,22 +9890,22 @@ button[disabled] {
 }
 
 .irapha-cid-window__content-list__content {
+  border-radius: 4px;
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
   color: var(--color__font-secondary);
-  background-color: rgba(238, 238, 238, 0.0666666667);
+  background-color: var(--color__bg-secondary);
   padding: 8px;
-  border-radius: 4px;
   white-space: pre-line;
 }
 
 .irapha-cid-window__content-header {
+  border-radius: 4px;
   display: flex;
   justify-content: space-between;
   padding: 8px;
   border: 1px solid var(--color__border);
-  border-radius: 4px;
 }
 
 .irapha-cid-window__content-header__left {
@@ -9925,12 +9927,12 @@ button[disabled] {
 }
 
 .irapha-cid-window__content-header__cid {
+  border-radius: 4px;
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
   padding: 2px 4px;
   border: 1px solid var(--color__border);
-  border-radius: 4px;
 }
 
 .irapha-cid-window__content-header__created-at {
