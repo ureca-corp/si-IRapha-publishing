@@ -6,7 +6,7 @@ $min-size: 28px;
 
 // 폴딩바 레이아웃
 @mixin l-folding-bar {
-  &.--layout-column {
+  &[layout-column="true"] {
     &,
     & > * {
       flex-direction: column;
@@ -17,17 +17,13 @@ $min-size: 28px;
 
 // 폴딩바 상태
 @mixin s-folding-bar {
-  &.--shrink-h {
-    & {
-      min-width: unset;
-      width: $min-size;
-    }
+  &[shrink="horizontal"] {
+    min-width: unset;
+    width: $min-size;
   }
 
-  &.--shrink-v {
-    & {
-      height: $min-size;
-    }
+  &[shrink="vertical"] {
+    height: $min-size;
   }
 }
 

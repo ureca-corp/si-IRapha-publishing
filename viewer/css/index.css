@@ -9309,15 +9309,15 @@ button[disabled] {
 .irapha-folding-bar > * {
   display: flex;
 }
-.irapha-folding-bar.--layout-column, .irapha-folding-bar.--layout-column > * {
+.irapha-folding-bar[layout-column=true], .irapha-folding-bar[layout-column=true] > * {
   flex-direction: column;
   height: 100%;
 }
-.irapha-folding-bar.--shrink-h {
+.irapha-folding-bar[shrink=horizontal] {
   min-width: unset;
   width: 28px;
 }
-.irapha-folding-bar.--shrink-v {
+.irapha-folding-bar[shrink=vertical] {
   height: 28px;
 }
 

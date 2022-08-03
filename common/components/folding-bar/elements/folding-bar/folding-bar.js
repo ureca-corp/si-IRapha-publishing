@@ -1,15 +1,22 @@
 import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 import { BaseElement } from "../../../base/base-element.js";
-import {
-  LayoutClassType,
-  ShrinkClassType,
-  ShrinkType,
-} from "../../common/index.js";
+import { LayoutColumnType, ShrinkType } from "../../common/index.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
+
+const Selectors = {
+  Root: "irapha-folding-bar",
+};
+const Template = `<div class="${Selectors.Root}"></div>`;
 
 /**
  * Constructor types
+ *
+ * @type states: {
+ *  isLayoutColumn$: BehaviorSubject<boolean>,
+ *  isExpanded$: BehaviorSubject<boolean>,
+ *  shrinkDirection$: BehaviorSubject<ShrinkType>,
+ * }
  *
  * @type isLayoutColumn$: BehaviorSubject<boolean>
  * 폴딩바 레이아웃 상태가 세로형태인지
@@ -20,11 +27,6 @@ const rx = rxjs;
  * @type shrinkDirection$: BehaviorSubject<ShrinkType>
  * null이 아닌 경우 폴딩 상태를 의미, 접힌 방향 값을 가짐
  */
-
-const Template = `
-<div class="irapha-folding-bar"></div>
-`;
-
 export class FoldingBar extends BaseElement {
   #states;
 
@@ -71,56 +73,48 @@ export class FoldingBar extends BaseElement {
       isPreview$.getValue() && isExpanded$.next(!isExpanded$.getValue());
 
     // 마우스 호버 시 임시로 보이기
-    rx.fromEvent($root, "mouseenter").subscribe(() => handleMouseEnter());
+    fromEvent($root, "mouseenter").subscribe(() => handleMouseEnter());
 
     // 마우스 호버 벗어나면 원상태 복귀
-    rx.fromEvent($root, "mouseleave").subscribe(() => handleMouseLeave());
+    fromEvent($root, "mouseleave").subscribe(() => handleMouseLeave());
   }
 
   #initChildren() {
     const $root = this.getEl();
-    const children = this.#$children;
+    const $children = this.#$children;
 
-    $root.appendChild(children);
+    $root.appendChild($children);
   }
 
-  // handler
+  // handlers
   #handleLayoutChange(isLayoutColumn) {
     const $root = this.getEl();
-
-    if (isLayoutColumn) return $root.classList.add(LayoutClassType.Column);
-
-    return $root.classList.remove(LayoutClassType.Column);
+    $root.setAttribute(LayoutColumnType.Key, isLayoutColumn);
   }
 
   #handleExpanded(isExpanded) {
     const { isLayoutColumn$, shrinkDirection$ } = this.#states;
-    const isLayoutNotColumn = !isLayoutColumn$.getValue();
 
     if (!isExpanded) return shrinkDirection$.next(null);
 
-    if (isLayoutNotColumn) return shrinkDirection$.next(ShrinkType.Vertical);
+    const { Vertical, Horizontal } = ShrinkType;
+    const isLayoutNotColumn = !isLayoutColumn$.getValue();
+    const shrinkType = isLayoutNotColumn ? Vertical.value : Horizontal.value;
 
-    return shrinkDirection$.next(ShrinkType.Horizontal);
+    shrinkDirection$.next(shrinkType);
   }
 
   #handleShrinkDirectionChange(shrinkDirection) {
     const $root = this.getEl();
+    const { Key, Vertical, Horizontal } = ShrinkType;
 
-    if (shrinkDirection === ShrinkType.Vertical)
-      return $root.classList.add(ShrinkClassType.Column);
-
-    if (shrinkDirection === ShrinkType.Horizontal)
-      return $root.classList.add(ShrinkClassType.Row);
-
-    return this.#resetShrinkState();
-  }
-
-  // shrink control
-  #resetShrinkState() {
-    const $root = this.getEl();
-
-    $root.classList.remove(ShrinkClassType.Column);
-    $root.classList.remove(ShrinkClassType.Row);
+    switch (shrinkDirection) {
+      case Vertical.value:
+        return $root.setAttribute(Key, Vertical.value);
+      case Horizontal.value:
+        return $root.setAttribute(Key, Horizontal.value);
+      default:
+        return $root.removeAttribute(Key);
+    }
   }
 }

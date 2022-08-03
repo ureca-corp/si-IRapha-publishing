@@ -1,1 +1,1 @@
-export { LayoutClassType, ShrinkClassType, ShrinkType } from "./types/index.js";
+export { LayoutColumnType, ShrinkType } from "./types/index.js";

@@ -1,4 +1,12 @@
 export const ShrinkType = {
-  Vertical: "vertical",
-  Horizontal: "horizontal",
+  Key: "shrink",
+
+  Vertical: {
+    className: "--shrink-v",
+    value: "vertical",
+  },
+  Horizontal: {
+    className: "--shrink-h",
+    value: "horizontal",
+  },
 };
