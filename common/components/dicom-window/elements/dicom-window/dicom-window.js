@@ -4,43 +4,59 @@ import {
   createSwiperSlide,
   CustomSwiper,
 } from "../../../custom-swiper/index.js";
-import { LayoutAttributeType, Selectors } from "../../common/index.js";
+import {
+  LayoutAttributeType,
+  LayoutActiveAttributeType,
+  Selectors,
+} from "../../common/index.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
+
+const Template = `
+<div 
+  class="${Selectors.DicomWindow}" 
+  ${LayoutActiveAttributeType.Key}="${LayoutActiveAttributeType.active}">
+</div>
+`;
 
 /**
  * Constructor types
  *
- * @type items: Element[]
+ * @type $viewBoxes: Element[]
  * 뷰박스 Elements
  *
  * @type layout$: BehaviorSubject<LayoutAttributeType>
  */
 
 export class DicomWindow extends BaseElement {
-  static template = `
-  <div class="${Selectors.DicomWindow}" layout-active="true"></div>
-  `;
-
   #swiper;
-  #items;
+  #$windowItems;
 
-  constructor({ items, layout$ }) {
-    super({ $element: createElementFromHTML(DicomWindow.template) });
-    this.#items = items.map((element) => createDicomWindowItem(element));
+  #layout$;
+
+  constructor({ $viewBoxes, layout$ }) {
+    super({ $element: createElementFromHTML(Template) });
+    this.#$windowItems = $viewBoxes.map(($el) => createDicomWindowItem($el));
+    this.#layout$ = layout$;
+
+    this.#init();
+  }
+
+  // private
+  #init() {
+    this.#disableAllLayoutActive();
 
     this.#initSwiper();
 
-    rx.fromEvent(this.getEl(), "click").subscribe(() =>
+    fromEvent(this.getEl(), "click").subscribe(() =>
       this.#handleLayoutActive()
     );
 
-    layout$.subscribe(({ layout, grid }) =>
+    this.#layout$.subscribe(({ layout, grid }) =>
       this.#handleLayoutChange({ layout, grid })
     );
   }
 
-  // private
   #initSwiper() {
     const swiper = new CustomSwiper();
     const $root = this.getEl();
@@ -52,8 +68,10 @@ export class DicomWindow extends BaseElement {
 
   // handlers
   #handleLayoutChange({ layout, grid }) {
+    const $root = this.getEl();
+
     const isLayoutActive = JSON.parse(
-      this.getEl().getAttribute("layout-active")
+      $root.getAttribute(LayoutActiveAttributeType.Key)
     );
     if (!isLayoutActive) return;
 
@@ -166,12 +184,12 @@ export class DicomWindow extends BaseElement {
 
   // Layout Active
   #activeLayout() {
-    this.getEl().setAttribute("layout-active", true);
+    this.getEl().setAttribute(LayoutActiveAttributeType.Key, true);
   }
 
   #disableAllLayoutActive() {
     this.#getAllDicomWIndowItemsEl().forEach(($el) => {
-      $el.setAttribute("layout-active", false);
+      $el.setAttribute(LayoutActiveAttributeType.Key, false);
     });
   }
 
@@ -181,21 +199,17 @@ export class DicomWindow extends BaseElement {
 
   // Layout Control
   #clearLayoutItems() {
-    const $swiper = this.#swiper;
-
-    $swiper.clearItems();
+    this.#swiper.clearItems();
   }
 
   #setLayout({ chunkSize, layoutType }) {
     this.#clearLayoutItems();
 
-    const $gridList = createDicomWindowGrid({
-      items: this.#items,
+    const $swiperSlides = createDicomWindowGrid({
+      $items: this.#$windowItems,
       chunkSize,
       layoutType,
-    });
-
-    const $swiperSlides = $gridList.map((grid) => createSwiperSlide(grid));
+    }).map((grid) => createSwiperSlide(grid));
 
     this.#swiper.append($swiperSlides);
   }
@@ -203,32 +217,41 @@ export class DicomWindow extends BaseElement {
   #setCustomLayout({ row, col }) {
     this.#clearLayoutItems();
 
-    const $gridList = createDicomWindowGrid({
-      items: this.#items,
-      chunkSize: row * col,
-      layoutType: LayoutAttributeType.Custom,
-    });
-
-    $gridList.forEach((element) => {
-      element.style.cssText = `
+    const setGridTemplate = ($el) => {
+      $el.style.cssText = `
         grid-template-columns: repeat(${col}, 1fr);
         grid-template-rows: repeat(${row}, 1fr);
       `;
-    });
 
-    const $swiperSlides = $gridList.map((grid) => createSwiperSlide(grid));
+      return $el;
+    };
+
+    const $swiperSlides = createDicomWindowGrid({
+      $items: this.#$windowItems,
+      chunkSize: row * col,
+      layoutType: LayoutAttributeType.Custom,
+    })
+      .map(setGridTemplate)
+      .map((grid) => createSwiperSlide(grid));
 
     this.#swiper.append($swiperSlides);
   }
 }
 
 // =================================================================
-const createDicomWindowGrid = ({ items, chunkSize, layoutType }) => {
-  return _.chunk(items, chunkSize).map((elements) => {
-    const $grid = document.createElement("div");
-    $grid.classList.add(Selectors.WindowGrid);
-    $grid.append(...elements);
-    $grid.setAttribute(LayoutAttributeType.Key, layoutType);
+const createDicomWindowGrid = ({ $items, chunkSize, layoutType }) => {
+  const createGrid = () => {
+    return createElementFromHTML(
+      `<div
+        class="${Selectors.WindowGrid}"
+        ${LayoutAttributeType.Key}="${layoutType}"
+      ></div>`
+    );
+  };
+
+  return _.chunk($items, chunkSize).map(($elements) => {
+    const $grid = createGrid();
+    $grid.append(...$elements);
 
     return $grid;
   });

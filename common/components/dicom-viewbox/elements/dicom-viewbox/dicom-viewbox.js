@@ -4,6 +4,8 @@ import { BaseElement } from "../../../base/base-element.js";
 import { useCustomContextMenu } from "../../../layer-popup/custom-context-menu/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
 
+const { fromEvent } = rxjs;
+
 const Template = `<div class="${Selectors.ViewBox}"></div>`;
 
 /**
@@ -26,11 +28,13 @@ const Template = `<div class="${Selectors.ViewBox}"></div>`;
  */
 export class DicomViewBox extends BaseElement {
   #models;
+  #states;
   #options;
 
-  constructor(models, options) {
+  constructor(models, states, options) {
     super({ $element: createElementFromHTML(Template) });
     this.#models = models;
+    this.#states = states;
     this.#options = options;
 
     this.#init();
@@ -38,15 +42,35 @@ export class DicomViewBox extends BaseElement {
 
   // private
   #init() {
-    const { hasController = true } = this.#options;
-
     this.#initGrid();
-    hasController && this.#initCinePlayController();
+
+    this.#initStates();
+    this.#initOptions();
 
     useCustomContextMenu({
       $emitter: this.getEl(),
       contextMenuOpen$: window.store.viewboxContextMenuOpen$,
     });
+  }
+
+  #initStates() {
+    if (!this.#states) return;
+
+    const $root = this.getEl();
+    const { isActive$ } = this.#states;
+
+    isActive$.subscribe((isActive) => $root.setAttribute("active", isActive));
+  }
+
+  #initOptions() {
+    if (!this.#options) return;
+
+    const $root = this.getEl();
+    const { hasController = true, onClick = () => {} } = this.#options;
+
+    hasController && this.#initCinePlayController();
+
+    fromEvent($root, "click").subscribe(() => onClick());
   }
 
   // grid container 생성, desc 배치
