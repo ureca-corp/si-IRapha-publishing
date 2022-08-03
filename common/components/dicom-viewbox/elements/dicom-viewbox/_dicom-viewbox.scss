@@ -1,4 +1,5 @@
 @use "../../../../styles/common";
+@use "../../../../styles/anim" as anim;
 @use "../../../../themes/typography" as typography;
 
 @use "../../../cineplay-controller/style" as cineplay-controller;
@@ -11,12 +12,11 @@ $color-green: var(--color__green);
 $color-yellow: var(--color__yellow);
 $color-orange: var(--color__orange);
 
-$color-border: var(--color__border);
 $color-border-weak: #eeeeee22;
 
 // viewbox 상태 처리
 @mixin s-viewbox {
-  &.--active {
+  &[active="true"] {
     color: $color-font;
 
     border: 2px solid $color-yellow;
@@ -29,14 +29,13 @@ $color-border-weak: #eeeeee22;
 
 .irapha-dicom-viewbox {
   @include s-viewbox;
+  @include anim.basic-transition;
 
   display: flex;
   flex-direction: column;
   height: 100%;
 
   border: 2px solid $color-border-weak;
-
-  transition: all 0.3s ease-in-out;
 
   &:hover {
     border: 2px solid $color-green;

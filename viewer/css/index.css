@@ -10782,17 +10782,17 @@ button[disabled] {
 }
 
 .irapha-dicom-viewbox {
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   height: 100%;
   border: 2px solid rgba(238, 238, 238, 0.1333333333);
-  transition: all 0.3s ease-in-out;
 }
-.irapha-dicom-viewbox.--active {
+.irapha-dicom-viewbox[active=true] {
   color: var(--color__font-primary);
   border: 2px solid var(--color__yellow);
 }
-.irapha-dicom-viewbox.--active:hover {
+.irapha-dicom-viewbox[active=true]:hover {
   border: 2px solid var(--color__orange);
 }
 .irapha-dicom-viewbox:hover {

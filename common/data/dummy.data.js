@@ -28,7 +28,7 @@ export const tabsDummyData = [
 
 // 이미지 윈도우 영역 - 더미 데이터
 export const windowDummyData = Array.from({ length: 40 }, (_, index) => ({
-  descItems: {
+  viewBoxModel: {
     topLeft: ["O^YEONG SU", "064Y / M", "2019-11-25", "06:26:49"],
     topCenter: ["A"],
     topRight: [

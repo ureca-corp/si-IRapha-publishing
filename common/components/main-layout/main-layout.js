@@ -34,11 +34,8 @@ export class MainLayout extends BaseElement {
 
   #initDicomWindow({ windowData }) {
     const viewBoxes = windowData.map(
-      ({ descItems, hasController }) =>
-        new DicomViewBox({
-          descItems,
-          hasController,
-        })
+      ({ viewBoxModel, hasController }) =>
+        new DicomViewBox(viewBoxModel, { hasController })
     );
 
     const dicomWindow = new DicomWindow({
