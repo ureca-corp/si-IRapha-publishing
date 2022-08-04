@@ -1,7 +1,7 @@
 export { Selectors } from "./selectors/selectors.js";
 
 export {
-  ActiveClassType,
+  ActiveType,
   MoreClassType,
   DirectionClassType,
 } from "./types/index.js";

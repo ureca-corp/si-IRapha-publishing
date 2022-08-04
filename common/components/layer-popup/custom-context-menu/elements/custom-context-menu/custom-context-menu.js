@@ -2,49 +2,53 @@ import { LayerPopup } from "../../../base/js/layer-popup.js";
 import { ContextMenuItem } from "../menu-item/menu-item.js";
 import { Navigator } from "../navigator/navigator.js";
 
-import { Selectors, ActiveClassType } from "../../common/index.js";
+import { Selectors, ActiveType } from "../../common/index.js";
 
-const rx = rxjs;
+const { BehaviorSubject, fromEvent, tap } = rxjs;
 
 export class CustomContextMenu extends LayerPopup {
-  #$root;
-  #$segments;
+  #$segments = this.getElementsByClassName(Selectors.Segment);
+  #$menuItems = this.getElementsByClassName(Selectors.ContextMenuItem);
+  #$navigator = this.getElementByClassName(Selectors.Navigator);
 
-  #currentPage$ = new rx.BehaviorSubject(1);
+  #currentPage$ = new BehaviorSubject(1);
   #open$;
 
+  #autoClose;
+
   // 서브메뉴 오픈 방향 왼쪽 상태
-  #submenuDirectionLeft$ = new rx.BehaviorSubject();
+  #submenuDirectionLeft$ = new BehaviorSubject();
 
   constructor({ $element, open$, autoClose = true }) {
     super({ $element, open$ });
-    this.#$root = $element;
-    this.#$segments = this.#$root.querySelectorAll(`.${Selectors.Segment}`);
     this.#open$ = open$;
+    this.#autoClose = autoClose;
 
-    this.#init({ autoClose });
+    this.#init();
   }
 
   // private
-  #init({ autoClose }) {
+  #init() {
+    const $root = this.getEl();
+    const autoClose = this.#autoClose;
+    const open$ = this.#open$;
+    const currentPage$ = this.#currentPage$;
+
     // 메뉴 오픈 상태 핸들링
-    this.#open$.subscribe((point) => {
-      this.handleOpen(point);
-      this.#setSubmenuDirectionLeft_IfContextMenuLocatedRight();
-    });
+    open$
+      .pipe(tap((point) => this.handleOpen(point)))
+      .subscribe(() =>
+        this.#setSubmenuDirectionLeft_IfMenuOverflowWindowRight()
+      );
 
     // 메뉴에서 마우스 벗어난 상태 핸들링
     if (autoClose)
-      rx.fromEvent(this.#$root, "mouseleave").subscribe(() =>
-        this.#open$.next(null)
-      );
+      fromEvent($root, "mouseleave").subscribe(() => open$.next(null));
 
     // 메뉴 외 영역 클릭 핸들링
-    rx.fromEvent(document, "click").subscribe((e) =>
-      this.#handleOutsideClick(e)
-    );
+    fromEvent(document, "click").subscribe((e) => this.#handleOutsideClick(e));
 
-    this.#currentPage$.subscribe((currentPage) =>
+    currentPage$.subscribe((currentPage) =>
       this.#handleCurrentPageChange(currentPage)
     );
 
@@ -53,7 +57,7 @@ export class CustomContextMenu extends LayerPopup {
   }
 
   #initMenuItems() {
-    [...this.#$root.querySelectorAll(`.${Selectors.ContextMenuItem}`)].map(
+    [...this.#$menuItems].map(
       ($element) =>
         new ContextMenuItem({
           $element,
@@ -64,14 +68,14 @@ export class CustomContextMenu extends LayerPopup {
 
   #initNavigator() {
     const ChunkSize = 10;
-    const $navigator = this.#$root.querySelector(`.${Selectors.Navigator}`);
+    const $navigator = this.#$navigator;
 
     if (!!$navigator) {
       new Navigator({
         $element: $navigator,
         options: {
           chunkSize: ChunkSize,
-          itemsCount: this.#getMenuItemsCount(),
+          itemsCount: this.#$menuItems.length,
         },
         currentPage$: this.#currentPage$,
         onChangeCurrentPage: (currentPage) =>
@@ -82,27 +86,27 @@ export class CustomContextMenu extends LayerPopup {
 
   // handlers
   #handleOutsideClick(e) {
-    const parentTree = e.path;
-    const me = parentTree.find((element) => element.id === this.#$root.id);
+    const rootId = this.getEl().id;
+    const open$ = this.#open$;
 
-    if (!me) return this.#open$.next(null);
+    const parentTree = e.path;
+    const me = parentTree.find(($el) => $el.id === rootId);
+
+    me || open$.next(null);
   }
 
   #handleCurrentPageChange(currentPage) {
-    this.#$segments.forEach((it, index) => {
-      if (index + 1 !== currentPage)
-        return it.classList.remove(ActiveClassType.Active);
+    const segments = this.#$segments;
 
-      it.classList.add(ActiveClassType.Active);
+    const isEqualCurrentPage = (index) => currentPage === index;
+
+    segments.forEach((it, index) => {
+      it.setAttribute(ActiveType.Key, isEqualCurrentPage(index + 1));
     });
   }
 
-  #getMenuItemsCount() {
-    return this.#$root.querySelectorAll(`.${Selectors.ContextMenuItem}`).length;
-  }
-
-  #setSubmenuDirectionLeft_IfContextMenuLocatedRight() {
-    const contextMenuRect = this.#$root.getBoundingClientRect();
+  #setSubmenuDirectionLeft_IfMenuOverflowWindowRight() {
+    const contextMenuRect = this.getEl().getBoundingClientRect();
     const windowSegmentWidth = window.innerWidth / 4;
     const overflowRightZone = windowSegmentWidth * 3;
 

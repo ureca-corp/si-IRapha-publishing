@@ -1,4 +1,5 @@
 @use "../../../../../styles/common";
+@use "../../../../../themes/shape" as shape;
 @use "../../../../../themes/typography" as typography;
 
 @use "../menu-item/menu-item" as custom-context-menu__item;
@@ -6,21 +7,18 @@
 $menu-bg: var(--color__secondary-container);
 $box-shadow: var(--box-shadow__layer-menu);
 
-@mixin menu-container {
+.irapha-context-menu {
+  @include shape.small;
+
   position: absolute;
 
   display: flex;
   flex-direction: column;
   padding: 4px 0;
 
-  border-radius: 4px;
   box-shadow: $box-shadow;
-
   background-color: $menu-bg;
-}
 
-.irapha-context-menu {
-  @include menu-container;
   z-index: -1;
 }
 
@@ -31,6 +29,10 @@ $color-border: var(--color__border);
 .irapha-context-menu__segment {
   display: none;
   flex-direction: column;
+
+  &[active="true"] {
+    display: flex;
+  }
 
   &.--active {
     display: flex;
@@ -60,7 +62,9 @@ $color-border: var(--color__border);
 }
 
 .irapha-context-menu__item__submenu {
+  @include shape.small;
   @include s-submenu;
+
   position: absolute;
   top: 0;
   left: 200px;
@@ -69,8 +73,6 @@ $color-border: var(--color__border);
 
   display: none;
 
-  border-radius: 4px;
   box-shadow: $box-shadow;
-
   background-color: $menu-bg;
 }

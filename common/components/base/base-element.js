@@ -13,6 +13,10 @@ export class BaseElement {
     return this.#$root.querySelector(`.${className}`);
   }
 
+  getElementsByClassName(className) {
+    return this.#$root.querySelectorAll(`.${className}`);
+  }
+
   addClassName(className) {
     return this.#$root.classList.add(className);
   }

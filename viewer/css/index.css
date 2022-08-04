@@ -10307,11 +10307,11 @@ button[disabled] {
 }
 
 .irapha-context-menu {
+  border-radius: 4px;
   position: absolute;
   display: flex;
   flex-direction: column;
   padding: 4px 0;
-  border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
   z-index: -1;
@@ -10320,6 +10320,9 @@ button[disabled] {
 .irapha-context-menu__segment {
   display: none;
   flex-direction: column;
+}
+.irapha-context-menu__segment[active=true] {
+  display: flex;
 }
 .irapha-context-menu__segment.--active {
   display: flex;
@@ -10337,12 +10340,12 @@ button[disabled] {
 }
 
 .irapha-context-menu__item__submenu {
+  border-radius: 4px;
   position: absolute;
   top: 0;
   left: 200px;
   flex-direction: column;
   display: none;
-  border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
 }

@@ -4,7 +4,7 @@ import { CustomContextMenu } from "../../../custom-context-menu/index.js";
 import { Selectors as CustomContextMenuSelectors } from "../../../custom-context-menu/index.js";
 import { Selectors } from "../../common/index.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
 const HelpText = `
 - label은 쉼표(,)로 구분하며 복수로 표기 가능합니다.\n
@@ -29,77 +29,72 @@ export class AnnotationContextMenu extends BaseElement {
   }
 
   #init() {
-    const open$ = window.store.annotationContextMenuOpen$;
-
     new CustomContextMenu({
       $element: this.getEl(),
-      open$,
+      open$: window.store.annotationContextMenuOpen$,
       autoClose: false,
     });
 
-    this.#initInput();
+    this.#initInputArea();
     this.#initMenus();
   }
 
-  #initInput() {
-    const template = `
-    <div class="${Selectors.InputWrapper}">
-      <input 
-        class="${Selectors.Input} ${Selectors.UkInput}"
-        placeholder="${PlaceHolder}"
-      >
-      <div title="${HelpText}" style="cursor: help">
-      ${svgIcon}
+  #initInputArea() {
+    const $root = this.getEl();
+
+    const $template = createElementFromHTML(
+      `
+      <div class="${Selectors.InputWrapper}">
+        <input 
+          class="${Selectors.Input} ${Selectors.UkInput}"
+          placeholder="${PlaceHolder}"
+        >
+
+        <div title="${HelpText}" style="cursor: help">
+          ${helpSvgIcon}
+        </div>
       </div>
-    </div>
-    `;
+      `
+    );
 
-    const $template = createElementFromHTML(template);
-
-    this.getEl().append($template);
+    $root.appendChild($template);
   }
 
   #initMenus() {
+    const $root = this.getEl();
+
     const $items = [
       createMenuItem("Delete", {
-        onClick: (e) => {
-          alert("Todo Delete");
-        },
+        onClick: (e) => alert("Todo Delete"),
       }),
       createMenuItem("Modify", {
-        onClick: (e) => {
-          alert("Todo Modify");
-        },
+        onClick: (e) => alert("Todo Modify"),
       }),
       createMenuItem("Pause", {
-        onClick: (e) => {
-          alert("Todo Pause");
-        },
+        onClick: (e) => alert("Todo Pause"),
       }),
     ];
 
-    this.getEl().append(...$items);
+    $root.append(...$items);
   }
 }
 
 // =================================================================
 const createMenuItem = (label, options) => {
-  const template = `
-  <div class="${CustomContextMenuSelectors.ContextMenuItem}">${label}</div>
-  `;
-  const $template = createElementFromHTML(template);
+  const $template = createElementFromHTML(
+    `<div class="${CustomContextMenuSelectors.ContextMenuItem}">${label}</div>`
+  );
 
-  //
   if (options) {
     const { onClick } = options;
 
-    rx.fromEvent($template, "click").subscribe((e) => onClick(e));
+    fromEvent($template, "click").subscribe((e) => onClick(e));
   }
 
   return $template;
 };
 
-const svgIcon = `
+const helpSvgIcon = `
 <svg 
   width="24" 
   height="24" 

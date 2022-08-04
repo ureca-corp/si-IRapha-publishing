@@ -1,8 +1,11 @@
-export class LayerPopup {
+import { BaseElement } from "../../../base/index.js";
+
+export class LayerPopup extends BaseElement {
   #$root;
   #style;
 
   constructor({ $element, open$ }) {
+    super({ $element });
     this.#$root = $element;
     this.#style = this.#$root.style;
 
