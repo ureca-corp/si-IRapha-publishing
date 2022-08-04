@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../../utils/dom/index.js";
 import { setOnMouseDragListener } from "../../../utils/events/EventListener.js";
 import { BaseElement } from "../../base/index.js";
 import { PopupAppbar } from "../base/index.js";
-import { LayerPopup } from "../base/js/layer-popup.js";
+import { LayerPopup } from "../base/index.js";
 import { Selectors as ContextMenuSelectors } from "../custom-context-menu/index.js";
 import { Selectors } from "./common/index.js";
 import {

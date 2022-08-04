@@ -139,7 +139,3 @@ document
   .querySelector("#global-popup-group")
   .appendChild(dicomInfoLayerPopup.getEl());
 window.store.dicomInformationsOpen$.next({ x: 400, y: 600 });
-
-// =================================================================
-// window.open("../html/cid.html", "", "width=600, height=800");
-// window.open("../html/cid.html");

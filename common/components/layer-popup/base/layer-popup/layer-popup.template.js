@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { Selectors as ContextMenuSelectors } from "../../custom-context-menu/index.js";
-import { LayerPopup } from "../js/layer-popup.js";
+import { LayerPopup } from "./layer-popup.js";
 
 const Selectors = {
   TopWrapper: "irapha-layer-popup__top-wrapper",

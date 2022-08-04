@@ -14,16 +14,18 @@ const HelpText = `
 
 const PlaceHolder = "Label";
 
-const Template = `
-<div 
-  id="${Selectors.RootId}" 
-  class="${Selectors.Root} ${CustomContextMenuSelectors.ContextMenu}">
-</div>
-`;
+function Comp() {
+  return createElementFromHTML(`
+    <div 
+      id="${Selectors.RootId}" 
+      class="${Selectors.Root} ${CustomContextMenuSelectors.ContextMenu}">
+    </div>
+  `);
+}
 
 export class AnnotationContextMenu extends BaseElement {
   constructor() {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new Comp() });
 
     this.#init();
   }
@@ -42,7 +44,7 @@ export class AnnotationContextMenu extends BaseElement {
   #initInputArea() {
     const $root = this.getEl();
 
-    const $template = createElementFromHTML(
+    const $inputWrapper = createElementFromHTML(
       `
       <div class="${Selectors.InputWrapper}">
         <input 
@@ -57,7 +59,7 @@ export class AnnotationContextMenu extends BaseElement {
       `
     );
 
-    $root.appendChild($template);
+    $root.appendChild($inputWrapper);
   }
 
   #initMenus() {
@@ -81,17 +83,17 @@ export class AnnotationContextMenu extends BaseElement {
 
 // =================================================================
 const createMenuItem = (label, options) => {
-  const $template = createElementFromHTML(
+  const $meuiItem = createElementFromHTML(
     `<div class="${CustomContextMenuSelectors.ContextMenuItem}">${label}</div>`
   );
 
   if (options) {
     const { onClick } = options;
 
-    fromEvent($template, "click").subscribe((e) => onClick(e));
+    fromEvent($meuiItem, "click").subscribe((e) => onClick(e));
   }
 
-  return $template;
+  return $meuiItem;
 };
 
 const helpSvgIcon = `

@@ -1,4 +1,4 @@
-import { LayerPopup } from "../base/js/layer-popup.js";
+import { LayerPopup } from "../base/index.js";
 import { setOnMouseDragListener } from "../../../utils/events/EventListener.js";
 import { Selectors } from "./selectors.js";
 

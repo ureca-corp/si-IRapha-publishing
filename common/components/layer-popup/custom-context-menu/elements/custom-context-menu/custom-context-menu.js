@@ -1,4 +1,4 @@
-import { LayerPopup } from "../../../base/js/layer-popup.js";
+import { LayerPopup } from "../../../base/layer-popup/layer-popup.js";
 import { ContextMenuItem } from "../menu-item/menu-item.js";
 import { Navigator } from "../navigator/navigator.js";
 

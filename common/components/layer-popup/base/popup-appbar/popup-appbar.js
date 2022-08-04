@@ -4,15 +4,15 @@ import { Selectors } from "./selectors.js";
 
 const { fromEvent } = rxjs;
 
-const Template = `
-<div class="${Selectors.Appbar}"></div>
-`;
+function Comp() {
+  return createElementFromHTML(`<div class="${Selectors.Appbar}"></div>`);
+}
 
 export class PopupAppbar extends BaseElement {
   #options;
 
   constructor(options) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new Comp() });
     this.#options = options;
 
     this.#init();
