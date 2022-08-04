@@ -1,16 +1,17 @@
 @use "../../../../../styles/common";
+@use "../../../../../themes/shape" as shape;
 
 @use "../../../base/scss/layer-popup";
 @use "../data-grid/data-grid";
 @use "../user-info/user-info";
 
 $color-border: var(--color__border);
-$color-bg: #333;
+$color-bg: var(--color__bg-primary);
 
 .irapha-related-study__inner {
-  background-color: $color-bg;
+  @include shape.small;
 
-  border-radius: 4px;
+  background-color: $color-bg;
   box-shadow: var(--box-shadow__layer-menu);
 }
 

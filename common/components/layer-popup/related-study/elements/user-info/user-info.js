@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/index.js";
 import { Selectors } from "../../common/index.js";
 
-const Template = `
+const $root = createElementFromHTML(`
 <div class="${Selectors.UserInfo}">
   <div class="${Selectors.UserInfoRow}">
     <dl class="${Selectors.UserInfoItem}">
@@ -40,11 +40,11 @@ const Template = `
     </dl>
   </div>
 </div>
-`;
+`);
 
 export class UserInfo extends BaseElement {
   constructor({ currentStudy$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: $root });
 
     currentStudy$.subscribe((currentStudy) =>
       this.#handleCurrentStudy(currentStudy)
@@ -54,13 +54,8 @@ export class UserInfo extends BaseElement {
   #handleCurrentStudy(currentStudy) {
     if (!currentStudy) return;
 
-    const $root = this.getEl();
-    const $name = $root.querySelector("[data-name='name']");
-    const $patientId = $root.querySelector("[data-name='patientId']");
-    const $gender = $root.querySelector("[data-name='gender']");
-    const $studyDate = $root.querySelector("[data-name='studyDate']");
-    const $modality = $root.querySelector("[data-name='modality']");
-    const $description = $root.querySelector("[data-name='description']");
+    const { $name, $patientId, $gender, $studyDate, $modality, $description } =
+      useElements();
 
     $name.innerHTML = currentStudy.name;
     $patientId.innerHTML = currentStudy.patientId;
@@ -70,3 +65,21 @@ export class UserInfo extends BaseElement {
     $description.innerHTML = currentStudy.studyDescription;
   }
 }
+
+const useElements = () => {
+  const $name = $root.querySelector("[data-name='name']");
+  const $patientId = $root.querySelector("[data-name='patientId']");
+  const $gender = $root.querySelector("[data-name='gender']");
+  const $studyDate = $root.querySelector("[data-name='studyDate']");
+  const $modality = $root.querySelector("[data-name='modality']");
+  const $description = $root.querySelector("[data-name='description']");
+
+  return {
+    $name,
+    $patientId,
+    $gender,
+    $studyDate,
+    $modality,
+    $description,
+  };
+};

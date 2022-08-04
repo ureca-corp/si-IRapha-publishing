@@ -11,6 +11,5 @@ export const Selectors = {
   UserInfoData: "irapha-related-study__user-info__data",
 
   CloseButton: "irapha-related-study__close",
-  TopArea: "irapha-related-study__header",
   DataGrid: "irapha-related-study__data-grid",
 };

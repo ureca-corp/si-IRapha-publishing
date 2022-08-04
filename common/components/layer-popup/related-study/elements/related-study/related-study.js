@@ -1,32 +1,33 @@
-import { LayerPopup } from "../../../base/js/layer-popup.js";
-import { setOnMouseDragListener } from "../../../../../utils/events/EventListener.js";
-import { Selectors } from "../../common/index.js";
-import { BaseElement } from "../../../../base/base-element.js";
 import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
-import { UserInfo } from "../user-info/user-info.js";
+import { setOnMouseDragListener } from "../../../../../utils/events/EventListener.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { LayerPopup } from "../../../base/js/layer-popup.js";
+import { Selectors } from "../../common/index.js";
 import { DataGrid } from "../data-grid/data-grid.js";
-import { fetchData } from "../../fetch-data.js";
+import { UserInfo } from "../user-info/user-info.js";
+import { getViewModel } from "./related-study.vm.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
-const Template = `
-  <div class="${Selectors.Root} irapha-layer-popup">
-    <div class="${Selectors.Inner}">
-      <div class="${Selectors.Header}">
-        <button class="${Selectors.CloseButton}" uk-close></button>
-      </div>
+const $root = createElementFromHTML(
+  `
+<div class="${Selectors.Root} irapha-layer-popup">
+  <div class="${Selectors.Inner}">
+    <div class="${Selectors.Header}">
+      <button class="${Selectors.CloseButton}" uk-close></button>
     </div>
   </div>
-  `;
+</div>
+`
+);
 
 export class RelatedStudyLayerPopup extends BaseElement {
   #open$;
 
-  #currentStudy$ = new rx.BehaviorSubject();
-  #studyInfoList$ = new rx.BehaviorSubject([]);
+  #vm = getViewModel();
 
   constructor({ open$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: $root });
 
     this.#open$ = open$;
     this.#init();
@@ -34,44 +35,43 @@ export class RelatedStudyLayerPopup extends BaseElement {
 
   // private
   #init() {
-    const $root = this.getEl();
-
     new LayerPopup({ $element: $root, open$: this.#open$ });
 
     this.#initUserInfo();
     this.#initDataGrid();
     this.#initCloseButton();
     this.#initMouseDrag();
-
-    this.#initStates();
   }
 
   #initUserInfo() {
-    const $header = this.getEl().querySelector(`.${Selectors.Header}`);
+    const { $header } = useElements();
+    const { currentStudy$ } = this.#vm;
 
-    const userInfo = new UserInfo({ currentStudy$: this.#currentStudy$ });
-    $header.appendChild(userInfo.getEl());
+    const $userInfo = new UserInfo({ currentStudy$ }).getEl();
+    $header.appendChild($userInfo);
   }
 
   #initDataGrid() {
-    const $inner = this.getEl().querySelector(`.${Selectors.Inner}`);
+    const { $inner } = useElements();
+    const { studyInfoList$ } = this.#vm;
 
-    const dataGrid = new DataGrid({ studyInfoList$: this.#studyInfoList$ });
-    $inner.appendChild(dataGrid.getEl());
+    const $dataGrid = new DataGrid({ studyInfoList$ }).getEl();
+    $inner.appendChild($dataGrid);
   }
 
   #initCloseButton() {
-    const $closeBtn = this.getEl().querySelector(`.${Selectors.CloseButton}`);
+    const { $closeButton } = useElements();
+    const open$ = this.#open$;
 
-    rx.fromEvent($closeBtn, "click").subscribe(() => this.#open$.next(null));
+    fromEvent($closeButton, "click").subscribe(() => open$.next(null));
   }
 
   // mouse drag
   #initMouseDrag() {
-    const $dragArea = this.getEl().querySelector(`.${Selectors.TopArea}`);
+    const { $header } = useElements();
 
     setOnMouseDragListener({
-      emitter: $dragArea,
+      emitter: $header,
       dragCallback: ({ event }) => this.#handleMouseDrag(event),
     });
   }
@@ -85,18 +85,17 @@ export class RelatedStudyLayerPopup extends BaseElement {
     style.left = `${rect.left + event.movementX}px`;
     style.right = "unset";
   }
-
-  // states
-  #initStates() {
-    this.#open$.subscribe(() => this.#initData());
-  }
-
-  // data
-  #initData() {
-    const { data } = fetchData();
-    const { studyInfoList } = data;
-
-    this.#currentStudy$.next(studyInfoList[0]);
-    this.#studyInfoList$.next(studyInfoList);
-  }
 }
+
+// =================================================================
+const useElements = () => {
+  const $header = $root.querySelector(`.${Selectors.Header}`);
+  const $inner = $root.querySelector(`.${Selectors.Inner}`);
+  const $closeButton = $root.querySelector(`.${Selectors.CloseButton}`);
+
+  return {
+    $header,
+    $inner,
+    $closeButton,
+  };
+};

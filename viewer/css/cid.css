@@ -9088,8 +9088,8 @@ button[disabled] {
 }
 
 .irapha-related-study__inner {
-  background-color: #333;
   border-radius: 4px;
+  background-color: var(--color__bg-primary);
   box-shadow: var(--box-shadow__layer-menu);
 }
 
