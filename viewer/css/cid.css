@@ -9273,11 +9273,11 @@ button[disabled] {
 }
 
 .irapha-export-dicom__form {
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
-  background-color: #333;
+  background-color: var(--color__bg-primary);
 }
 
 .irapha-export-dicom__title {
@@ -9395,6 +9395,9 @@ button[disabled] {
   flex-direction: column;
   gap: 8px;
 }
+.irapha-export-dicom__content-list label {
+  min-height: unset;
+}
 
 .irapha-export-dicom__footer {
   display: flex;
@@ -9402,41 +9405,6 @@ button[disabled] {
   gap: 12px;
   padding: 12px;
   border-top: 1px dashed var(--color__border);
-}
-
-.irapha-export-dicom__cancel {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 4px 12px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid var(--color__border);
-  color: var(--color__border);
-  background-color: transparent;
-}
-.irapha-export-dicom__cancel:hover {
-  background-color: var(--color__border);
-}
-.irapha-export-dicom__cancel:hover {
-  color: var(--color__font-secondary);
-}
-
-.irapha-export-dicom__export {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
-  border-radius: 4px;
-  padding: 4px 12px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid transparent;
-  cursor: pointer;
-  background-color: var(--color__teriary);
-}
-.irapha-export-dicom__export:hover {
-  opacity: 0.7;
 }
 
 .irapha-search-container {
@@ -9503,6 +9471,21 @@ button[disabled] {
 }
 .irapha-button[variant=outlined]:hover {
   background-color: var(--color__border);
+}
+.irapha-button[variant=contained] {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  border-radius: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  background-color: var(--color__teriary);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.irapha-button[variant=contained]:hover {
+  opacity: 0.7;
 }
 
 .irapha-dicom-info__inner {
@@ -10005,7 +9988,7 @@ button[disabled] {
   cursor: pointer;
 }
 
-.irapha-cid-window__cancle-btn {
+.irapha-cid-window__cancel-btn {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
@@ -10017,9 +10000,9 @@ button[disabled] {
   color: var(--color__border);
   background-color: transparent;
 }
-.irapha-cid-window__cancle-btn:hover {
+.irapha-cid-window__cancel-btn:hover {
   background-color: var(--color__border);
 }
-.irapha-cid-window__cancle-btn:hover {
+.irapha-cid-window__cancel-btn:hover {
   color: var(--color__font-secondary);
 }

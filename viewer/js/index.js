@@ -77,10 +77,13 @@ document
   .querySelector("#global-popup-group")
   .appendChild(relatedStudyLayerPopup.getEl());
 
-new ExportDicomLayerPopup({
-  $element: document.querySelector("#irapha-export-dicom-popup"),
+const exportDicomLayerPopup = new ExportDicomLayerPopup({
   open$: window.store.exportDicomOpen$,
 });
+
+document
+  .querySelector("#global-popup-group")
+  .appendChild(exportDicomLayerPopup.getEl());
 
 // =================================================================
 import { ViewboxContextMenu } from "../../common/components/modals/index.js";

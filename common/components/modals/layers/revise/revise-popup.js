@@ -1,8 +1,6 @@
+import { useMouseDragTracking } from "../../../../hooks/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
-import { setOnMouseDragListener } from "../../../../utils/events/EventListener.js";
-import { BaseElement } from "../../../base/index.js";
-import { PopupAppbar, LayerPopup } from "../base/index.js";
-import { CustomContextMenuSelectors } from "../../context-menus/index.js";
+import { LayerPopupTemplate, PopupAppbar } from "../base/index.js";
 import { Selectors } from "./common/index.js";
 import {
   createDeleteSection,
@@ -12,70 +10,60 @@ import {
   createTransformSection,
 } from "./elements/index.js";
 
-function ReviseComponent() {
+function FormComp() {
   return createElementFromHTML(`
-  <div id="${Selectors.Root}" class="${Selectors.Root} ${CustomContextMenuSelectors.ContextMenu}">
-  
-    <form class="${Selectors.Form}" onsubmit="return false">
-      <div class="${Selectors.Content}">
-        <canvas></canvas>
-        
-        <div class="${Selectors.ContentRight}"></div>
-      </div>
-    </form>
-  
-  </div>
+  <form class="${Selectors.Form}" onsubmit="return false">
+    <div class="${Selectors.Content}">
+      <canvas></canvas>
+      
+      <div class="${Selectors.ContentRight}"></div>
+    </div>
+  </form>
   `);
 }
 
-export class ReviseLayerPopup extends BaseElement {
+export class ReviseLayerPopup extends LayerPopupTemplate {
   #open$;
 
+  #$form;
+
   constructor() {
-    super({ $element: new ReviseComponent() });
-    this.#open$ = window.store.reviseOpen$;
-
-    this.#init();
-  }
-
-  // private
-  #init() {
-    this.#initBase();
-    this.#initFooter();
-    this.#initSections();
-  }
-
-  #initBase() {
-    new LayerPopup({
-      $element: this.getEl(),
-      open$: this.#open$,
-    });
-
     const $popupAppbar = new PopupAppbar({
       title: "Revise",
       onClose: () => this.#handleClose(),
     }).getEl();
-    this.getEl().prepend($popupAppbar);
 
-    setOnMouseDragListener({
-      emitter: $popupAppbar,
-      dragCallback: ({ event }) => this.#handleMouseDrag(event),
-    });
-  }
-
-  #initFooter() {
-    const { $form } = this.#getElements();
+    const $inner = new FormComp();
 
     const $footer = createFooter({
-      onCancle: () => {
-        alert("Todo Cancle");
+      onCancel: () => {
+        alert("Todo Cancel");
       },
       onSubmit: () => {
         alert("Todo Submit");
       },
     });
 
-    $form.appendChild($footer);
+    const open$ = window.store.reviseOpen$;
+
+    super({
+      open$,
+      $top: $popupAppbar,
+      $body: $inner,
+      $bottom: $footer,
+    });
+
+    this.#$form = $inner;
+    this.#open$ = open$;
+
+    useMouseDragTracking({ $emitter: $popupAppbar, $target: this.getEl() });
+
+    this.#init();
+  }
+
+  // private
+  #init() {
+    this.#initSections();
   }
 
   #initSections() {
@@ -91,28 +79,13 @@ export class ReviseLayerPopup extends BaseElement {
     );
   }
 
-  // handlers
-  #handleMouseDrag(event) {
-    const $root = this.getEl();
-
-    const rect = $root.getBoundingClientRect();
-    const style = $root.style;
-
-    style.top = `${rect.top + event.movementY}px`;
-    style.bottom = "unset";
-    style.left = `${rect.left + event.movementX}px`;
-    style.right = "unset";
-  }
-
   #handleClose() {
     this.#open$.next(null);
   }
 
   #getElements() {
-    const $root = this.getEl();
-
-    const $form = $root.querySelector(`.${Selectors.Form}`);
-    const $contentRight = $root.querySelector(`.${Selectors.ContentRight}`);
+    const $form = this.#$form;
+    const $contentRight = $form.querySelector(`.${Selectors.ContentRight}`);
 
     return {
       $form,

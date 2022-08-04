@@ -1,66 +1,311 @@
-import { LayerPopup } from "../base/index.js";
-import { setOnMouseDragListener } from "../../../../utils/events/EventListener.js";
-import { Selectors } from "./selectors.js";
+import { useMouseDragTracking } from "../../../../hooks/useMouseDragTracking.js";
+import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import {
+  Button,
+  createCheckBox,
+  createLabelWith,
+  createRadioButton,
+  createTextInput,
+} from "../../../kit/index.js";
+import { LayerPopupTemplate, PopupAppbar } from "../base/index.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
-export class ExportDicomLayerPopup {
-  #$root;
-  #$dragArea;
+const Selectors = {
+  Form: "irapha-export-dicom__form",
+  ContentContainer: "irapha-export-dicom__content",
 
+  ContentFirstList: "irapha-export-dicom__content-first",
+  ContentSecondList: "irapha-export-dicom__content-second",
+  ContentThirdList: "irapha-export-dicom__content-third",
+
+  ContentTitle: "irapha-export-dicom__content-title",
+  ContentList: "irapha-export-dicom__content-list",
+};
+
+export class ExportDicomLayerPopup extends LayerPopupTemplate {
   #open$;
 
-  constructor({ $element, open$ }) {
-    this.#$root = $element;
-    this.#$dragArea = $element.querySelector(`.${Selectors.DragArea}`);
+  constructor({ open$ }) {
+    const $appbar = new PopupAppbar({
+      title: "Export DICOM AS",
+      onClose: () => this.#handleClose(),
+    }).getEl();
+
+    const $form = new FormComp();
+    const $footer = new Footer({
+      onCancel: () => this.#handleClose(),
+      onSubmit: () => alert("Todo Export"),
+    });
+
+    super({
+      open$,
+      $top: $appbar,
+      $body: $form,
+      $bottom: $footer,
+    });
+
     this.#open$ = open$;
 
-    this.#init();
+    useMouseDragTracking({ $emitter: $appbar, $target: this.getEl() });
   }
 
-  // private
-  #init() {
-    const $root = this.#$root;
-
-    new LayerPopup({ $element: $root, open$: this.#open$ });
-
-    this.#initCloseButton();
-    this.#initCancelButton();
-    this.#initSubmitButton();
-
-    setOnMouseDragListener({
-      emitter: this.#$dragArea,
-      dragCallback: ({ event }) => this.#handleMouseDrag(event),
-    });
-  }
-
-  #initCloseButton() {
-    const $closeBtn = this.#$root.querySelector(`.${Selectors.CloseButton}`);
-    $closeBtn.setAttribute("uk-close", true);
-
-    rx.fromEvent($closeBtn, "click").subscribe(() => this.#open$.next(null));
-  }
-
-  #initCancelButton() {
-    const $cancelBtn = this.#$root.querySelector(`.${Selectors.CancelButton}`);
-    rx.fromEvent($cancelBtn, "click").subscribe(() => this.#open$.next(null));
-  }
-
-  #initSubmitButton() {
-    const $submitBtn = this.#$root.querySelector(`.${Selectors.SubmitButton}`);
-    rx.fromEvent($submitBtn, "click").subscribe((e) => {
-      alert("Todo");
-    });
-  }
-
-  // handlers
-  #handleMouseDrag(event) {
-    const rect = this.#$root.getBoundingClientRect();
-    const style = this.#$root.style;
-
-    style.top = `${rect.top + event.movementY}px`;
-    style.bottom = "unset";
-    style.left = `${rect.left + event.movementX}px`;
-    style.right = "unset";
+  #handleClose() {
+    this.#open$.next(null);
   }
 }
+
+// components
+function ContentFirstListComp() {
+  const InputName = "file-format";
+
+  const inputModels = [
+    {
+      title: "DICOM (.dcm)",
+      value: "DICOM",
+      checked: true,
+      onChange: (e) => {},
+    },
+    {
+      title: "JPEG (.jpg)",
+      value: "JPEG",
+      onChange: (e) => {},
+    },
+    {
+      title: "GIF (.gif)",
+      value: "GIF",
+      onChange: (e) => {},
+    },
+    {
+      title: "PNG (.png)",
+      value: "PNG",
+      onChange: (e) => {},
+    },
+    {
+      title: "JP2 (.jp2)",
+      value: "JP2",
+      onChange: (e) => {},
+    },
+    {
+      title: "NRRD (.nrrd) - Zipped",
+      value: "NRRD",
+      onChange: (e) => {},
+    },
+    {
+      title: "SPM2/Analyze (.nil)",
+      value: "SPM2",
+      onChange: (e) => {},
+    },
+    {
+      title: "SPM5/NIfTI (.nil)",
+      value: "SPM5",
+      onChange: (e) => {},
+    },
+    {
+      title: "Multiframe NRRD (.nrrd) - Zipped",
+      value: "Multiframe NRRD",
+      onChange: (e) => {},
+    },
+    {
+      title: "Multiframe SPM2/Analyze (.nil)",
+      value: "Multiframe SPM2",
+      onChange: (e) => {},
+    },
+    {
+      title: "Multiframe SPM5/NIfTI (.nil)",
+      value: "Multiframe SPM5",
+      onChange: (e) => {},
+    },
+  ];
+
+  const $inputs = inputModels.map(({ title, value, checked, onChange }) =>
+    createLabelWith({
+      title,
+      $input: createRadioButton({
+        name: InputName,
+        value,
+        checked,
+        onChange,
+      }),
+    })
+  );
+
+  const $contentFirstList = createElementFromHTML(`
+  <div class="${Selectors.ContentFirstList}">
+    <div class="${Selectors.ContentTitle}">
+      File Format
+    </div>
+
+    <div class="${Selectors.ContentList}"></div>
+  </div>
+  `);
+
+  $contentFirstList
+    .querySelector(`.${Selectors.ContentList}`)
+    .append(...$inputs);
+
+  return $contentFirstList;
+}
+
+function ContentSecondListComp() {
+  const $inputs = [
+    createCheckboxLabelWithTextField({
+      title: "Prefix",
+      onCheckedChange: (e) => {},
+      onTextChange: (e) => {},
+    }),
+    createLabelWith({
+      title: "Include Patient ID",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Accession Number",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Study Instance UID",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Modality",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Series Number",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Series Intance UID",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include Instance Number",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    }),
+    createLabelWith({
+      title: "Include SOP Instance UID",
+      $input: createCheckBox({
+        checked: true,
+        disabled: true,
+        onChange: (e) => {},
+      }),
+      disabled: true,
+    }),
+  ];
+
+  const $contentSecondList = createElementFromHTML(`
+  <div class="${Selectors.ContentSecondList}">
+    <div class="${Selectors.ContentTitle}">
+      Filename Format
+    </div>
+
+    <div class="${Selectors.ContentList}"></div>
+  </div>
+  `);
+
+  $contentSecondList
+    .querySelector(`.${Selectors.ContentList}`)
+    .append(...$inputs);
+
+  return $contentSecondList;
+}
+
+function ContentThirdListComp() {
+  const $contentThirdList = createElementFromHTML(`
+  <div class="${Selectors.ContentThirdList}">
+    <div class="${Selectors.ContentTitle}">ETC</div>
+    <div class="${Selectors.ContentList}"></div>
+  </div>
+  `);
+
+  const $contentListContainer = $contentThirdList.querySelector(
+    `.${Selectors.ContentList}`
+  );
+
+  $contentListContainer.appendChild(
+    createLabelWith({
+      title: "Export Image Annotations",
+      $input: createCheckBox({
+        onChange: (e) => {},
+      }),
+    })
+  );
+
+  return $contentThirdList;
+}
+
+function FormComp() {
+  const $form = createElementFromHTML(
+    `<form class="${Selectors.Form}" onsubmit="return false">
+      <div class="${Selectors.ContentContainer}"></div>
+    </form>`
+  );
+
+  const $contentContainer = $form.querySelector(
+    `.${Selectors.ContentContainer}`
+  );
+
+  $contentContainer.append(
+    ...[
+      new ContentFirstListComp(),
+      new ContentSecondListComp(),
+      new ContentThirdListComp(),
+    ]
+  );
+
+  return $form;
+}
+
+function Footer({ onCancel, onSubmit }) {
+  const $footer = createElementFromHTML(
+    `<div class="irapha-export-dicom__footer"></div>`
+  );
+
+  $footer.append(
+    ...[
+      new Button({
+        label: "Cancel",
+        variant: "outlined",
+        onClick: onCancel,
+      }),
+      new Button({
+        label: "Export",
+        variant: "contained",
+        onClick: onSubmit,
+      }),
+    ]
+  );
+
+  return $footer;
+}
+
+const createCheckboxLabelWithTextField = ({
+  title,
+  onCheckedChange,
+  onTextChange,
+}) => {
+  const $label = createElementFromHTML(`<label></label>`);
+  const $checkbox = createCheckBox({
+    onChange: onCheckedChange,
+  });
+  const $title = createElementFromHTML(`<span>${title}</span>`);
+  const $input = createTextInput({ onChange: onTextChange });
+
+  $label.append(...[$checkbox, $title, $input]);
+
+  return $label;
+};

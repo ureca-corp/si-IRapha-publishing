@@ -1,24 +1,25 @@
 @use "../../../../styles/common";
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/typography" as typography;
+@use "../../../../themes/shape" as shape;
 @use "../../../../styles/input" as input;
 
 @use "../../../../styles/buttons" as buttons;
 @use "../base/style" as layout-popup-base;
 
 $color-border: var(--color__border);
-$color-bg: #333;
+$color-bg: var(--color__bg-primary);
 
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
 
 .irapha-export-dicom__form {
+  @include shape.small;
+
   display: flex;
   flex-direction: column;
 
-  border-radius: 4px;
   box-shadow: var(--box-shadow__layer-menu);
-
   background-color: $color-bg;
 }
 
@@ -125,6 +126,10 @@ $color-font2: var(--color__font-primary);
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  label {
+    min-height: unset;
+  }
 }
 
 // Footer
@@ -137,17 +142,4 @@ $color-font2: var(--color__font-primary);
   padding: 12px;
 
   border-top: 1px dashed $color-border;
-}
-
-.irapha-export-dicom__cancel {
-  @include buttons.outlined-button;
-
-  &:hover {
-    color: $color-font1;
-  }
-}
-
-.irapha-export-dicom__export {
-  @include buttons.contained-button;
-  background-color: var(--color__teriary);
 }

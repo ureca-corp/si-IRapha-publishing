@@ -1,4 +1,4 @@
-export { LayerPopup } from "./base/index.js";
+export { LayerPopup, PopupAppbar } from "./base/index.js";
 
 export { RelatedStudyLayerPopup } from "./related-study/index.js";
 export { ReviseLayerPopup } from "./revise/revise-popup.js";

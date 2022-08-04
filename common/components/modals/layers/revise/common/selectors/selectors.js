@@ -15,6 +15,6 @@ export const Selectors = {
   ContentRotateRow: "irapha-revise__content__rotate-row",
 
   Footer: "irapha-revise__footer",
-  CancleButton: "irapha-revise__cancel",
+  CancelButton: "irapha-revise__cancel",
   SubmitButton: "irapha-revise__submit",
 };

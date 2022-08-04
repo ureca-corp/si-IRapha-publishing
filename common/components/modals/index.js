@@ -4,6 +4,7 @@ export {
   ExportDicomLayerPopup,
   DicomInformationLayerPopup,
   LayerPopup,
+  PopupAppbar,
 } from "./layers/index.js";
 
 export {

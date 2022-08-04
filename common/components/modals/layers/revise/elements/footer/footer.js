@@ -3,17 +3,17 @@ import { Selectors } from "../../common/index.js";
 
 const { fromEvent } = rxjs;
 
-export const createFooter = ({ onCancle, onSubmit }) => {
+export const createFooter = ({ onCancel, onSubmit }) => {
   const $footer = createElementFromHTML(`
   <div class="${Selectors.Footer}">
-    <button class="${Selectors.CancleButton}">Cancel</button>
+    <button class="${Selectors.CancelButton}">Cancel</button>
     <button class="${Selectors.SubmitButton}">Save</button>
   </div>
   `);
-  const $cancelButton = $footer.querySelector(`.${Selectors.CancleButton}`);
+  const $cancelButton = $footer.querySelector(`.${Selectors.CancelButton}`);
   const $submitButton = $footer.querySelector(`.${Selectors.SubmitButton}`);
 
-  fromEvent($cancelButton, "click").subscribe((e) => onCancle(e));
+  fromEvent($cancelButton, "click").subscribe((e) => onCancel(e));
   fromEvent($submitButton, "click").subscribe((e) => onSubmit(e));
 
   return $footer;

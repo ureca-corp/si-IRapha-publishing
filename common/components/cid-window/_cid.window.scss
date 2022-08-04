@@ -51,7 +51,7 @@ $color-bg: var(--color__secondary-container);
   }
 }
 
-.irapha-cid-window__cancle-btn {
+.irapha-cid-window__cancel-btn {
   @include buttons.outlined-button;
 
   &:hover {

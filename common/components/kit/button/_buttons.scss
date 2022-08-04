@@ -4,6 +4,7 @@
 @use "../../../themes/shape" as shape;
 
 $color-border: var(--color__border);
+$color-teriary: var(--color__teriary);
 
 @mixin base-button {
   @include typography.label-large;
@@ -31,6 +32,7 @@ $color-border: var(--color__border);
 @mixin contained-button {
   @include base-button;
 
+  background-color: $color-teriary;
   border: 1px solid transparent;
   cursor: pointer;
 
@@ -42,5 +44,9 @@ $color-border: var(--color__border);
 .irapha-button {
   &[variant="outlined"] {
     @include outlined-button;
+  }
+
+  &[variant="contained"] {
+    @include contained-button;
   }
 }

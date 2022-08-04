@@ -1,7 +1,7 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 import { createCheckBox, createLabelWith } from "../kit/index.js";
-import { PopupAppbar } from "../layer-popup/base/index.js";
+import { PopupAppbar } from "../modals/index.js";
 import { Tabs } from "../tabs2/index.js";
 import { getViewModel } from "./cid-window.vm.js";
 import { Content } from "./elements/content/content.js";
@@ -14,7 +14,7 @@ const Selectors = {
   AppbarWrapper: "irapha-cid-window__appbar-wrapper",
   ContentContainer: "irapha-cid-window__content-container",
   Footer: "irapha-cid-window__footer",
-  CancleButton: "irapha-cid-window__cancle-btn",
+  CancelButton: "irapha-cid-window__cancel-btn",
 };
 
 const Template = `
@@ -82,14 +82,14 @@ export class CidWindow extends BaseElement {
 
   #initFooter() {
     const $footer = this.getElementByClassName(Selectors.Footer);
-    const $cancleButton = createElementFromHTML(`
-    <button class="${Selectors.CancleButton}">Cancle</button>
+    const $cancelButton = createElementFromHTML(`
+    <button class="${Selectors.CancelButton}">Cancel</button>
     `);
     const { $label: $autoNextLabel } = createLabelWith({
       title: "Auto Next",
-      $input: createCheckBox(),
+      $input: createCheckBox({}),
     });
 
-    $footer.append(...[$cancleButton, $autoNextLabel]);
+    $footer.append(...[$cancelButton, $autoNextLabel]);
   }
 }
