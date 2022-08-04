@@ -6,18 +6,16 @@ export const createRangeBar = ({
   max = 10,
   step = 0.1,
 }) => {
-  const template = `
-  <input 
-    class="uk-range" 
-    type="range" 
-    value="${value}" 
-    min="${min}" 
-    max="${max}" 
-    step="${step}"
-  >
-  `;
-
-  const $rangeInput = createElementFromHTML(template);
-
-  return $rangeInput;
+  return createElementFromHTML(
+    `
+    <input 
+      class="uk-range" 
+      type="range" 
+      value="${value}" 
+      min="${min}" 
+      max="${max}" 
+      step="${step}"
+    >
+  `
+  );
 };
