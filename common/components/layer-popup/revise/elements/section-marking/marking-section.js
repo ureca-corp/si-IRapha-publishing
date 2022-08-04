@@ -5,39 +5,52 @@ import {
   createTextInput,
 } from "../../../../kit/index.js";
 import { Selectors } from "../../common/index.js";
+import { getViewModel } from "../../revise-popup.vm.js";
+
+const { fromEvent, tap } = rxjs;
+const InputName = "marking";
 
 export const createMarkingSection = () => {
-  const InputName = "marking";
+  const { markingValue$ } = getViewModel();
 
-  const template = `
+  const $section = createElementFromHTML(`
   <section class="${Selectors.ContentSection}">
     <div class="${Selectors.ContentTitle}">Marking</div>
   </section>
-  `;
+  `);
 
-  const $section = createElementFromHTML(template);
+  const handleValueChange = (value) => markingValue$.next(value);
 
-  const { $label: $labelNone, $input: $labelNoneInput } = createLabelWith({
+  const { $label: $labelNone } = createLabelWith({
     title: "None",
-    $input: createRadioButton({ name: InputName }),
+    $input: createRadioButton({
+      name: InputName,
+      value: "None",
+      onChange: (e) => handleValueChange(e.target.value),
+    }),
   });
 
-  const { $label: $labelR, $input: $labelRInput } = createLabelWith({
+  const { $label: $labelR } = createLabelWith({
     title: "R",
-    $input: createRadioButton({ name: InputName }),
+    $input: createRadioButton({
+      name: InputName,
+      value: "R",
+      onChange: (e) => handleValueChange(e.target.value),
+    }),
   });
 
-  const { $label: $labelL, $input: $labelLInput } = createLabelWith({
+  const { $label: $labelL } = createLabelWith({
     title: "L",
-    $input: createRadioButton({ name: InputName }),
+    $input: createRadioButton({
+      name: InputName,
+      value: "L",
+      onChange: (e) => handleValueChange(e.target.value),
+    }),
   });
 
-  const {
-    $label: $labelDirect,
-    $radio: $radioDirect,
-    $input: $inputDirect,
-  } = createRadioWithLabelWithTextField({
+  const $labelDirect = createRadioWithLabelWithTextField({
     name: InputName,
+    onTextChange: handleValueChange,
   });
 
   $section.append(...[$labelNone, $labelR, $labelL, $labelDirect]);
@@ -45,16 +58,18 @@ export const createMarkingSection = () => {
   return { $section };
 };
 
-const createRadioWithLabelWithTextField = ({ name }) => {
+const createRadioWithLabelWithTextField = ({ name, onTextChange }) => {
   const $labelDirect = createElementFromHTML(`<label></label>`);
   const $radioDirect = createRadioButton({ name });
-  const $inputDirect = createTextInput();
+  const $inputDirect = createTextInput({
+    onChange: (e) => onTextChange(e.target.value),
+  });
+
+  fromEvent($labelDirect, "click")
+    .pipe(tap(() => $radioDirect.click()))
+    .subscribe(() => onTextChange($inputDirect.value));
 
   $labelDirect.append(...[$radioDirect, $inputDirect]);
 
-  return {
-    $label: $labelDirect,
-    $radio: $radioDirect,
-    $input: $inputDirect,
-  };
+  return $labelDirect;
 };

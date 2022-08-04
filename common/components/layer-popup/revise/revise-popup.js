@@ -1,19 +1,20 @@
 import { createElementFromHTML } from "../../../utils/dom/index.js";
 import { setOnMouseDragListener } from "../../../utils/events/EventListener.js";
 import { BaseElement } from "../../base/index.js";
-import { LayerPopup } from "../base/js/layer-popup.js";
 import { PopupAppbar } from "../base/index.js";
+import { LayerPopup } from "../base/js/layer-popup.js";
+import { Selectors as ContextMenuSelectors } from "../custom-context-menu/index.js";
+import { Selectors } from "./common/index.js";
 import {
+  createDeleteSection,
   createFooter,
   createMarkingSection,
   createShutterSection,
   createTransformSection,
-  createDeleteSection,
 } from "./elements/index.js";
-import { Selectors } from "./common/index.js";
 
-const Template = `
-<div id="${Selectors.Root}" class="${Selectors.Root} irapha-context-menu">
+const $root = createElementFromHTML(`
+<div id="${Selectors.Root}" class="${Selectors.Root} ${ContextMenuSelectors.ContextMenu}">
 
   <form class="${Selectors.Form}" onsubmit="return false">
     <div class="${Selectors.Content}">
@@ -21,16 +22,16 @@ const Template = `
       
       <div class="${Selectors.ContentRight}"></div>
     </div>
-
   </form>
+
 </div>
-`;
+`);
 
 export class ReviseLayerPopup extends BaseElement {
   #open$;
 
   constructor() {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: $root });
     this.#open$ = window.store.reviseOpen$;
 
     this.#init();
@@ -38,26 +39,32 @@ export class ReviseLayerPopup extends BaseElement {
 
   // private
   #init() {
-    const $root = this.getEl();
+    this.#initBase();
+    this.#initFooter();
+    this.#initSections();
+  }
 
+  #initBase() {
     new LayerPopup({
       $element: $root,
       open$: this.#open$,
     });
 
-    const popupAppbar = new PopupAppbar({
+    const $popupAppbar = new PopupAppbar({
       title: "Revise",
       onClose: () => this.#handleClose(),
-    });
-    $root.prepend(popupAppbar.getEl());
+    }).getEl();
+    $root.prepend($popupAppbar);
 
     setOnMouseDragListener({
-      emitter: popupAppbar.getEl(),
+      emitter: $popupAppbar,
       dragCallback: ({ event }) => this.#handleMouseDrag(event),
     });
+  }
 
-    //
-    const $form = this.getEl().querySelector(".irapha-revise__form");
+  #initFooter() {
+    const { $form } = useElements();
+
     const $footer = createFooter({
       onCancle: () => {
         alert("Todo Cancle");
@@ -68,9 +75,10 @@ export class ReviseLayerPopup extends BaseElement {
     });
 
     $form.appendChild($footer);
+  }
 
-    //
-    const $contentRight = $root.querySelector(`.${Selectors.ContentRight}`);
+  #initSections() {
+    const { $contentRight } = useElements();
 
     const { $section: $markingSection } = createMarkingSection();
     const { $section: $transformSection } = createTransformSection();
@@ -99,3 +107,14 @@ export class ReviseLayerPopup extends BaseElement {
     this.#open$.next(null);
   }
 }
+
+// =================================================================
+const useElements = () => {
+  const $form = $root.querySelector(`.${Selectors.Form}`);
+  const $contentRight = $root.querySelector(`.${Selectors.ContentRight}`);
+
+  return {
+    $form,
+    $contentRight,
+  };
+};

@@ -9309,6 +9309,7 @@ button[disabled] {
 }
 .irapha-folding-bar > * {
   display: flex;
+  width: 100%;
 }
 .irapha-folding-bar[layout-column=true], .irapha-folding-bar[layout-column=true] > * {
   flex-direction: column;

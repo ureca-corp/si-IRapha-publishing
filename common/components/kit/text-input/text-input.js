@@ -1,5 +1,12 @@
 import { createElementFromHTML } from "../../../utils/dom/index.js";
 
-export const createTextInput = () => {
-  return createElementFromHTML(`<input class="uk-input" type="text"/>`);
+const { fromEvent } = rxjs;
+
+export const createTextInput = ({ onChange, onClick }) => {
+  const $input = createElementFromHTML(`<input class="uk-input" type="text"/>`);
+
+  fromEvent($input, "change").subscribe((e) => onChange(e));
+  onClick && fromEvent($input, "click").subscribe((e) => onClick(e));
+
+  return $input;
 };

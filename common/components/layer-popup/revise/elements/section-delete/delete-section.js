@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { Selectors } from "../../common/index.js";
 
 export const createDeleteSection = () => {
-  const template = `
+  const $section = createElementFromHTML(`
   <div class="${Selectors.ContentSection}">
     <div class="${Selectors.ContentTitle}">Delete</div>
     <label>
@@ -10,9 +10,7 @@ export const createDeleteSection = () => {
       Delete original image
     </label>
   </div>
-  `;
-
-  const $section = createElementFromHTML(template);
+  `);
 
   return {
     $section,

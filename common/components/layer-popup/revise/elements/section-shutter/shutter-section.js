@@ -7,15 +7,13 @@ import {
 import { Selectors } from "../../common/index.js";
 
 export const createShutterSection = () => {
-  const template = `
+  const $section = createElementFromHTML(`
   <section class="${Selectors.ContentSection}">
     <div class="${Selectors.ContentTitle}">Shutter</div>
   </section>
-  `;
+  `);
 
-  const $section = createElementFromHTML(template);
-  const { $inner } = createContentInner();
-  $section.appendChild($inner);
+  $section.appendChild(createContentInner());
 
   return {
     $section,
@@ -29,7 +27,7 @@ const createContentInner = () => {
 
   const $shutterLabel = createLabel({
     title: "Shutter",
-    $input: createCheckBox(),
+    $input: createCheckBox({}),
   });
 
   const $shutterItemContainer = createElementFromHTML(
@@ -51,7 +49,7 @@ const createContentInner = () => {
 
   $inner.append(...[$shutterLabel, $shutterItemContainer]);
 
-  return { $inner };
+  return $inner;
 };
 
 const createLabel = ({ title, $input }) => {
