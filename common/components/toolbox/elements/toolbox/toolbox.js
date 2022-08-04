@@ -2,7 +2,7 @@ import { FoldingBar } from "../../../folding-bar/index.js";
 import { Logo } from "../../../logo/index.js";
 import { ToolboxMenusContainer } from "../menus-container/menus-container.js";
 
-import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
 

@@ -1,37 +1,59 @@
-import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
-import { createSearchBar } from "../../../../kit/index.js";
-import { DraggablePopup } from "../../../base/index.js";
-import { DataGrid } from "../data-grid/data-grid.js";
+import { useMouseDragTracking } from "../../../../../hooks/index.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
+import { Button, createSearchBar } from "../../../../kit/index.js";
+import { LayerPopupTemplate, PopupAppbar } from "../../../base/index.js";
 import { Selectors } from "../../common/index.js";
+import { DataGrid } from "../data-grid/data-grid.js";
 import { getViewModel } from "./dicom-information.vm.js";
 
-const { fromEvent } = rxjs;
-
-const $inner = createElementFromHTML(`
-<div class="${Selectors.Inner}">
-  <div class="${Selectors.SearchBar}"></div>
-  
-  <div class="${Selectors.DataGrid}">
-    <div class="${Selectors.DataGridCaptions}">
-      <span class="${Selectors.DataGridTotal}">Total 0</span>
+function Inner() {
+  return createElementFromHTML(`
+    <div class="${Selectors.Inner}">
+      <div class="${Selectors.SearchBar}"></div>
+      
+      <div class="${Selectors.DataGrid}">
+        <div class="${Selectors.DataGridCaptions}">
+          <span class="${Selectors.DataGridTotal}">Total 0</span>
+        </div>
+      </div>
     </div>
-  </div>
+  `);
+}
 
-  <div class="${Selectors.Footer}">
-    <button class="${Selectors.CloseButton}">Close</button>
-  </div>
-</div>
-`);
+function Footer() {
+  return createElementFromHTML(`<div class="${Selectors.Footer}"></div>`);
+}
 
-export class DicomInformationLayerPopup extends DraggablePopup {
+export class DicomInformationLayerPopup extends LayerPopupTemplate {
   #vm = getViewModel();
 
+  #$inner;
+  #$footer;
+
+  #open$;
+
   constructor() {
-    super({
-      open$: window.store.dicomInformationsOpen$,
+    const open$ = window.store.dicomInformationsOpen$;
+    const $inner = new Inner();
+    const $footer = new Footer();
+
+    const $popupAppbar = new PopupAppbar({
       title: "Dicom Information",
-      $children: $inner,
+      onClose: () => this.#handleClose(),
+    }).getEl();
+
+    super({
+      open$,
+      $top: $popupAppbar,
+      $body: $inner,
+      $bottom: $footer,
     });
+
+    this.#$inner = $inner;
+    this.#$footer = $footer;
+    this.#open$ = open$;
+
+    useMouseDragTracking({ $emitter: $popupAppbar, $target: this.getEl() });
 
     this.#init();
   }
@@ -39,11 +61,11 @@ export class DicomInformationLayerPopup extends DraggablePopup {
   #init() {
     this.#initSearchBar();
     this.#initDataGrid();
-    this.#initCloseButton();
+    this.#initFooter();
   }
 
   #initSearchBar() {
-    const { $searchWrapper } = useElements();
+    const { $searchWrapper } = this.#getElements();
 
     $searchWrapper.appendChild(
       createSearchBar({
@@ -54,7 +76,7 @@ export class DicomInformationLayerPopup extends DraggablePopup {
   }
 
   #initDataGrid() {
-    const { $dataGridWrapper, $dataGridTotal } = useElements();
+    const { $dataGridWrapper, $dataGridTotal } = this.#getElements();
 
     const { dicomInfoList$ } = this.#vm;
 
@@ -66,28 +88,33 @@ export class DicomInformationLayerPopup extends DraggablePopup {
     );
   }
 
-  #initCloseButton() {
-    const { $closeButton } = useElements();
+  #initFooter() {
+    this.#$footer.appendChild(
+      new Button({
+        label: "Close",
+        variant: "outlined",
+        onClick: () => this.#handleClose(),
+      })
+    );
+  }
 
-    fromEvent($closeButton, "click").subscribe(() => alert("Todo close"));
+  #handleClose() {
+    this.#open$.next(null);
+  }
+
+  #getElements() {
+    const $inner = this.#$inner;
+
+    const $searchWrapper = $inner.querySelector(`.${Selectors.SearchBar}`);
+    const $dataGridWrapper = $inner.querySelector(`.${Selectors.DataGrid}`);
+    const $dataGridTotal = $dataGridWrapper.querySelector(
+      `.${Selectors.DataGridTotal}`
+    );
+
+    return {
+      $searchWrapper,
+      $dataGridWrapper,
+      $dataGridTotal,
+    };
   }
 }
-
-// =================================================================
-const useElements = () => {
-  const $searchWrapper = $inner.querySelector(`.${Selectors.SearchBar}`);
-  const $dataGridWrapper = $inner.querySelector(`.${Selectors.DataGrid}`);
-  const $dataGridTotal = $dataGridWrapper.querySelector(
-    `.${Selectors.DataGridTotal}`
-  );
-
-  const $footer = $inner.querySelector(`.${Selectors.Footer}`);
-  const $closeButton = $footer.querySelector(`.${Selectors.CloseButton}`);
-
-  return {
-    $searchWrapper,
-    $dataGridWrapper,
-    $dataGridTotal,
-    $closeButton,
-  };
-};

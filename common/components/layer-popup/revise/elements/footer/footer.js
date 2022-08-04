@@ -1,4 +1,4 @@
-import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { Selectors } from "../../common/index.js";
 
 const { fromEvent } = rxjs;

@@ -13,25 +13,27 @@ import {
   createTransformSection,
 } from "./elements/index.js";
 
-const $root = createElementFromHTML(`
-<div id="${Selectors.Root}" class="${Selectors.Root} ${ContextMenuSelectors.ContextMenu}">
-
-  <form class="${Selectors.Form}" onsubmit="return false">
-    <div class="${Selectors.Content}">
-      <canvas></canvas>
-      
-      <div class="${Selectors.ContentRight}"></div>
-    </div>
-  </form>
-
-</div>
-`);
+function ReviseComponent() {
+  return createElementFromHTML(`
+  <div id="${Selectors.Root}" class="${Selectors.Root} ${ContextMenuSelectors.ContextMenu}">
+  
+    <form class="${Selectors.Form}" onsubmit="return false">
+      <div class="${Selectors.Content}">
+        <canvas></canvas>
+        
+        <div class="${Selectors.ContentRight}"></div>
+      </div>
+    </form>
+  
+  </div>
+  `);
+}
 
 export class ReviseLayerPopup extends BaseElement {
   #open$;
 
   constructor() {
-    super({ $element: $root });
+    super({ $element: new ReviseComponent() });
     this.#open$ = window.store.reviseOpen$;
 
     this.#init();
@@ -46,7 +48,7 @@ export class ReviseLayerPopup extends BaseElement {
 
   #initBase() {
     new LayerPopup({
-      $element: $root,
+      $element: this.getEl(),
       open$: this.#open$,
     });
 
@@ -54,7 +56,7 @@ export class ReviseLayerPopup extends BaseElement {
       title: "Revise",
       onClose: () => this.#handleClose(),
     }).getEl();
-    $root.prepend($popupAppbar);
+    this.getEl().prepend($popupAppbar);
 
     setOnMouseDragListener({
       emitter: $popupAppbar,
@@ -63,7 +65,7 @@ export class ReviseLayerPopup extends BaseElement {
   }
 
   #initFooter() {
-    const { $form } = useElements();
+    const { $form } = this.#getElements();
 
     const $footer = createFooter({
       onCancle: () => {
@@ -78,7 +80,7 @@ export class ReviseLayerPopup extends BaseElement {
   }
 
   #initSections() {
-    const { $contentRight } = useElements();
+    const { $contentRight } = this.#getElements();
 
     const { $section: $markingSection } = createMarkingSection();
     const { $section: $transformSection } = createTransformSection();
@@ -106,15 +108,16 @@ export class ReviseLayerPopup extends BaseElement {
   #handleClose() {
     this.#open$.next(null);
   }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $form = $root.querySelector(`.${Selectors.Form}`);
+    const $contentRight = $root.querySelector(`.${Selectors.ContentRight}`);
+
+    return {
+      $form,
+      $contentRight,
+    };
+  }
 }
-
-// =================================================================
-const useElements = () => {
-  const $form = $root.querySelector(`.${Selectors.Form}`);
-  const $contentRight = $root.querySelector(`.${Selectors.ContentRight}`);
-
-  return {
-    $form,
-    $contentRight,
-  };
-};

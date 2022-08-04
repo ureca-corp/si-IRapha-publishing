@@ -1,6 +1,6 @@
 @use "../../../../../styles/common";
 @use "../../../../kit/style" as kit;
-@use "../../../../../styles/buttons" as buttons;
+@use "../../../../../styles/buttons" as buttons2;
 @use "../../../../../themes/typography" as typography;
 
 $color-border: var(--color__border);
@@ -91,12 +91,10 @@ $color-table-hover: var(--color__table-hover);
   display: flex;
   justify-content: flex-end;
   padding: 12px;
-
-  border-top: 1px dashed $color-border;
 }
 
 .irapha-dicom-info__close-btn {
-  @include buttons.outlined-button;
+  @include buttons2.outlined-button;
 
   &:hover {
     color: $color-font1;

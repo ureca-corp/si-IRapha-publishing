@@ -2,7 +2,7 @@ import { FoldingBar } from "../../../folding-bar/index.js";
 import { KinSelector } from "../../../selectors/index.js";
 import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
 
-import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { PinIcon2 } from "../../../icons/pin.icon.js";
 import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";

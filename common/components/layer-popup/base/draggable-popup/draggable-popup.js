@@ -5,9 +5,9 @@ import { Selectors as CustomContextMenuSelectors } from "../../custom-context-me
 import { LayerPopup } from "../js/layer-popup.js";
 import { PopupAppbar } from "../popup-appbar/popup-appbar.js";
 
-const Template = `
+const $root = createElementFromHTML(`
 <div class="${CustomContextMenuSelectors.ContextMenu}"></div>
-`;
+`);
 
 export class DraggablePopup extends BaseElement {
   #open$;
@@ -16,7 +16,7 @@ export class DraggablePopup extends BaseElement {
   #title;
 
   constructor({ open$, title, $children }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: $root });
     this.#open$ = open$;
     this.#$children = $children;
     this.#title = title;
@@ -31,8 +31,6 @@ export class DraggablePopup extends BaseElement {
   }
 
   #initLayerPopup() {
-    const $root = this.getEl();
-
     new LayerPopup({
       $element: $root,
       open$: this.#open$,
@@ -40,8 +38,6 @@ export class DraggablePopup extends BaseElement {
   }
 
   #initPopupAppbar() {
-    const $root = this.getEl();
-
     const $popupAppbar = new PopupAppbar({
       title: this.#title,
       onClose: () => this.#handleClose(),
@@ -56,8 +52,6 @@ export class DraggablePopup extends BaseElement {
 
   #initChildren() {
     if (!this.#$children) return;
-
-    const $root = this.getEl();
 
     $root.appendChild(this.#$children);
   }

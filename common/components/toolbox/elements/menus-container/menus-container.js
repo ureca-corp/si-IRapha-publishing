@@ -8,7 +8,7 @@ import {
 } from "../../common/index.js";
 import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
 /**
  * Constructor types

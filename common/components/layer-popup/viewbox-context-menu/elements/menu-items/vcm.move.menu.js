@@ -1,4 +1,4 @@
-import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/index.js";
 import { BaseMenuItem } from "../../../../menus/menu-items/index.js";
 import { SubMenu, SubMenuItem } from "../../../../sub-menu/index.js";

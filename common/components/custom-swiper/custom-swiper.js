@@ -1,5 +1,5 @@
 import {} from "../../../libs/swiper-8.3.2/swiper.js";
-import { createElementFromHTML } from "../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 
 const Selectors = {

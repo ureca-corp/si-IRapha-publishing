@@ -1,4 +1,4 @@
-import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/base-element.js";
 import { useCustomContextMenu } from "../../../../layer-popup/custom-context-menu/index.js";
 import { Selectors, TextPositionClassType } from "../../../common/index.js";

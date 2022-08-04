@@ -1,28 +1,31 @@
-import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/index.js";
 import { CustomContextMenu } from "../../../custom-context-menu/index.js";
 import { getMenus } from "./get-menus.js";
 import { Selectors as CustomContextMenuSelectors } from "../../../custom-context-menu/index.js";
 
-const Template = `
-<div id="irapha-viewbox-context-menu" class="${CustomContextMenuSelectors.ContextMenu}">
-  <div class="${CustomContextMenuSelectors.SegmentContainer}"></div>
-
-  <div class="${CustomContextMenuSelectors.Navigator}">
-    <button class="${CustomContextMenuSelectors.NavBefore}"></button>
-
-    <div>
-      <span>Menu</span>
-      <span class="${CustomContextMenuSelectors.NavPageCount}">(0/0)</span>
+function ViewBoxContextMenuComponent() {
+  return createElementFromHTML(`
+  <div id="irapha-viewbox-context-menu" class="${CustomContextMenuSelectors.ContextMenu}">
+    <div class="${CustomContextMenuSelectors.SegmentContainer}"></div>
+  
+    <div class="${CustomContextMenuSelectors.Navigator}">
+      <button class="${CustomContextMenuSelectors.NavBefore}"></button>
+  
+      <div>
+        <span>Menu</span>
+        <span class="${CustomContextMenuSelectors.NavPageCount}">(0/0)</span>
+      </div>
+  
+      <button class="${CustomContextMenuSelectors.NavNext}"></button>
     </div>
-
-    <button class="${CustomContextMenuSelectors.NavNext}"></button>
   </div>
-</div>
-`;
+  `);
+}
+
 export class ViewboxContextMenu extends BaseElement {
   constructor() {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new ViewBoxContextMenuComponent() });
 
     this.#init();
   }
@@ -48,9 +51,21 @@ export class ViewboxContextMenu extends BaseElement {
       createContextMenuSegment(chunk)
     );
 
-    this.getEl()
-      .querySelector(`.${CustomContextMenuSelectors.SegmentContainer}`)
-      .append(...$segments);
+    const { $segmentContainer } = this.#getElements();
+
+    $segmentContainer.append(...$segments);
+  }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $segmentContainer = $root.querySelector(
+      `.${CustomContextMenuSelectors.SegmentContainer}`
+    );
+
+    return {
+      $segmentContainer,
+    };
   }
 }
 

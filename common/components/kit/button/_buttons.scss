@@ -1,0 +1,46 @@
+@use "../../../styles/common";
+@use "../../../styles/anim" as anim;
+@use "../../../themes/typography" as typography;
+@use "../../../themes/shape" as shape;
+
+$color-border: var(--color__border);
+
+@mixin base-button {
+  @include typography.label-large;
+  @include anim.basic-transition;
+  @include shape.small;
+
+  padding: 4px 12px;
+
+  cursor: pointer;
+}
+
+@mixin outlined-button {
+  @include base-button;
+
+  border: 1px solid $color-border;
+  color: $color-border;
+
+  background-color: transparent;
+
+  &:hover {
+    background-color: $color-border;
+  }
+}
+
+@mixin contained-button {
+  @include base-button;
+
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.irapha-button {
+  &[variant="outlined"] {
+    @include outlined-button;
+  }
+}

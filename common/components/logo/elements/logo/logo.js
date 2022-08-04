@@ -1,4 +1,4 @@
-import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHTML.js";
+import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { PinIcon2 } from "../../../icons/pin.icon.js";
 import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
