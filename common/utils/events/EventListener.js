@@ -1,12 +1,12 @@
-const rx = rxjs;
+const { fromEvent, merge, scan } = rxjs;
 
 //
 const setOnMouseDragListener = ({ emitter, dragCallback }) => {
   const events = ["mousemove", "mousedown", "mouseup"].map((it) =>
-    rx.fromEvent(emitter, it)
+    fromEvent(emitter, it)
   );
 
-  const scanMouseDownEvent = rx.scan(
+  const scanMouseDownEvent = scan(
     (old, event) => {
       switch (event.type) {
         case "mouseup":
@@ -25,7 +25,7 @@ const setOnMouseDragListener = ({ emitter, dragCallback }) => {
     { dragable: false, event: undefined }
   );
 
-  rx.merge(...events)
+  merge(...events)
     .pipe(scanMouseDownEvent)
     .subscribe(({ dragable, event }) => {
       if (dragable) return dragCallback({ event });

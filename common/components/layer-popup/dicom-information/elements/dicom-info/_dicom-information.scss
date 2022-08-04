@@ -4,9 +4,10 @@
 @use "../../../../../themes/typography" as typography;
 
 $color-border: var(--color__border);
-$color-bg: #333;
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
+$color-bg-primary: var(--color__bg-primary);
+$color-table-hover: var(--color__table-hover);
 
 .irapha-dicom-info__inner {
   width: 800px;
@@ -30,7 +31,7 @@ $color-font2: var(--color__font-primary);
     thead {
       position: sticky;
       top: 0;
-      background-color: $color-bg;
+      background-color: $color-bg-primary;
 
       th {
         &:nth-child(1) {
@@ -60,7 +61,8 @@ $color-font2: var(--color__font-primary);
         cursor: pointer;
 
         &:hover {
-          background-color: #ccc;
+          background-color: $color-table-hover;
+          color: $color-font1;
         }
 
         td {

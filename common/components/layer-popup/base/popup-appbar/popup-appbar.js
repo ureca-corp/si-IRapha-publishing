@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../../../utils/dom/CreateElementFromHT
 import { BaseElement } from "../../../base/index.js";
 import { Selectors } from "./selectors.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
 const Template = `
 <div class="${Selectors.Appbar}"></div>
@@ -31,21 +31,19 @@ export class PopupAppbar extends BaseElement {
 
 // =================================================================
 const createTitle = ({ label }) => {
-  const template = `
-  <div class="${Selectors.Title}">${label}</div>
-  `;
-  const $title = createElementFromHTML(template);
+  const $title = createElementFromHTML(
+    `<div class="${Selectors.Title}">${label}</div>`
+  );
 
   return $title;
 };
 
 const createCloseIcon = ({ onClick }) => {
-  const template = `
-  <button class="${Selectors.Close}" uk-close="true"/>
-  `;
-  const $closeIcon = createElementFromHTML(template);
+  const $closeIcon = createElementFromHTML(
+    `<button class="${Selectors.Close}" uk-close="true"/>`
+  );
 
-  rx.fromEvent($closeIcon, "click").subscribe((e) => onClick(e));
+  fromEvent($closeIcon, "click").subscribe(onClick);
 
   return $closeIcon;
 };

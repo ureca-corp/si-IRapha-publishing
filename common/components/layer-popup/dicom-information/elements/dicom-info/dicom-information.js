@@ -3,8 +3,9 @@ import { createSearchBar } from "../../../../kit/index.js";
 import { DraggablePopup } from "../../../base/index.js";
 import { DataGrid } from "../data-grid/data-grid.js";
 import { Selectors } from "../../common/index.js";
+import { getViewModel } from "./dicom-information.vm.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
 const $inner = createElementFromHTML(`
 <div class="${Selectors.Inner}">
@@ -23,11 +24,12 @@ const $inner = createElementFromHTML(`
 `);
 
 export class DicomInformationLayerPopup extends DraggablePopup {
-  #dicomInfoList$ = new rx.BehaviorSubject(dicomInfoListDummyData);
+  #vm = getViewModel();
 
   constructor() {
     super({
       open$: window.store.dicomInformationsOpen$,
+      title: "Dicom Information",
       $children: $inner,
     });
 
@@ -37,11 +39,11 @@ export class DicomInformationLayerPopup extends DraggablePopup {
   #init() {
     this.#initSearchBar();
     this.#initDataGrid();
-    this.#initFooter();
+    this.#initCloseButton();
   }
 
   #initSearchBar() {
-    const $searchWrapper = $inner.querySelector(`.${Selectors.SearchBar}`);
+    const { $searchWrapper } = useElements();
 
     $searchWrapper.appendChild(
       createSearchBar({
@@ -52,35 +54,40 @@ export class DicomInformationLayerPopup extends DraggablePopup {
   }
 
   #initDataGrid() {
-    const $dataGridWrapper = $inner.querySelector(`.${Selectors.DataGrid}`);
+    const { $dataGridWrapper, $dataGridTotal } = useElements();
 
-    const dataGrid = new DataGrid({ dicomInfoList$: this.#dicomInfoList$ });
-    $dataGridWrapper.prepend(dataGrid.getEl());
+    const { dicomInfoList$ } = this.#vm;
 
-    const $total = $dataGridWrapper.querySelector(
-      `.${Selectors.DataGridTotal}`
+    const $dataGrid = new DataGrid({ dicomInfoList$ }).getEl();
+    $dataGridWrapper.prepend($dataGrid);
+
+    dicomInfoList$.subscribe(
+      (list) => ($dataGridTotal.innerHTML = `Total ${list.length}`)
     );
-
-    this.#dicomInfoList$.subscribe((it) => {
-      $total.innerHTML = `Total ${it.length}`;
-    });
   }
 
-  #initFooter() {
-    const $footer = $inner.querySelector(`.${Selectors.Footer}`);
-    const $closeButton = $footer.querySelector(`.${Selectors.CloseButton}`);
+  #initCloseButton() {
+    const { $closeButton } = useElements();
 
-    rx.fromEvent($closeButton, "click").subscribe(() => alert("Todo close"));
+    fromEvent($closeButton, "click").subscribe(() => alert("Todo close"));
   }
 }
 
-// dummy data
-const dicomInfoListDummyData = Array.from({ length: 40 }, (_, index) => ({
-  id: index + 1,
-  tag: "(0002, 0001)",
-  name: "FileMetaInformationsFileMetaInformationsFileMetaInformationsFileMetaInformationsFileMetaInformationsFileMetaInformations",
-  vr: "OB",
-  length: "0",
-  value:
-    "123132131321312321321312321213211231321313213123213213123212132112313213132131232132131232121321",
-}));
+// =================================================================
+const useElements = () => {
+  const $searchWrapper = $inner.querySelector(`.${Selectors.SearchBar}`);
+  const $dataGridWrapper = $inner.querySelector(`.${Selectors.DataGrid}`);
+  const $dataGridTotal = $dataGridWrapper.querySelector(
+    `.${Selectors.DataGridTotal}`
+  );
+
+  const $footer = $inner.querySelector(`.${Selectors.Footer}`);
+  const $closeButton = $footer.querySelector(`.${Selectors.CloseButton}`);
+
+  return {
+    $searchWrapper,
+    $dataGridWrapper,
+    $dataGridTotal,
+    $closeButton,
+  };
+};

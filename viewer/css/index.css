@@ -9029,6 +9029,7 @@ button[disabled] {
   --color__bg-primary: #333;
   --color__bg-secondary: #eeeeee11;
   --color__active-bg-primary: rgb(54, 54, 58);
+  --color__table-hover: #ffffff33;
   --color__red: #ff3b30;
   --color__orange: #ff9500;
   --color__yellow: #ffcc00;
@@ -10207,7 +10208,7 @@ button[disabled] {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #333;
+  background-color: var(--color__bg-primary);
 }
 .irapha-dicom-info__data-grid .uk-table table thead th:nth-child(1) {
   width: 8%;
@@ -10229,7 +10230,8 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-dicom-info__data-grid .uk-table table tbody tr:hover {
-  background-color: #ccc;
+  background-color: var(--color__table-hover);
+  color: var(--color__font-secondary);
 }
 .irapha-dicom-info__data-grid .uk-table table tbody tr td {
   overflow: hidden;
