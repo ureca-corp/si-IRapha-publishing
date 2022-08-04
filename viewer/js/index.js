@@ -32,7 +32,7 @@ new StickyMenu({
       toolboxLayoutColumn$.next(isVertical);
     }
 
-    if (hasElement("#irapha-thumbnail-box")) {
+    if (hasElement(".irapha-thumbnail-box")) {
       thumbnailboxLayoutColumn$.next(isVertical);
     }
   },

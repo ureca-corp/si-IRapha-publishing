@@ -64,7 +64,6 @@ export class Logo extends BaseElement {
     const { onPinClick } = this.#events;
 
     const pinIcon = new PinIcon2({
-      states: { isActive$: new rx.BehaviorSubject(true) },
       options: { events: { onClick: onPinClick } },
     });
 

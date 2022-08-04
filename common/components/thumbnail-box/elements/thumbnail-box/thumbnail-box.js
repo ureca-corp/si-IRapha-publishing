@@ -9,6 +9,8 @@ import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
 
 const rx = rxjs;
 
+const { BehaviorSubject } = rxjs;
+
 const Template = `
 <div class="${Selectors.ThumbnailBox}" draggable="true" priority="2"></div>
 `;
@@ -18,9 +20,9 @@ export class ThumbnailBox extends BaseElement {
 
   #isLayoutColumn$;
 
-  #isExpanded$ = new rx.BehaviorSubject();
-  #isPreview$ = new rx.BehaviorSubject(false);
-  #shrinkDirection$ = new rx.BehaviorSubject();
+  #isExpanded$ = new BehaviorSubject();
+  #isPreview$ = new BehaviorSubject(false);
+  #shrinkDirection$ = new BehaviorSubject();
 
   constructor({ isLayoutColumn$, model }) {
     super({ $element: createElementFromHTML(Template) });
