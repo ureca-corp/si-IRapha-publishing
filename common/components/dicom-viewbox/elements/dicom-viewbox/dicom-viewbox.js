@@ -1,7 +1,7 @@
 import { Selectors, PositionClassType } from "../../common/index.js";
 import { CinePlayController } from "../../../cineplay-controller/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { useCustomContextMenu } from "../../../layer-popup/custom-context-menu/index.js";
+import { useCustomContextMenu } from "../../../modals/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
 const { fromEvent } = rxjs;

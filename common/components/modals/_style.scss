@@ -1,0 +1,11 @@
+@use "../../styles/input" as input;
+@use "./layers/style" as layers;
+@use "./context-menus/style" as context-menus;
+
+//
+.irapha-viewbox-cm__menu-zoom {
+  @include input.input-style;
+
+  width: 100%;
+  padding-left: 4px;
+}

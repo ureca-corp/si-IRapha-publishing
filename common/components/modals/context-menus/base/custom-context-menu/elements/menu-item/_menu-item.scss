@@ -1,0 +1,51 @@
+@use "../../../../../../../styles/common";
+@use "../../../../../../../themes/typography" as typography;
+
+$item-hover-bg: #eeeeee11;
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+
+@mixin s-menu-item {
+  &.--more {
+    &::after {
+      content: "▶";
+
+      color: $color-font1;
+
+      transform: scaleX(0.7);
+    }
+  }
+}
+
+.irapha-context-menu__item {
+  @include typography.body-medium;
+  @include s-menu-item;
+
+  white-space: nowrap;
+
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  width: 200px;
+  height: 32px;
+  padding: 8px;
+
+  color: $color-font1;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $item-hover-bg;
+    color: $color-font2;
+  }
+
+  & > {
+    width: 100%;
+  }
+}

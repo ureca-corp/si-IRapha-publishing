@@ -1,0 +1,15 @@
+@use "../../../../../styles/common";
+
+$color-border: var(--color__border);
+
+.irapha-layer-popup {
+  position: absolute;
+}
+
+.irapha-layer-popup__top-wrapper {
+  border-bottom: 1px dashed $color-border;
+}
+
+.irapha-layer-popup__bottom-wrapper {
+  border-top: 1px dashed $color-border;
+}

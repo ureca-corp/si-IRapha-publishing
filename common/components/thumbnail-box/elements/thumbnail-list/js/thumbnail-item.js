@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/base-element.js";
-import { useCustomContextMenu } from "../../../../layer-popup/custom-context-menu/index.js";
+import { useCustomContextMenu } from "../../../../modals/index.js";
 import { Selectors, TextPositionClassType } from "../../../common/index.js";
 
 /**

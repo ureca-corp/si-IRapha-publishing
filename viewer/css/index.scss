@@ -1,7 +1,4 @@
-@use "../../libs/uikit-3.14.3/css/uikit.min.css" as uikit;
-@use "../../libs/swiper-8.3.2/swiper.css" as swiper;
-
-@use "../../libs//reset-5.0.1/reset.css" as reset;
+@use "../../libs/style" as libs;
 
 @use "../../common/components/icons/style" as icons;
 
@@ -11,8 +8,6 @@
 
 @use "../../common/components/tabs/style" as tabs;
 
-@use "../../common/components/layer-popup/style" as layer-popup;
-
 @use "../../common/components/dicom-window/style" as dicom-window;
 @use "../../common/components/dicom-viewbox/style" as dicom-viewbox;
 
@@ -20,6 +15,8 @@
 @use "../../common/components/virtual-layout/style" as virtual-layout;
 
 @use "../../common/components/menus/menu-items/style" as menu-items;
+
+@use "../../common/components/modals/style" as modals;
 
 // =================================================================
 #irapha-app {

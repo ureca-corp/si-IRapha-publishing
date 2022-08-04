@@ -1,8 +1,5 @@
-import {} from "../../libs/lodash-4.17.21/lodash.js";
-import {} from "../../libs/uikit-3.14.3/js/uikit.min.js";
-import {} from "../../libs/uikit-3.14.3/js/uikit-icons.min.js";
-
-import {} from "../../common/store/store.js";
+import "../../libs/index.js";
+import "../../common/store/store.js";
 
 const rx = rxjs;
 // =================================================================
@@ -51,7 +48,7 @@ document
 
 // =================================================================
 
-import { CustomContextMenu } from "../../common/components/layer-popup/index.js";
+import { CustomContextMenu } from "../../common/components/modals/index.js";
 new CustomContextMenu({
   $element: document.querySelector("#irapha-thumbnail-context-menu"),
   open$: window.store.thumbnailContextMenuOpen$,
@@ -69,10 +66,9 @@ document
   });
 
 // =================================================================
-import {
-  ExportDicomLayerPopup,
-  RelatedStudyLayerPopup,
-} from "../../common/components/layer-popup/index.js";
+import { ExportDicomLayerPopup } from "../../common/components/modals/index.js";
+
+import { RelatedStudyLayerPopup } from "../../common/components/modals/index.js";
 
 const relatedStudyLayerPopup = new RelatedStudyLayerPopup({
   open$: window.store.relatedStudyOpen$,
@@ -87,7 +83,7 @@ new ExportDicomLayerPopup({
 });
 
 // =================================================================
-import { ViewboxContextMenu } from "../../common/components/layer-popup/index.js";
+import { ViewboxContextMenu } from "../../common/components/modals/index.js";
 
 const viewboxContextMenu = new ViewboxContextMenu();
 
@@ -116,7 +112,7 @@ const virtualLayout = new VirtualLayout({
 document.querySelector("#testBBB").appendChild(virtualLayout.getEl());
 
 // =================================================================
-import { AnnotationContextMenu } from "../../common/components/layer-popup/index.js";
+import { AnnotationContextMenu } from "../../common/components/modals/index.js";
 
 const annotationContextMenu = new AnnotationContextMenu();
 document
@@ -126,14 +122,14 @@ document
 window.store.annotationContextMenuOpen$.next({ x: 200, y: 200 });
 
 // =================================================================
-import { ReviseLayerPopup } from "../../common/components/layer-popup/index.js";
+import { ReviseLayerPopup } from "../../common/components/modals/index.js";
 const reviseLayerPopup = new ReviseLayerPopup();
 document
   .querySelector("#global-popup-group")
   .appendChild(reviseLayerPopup.getEl());
 
 // =================================================================
-import { DicomInformationLayerPopup } from "../../common/components/layer-popup/dicom-information/index.js";
+import { DicomInformationLayerPopup } from "../../common/components/modals/index.js";
 const dicomInfoLayerPopup = new DicomInformationLayerPopup();
 document
   .querySelector("#global-popup-group")
