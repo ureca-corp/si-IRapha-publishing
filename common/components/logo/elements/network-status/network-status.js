@@ -1,33 +1,35 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/index.js";
 
+const { BehaviorSubject } = rxjs;
+
 const Selectors = {
   Root: "irapha-network-status",
   Icon: "irapha-network-status__icon",
 };
 
-const StatusType = {
-  Green: { className: "--status-green", value: "green" },
-  Warning: { className: "--status-warning", value: "warning" },
-  Danger: { className: "--status-danger", value: "danger" },
-};
+function NetworkStatusComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.Root}">
+    <div class="${Selectors.Icon}"></div>
+  </div>
+  `);
+}
 
-const rx = rxjs;
+const StatusType = {
+  Green: "green",
+  Warning: "warning",
+  Danger: "danger",
+};
 
 const Unit = "msec";
 
 export class NetworkStatus extends BaseElement {
-  static template = `
-  <div class="${Selectors.Root}">
-    <div class="${Selectors.Icon}"></div>
-  </div>
-  `;
-
-  #tooltip$ = new rx.BehaviorSubject(`20${Unit}`);
-  #status$ = new rx.BehaviorSubject(StatusType.Green);
+  #tooltip$ = new BehaviorSubject(`20${Unit}`);
+  #status$ = new BehaviorSubject(StatusType.Green);
 
   constructor() {
-    super({ $element: createElementFromHTML(NetworkStatus.template) });
+    super({ $element: new NetworkStatusComp() });
 
     this.#init();
   }
@@ -48,11 +50,17 @@ export class NetworkStatus extends BaseElement {
   }
 
   #handleStatusChange(status) {
-    const $iconClassList = this.#getIcon().classList;
-    $iconClassList.add(status.className);
+    const { $icon } = this.#getElements();
+    $icon.setAttribute("status", status);
   }
 
-  #getIcon() {
-    return this.getEl().querySelector(`.${Selectors.Icon}`);
+  #getElements() {
+    const $root = this.getEl();
+
+    const $icon = $root.querySelector(`.${Selectors.Icon}`);
+
+    return {
+      $icon,
+    };
   }
 }

@@ -7,14 +7,14 @@ const Selectors = {
   Root: "irapha-fullscreen-toggle-button",
 };
 
+function FullScreenToogleButtonComp() {
+  return createElementFromHTML(`<div class="${Selectors.Root}"></div>`);
+}
+
 // 최대화/최소화 토글 아이콘 버튼
 export class FullScreenToggleButton extends BaseElement {
-  static template = `
-  <div class="${Selectors.Root}"></div>
-  `;
-
   constructor() {
-    super({ $element: createElementFromHTML(FullScreenToggleButton.template) });
+    super({ $element: new FullScreenToogleButtonComp() });
 
     this.#init();
   }
@@ -23,14 +23,14 @@ export class FullScreenToggleButton extends BaseElement {
     const $root = this.getEl();
     const { toggle } = useFullScreen();
 
-    const fullscreenIcon = new FullScreenIcon({
+    const $fullscreenIcon = new FullScreenIcon({
       options: {
         size: "small",
         events: {
           onClick: () => toggle(),
         },
       },
-    });
-    $root.appendChild(fullscreenIcon.getEl());
+    }).getEl();
+    $root.appendChild($fullscreenIcon);
   }
 }

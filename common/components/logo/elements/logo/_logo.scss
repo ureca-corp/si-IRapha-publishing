@@ -7,7 +7,7 @@
 
 // 로고 상태
 @mixin s-logo {
-  &.--shrink-v {
+  &[shrink="vertical"] {
     width: fit-content;
     height: 30px;
 
@@ -22,7 +22,7 @@
     }
   }
 
-  &.--shrink-h {
+  &[shrink="horizontal"] {
     .irapha-logo__container {
       display: flex;
       justify-content: flex-start;

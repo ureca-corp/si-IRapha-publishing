@@ -7,7 +7,10 @@ const { fromEvent } = rxjs;
 const Selectors = {
   Root: "irapha-folding-bar",
 };
-const Template = `<div class="${Selectors.Root}"></div>`;
+
+function FoldingBarComp() {
+  return createElementFromHTML(`<div class="${Selectors.Root}"></div>`);
+}
 
 /**
  * Constructor types
@@ -33,7 +36,7 @@ export class FoldingBar extends BaseElement {
   #$children;
 
   constructor({ states, $children }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new FoldingBarComp() });
     this.#states = states;
     this.#$children = $children;
 

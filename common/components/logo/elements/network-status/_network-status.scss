@@ -2,18 +2,16 @@
 
 // 네트워크 상태 아이콘 - 상태
 @mixin s-network {
-  &.--status {
-    &-danger {
-      background-color: var(--color__status-danger);
-    }
+  &[status="danger"] {
+    background-color: var(--color__status-danger);
+  }
 
-    &-warning {
-      background-color: var(--color__status-warning);
-    }
+  &[status="warning"] {
+    background-color: var(--color__status-warning);
+  }
 
-    &-green {
-      background-color: var(--color__status-normal);
-    }
+  &[status="green"] {
+    background-color: var(--color__status-normal);
   }
 }
 

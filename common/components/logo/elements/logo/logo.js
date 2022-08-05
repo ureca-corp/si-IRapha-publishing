@@ -1,11 +1,9 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { PinIcon2 } from "../../../icons/pin.icon.js";
-import { Selectors, ShrinkClassType, ShrinkType } from "../../common/index.js";
+import { Selectors, ShrinkType } from "../../common/index.js";
 import { FullScreenToggleButton } from "../fullscreen-toggle-button/fullscreen-toggle-button.js";
 import { NetworkStatus } from "../network-status/network-status.js";
-
-const rx = rxjs;
 
 /**
  * Constructor types
@@ -19,21 +17,11 @@ const rx = rxjs;
  * }
  */
 export class Logo extends BaseElement {
-  static template = `
-  <div class="${Selectors.Logo}">
-    <div class="${Selectors.LogoContainer}">
-      <div class="${Selectors.LogoWrapper}"></div>
-
-      <ul class="${Selectors.LogoMenus}"></ul>
-    </div>
-  </div>
-  `;
-
   #states;
   #events;
 
   constructor({ states, events }) {
-    super({ $element: createElementFromHTML(Logo.template) });
+    super({ $element: new LogoComp() });
 
     this.#states = states;
     this.#events = events;
@@ -57,64 +45,75 @@ export class Logo extends BaseElement {
   }
 
   #initLogoImage() {
-    this.#getLogoWrapper().appendChild(createLogoImage());
+    const { $logoWrapper } = this.#getElements();
+
+    $logoWrapper.appendChild(new LogoImage());
   }
 
   #initMenus() {
     const { onPinClick } = this.#events;
+    const { $logoMenus } = this.#getElements();
 
-    const pinIcon = new PinIcon2({
+    const $pinIcon = new PinIcon2({
       options: { events: { onClick: onPinClick } },
-    });
+    }).getEl();
 
-    const $pinIcon = pinIcon.getEl();
     const $fullscreenToggleButton = new FullScreenToggleButton().getEl();
     const $networkStatus = new NetworkStatus().getEl();
 
-    this.#getElementOfMenus().append(
-      ...[$pinIcon, $fullscreenToggleButton, $networkStatus]
-    );
+    $logoMenus.append(...[$pinIcon, $fullscreenToggleButton, $networkStatus]);
   }
 
-  #getLogoWrapper() {
-    return this.getEl().querySelector(`.${Selectors.LogoWrapper}`);
-  }
-
-  #getElementOfMenus() {
-    return this.getEl().querySelector(`.${Selectors.LogoMenus}`);
-  }
-
-  #removeAllShrink() {
-    const rootClassList = this.getEl().classList;
-
-    rootClassList.remove(ShrinkClassType.Column);
-    rootClassList.remove(ShrinkClassType.Row);
-  }
-
-  // handler
+  // handlers
   #handleShrinkChange(shrinkDirection) {
-    const rootClassList = this.getEl().classList;
+    const $root = this.getEl();
+    const { Key, Vertical, Horizontal } = ShrinkType;
 
-    this.#removeAllShrink();
+    switch (shrinkDirection) {
+      case Vertical.value:
+        return $root.setAttribute(Key, Vertical.value);
+      case Horizontal.value:
+        return $root.setAttribute(Key, Horizontal.value);
+      default:
+        return $root.removeAttribute(Key);
+    }
+  }
 
-    if (shrinkDirection === ShrinkType.Vertical)
-      return rootClassList.add(ShrinkClassType.Column);
+  #getElements() {
+    const $root = this.getEl();
 
-    if (shrinkDirection === ShrinkType.Horizontal)
-      return rootClassList.add(ShrinkClassType.Row);
+    const $logoWrapper = $root.querySelector(`.${Selectors.LogoWrapper}`);
+    const $logoMenus = $root.querySelector(`.${Selectors.LogoMenus}`);
+
+    return {
+      $logoWrapper,
+      $logoMenus,
+    };
   }
 }
 
 // =========================================================================
-const createLogoImage = () => {
-  const template = `
+function LogoComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.Logo}">
+    <div class="${Selectors.LogoContainer}">
+      <div class="${Selectors.LogoWrapper}"></div>
+
+      <ul class="${Selectors.LogoMenus}"></ul>
+    </div>
+  </div>
+  `);
+}
+
+function LogoImage() {
+  const logoImagePath = "../../assets/images/logo.svg";
+
+  return createElementFromHTML(`
   <img
     class="${Selectors.LogoImage} ${Selectors.UkButton}"
-    src="../../assets/images/logo.svg"
+    src="${logoImagePath}"
     alt="logo"
     uk-toggle="target: #irapha-viewer-info-popup"
   />
-  `;
-
-  return createElementFromHTML(template);
-};
+  `);
+}
