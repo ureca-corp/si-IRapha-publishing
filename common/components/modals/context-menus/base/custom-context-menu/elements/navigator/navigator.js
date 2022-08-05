@@ -1,10 +1,11 @@
+import { BaseElement } from "../../../../../../base/base-element.js";
 import {
   NavigateBeforeIcon,
   NavigateNextIcon,
 } from "../../../../../../icons/index.js";
 import { Selectors } from "../../common/index.js";
 
-const rx = rxjs;
+const { BehaviorSubject } = rxjs;
 const PageMinNumber = 1;
 
 /**
@@ -21,12 +22,10 @@ const PageMinNumber = 1;
  *   itemsCount: number
  * }
  */
-export class Navigator {
-  #$navigator;
-  #$navPageCount;
 
-  #navBeforeDisabled$ = new rx.BehaviorSubject(false);
-  #navNextDisabled$ = new rx.BehaviorSubject(false);
+export class Navigator extends BaseElement {
+  #navBeforeDisabled$ = new BehaviorSubject(false);
+  #navNextDisabled$ = new BehaviorSubject(false);
   #currentPage$;
 
   #pagesCount;
@@ -34,10 +33,7 @@ export class Navigator {
   #onChangeCurrentPage;
 
   constructor({ $element, currentPage$, onChangeCurrentPage, options }) {
-    this.#$navigator = $element;
-    this.#$navPageCount = this.#$navigator.querySelector(
-      `.${Selectors.NavPageCount}`
-    );
+    super({ $element });
 
     this.#currentPage$ = currentPage$;
     this.#onChangeCurrentPage = onChangeCurrentPage;
@@ -45,19 +41,31 @@ export class Navigator {
     const { chunkSize, itemsCount } = options;
     this.#pagesCount = Math.ceil(itemsCount / chunkSize);
 
+    this.#init();
+  }
+
+  #init() {
+    this.#initNavIcons();
+
+    this.#currentPage$.subscribe((currentPage) =>
+      this.#updateNavigator(currentPage)
+    );
+  }
+
+  #initNavIcons() {
+    const { $navBeforeIcon, $navNextIcon } = this.#getElements();
+
     new NavigateBeforeIcon({
-      element: this.#$navigator.querySelector(`.${Selectors.NavBefore}`),
+      element: $navBeforeIcon,
       disabled$: this.#navBeforeDisabled$,
       onClick: () => this.#handleNavigateBefore(),
     });
 
     new NavigateNextIcon({
-      element: this.#$navigator.querySelector(`.${Selectors.NavNext}`),
+      element: $navNextIcon,
       disabled$: this.#navNextDisabled$,
       onClick: () => this.#handleNavigateNext(),
     });
-
-    currentPage$.subscribe((currentPage) => this.#updateNavigator(currentPage));
   }
 
   #handleNavigateBefore() {
@@ -84,6 +92,22 @@ export class Navigator {
   }
 
   #updateNavPageCount(currentPage) {
-    this.#$navPageCount.innerHTML = `(${currentPage}/${this.#pagesCount})`;
+    const { $navPageCount } = this.#getElements();
+
+    $navPageCount.innerHTML = `(${currentPage}/${this.#pagesCount})`;
+  }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $navPageCount = $root.querySelector(`.${Selectors.NavPageCount}`);
+    const $navBeforeIcon = $root.querySelector(`.${Selectors.NavBefore}`);
+    const $navNextIcon = $root.querySelector(`.${Selectors.NavNext}`);
+
+    return {
+      $navPageCount,
+      $navBeforeIcon,
+      $navNextIcon,
+    };
   }
 }

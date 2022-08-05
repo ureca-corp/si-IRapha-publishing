@@ -7,10 +7,6 @@ import { Selectors, ActiveType } from "../../common/index.js";
 const { BehaviorSubject, fromEvent, tap } = rxjs;
 
 export class CustomContextMenu extends LayerPopup {
-  #$segments = this.getElementsByClassName(Selectors.Segment);
-  #$menuItems = this.getElementsByClassName(Selectors.ContextMenuItem);
-  #$navigator = this.getElementByClassName(Selectors.Navigator);
-
   #currentPage$ = new BehaviorSubject(1);
   #open$;
 
@@ -57,7 +53,9 @@ export class CustomContextMenu extends LayerPopup {
   }
 
   #initMenuItems() {
-    [...this.#$menuItems].map(
+    const { $menuItems } = this.#getElements();
+
+    [...$menuItems].map(
       ($element) =>
         new ContextMenuItem({
           $element,
@@ -68,14 +66,14 @@ export class CustomContextMenu extends LayerPopup {
 
   #initNavigator() {
     const ChunkSize = 10;
-    const $navigator = this.#$navigator;
+    const { $menuItems, $navigator } = this.#getElements();
 
     if (!!$navigator) {
       new Navigator({
         $element: $navigator,
         options: {
           chunkSize: ChunkSize,
-          itemsCount: this.#$menuItems.length,
+          itemsCount: $menuItems.length,
         },
         currentPage$: this.#currentPage$,
         onChangeCurrentPage: (currentPage) =>
@@ -96,11 +94,11 @@ export class CustomContextMenu extends LayerPopup {
   }
 
   #handleCurrentPageChange(currentPage) {
-    const segments = this.#$segments;
+    const { $segments } = this.#getElements();
 
     const isEqualCurrentPage = (index) => currentPage === index;
 
-    segments.forEach((it, index) => {
+    $segments.forEach((it, index) => {
       it.setAttribute(ActiveType.Key, isEqualCurrentPage(index + 1));
     });
   }
@@ -113,5 +111,17 @@ export class CustomContextMenu extends LayerPopup {
     const isSubmenuRightOverflow = contextMenuRect.right > overflowRightZone;
 
     return this.#submenuDirectionLeft$.next(isSubmenuRightOverflow);
+  }
+
+  #getElements() {
+    const $segments = this.getElementsByClassName(Selectors.Segment);
+    const $menuItems = this.getElementsByClassName(Selectors.ContextMenuItem);
+    const $navigator = this.getElementByClassName(Selectors.Navigator);
+
+    return {
+      $segments,
+      $menuItems,
+      $navigator,
+    };
   }
 }

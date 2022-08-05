@@ -1,3 +1,3 @@
 export { ActiveType } from "./active.type.js";
-export { MoreClassType } from "./more.class.type.js";
-export { DirectionClassType } from "./direction.class.type.js";
+export { MoreType } from "./more.class.type.js";
+export { DirectionType } from "./direction.type.js";

@@ -1,28 +1,26 @@
-import {
-  Selectors,
-  MoreClassType,
-  DirectionClassType,
-} from "../../common/index.js";
+import { BaseElement } from "../../../../../../base/base-element.js";
+import { Selectors, MoreType, DirectionType } from "../../common/index.js";
 
-const rx = rxjs;
+const { fromEvent } = rxjs;
 
-export class ContextMenuItem {
-  #$root;
-  #$submenu;
+export class ContextMenuItem extends BaseElement {
+  #$directionLeft$;
 
   constructor({ $element, directionLeft$ }) {
-    this.#$root = $element;
-    this.#$submenu = this.#$root.querySelector(`.${Selectors.Submenu}`);
+    super({ $element });
+    this.#$directionLeft$ = directionLeft$;
 
-    this.#init({ directionLeft$ });
+    this.#init();
   }
 
   // private
-  #init({ directionLeft$ }) {
-    if (this.#hasSubmenu()) {
-      this.#$root.classList.add(MoreClassType.More);
+  #init() {
+    const $root = this.getEl();
 
-      directionLeft$.subscribe((directionLeft) =>
+    if (this.#hasSubmenu()) {
+      $root.setAttribute(MoreType.Key, true);
+
+      this.#$directionLeft$.subscribe((directionLeft) =>
         this.#handleDirectionLeftChange(directionLeft)
       );
     }
@@ -31,26 +29,42 @@ export class ContextMenuItem {
   }
 
   #initMouseEvent() {
-    const submenuStyle = this.#$submenu?.style;
+    const $root = this.getEl();
+    const { $submenu } = this.#getElements();
 
-    rx.fromEvent(this.#$root, "mouseenter").subscribe(
-      () => submenuStyle && (submenuStyle.display = "flex")
+    if (!$submenu) return;
+
+    const submenuStyle = $submenu.style;
+
+    fromEvent($root, "mouseenter").subscribe(
+      () => (submenuStyle.display = "flex")
     );
 
-    rx.fromEvent(this.#$root, "mouseleave").subscribe(
-      () => submenuStyle && (submenuStyle.display = "none")
+    fromEvent($root, "mouseleave").subscribe(
+      () => (submenuStyle.display = "none")
     );
   }
 
   #handleDirectionLeftChange(isDirectionLeft) {
-    const submenuClassList = this.#$submenu.classList;
+    const { $submenu } = this.#getElements();
 
-    if (isDirectionLeft) return submenuClassList.add(DirectionClassType.Left);
+    if (!$submenu) return;
 
-    return submenuClassList.remove(DirectionClassType.Left);
+    $submenu.setAttribute(DirectionType.Key, isDirectionLeft);
   }
 
   #hasSubmenu() {
-    return !!this.#$submenu;
+    const { $submenu } = this.#getElements();
+    return !!$submenu;
+  }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $submenu = $root.querySelector(`.${Selectors.Submenu}`);
+
+    return {
+      $submenu,
+    };
   }
 }

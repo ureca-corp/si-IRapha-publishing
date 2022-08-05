@@ -1,60 +1,69 @@
+import { createElementFromHTML } from "../../../../../utils/dom/CreateElementFromHTML.js";
+import { BaseElement } from "../../../../base/base-element.js";
 import { Selectors, Attributes } from "../../common/index.js";
 
-const rx = rxjs;
+const { BehaviorSubject, fromEvent } = rxjs;
 
-export class GridSelectorItem {
+export class GridSelectorItem extends BaseElement {
   #$root;
 
-  #isActive$;
+  #isActive$ = new BehaviorSubject();
 
   constructor({ $element }) {
+    super({ $element });
     this.#$root = $element;
 
     this.#initStates();
   }
 
-  // 원시 객체 (DOM) 생성
-  static createGridSelectorItemElement({ row, col }) {
-    const gridItem = document.createElement("div");
-    gridItem.classList.add(Selectors.GridSelectorItem);
-    gridItem.setAttribute(Attributes.Row, row);
-    gridItem.setAttribute(Attributes.Column, col);
-
-    return gridItem;
+  static create({ row, col }) {
+    return createElementFromHTML(`
+    <div 
+      class="${Selectors.GridSelectorItem}" 
+      ${Attributes.Row}="${row}"
+      ${Attributes.Column}="${col}"
+    >
+      </div>
+    `);
   }
 
   // private
   #initStates() {
-    const isActive$ = new rx.BehaviorSubject();
-    isActive$.subscribe((isActive) => this.#handleIsActiveChange(isActive));
-    this.#isActive$ = isActive$;
+    this.#isActive$.subscribe((isActive) =>
+      this.#handleIsActiveChange(isActive)
+    );
   }
 
   #active() {
-    this.#$root.setAttribute(
+    this.getEl().setAttribute(
       Attributes.GridSelector.key,
       Attributes.GridSelector.active
     );
   }
 
   #inactive() {
-    this.#$root.setAttribute(Attributes.GridSelector.key, null);
+    this.getEl().removeAttribute(Attributes.GridSelector.key);
   }
 
   // handler
   #handleIsActiveChange(isActive) {
-    if (!isActive) return this.#inactive();
+    const $root = this.getEl();
 
-    return this.#active();
+    isActive
+      ? $root.setAttribute(
+          Attributes.GridSelector.key,
+          Attributes.GridSelector.active
+        )
+      : $root.removeAttribute(Attributes.GridSelector.key);
   }
 
   // public
   getRow() {
-    return this.#$root.getAttribute(Attributes.Row);
+    return this.getEl().getAttribute(Attributes.Row);
   }
 
   getCol() {
-    return this.#$root.getAttribute(Attributes.Column);
+    return this.getEl().getAttribute(Attributes.Column);
   }
 
   getRowCol() {
@@ -77,14 +86,14 @@ export class GridSelectorItem {
 
   // set event listener
   setOnMouseEnterListener({ callback }) {
-    rx.fromEvent(this.#$root, "mouseenter").subscribe(callback);
+    fromEvent(this.#$root, "mouseenter").subscribe(callback);
   }
 
   setOnMouseLeaveListener({ callback }) {
-    rx.fromEvent(this.#$root, "mouseleave").subscribe(callback);
+    fromEvent(this.#$root, "mouseleave").subscribe(callback);
   }
 
   setOnClickListener({ callback }) {
-    rx.fromEvent(this.#$root, "click").subscribe(callback);
+    fromEvent(this.#$root, "click").subscribe(callback);
   }
 }

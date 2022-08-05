@@ -2,9 +2,9 @@
 @use "../../../../../../styles/input" as input;
 @use "../../../../../../themes/typography" as typography;
 
-$color-border-default: var(--color__border);
+$color-border: var(--color__border);
 
-.irapha-annotation-cm__input-wrapper {
+.irapha-annotation-cm__input-area {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -13,7 +13,7 @@ $color-border-default: var(--color__border);
 
   padding: 8px 8px 12px 8px;
 
-  border-bottom: 1px dashed $color-border-default;
+  border-bottom: 1px dashed $color-border;
 }
 
 .irapha-annotation-cm__input {

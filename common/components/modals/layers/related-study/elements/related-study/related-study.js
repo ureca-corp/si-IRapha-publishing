@@ -8,18 +8,6 @@ import { getViewModel } from "./related-study.vm.js";
 
 const { fromEvent } = rxjs;
 
-function HeaderComp() {
-  return createElementFromHTML(`
-  <div class="${Selectors.Header}">
-    <button class="${Selectors.CloseButton}" uk-close></button>
-  </div>
-  `);
-}
-
-function InnerComp() {
-  return createElementFromHTML(`<div class="${Selectors.Inner}"></div>`);
-}
-
 export class RelatedStudyLayerPopup extends LayerPopupTemplate {
   #vm = getViewModel();
 
@@ -87,4 +75,18 @@ export class RelatedStudyLayerPopup extends LayerPopupTemplate {
       $closeIcon,
     };
   }
+}
+
+// =================================================================
+
+function HeaderComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.Header}">
+    <button class="${Selectors.CloseButton}" uk-close></button>
+  </div>
+  `);
+}
+
+function InnerComp() {
+  return createElementFromHTML(`<div class="${Selectors.Inner}"></div>`);
 }

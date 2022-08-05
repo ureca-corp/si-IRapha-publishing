@@ -1,28 +1,30 @@
 import { createElementFromHTML } from "../../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../../base/index.js";
 
-const Template = `
-<div class="uk-table uk-table-divider">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Tag</th>
-        <th>Name</th>
-        <th>VR</th>
-        <th>Length</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-
-    <tbody></tbody>
-  </table>
-</div>
-`;
+function DataGridComp() {
+  return createElementFromHTML(`
+    <div class="uk-table uk-table-divider">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tag</th>
+            <th>Name</th>
+            <th>VR</th>
+            <th>Length</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+    
+        <tbody></tbody>
+      </table>
+    </div>
+  `);
+}
 
 export class DataGrid extends BaseElement {
   constructor({ dicomInfoList$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new DataGridComp() });
 
     dicomInfoList$.subscribe((dicomInfoList) =>
       this.#handleDicomInfoListChange(dicomInfoList)

@@ -6,28 +6,9 @@ import {
 } from "../../../base/index.js";
 import { getMenus } from "./get-menus.js";
 
-function ViewBoxContextMenuComponent() {
-  return createElementFromHTML(`
-  <div id="irapha-viewbox-context-menu" class="${CustomContextMenuSelectors.ContextMenu}">
-    <div class="${CustomContextMenuSelectors.SegmentContainer}"></div>
-  
-    <div class="${CustomContextMenuSelectors.Navigator}">
-      <button class="${CustomContextMenuSelectors.NavBefore}"></button>
-  
-      <div>
-        <span>Menu</span>
-        <span class="${CustomContextMenuSelectors.NavPageCount}">(0/0)</span>
-      </div>
-  
-      <button class="${CustomContextMenuSelectors.NavNext}"></button>
-    </div>
-  </div>
-  `);
-}
-
 export class ViewboxContextMenu extends BaseElement {
   constructor() {
-    super({ $element: new ViewBoxContextMenuComponent() });
+    super({ $element: new ViewBoxContextMenuComp() });
 
     this.#init();
   }
@@ -49,8 +30,8 @@ export class ViewboxContextMenu extends BaseElement {
     const ChunkSize = 10;
     const chunkedMenus = _.chunk($menus, ChunkSize);
 
-    const $segments = chunkedMenus.map((chunk) =>
-      createContextMenuSegment(chunk)
+    const $segments = chunkedMenus.map(
+      (chunk) => new ContextMenuSegment(chunk)
     );
 
     const { $segmentContainer } = this.#getElements();
@@ -72,11 +53,30 @@ export class ViewboxContextMenu extends BaseElement {
 }
 
 // =================================================================
-const createContextMenuSegment = ($items) => {
+function ViewBoxContextMenuComp() {
+  return createElementFromHTML(`
+  <div id="irapha-viewbox-context-menu" class="${CustomContextMenuSelectors.ContextMenu}">
+    <div class="${CustomContextMenuSelectors.SegmentContainer}"></div>
+  
+    <div class="${CustomContextMenuSelectors.Navigator}">
+      <button class="${CustomContextMenuSelectors.NavBefore}"></button>
+  
+      <div>
+        <span>Menu</span>
+        <span class="${CustomContextMenuSelectors.NavPageCount}">(0/0)</span>
+      </div>
+  
+      <button class="${CustomContextMenuSelectors.NavNext}"></button>
+    </div>
+  </div>
+  `);
+}
+
+function ContextMenuSegment($items) {
   const $segment = createElementFromHTML(
     `<div class="${CustomContextMenuSelectors.Segment}"></div>`
   );
   $segment.append(...$items);
 
   return $segment;
-};
+}

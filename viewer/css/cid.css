@@ -9580,6 +9580,7 @@ button[disabled] {
 }
 
 .irapha-context-menu__item {
+  transition: all 0.3s ease-in-out;
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
@@ -9594,9 +9595,13 @@ button[disabled] {
   padding: 8px;
   color: var(--color__font-secondary);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 .irapha-context-menu__item.--more::after {
+  content: "▶";
+  color: var(--color__font-secondary);
+  transform: scaleX(0.7);
+}
+.irapha-context-menu__item[more=true]::after {
   content: "▶";
   color: var(--color__font-secondary);
   transform: scaleX(0.7);
@@ -9627,9 +9632,6 @@ button[disabled] {
 .irapha-context-menu__segment[active=true] {
   display: flex;
 }
-.irapha-context-menu__segment.--active {
-  display: flex;
-}
 
 .irapha-context-menu__nav {
   font-size: 11px;
@@ -9652,12 +9654,12 @@ button[disabled] {
   box-shadow: var(--box-shadow__layer-menu);
   background-color: var(--color__secondary-container);
 }
-.irapha-context-menu__item__submenu.--direction-left {
+.irapha-context-menu__item__submenu[direction-left=true] {
   left: unset;
   right: 200px;
 }
 
-.irapha-annotation-cm__input-wrapper {
+.irapha-annotation-cm__input-area {
   display: flex;
   align-items: center;
   gap: 8px;

@@ -9,8 +9,6 @@ import {
 } from "../../../kit/index.js";
 import { LayerPopupTemplate, PopupAppbar } from "../base/index.js";
 
-const { fromEvent } = rxjs;
-
 const Selectors = {
   Form: "irapha-export-dicom__form",
   ContentContainer: "irapha-export-dicom__content",

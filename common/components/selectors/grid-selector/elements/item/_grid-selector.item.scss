@@ -1,4 +1,5 @@
 @use "../../../../../styles/common";
+@use "../../../../../themes/shape" as shape;
 
 // grid item
 // =================================================================
@@ -14,8 +15,8 @@ $color-default: var(--color__secondary);
 }
 
 .irapha-grid-selector__item {
-  border-radius: 4px;
-  background-color: $color-default;
-
+  @include shape.small;
   @include s-grid-item;
+
+  background-color: $color-default;
 }

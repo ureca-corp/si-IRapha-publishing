@@ -1,3 +1,3 @@
-export const MoreClassType = {
-  More: "--more",
+export const MoreType = {
+  Key: "more",
 };

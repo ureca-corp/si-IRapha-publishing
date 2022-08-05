@@ -1,33 +1,15 @@
 import { createElementFromHTML } from "../../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../../base/index.js";
 import {
-  CustomContextMenuSelectors,
   CustomContextMenu,
+  CustomContextMenuSelectors,
 } from "../../../base/index.js";
 import { Selectors } from "../../common/index.js";
 
 const { fromEvent } = rxjs;
-
-const HelpText = `
-- label은 쉼표(,)로 구분하며 복수로 표기 가능합니다.\n
-- Label 내용에 쉼표(,)가 포함되지 않도록 주의해주세요.\n
-- Enter 키를 누르면 작성한 내용이 적용됩니다.
-`;
-
-const PlaceHolder = "Label";
-
-function Comp() {
-  return createElementFromHTML(`
-    <div 
-      id="${Selectors.RootId}" 
-      class="${Selectors.Root} ${CustomContextMenuSelectors.ContextMenu}">
-    </div>
-  `);
-}
-
 export class AnnotationContextMenu extends BaseElement {
   constructor() {
-    super({ $element: new Comp() });
+    super({ $element: new AnnotationContextMenuComp() });
 
     this.#init();
   }
@@ -44,47 +26,80 @@ export class AnnotationContextMenu extends BaseElement {
   }
 
   #initInputArea() {
-    const $root = this.getEl();
-
-    const $inputWrapper = createElementFromHTML(
-      `
-      <div class="${Selectors.InputWrapper}">
-        <input 
-          class="${Selectors.Input} ${Selectors.UkInput}"
-          placeholder="${PlaceHolder}"
-        >
-
-        <div title="${HelpText}" style="cursor: help">
-          ${helpSvgIcon}
-        </div>
-      </div>
-      `
-    );
-
-    $root.appendChild($inputWrapper);
+    const { $inputWrapper } = this.#getElements();
+    $inputWrapper.appendChild(new InputArea());
   }
 
   #initMenus() {
-    const $root = this.getEl();
+    const { $menusContainer } = this.#getElements();
 
     const $items = [
-      createMenuItem("Delete", {
+      new MenuItem("Delete", {
         onClick: (e) => alert("Todo Delete"),
       }),
-      createMenuItem("Modify", {
+      new MenuItem("Modify", {
         onClick: (e) => alert("Todo Modify"),
       }),
-      createMenuItem("Pause", {
+      new MenuItem("Pause", {
         onClick: (e) => alert("Todo Pause"),
       }),
     ];
 
-    $root.append(...$items);
+    $menusContainer.append(...$items);
+  }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $inputWrapper = $root.querySelector(`.${Selectors.InputWrapper}`);
+    const $menusContainer = $root.querySelector(`.${Selectors.MenusContainer}`);
+
+    return {
+      $inputWrapper,
+      $menusContainer,
+    };
   }
 }
 
 // =================================================================
-const createMenuItem = (label, options) => {
+function AnnotationContextMenuComp() {
+  return createElementFromHTML(`
+    <div 
+      id="${Selectors.RootId}" 
+      class="${Selectors.Root} ${CustomContextMenuSelectors.ContextMenu}"
+    >
+      <div class="${Selectors.InputWrapper}"></div>
+      <div class="${Selectors.MenusContainer}"></div>
+    </div>
+  `);
+}
+
+function InputArea() {
+  const HelpText = `
+  - label은 쉼표(,)로 구분하며 복수로 표기 가능합니다.\n
+  - Label 내용에 쉼표(,)가 포함되지 않도록 주의해주세요.\n
+  - Enter 키를 누르면 작성한 내용이 적용됩니다.
+  `;
+
+  const $inputWrapper = createElementFromHTML(
+    `
+    <div class="${Selectors.InputArea}">
+      <input 
+        class="${Selectors.Input} ${Selectors.UkInput}"
+        placeholder="Label"
+      >
+
+      <div title="${HelpText}" style="cursor: help">
+        ${helpSvgIcon}
+      </div>
+    </div>
+    `
+  );
+
+  return $inputWrapper;
+}
+
+function MenuItem(label, options) {
   const $meuiItem = createElementFromHTML(
     `<div class="${CustomContextMenuSelectors.ContextMenuItem}">${label}</div>`
   );
@@ -96,7 +111,7 @@ const createMenuItem = (label, options) => {
   }
 
   return $meuiItem;
-};
+}
 
 const helpSvgIcon = `
 <svg 

@@ -5,15 +5,15 @@ import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 
 const MatrixSize = 5;
 
-const Template = `
-<div class="irapha-grid-selector"></div>
-`;
+function GridSelectorComp() {
+  return createElementFromHTML(`<div class="irapha-grid-selector"></div>`);
+}
 
 export class GridSelector extends BaseElement {
   #gridItems;
 
   constructor() {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new GridSelectorComp() });
 
     this.#initGridItems();
   }
@@ -25,8 +25,8 @@ export class GridSelector extends BaseElement {
     const gridItems = row
       .map((_row) => row.map((_, index) => ({ row: _row, col: index + 1 })))
       .flat()
-      .map((it) => GridSelectorItem.createGridSelectorItemElement(it))
-      .map((it) => this.#appendChildToGridContainer(it))
+      .map((matrix) => GridSelectorItem.create(matrix))
+      .map(($gridItem) => this.#appendChildToGridContainer($gridItem))
       .map(($element) => new GridSelectorItem({ $element }));
     this.#gridItems = gridItems;
 

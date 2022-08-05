@@ -6,24 +6,6 @@ import { Selectors } from "../../common/index.js";
 import { DataGrid } from "../data-grid/data-grid.js";
 import { getViewModel } from "./dicom-information.vm.js";
 
-function Inner() {
-  return createElementFromHTML(`
-    <div class="${Selectors.Inner}">
-      <div class="${Selectors.SearchBar}"></div>
-      
-      <div class="${Selectors.DataGrid}">
-        <div class="${Selectors.DataGridCaptions}">
-          <span class="${Selectors.DataGridTotal}">Total 0</span>
-        </div>
-      </div>
-    </div>
-  `);
-}
-
-function Footer() {
-  return createElementFromHTML(`<div class="${Selectors.Footer}"></div>`);
-}
-
 export class DicomInformationLayerPopup extends LayerPopupTemplate {
   #vm = getViewModel();
 
@@ -117,4 +99,23 @@ export class DicomInformationLayerPopup extends LayerPopupTemplate {
       $dataGridTotal,
     };
   }
+}
+
+// =================================================================
+function Inner() {
+  return createElementFromHTML(`
+    <div class="${Selectors.Inner}">
+      <div class="${Selectors.SearchBar}"></div>
+      
+      <div class="${Selectors.DataGrid}">
+        <div class="${Selectors.DataGridCaptions}">
+          <span class="${Selectors.DataGridTotal}">Total 0</span>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+function Footer() {
+  return createElementFromHTML(`<div class="${Selectors.Footer}"></div>`);
 }

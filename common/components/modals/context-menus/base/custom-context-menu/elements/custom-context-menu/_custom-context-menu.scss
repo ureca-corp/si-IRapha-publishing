@@ -33,10 +33,6 @@ $color-border: var(--color__border);
   &[active="true"] {
     display: flex;
   }
-
-  &.--active {
-    display: flex;
-  }
 }
 
 // context-menu__nav
@@ -55,7 +51,7 @@ $color-border: var(--color__border);
 // submenu
 // =================================================================
 @mixin s-submenu {
-  &.--direction-left {
+  &[direction-left="true"] {
     left: unset;
     right: 200px;
   }
