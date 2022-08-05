@@ -69,7 +69,7 @@ export class GridSelector extends BaseElement {
 
   #mutateDicomWindowLayout({ row, col }) {
     // dicom window layout mode 전역 상태 변경하기
-    window.store.dicomWindowLayout$.next({
+    window.store.dicomWindowLayoutMode$.next({
       layout: LayoutAttributeType.Custom,
       grid: {
         row,

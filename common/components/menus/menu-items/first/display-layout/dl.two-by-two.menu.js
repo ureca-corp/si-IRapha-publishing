@@ -23,7 +23,7 @@ export class DisplayLayoutTwoByTwoMenu extends BaseMenuItem {
   }
 
   #mutateDicomWindowLayout() {
-    window.store.dicomWindowLayout$.next({
+    window.store.dicomWindowLayoutMode$.next({
       layout: LayoutAttributeType.TwoByTwo,
     });
   }

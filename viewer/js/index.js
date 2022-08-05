@@ -95,15 +95,9 @@ document
   .appendChild(viewboxContextMenu.getEl());
 
 // =================================================================
-import { tabsDummyData, windowDummyData } from "../../common/data/index.js";
 import { MainLayout } from "../../common/components/main-layout/main-layout.js";
 
-const mainLayout = new MainLayout({
-  data: {
-    tabsData: tabsDummyData,
-    windowData: windowDummyData,
-  },
-});
+const mainLayout = new MainLayout();
 
 // =================================================================
 import { VirtualLayout } from "../../common/components/virtual-layout/index.js";

@@ -3,56 +3,89 @@ import { BaseElement } from "../base/index.js";
 import { DicomViewBox } from "../dicom-viewbox/index.js";
 import { DicomWindow } from "../dicom-window/index.js";
 import { Tabs } from "../tabs/index.js";
+import { getViewModel } from "./main-layout.vm.js";
+
+const { map } = rxjs;
 
 const Selectors = {
   MainLayout: "irapha-main-layout",
+  TabsWrapper: "irapha-main-layout__tabs-wrapper",
+  DicomWindowWrapper: "irapha-main-layout__dicom-window-wrapper",
 };
 
+function MainLayoutComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.MainLayout}">
+    <div class="${Selectors.TabsWrapper}"></div>
+    <div class="${Selectors.DicomWindowWrapper}"></div>
+  </div>
+  `);
+}
+
 export class MainLayout extends BaseElement {
-  static template = `
-    <div class="${Selectors.MainLayout}"></div>
-    `;
+  #vm = getViewModel();
 
-  #data;
+  constructor() {
+    super({ $element: new MainLayoutComp() });
 
-  constructor({ data }) {
-    super({ $element: createElementFromHTML(MainLayout.template) });
-    this.#data = data;
-
-    const { tabsData, windowData } = data;
-
-    this.#initTabs({ tabsData });
-    this.#initDicomWindow({ windowData });
+    this.#initTabs();
+    this.#initDicomWindow();
   }
 
   // private
-  #initTabs({ tabsData }) {
-    const tabs = new Tabs({ data: tabsData });
+  #initTabs() {
+    const { $tabsWrapper } = this.#getElements();
+    const { tabsModels$ } = this.#vm;
 
-    this.getEl().appendChild(tabs.getEl());
+    tabsModels$
+      .pipe(map((models) => new Tabs({ data: models }).getEl()))
+      .subscribe(($tabs) => $tabsWrapper.appendChild($tabs));
   }
 
-  #initDicomWindow({ windowData }) {
-    const viewBoxes = windowData.map(
-      ({ viewBoxModel, hasController }) =>
-        new DicomViewBox(viewBoxModel, undefined, {
-          hasController,
-          onClick: () => {
-            // alert("ok");
-          },
-        })
+  #initDicomWindow() {
+    const { $dicomWindowWrapper } = this.#getElements();
+    const { windowModels$ } = this.#vm;
+
+    windowModels$
+      .pipe(
+        map((models) =>
+          models.map(({ viewBoxModel, hasController }) =>
+            new DicomViewBox(viewBoxModel, undefined, {
+              hasController,
+              onClick: () => {
+                console.log("view-box clicked");
+              },
+            }).getEl()
+          )
+        ),
+        map(($viewBoxes) =>
+          new DicomWindow({
+            $viewBoxes: $viewBoxes,
+            layout$: window.store.dicomWindowLayoutMode$,
+          }).getEl()
+        )
+      )
+      .subscribe(($dicomWindow) =>
+        $dicomWindowWrapper.appendChild($dicomWindow)
+      );
+  }
+
+  #getElements() {
+    const $root = this.getEl();
+
+    const $tabsWrapper = $root.querySelector(`.${Selectors.TabsWrapper}`);
+    const $dicomWindowWrapper = $root.querySelector(
+      `.${Selectors.DicomWindowWrapper}`
     );
 
-    const dicomWindow = new DicomWindow({
-      $viewBoxes: viewBoxes.map((it) => it.getEl()),
-      layout$: window.store.dicomWindowLayout$,
-    });
-
-    this.getEl().appendChild(dicomWindow.getEl());
+    return {
+      $tabsWrapper,
+      $dicomWindowWrapper,
+    };
   }
 
   // public
   clone() {
-    return new MainLayout({ data: this.#data });
+    return new MainLayout();
   }
 }

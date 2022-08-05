@@ -30,7 +30,7 @@ store.dicomInformationsOpen$ = new BehaviorSubject();
  *   } || null
  * )
  */
-store.dicomWindowLayout$ = new BehaviorSubject({ layout: "1:1" });
+store.dicomWindowLayoutMode$ = new BehaviorSubject({ layout: "1:1" });
 
 /**
  * Cine Play Controller - Hide Mode
