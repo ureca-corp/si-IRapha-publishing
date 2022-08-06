@@ -1,13 +1,14 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
+import { Selectors } from "./selectors.js";
 
-const Template = `
-<li class="irapha-sub-menu__item"></li>
-`;
+function SubMenuItemComp() {
+  return createElementFromHTML(`<li class="${Selectors.SubMenuItem}"></li>`);
+}
 
 export class SubMenuItem extends BaseElement {
   constructor({ menuItem }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new SubMenuItemComp() });
 
     this.getEl().appendChild(menuItem.getEl());
   }

@@ -1,32 +1,27 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
+import { Selectors } from "./selectors.js";
 
-const Selectors = {
-  Root: "irapha-sub-menu",
-  Container: "irapha-sub-menu__container",
-  ContainerInner: "irapha-sub-menu__container__inner",
-};
-
-export const Template = `
-<div class="${Selectors.Root}">
-  <div class="${Selectors.Container}">
-    <ul class="${Selectors.ContainerInner}"></ul>
+function SubMenuComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.Root}">
+    <div class="${Selectors.Container}">
+      <ul class="${Selectors.ContainerInner}"></ul>
+    </div>
   </div>
-</div>
-`;
+  `);
+}
 
 export class SubMenu extends BaseElement {
   #options;
 
   constructor({ subMenuItems, options }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new SubMenuComp() });
     this.#options = options;
 
     this.#initOptions();
 
-    this.#getContainerInnerElement().append(
-      ...subMenuItems.map((it) => it.getEl())
-    );
+    this.#getContainerInnerEl().append(...subMenuItems.map((it) => it.getEl()));
   }
 
   #initOptions() {
@@ -35,13 +30,13 @@ export class SubMenu extends BaseElement {
     const { padding, isLayoutColumnTwo } = this.#options;
 
     const $root = this.getEl();
-    const $inner = this.#getContainerInnerElement();
+    const $inner = this.#getContainerInnerEl();
 
     if (padding != undefined) $inner.style.padding = padding;
-    if (isLayoutColumnTwo) $root.classList.add("--layout-column-two");
+    if (isLayoutColumnTwo) $root.setAttribute("layout", "column-two");
   }
 
-  #getContainerInnerElement() {
+  #getContainerInnerEl() {
     return this.getElementByClassName(Selectors.ContainerInner);
   }
 }

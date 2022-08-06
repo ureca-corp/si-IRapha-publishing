@@ -16,7 +16,7 @@
 
 // submenu 레이아웃 상태
 @mixin l-submenu {
-  &.--layout-column-two {
+  &[layout="column-two"] {
     .irapha-sub-menu__container__inner {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

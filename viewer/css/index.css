@@ -9051,7 +9051,7 @@ button[disabled] {
   gap: 12px;
   padding: 12px 16px;
 }
-.irapha-sub-menu.--layout-column-two .irapha-sub-menu__container__inner {
+.irapha-sub-menu[layout=column-two] .irapha-sub-menu__container__inner {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
