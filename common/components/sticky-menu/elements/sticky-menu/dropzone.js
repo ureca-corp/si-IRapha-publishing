@@ -1,118 +1,112 @@
-import {
-  Selectors,
-  Attributes,
-  PositionClassType,
-} from "../../common/index.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { Attributes, PositionAttr, Selectors } from "../../common/index.js";
 
-const VeticalDropzoneClasses = [
-  PositionClassType.Left,
-  PositionClassType.Right,
-];
+const { of, tap, map } = rxjs;
+export class Dropzone extends BaseElement {
+  constructor({ $element, activeDummy$ }) {
+    super({ $element });
 
-export class Dropzone {
-  #root;
+    activeDummy$?.subscribe((it) => this.#handleActiveDummy(it));
+  }
 
-  constructor({ $element }) {
-    this.#root = $element;
+  #handleActiveDummy(activeDummy) {
+    const $root = this.getEl();
+
+    const appendDummy = () => $root.appendChild(new DropzoneDummy($root));
+    const removeDummy = () => {
+      const { $dropzoneDummy } = this.#getElements();
+      $dropzoneDummy && $root.removeChild($dropzoneDummy);
+    };
+
+    activeDummy ? appendDummy() : removeDummy();
   }
 
   // private
+  #drop(target) {
+    const $root = this.getEl();
 
-  // Layered Drop Zone Dummy
-  #createDummyDropzone() {
-    const { clientWidth, clientHeight } = this.#root;
-    const space = 48;
+    const clearRoot = () => {
+      $root.innerHTML = "";
+      $root.style.background = "";
+    };
 
-    const dropZoneDummy = document.createElement("div");
-    dropZoneDummy.className = Selectors.DropzoneDummy;
-    dropZoneDummy.style.cssText = `
-        position: absolute;
-        min-width: ${space}px;
-        min-height: ${space}px;
-        width: ${clientWidth + space}px;
-        height: ${clientHeight + space}px;
-      `;
+    const targetMoveToDropzone = () => {
+      target.parentNode.removeChild(target);
+      $root.appendChild(target);
+    };
 
-    return dropZoneDummy;
-  }
-
-  // 드래그 타겟 드랍존 안으로 이동
-  #targetMoveToDropzone({ target }) {
-    target.parentNode.removeChild(target);
-    this.#root.appendChild(target);
-  }
-
-  // 드랍존의 모든 child 제거
-  #removeAllChild() {
-    this.#root.innerHTML = "";
-  }
-
-  #getPriorityFromElement({ element }) {
-    return element.getAttribute(Attributes.Priority);
+    of(target)
+      .pipe(
+        tap(() => targetMoveToDropzone()),
+        map(() => this.#getSortedChildByHighPriority()),
+        tap(() => clearRoot())
+      )
+      .subscribe(($sortedTargets) => $root.append(...$sortedTargets));
   }
 
   // 우선 순위 높은 순으로 정렬
   #getSortedChildByHighPriority() {
-    return [...this.#root.children].sort(
+    const { children: $childrens } = this.getEl();
+
+    return [...$childrens].sort(
       (a, b) =>
-        this.#getPriorityFromElement({ element: a }) -
-        this.#getPriorityFromElement({ element: b })
+        a.getAttribute(Attributes.Priority) -
+        b.getAttribute(Attributes.Priority)
     );
   }
 
-  #drop(target) {
-    const dropzone = this.#root;
-
-    this.invalidateBackground();
-    this.#targetMoveToDropzone({ target });
-
-    const sortedTargets = this.#getSortedChildByHighPriority();
-    this.#removeAllChild();
-
-    sortedTargets.forEach((it) => dropzone.appendChild(it));
+  #hasElement(selector) {
+    return !!this.getEl().querySelector(selector);
   }
 
-  #hasElement(id) {
-    return !!this.#root.querySelector(id);
+  #getElements() {
+    const $root = this.getEl();
+    const $dropzoneDummy = $root.querySelector(`.${Selectors.DropzoneDummy}`);
+
+    return {
+      $dropzoneDummy,
+    };
   }
 
   // public
-  appendDummy() {
-    this.#root.appendChild(this.#createDummyDropzone());
-  }
-
-  removeDummy() {
-    const dropzoneDummy = this.#root.querySelector(
-      `.${Selectors.DropzoneDummy}`
-    );
-    this.#root.removeChild(dropzoneDummy);
-  }
-
   isTypeVertical() {
-    return VeticalDropzoneClasses.some((it) =>
-      this.#root.className.includes(it)
-    );
+    const attr = this.getEl().getAttribute(PositionAttr.Key);
+
+    return attr === PositionAttr.Left || attr === PositionAttr.Right;
   }
 
   // 높은 우선순위 자식을 보유하고 있는지
   hasHighPriorityChild() {
-    return [...this.#root.children].some(
+    const $childrens = this.getEl().children;
+
+    return [...$childrens].some(
       (it) => it.getAttribute(Attributes.Priority) === "1"
     );
   }
 
-  // 백그라운드 초기화
-  invalidateBackground() {
-    this.#root.style.background = "";
-  }
-
-  drop({ target, dropSuccessCallback, invalidateAllDropzoneBG }) {
-    invalidateAllDropzoneBG();
+  drop({ target, dropCallback }) {
     this.#drop(target);
 
-    return dropSuccessCallback({
+    return dropCallback({
       isVertical: this.isTypeVertical(),
-      hasElement: (id) => this.#hasElement(id),
+      hasElement: (selector) => this.#hasElement(selector),
     });
   }
+}
+
+// =================================================================
+function DropzoneDummy({ clientWidth, clientHeight }) {
+  const space = 48;
+
+  const dropZoneDummy = document.createElement("div");
+  dropZoneDummy.className = Selectors.DropzoneDummy;
+  dropZoneDummy.style.cssText = `
+      position: absolute;
+      min-width: ${space}px;
+      min-height: ${space}px;
+      width: ${clientWidth + space}px;
+      height: ${clientHeight + space}px;
+    `;
+
+  return dropZoneDummy;
 }

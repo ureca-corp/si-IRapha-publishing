@@ -26,8 +26,8 @@ const thumbnailBox = new ThumbnailBox({
 });
 
 import { StickyMenu } from "../../common/components/sticky-menu/index.js";
-new StickyMenu({
-  dropSuccessCallback: ({ isVertical, hasElement }) => {
+const $stickyMenu = new StickyMenu({
+  dropCallback: ({ isVertical, hasElement }) => {
     if (hasElement(".irapha-toolbox")) {
       toolboxLayoutColumn$.next(isVertical);
     }
@@ -36,14 +36,16 @@ new StickyMenu({
       thumbnailboxLayoutColumn$.next(isVertical);
     }
   },
-});
+}).getEl();
+
+document.querySelector("#irapha-app").appendChild($stickyMenu);
 
 document
-  .querySelector(".irapha-sticky-menu__dropzone.--top")
+  .querySelector(".irapha-sticky-menu__dropzone[position='top']")
   .appendChild(toolbox.getEl());
 
 document
-  .querySelector(".irapha-sticky-menu__dropzone.--left")
+  .querySelector(".irapha-sticky-menu__dropzone[position='left']")
   .appendChild(thumbnailBox.getEl());
 
 // =================================================================

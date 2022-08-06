@@ -9546,14 +9546,14 @@ button[disabled] {
   background-color: var(--color__bg-primary);
   grid-template-areas: "top top top top" "left content content right" "left content content right" "bottom bottom bottom bottom";
 }
-.irapha-sticky-menu.--layout-column-first {
+.irapha-sticky-menu[layout=column-first] {
   grid-template-areas: "top top top top" "left content content right" "left content content right" "bottom bottom bottom bottom";
 }
-.irapha-sticky-menu.--layout-row-first {
+.irapha-sticky-menu[layout=row-first] {
   grid-template-areas: "left top top right" "left content content right" "left content content right" "left bottom bottom right";
 }
 
-.irapha-sticky-menu__dropzone.--top {
+.irapha-sticky-menu__dropzone[position=top] {
   grid-area: top;
   align-self: flex-start;
   z-index: 4;
@@ -9564,7 +9564,7 @@ button[disabled] {
   height: -moz-fit-content;
   height: fit-content;
 }
-.irapha-sticky-menu__dropzone.--left {
+.irapha-sticky-menu__dropzone[position=left] {
   grid-area: left;
   justify-self: flex-start;
   z-index: 5;
@@ -9574,7 +9574,7 @@ button[disabled] {
   width: fit-content;
   height: 100%;
 }
-.irapha-sticky-menu__dropzone.--right {
+.irapha-sticky-menu__dropzone[position=right] {
   grid-area: right;
   justify-self: flex-end;
   z-index: 5;
@@ -9585,7 +9585,7 @@ button[disabled] {
   width: fit-content;
   height: 100%;
 }
-.irapha-sticky-menu__dropzone.--bottom {
+.irapha-sticky-menu__dropzone[position=bottom] {
   grid-area: bottom;
   align-self: flex-end;
   z-index: 4;
@@ -9595,6 +9595,12 @@ button[disabled] {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.irapha-sticky-menu__content {
+  grid-area: content;
+  width: 100%;
+  height: 100%;
 }
 
 .irapha-tabs__item {
@@ -10984,12 +10990,6 @@ button[disabled] {
 }
 
 #irapha-app {
-  width: 100%;
-  height: 100%;
-}
-
-.content {
-  grid-area: content;
   width: 100%;
   height: 100%;
 }
