@@ -21,7 +21,7 @@ export const createMarkingSection = () => {
 
   const handleValueChange = (value) => markingValue$.next(value);
 
-  const { $label: $labelNone } = createLabelWith({
+  const $labelNone = createLabelWith({
     title: "None",
     $input: createRadioButton({
       name: InputName,
@@ -30,7 +30,7 @@ export const createMarkingSection = () => {
     }),
   });
 
-  const { $label: $labelR } = createLabelWith({
+  const $labelR = createLabelWith({
     title: "R",
     $input: createRadioButton({
       name: InputName,
@@ -39,7 +39,7 @@ export const createMarkingSection = () => {
     }),
   });
 
-  const { $label: $labelL } = createLabelWith({
+  const $labelL = createLabelWith({
     title: "L",
     $input: createRadioButton({
       name: InputName,
