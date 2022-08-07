@@ -1,9 +1,8 @@
 @use "../../../../themes/typography" as typography;
-@use "../../common/tabs.constant" as constant;
 
-$inactive-bg-color: constant.$inactive-bg-color;
-$active-bg-color: constant.$active-bg-color;
-$hover-bg-color: #eeeeee11;
+$inactive-bg-color: var(--color__inactive-bg-primary);
+$active-bg-color: var(--color__active-bg-primary);
+$hover-bg-color: var(--color__bg-secondary);
 
 // List item
 // =================================================================
@@ -66,7 +65,7 @@ $hover-bg-color: #eeeeee11;
 }
 
 @mixin s-list-item {
-  &.--active {
+  &[active="true"] {
     z-index: 2;
     background-color: $active-bg-color;
 
@@ -93,7 +92,7 @@ $hover-bg-color: #eeeeee11;
   background-color: transparent;
 
   &:hover {
-    &:not(.--active) {
+    &:not([active="true"]) {
       background-color: $hover-bg-color;
     }
 

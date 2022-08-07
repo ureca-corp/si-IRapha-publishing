@@ -3,51 +3,47 @@ import { Selectors } from "../../common/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
-const rx = rxjs;
+const { BehaviorSubject, of, map, tap, forEach } = rxjs;
 
-/**
- * Constructor types
- *
- * @type data: {
- *   id: string,
- *   title: string,
- *   topDesc: string,
- *   bottomDesc: string
- * }[]
- *
- */
-export class Tabs extends BaseElement {
-  static template = `
+function TabsComp() {
+  return createElementFromHTML(`
   <div class="${Selectors.Tabs}">
     <ul class="${Selectors.TabsList}"></ul>
   </div>
-  `;
+  `);
+}
 
-  #selectedTabIndex$ = new rx.BehaviorSubject(0);
-
+export class Tabs extends BaseElement {
   constructor({ $items }) {
-    super({
-      $element: createElementFromHTML(Tabs.template),
-    });
+    super({ $element: new TabsComp() });
 
     this.#initTabItems({ $items });
   }
 
   #initTabItems({ $items }) {
-    const tabItems = $items.map(($el, index) => {
-      const isActive$ = new rx.BehaviorSubject(false);
-      this.#selectedTabIndex$.subscribe((tabIndex) =>
-        isActive$.next(tabIndex === index)
-      );
+    const $tabsList = this.#getTabsList();
 
-      return new TabItem({
-        $children: $el,
-        isActive$,
-        onClick: () => this.#selectedTabIndex$.next(index),
-      });
-    });
+    const selectedTabIndex$ = new BehaviorSubject(0);
+    const setTabIndex = (index) => selectedTabIndex$.next(index);
 
-    this.#getTabsList().append(...tabItems.map((it) => it.getEl()));
+    of(...$items)
+      .pipe(
+        map(($el, index) => ({
+          $el,
+          isActive$: new BehaviorSubject(false),
+          onClick: () => setTabIndex(index),
+          index,
+        })),
+        tap(({ isActive$, index }) =>
+          selectedTabIndex$.subscribe((tabIndex) =>
+            isActive$.next(tabIndex === index)
+          )
+        ),
+        map(({ $el: $children, isActive$, onClick }) =>
+          new TabItem({ $children, isActive$, onClick }).getEl()
+        )
+      )
+      .subscribe(($tabItem) => $tabsList.appendChild($tabItem));
   }
 
   // Elements

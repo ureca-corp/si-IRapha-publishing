@@ -1,10 +1,9 @@
 @use "../../../styles/common";
 
-@use "../common/tabs.constant.scss" as constant;
 @use "../elements/tabs-item/tabs-item";
 
-$inactive-bg-color: constant.$inactive-bg-color;
-$active-bg-color: constant.$active-bg-color;
+$inactive-bg-color: var(--color__inactive-bg-primary);
+$active-bg-color: var(--color__active-bg-primary);
 
 .irapha-tabs {
   display: flex;

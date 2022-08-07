@@ -1,0 +1,38 @@
+@use "../../../../styles/common";
+@use "../../../../styles/anim" as anim;
+
+@mixin menus-item {
+  @include anim.basic-transition;
+
+  width: 12px;
+  height: fit-content;
+  aspect-ratio: 1;
+
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.irapha-dicom-window__tab-content__menus {
+  @include anim.basic-transition;
+
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  opacity: 0;
+
+  .irapha-dicom-window__tab-content__menus__cid {
+    @include menus-item;
+  }
+
+  .irapha-dicom-window__tab-content__menus__rs {
+    @include menus-item;
+  }
+
+  .irapha-dicom-window__tab-content__menus__close {
+    @include menus-item;
+  }
+}

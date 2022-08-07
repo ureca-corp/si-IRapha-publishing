@@ -1,11 +1,11 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 import { DicomViewBox } from "../dicom-viewbox/index.js";
-import { DicomWindow } from "../dicom-window/index.js";
-import { Tabs } from "../tabs/index.js";
+import { DicomWindow, DicomWindowTabContent } from "../dicom-window/index.js";
+import { Tabs } from "../tabs2/index.js";
 import { getViewModel } from "./main-layout.vm.js";
 
-const { map } = rxjs;
+const { map, tap } = rxjs;
 
 const Selectors = {
   MainLayout: "irapha-main-layout",
@@ -38,8 +38,14 @@ export class MainLayout extends BaseElement {
     const { tabsModels$ } = this.#vm;
 
     tabsModels$
-      .pipe(map((models) => new Tabs({ data: models }).getEl()))
-      .subscribe(($tabs) => $tabsWrapper.appendChild($tabs));
+      .pipe(
+        map((models) =>
+          models.map((model) => new DicomWindowTabContent({ model }).getEl())
+        ),
+        map(($tabContents) => new Tabs({ $items: $tabContents }).getEl()),
+        tap(($tabs) => $tabsWrapper.appendChild($tabs))
+      )
+      .subscribe();
   }
 
   #initDicomWindow() {

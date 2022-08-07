@@ -1,0 +1,31 @@
+@use "../../../../styles/common";
+@use "../../../../styles/anim" as anim;
+@use "../../../../themes/typography" as typography;
+@use "../tab-menus/tab-menus";
+
+.irapha-dicom-window__tab-content__root {
+  &:hover {
+    .irapha-dicom-window__tab-content__menus {
+      opacity: 1;
+    }
+  }
+}
+
+.irapha-dicom-window__tab-content__title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.irapha-dicom-window__tab-content__title {
+  @include typography.label-medium;
+}
+
+.irapha-dicom-window__tab-content__desc {
+  @include typography.caption;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  opacity: 0.8;
+}
