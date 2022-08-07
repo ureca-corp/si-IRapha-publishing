@@ -17,7 +17,7 @@ $toolbox-width-small: 100px;
 $toolbox-height-small: 52px;
 
 @mixin l-toolbox {
-  &.--layout-column {
+  &[layout="column"] {
     min-width: $toolbox-width-small;
     width: $toolbox-width-small;
     height: 100%;
@@ -36,10 +36,8 @@ $toolbox-height-small: 52px;
 }
 
 @mixin s-toolbox {
-  &.--shrink-v {
-    & {
-      height: fit-content;
-    }
+  &[shrink="vertical"] {
+    height: fit-content;
 
     .irapha-toolbox__logo {
       min-width: unset;
@@ -50,11 +48,9 @@ $toolbox-height-small: 52px;
     }
   }
 
-  &.--shrink-h {
-    & {
-      min-width: fit-content;
-      width: fit-content;
-    }
+  &[shrink="horizontal"] {
+    min-width: fit-content;
+    width: fit-content;
 
     .irapha-toolbox__logo {
       min-width: fit-content;
@@ -107,7 +103,7 @@ $toolbox-height-small: 52px;
       width: $toolbox-width-small;
     }
 
-    &:not(.--layout-column) {
+    &:not([layout="column"]) {
       @include name-hide;
     }
   }
@@ -115,7 +111,7 @@ $toolbox-height-small: 52px;
 
 @media (max-height: break-point.$min-height) {
   .irapha-toolbox {
-    &.--layout-column {
+    &[layout="column"] {
       @include name-hide;
     }
   }

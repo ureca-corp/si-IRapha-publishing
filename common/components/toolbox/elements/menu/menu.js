@@ -1,6 +1,8 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { HideClassType, LayoutClassType } from "../../common/index.js";
+import { LayoutAttr, NameHideAttr, Selectors } from "../../common/index.js";
+
+const { tap } = rxjs;
 
 /**
  * Constructor types
@@ -12,17 +14,12 @@ import { HideClassType, LayoutClassType } from "../../common/index.js";
  *
  * @type isHideIconName$: BehaviorSubject<boolean>
  */
-
-const Template = `
-<ul class="irapha-toolbox__menu"></ul>
-`;
-
 export class ToolboxMenu extends BaseElement {
   #states;
   #items;
 
   constructor({ states, items }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new ToolboxMenuComp() });
     this.#states = states;
     this.#items = items;
 
@@ -38,15 +35,26 @@ export class ToolboxMenu extends BaseElement {
   #initStates() {
     if (!this.#states) return;
 
+    const $root = this.getEl();
     const { isLayoutColumnTwo$, isHideIconName$ } = this.#states;
 
-    isLayoutColumnTwo$?.subscribe((isLayoutColumnTwo) =>
-      this.#handleLayoutChange(isLayoutColumnTwo)
-    );
+    isLayoutColumnTwo$
+      ?.pipe(
+        tap((isLayoutColumnTwo) =>
+          isLayoutColumnTwo
+            ? $root.setAttribute(LayoutAttr.Key, LayoutAttr.ColumnTwo)
+            : $root.removeAttribute(LayoutAttr.Key)
+        )
+      )
+      .subscribe();
 
-    isHideIconName$?.subscribe((isHideIconName) =>
-      this.#handleHideIconNameChange(isHideIconName)
-    );
+    isHideIconName$
+      ?.pipe(
+        tap((isHideIconName = false) =>
+          $root.setAttribute(NameHideAttr.Key, isHideIconName)
+        )
+      )
+      .subscribe();
   }
 
   #initItems() {
@@ -55,24 +63,13 @@ export class ToolboxMenu extends BaseElement {
     const $items = this.#items.map((it) => createLI(it.getEl()));
     this.getEl().append(...$items);
   }
-
-  // handler
-  #handleLayoutChange(isLayoutColumnTwo) {
-    const rootClassList = this.getEl().classList;
-
-    if (isLayoutColumnTwo) return rootClassList.add(LayoutClassType.ColumnTwo);
-    return rootClassList.remove(LayoutClassType.ColumnTwo);
-  }
-
-  #handleHideIconNameChange(isHideIconName) {
-    const rootClassList = this.getEl().classList;
-
-    if (isHideIconName) return rootClassList.add(HideClassType.HideIconName);
-    return rootClassList.remove(HideClassType.HideIconName);
-  }
 }
 
 // =================================================================
+function ToolboxMenuComp() {
+  return createElementFromHTML(`<ul class="${Selectors.Menu}"></ul>`);
+}
+
 const createLI = (children) => {
   const $li = document.createElement("li");
   $li.appendChild(children);

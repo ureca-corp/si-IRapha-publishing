@@ -1,14 +1,12 @@
 import { ToolboxMenu } from "../menu/menu.js";
 import { MenusDivider } from "./menus-divider.js";
 
-import {
-  HideClassType,
-  LayoutClassType,
-  Selectors,
-} from "../../common/index.js";
-import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
-import { BaseElement } from "../../../base/base-element.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { HideAttr, LayoutAttr, Selectors } from "../../common/index.js";
+import { getFirstMenus, getSecondMenus } from "../menu/get-menus.js";
+
+const { tap } = rxjs;
 
 /**
  * Constructor types
@@ -22,15 +20,11 @@ import { createElementFromHTML } from "../../../../utils/dom/index.js";
  * @type shrinkDirection$: BehaviorSubject<Truthy || Falsy>
  */
 
-const Template = `
-<div class="${Selectors.MenusContainer}"></div>
-`;
-
 export class ToolboxMenusContainer extends BaseElement {
   #states;
 
   constructor({ states }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new ToolboxMenusContainerComp() });
     this.#states = states;
 
     this.#init();
@@ -43,60 +37,63 @@ export class ToolboxMenusContainer extends BaseElement {
   }
 
   #initChilds() {
+    const $root = this.getEl();
     const { isLayoutColumn$, isHideIconName$ } = this.#states;
 
-    const firstMenu = new ToolboxMenu({
+    const $firstMenu = new ToolboxMenu({
       states: {
         isLayoutColumnTwo$: isLayoutColumn$,
         isHideIconName$,
       },
       items: getFirstMenus(),
-    });
+    }).getEl();
 
-    const secondMenu = new ToolboxMenu({
+    const $secondMenu = new ToolboxMenu({
       states: {
         isLayoutColumnTwo$: isLayoutColumn$,
         isHideIconName$,
       },
       items: getSecondMenus(),
-    });
+    }).getEl();
 
-    const menusDivider = new MenusDivider({
+    const $menusDivider = new MenusDivider({
       states: {
         isLayoutColumn$,
         isAlignSelfCenter$: isHideIconName$,
       },
-    });
+    }).getEl();
 
-    this.getEl().append(
-      ...[firstMenu.getEl(), menusDivider.getEl(), secondMenu.getEl()]
-    );
+    $root.append(...[$firstMenu, $menusDivider, $secondMenu]);
   }
 
   #initStates() {
+    const $root = this.getEl();
     const { isLayoutColumn$, shrinkDirection$ } = this.#states;
 
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
+    isLayoutColumn$
+      .pipe(
+        tap((isLayoutColumn = false) =>
+          isLayoutColumn
+            ? $root.setAttribute(LayoutAttr.Key, LayoutAttr.Column)
+            : $root.removeAttribute(LayoutAttr.Key)
+        )
+      )
+      .subscribe();
 
-    shrinkDirection$.subscribe((shrinkDirection) =>
-      this.#handleShrinkDirectionChange(shrinkDirection)
-    );
+    shrinkDirection$
+      .pipe(
+        tap((shrinkDirection) =>
+          shrinkDirection
+            ? $root.setAttribute(HideAttr.Key, true)
+            : $root.removeAttribute(HideAttr.Key)
+        )
+      )
+      .subscribe();
   }
+}
 
-  // handler
-  #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getEl().classList;
-
-    if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
-    return rootClassList.remove(LayoutClassType.Column);
-  }
-
-  #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.getEl().classList;
-
-    if (!shrinkDirection) return rootClassList.remove(HideClassType.Hide);
-    return rootClassList.add(HideClassType.Hide);
-  }
+function ToolboxMenusContainerComp() {
+  return createElementFromHTML(
+    `<div class="${Selectors.MenusContainer}"></div>`
+  );
 }

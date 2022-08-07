@@ -1,8 +1,9 @@
 export { Selectors } from "./selectors/selectors.js";
 
 export {
-  LayoutClassType,
-  AlignClassType,
-  HideClassType,
-  ShrinkType,
-} from "./types/index.js";
+  LayoutAttr,
+  ShrinkAttr,
+  AlignAttr,
+  HideAttr,
+  NameHideAttr,
+} from "./attributes/attributes.js";

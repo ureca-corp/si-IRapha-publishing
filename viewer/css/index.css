@@ -9084,12 +9084,12 @@ button[disabled] {
   width: -moz-fit-content;
   width: fit-content;
 }
-.irapha-toolbox__menu.--layout-column-two {
+.irapha-toolbox__menu[layout=column-two] {
   gap: 4px;
   grid-auto-flow: unset;
   grid-template-columns: repeat(2, 1fr);
 }
-.irapha-toolbox__menu.--name-hide .irapha-menu-item__name {
+.irapha-toolbox__menu[name-hide=true] .irapha-menu-item__name {
   display: none;
 }
 
@@ -9101,12 +9101,12 @@ button[disabled] {
   padding: 0 8px;
   overflow: overlay;
 }
-.irapha-toolbox__menus-container.--layout-column {
+.irapha-toolbox__menus-container[layout=column] {
   flex: 1;
   flex-direction: column;
   padding: 10px 0;
 }
-.irapha-toolbox__menus-container.--hide {
+.irapha-toolbox__menus-container[hide=true] {
   display: none;
 }
 
@@ -9119,14 +9119,14 @@ button[disabled] {
   margin: 14px 8px 0 8px;
   background-color: var(--color__border);
 }
-.irapha-toolbox__divider.--layout-column {
+.irapha-toolbox__divider[layout=column] {
   width: 75%;
   min-height: 4px;
   padding: 0;
   margin: 8px 0;
   align-self: unset;
 }
-.irapha-toolbox__divider.--align--self-center {
+.irapha-toolbox__divider[align=self-center] {
   align-self: center;
   margin: 0 8px;
 }
@@ -9330,26 +9330,26 @@ button[disabled] {
   height: 80px;
   box-shadow: 0px 0px 1px #000;
 }
-.irapha-toolbox.--layout-column {
+.irapha-toolbox[layout=column] {
   min-width: 100px;
   width: 100px;
   height: 100%;
 }
-.irapha-toolbox.--layout-column .irapha-toolbox__logo {
+.irapha-toolbox[layout=column] .irapha-toolbox__logo {
   min-width: unset;
   width: unset;
   border-right: 0;
   border-bottom: 1px dashed var(--color__border);
 }
-.irapha-toolbox.--layout-column .irapha-toolbox__logo .irapha-logo__logo-image {
+.irapha-toolbox[layout=column] .irapha-toolbox__logo .irapha-logo__logo-image {
   top: 4px;
 }
-.irapha-toolbox.--shrink-v {
+.irapha-toolbox[shrink=vertical] {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
-.irapha-toolbox.--shrink-v .irapha-toolbox__logo {
+.irapha-toolbox[shrink=vertical] .irapha-toolbox__logo {
   min-width: unset;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -9357,7 +9357,7 @@ button[disabled] {
   aspect-ratio: unset;
   border: 0;
 }
-.irapha-toolbox.--shrink-h {
+.irapha-toolbox[shrink=horizontal] {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -9365,7 +9365,7 @@ button[disabled] {
   width: -moz-fit-content;
   width: fit-content;
 }
-.irapha-toolbox.--shrink-h .irapha-toolbox__logo {
+.irapha-toolbox[shrink=horizontal] .irapha-toolbox__logo {
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -9393,12 +9393,12 @@ button[disabled] {
     min-width: 100px;
     width: 100px;
   }
-  .irapha-toolbox:not(.--layout-column) .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
+  .irapha-toolbox:not([layout=column]) .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
     display: none;
   }
 }
 @media (max-height: 1024px) {
-  .irapha-toolbox.--layout-column .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
+  .irapha-toolbox[layout=column] .irapha-menu-item[hidable-name=true] .irapha-menu-item__name {
     display: none;
   }
 }

@@ -9,7 +9,7 @@
 // menus
 // =================================================================
 @mixin l-menus {
-  &.--layout-column {
+  &[layout="column"] {
     flex: 1;
     flex-direction: column;
     padding: 10px 0;
@@ -17,7 +17,7 @@
 }
 
 @mixin s-menus {
-  &.--hide {
+  &[hide="true"] {
     display: none;
   }
 }
@@ -47,7 +47,7 @@ $color-border: var(--color__border);
 }
 
 @mixin l-divider {
-  &.--layout-column {
+  &[layout="column"] {
     width: 75%;
     min-height: 4px;
     padding: 0;
@@ -57,7 +57,7 @@ $color-border: var(--color__border);
 }
 
 @mixin s-divider {
-  &.--align--self-center {
+  &[align="self-center"] {
     @include align-self-center;
   }
 }

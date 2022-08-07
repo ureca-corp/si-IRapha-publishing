@@ -73,7 +73,7 @@ export class ThumbnailBox extends BaseElement {
 
     this.#isLayoutColumn$
       .pipe(
-        tap((isLayoutColumn) =>
+        tap((isLayoutColumn = false) =>
           $root.setAttribute(LayoutColumnAttr.Key, isLayoutColumn)
         )
       )

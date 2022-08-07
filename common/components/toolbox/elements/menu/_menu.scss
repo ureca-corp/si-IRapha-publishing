@@ -14,7 +14,7 @@
 }
 
 @mixin l-menu {
-  &.--layout-column-two {
+  &[layout="column-two"] {
     gap: 4px;
     grid-auto-flow: unset;
     grid-template-columns: repeat(2, 1fr);
@@ -22,7 +22,7 @@
 }
 
 @mixin s-menu {
-  &.--name-hide {
+  &[name-hide="true"] {
     @include name-hide;
   }
 }

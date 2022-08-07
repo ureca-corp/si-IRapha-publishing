@@ -1,14 +1,8 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import {
-  AlignClassType,
-  LayoutClassType,
-  Selectors,
-} from "../../common/index.js";
+import { AlignAttr, LayoutAttr, Selectors } from "../../common/index.js";
 
-const Template = `
-<div class="${Selectors.MenusDivider}"></div>
-`;
+const { tap } = rxjs;
 
 /**
  * Constructor types
@@ -21,7 +15,7 @@ export class MenusDivider extends BaseElement {
   #states;
 
   constructor({ states }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new MenusDividerComp() });
     this.#states = states;
 
     this.#initStates();
@@ -30,31 +24,32 @@ export class MenusDivider extends BaseElement {
   #initStates() {
     if (!this.#states) return;
 
+    const $root = this.getEl();
     const { isLayoutColumn$, isAlignSelfCenter$ } = this.#states;
 
-    isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
+    isLayoutColumn$
+      .pipe(
+        tap((isLayoutColumn = false) =>
+          isLayoutColumn
+            ? $root.setAttribute(LayoutAttr.Key, LayoutAttr.Column)
+            : $root.removeAttribute(LayoutAttr.Key)
+        )
+      )
+      .subscribe();
 
-    isAlignSelfCenter$.subscribe((isAlignSelfCenter) =>
-      this.#handleAlignSelfCenter(isAlignSelfCenter)
-    );
+    isAlignSelfCenter$
+      .pipe(
+        tap((isAlignSelfCenter) =>
+          isAlignSelfCenter
+            ? $root.setAttribute(AlignAttr.Key, AlignAttr.SelfCenter)
+            : $root.removeAttribute(AlignAttr.Key)
+        )
+      )
+      .subscribe();
   }
+}
 
-  #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getEl().classList;
-
-    if (isLayoutColumn) {
-      return rootClassList.add(LayoutClassType.Column);
-    }
-
-    return rootClassList.remove(LayoutClassType.Column);
-  }
-
-  #handleAlignSelfCenter(isAlignSelfCenter) {
-    const rootClassList = this.getEl().classList;
-
-    if (isAlignSelfCenter) return rootClassList.add(AlignClassType.SelfCenter);
-    return rootClassList.remove(AlignClassType.SelfCenter);
-  }
+// =================================================================
+function MenusDividerComp() {
+  return createElementFromHTML(`<div class="${Selectors.MenusDivider}"></div>`);
 }

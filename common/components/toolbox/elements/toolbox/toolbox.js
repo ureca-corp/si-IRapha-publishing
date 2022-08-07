@@ -4,24 +4,20 @@ import { ToolboxMenusContainer } from "../menus-container/menus-container.js";
 
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
+import { LayoutAttr, Selectors, ShrinkAttr } from "../../common/index.js";
 
-const rx = rxjs;
-
-const Template = `
-<div class="${Selectors.Toolbox}" draggable="true" priority="1"></div>
-`;
+const { BehaviorSubject, tap } = rxjs;
 
 export class Toolbox extends BaseElement {
   #isLayoutColumn$;
 
-  #isExpanded$ = new rx.BehaviorSubject();
-  #isPreview$ = new rx.BehaviorSubject(false);
-  #shrinkDirection$ = new rx.BehaviorSubject();
-  #isHideIconName$ = new rx.BehaviorSubject();
+  #isExpanded$ = new BehaviorSubject();
+  #isPreview$ = new BehaviorSubject(false);
+  #shrinkDirection$ = new BehaviorSubject();
+  #isHideIconName$ = new BehaviorSubject();
 
   constructor({ isLayoutColumn$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new ToolboxComp() });
     this.#isLayoutColumn$ = isLayoutColumn$;
 
     this.#initStates();
@@ -32,36 +28,44 @@ export class Toolbox extends BaseElement {
   #initChilds() {
     const $root = this.getEl();
 
-    const logo = new Logo({
+    const $logo = new Logo({
       states: { shrinkDirection$: this.#shrinkDirection$ },
       events: { onPinClick: () => this.#toggle() },
-    });
+    }).getEl();
 
-    const menusContainer = new ToolboxMenusContainer({
+    const $menusContainer = new ToolboxMenusContainer({
       states: {
         isLayoutColumn$: this.#isLayoutColumn$,
         isHideIconName$: this.#isHideIconName$,
         shrinkDirection$: this.#shrinkDirection$,
       },
-    });
+    }).getEl();
 
-    const foldingbar = new FoldingBar({
+    const $foldingbar = new FoldingBar({
       states: {
         isLayoutColumn$: this.#isLayoutColumn$,
         isExpanded$: this.#isExpanded$,
         isPreview$: this.#isPreview$,
         shrinkDirection$: this.#shrinkDirection$,
       },
-      $children: createInner({ logo, menusContainer }),
-    });
+      $children: Inner({ $logo, $menusContainer }),
+    }).getEl();
 
-    $root.appendChild(foldingbar.getEl());
+    $root.appendChild($foldingbar);
   }
 
   #initStates() {
-    this.#isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
+    const $root = this.getEl();
+
+    this.#isLayoutColumn$
+      .pipe(
+        tap((isLayoutColumn = false) =>
+          isLayoutColumn
+            ? $root.setAttribute(LayoutAttr.Key, LayoutAttr.Column)
+            : $root.removeAttribute(LayoutAttr.Key)
+        )
+      )
+      .subscribe();
 
     this.#shrinkDirection$.subscribe((shrinkDirection) =>
       this.#handleShrinkDirectionChange(shrinkDirection)
@@ -69,26 +73,20 @@ export class Toolbox extends BaseElement {
   }
 
   // handler
-  #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getEl().classList;
-
-    if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
-
-    return rootClassList.remove(LayoutClassType.Column);
-  }
 
   #handleShrinkDirectionChange(shrinkDirection) {
-    const rootClassList = this.getEl().classList;
-    const { Vertical, Horizontal } = ShrinkType;
+    const $root = this.getEl();
 
-    if (shrinkDirection === Vertical.value)
-      return rootClassList.add(Vertical.className);
+    switch (shrinkDirection) {
+      case ShrinkAttr.Vertical:
+        return $root.setAttribute(ShrinkAttr.Key, ShrinkAttr.Vertical);
 
-    if (shrinkDirection === Horizontal.value)
-      return rootClassList.add(Horizontal.className);
+      case ShrinkAttr.Horizontal:
+        return $root.setAttribute(ShrinkAttr.Key, ShrinkAttr.Horizontal);
 
-    rootClassList.remove(Vertical.className);
-    rootClassList.remove(Horizontal.className);
+      default:
+        return $root.removeAttribute(ShrinkAttr.Key);
+    }
   }
 
   #toggle() {
@@ -102,17 +100,26 @@ export class Toolbox extends BaseElement {
 }
 
 // =================================================================
-const createInner = ({ logo, menusContainer }) => {
-  const template = `
+function ToolboxComp() {
+  return createElementFromHTML(`
+    <div 
+      class="${Selectors.Toolbox}" 
+      draggable="true"
+      priority="1"
+    ></div>
+  `);
+}
+
+function Inner({ $logo, $menusContainer }) {
+  const $template = createElementFromHTML(`
   <div>
     <div class="${Selectors.Logo}"></div>
   </div>
-  `;
-  const $template = createElementFromHTML(template);
+  `);
   const $logoContainer = $template.querySelector(`.${Selectors.Logo}`);
 
-  $logoContainer.appendChild(logo.getEl());
-  $template.appendChild(menusContainer.getEl());
+  $logoContainer.appendChild($logo);
+  $template.appendChild($menusContainer);
 
   return $template;
-};
+}
