@@ -5,15 +5,9 @@ import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import { PinIcon2 } from "../../../icons/pin.icon.js";
-import { LayoutClassType, Selectors, ShrinkType } from "../../common/index.js";
+import { LayoutColumnAttr, Selectors, ShrinkAttr } from "../../common/index.js";
 
-const rx = rxjs;
-
-const { BehaviorSubject } = rxjs;
-
-const Template = `
-<div class="${Selectors.ThumbnailBox}" draggable="true" priority="2"></div>
-`;
+const { BehaviorSubject, tap, map } = rxjs;
 
 export class ThumbnailBox extends BaseElement {
   #model;
@@ -25,7 +19,7 @@ export class ThumbnailBox extends BaseElement {
   #shrinkDirection$ = new BehaviorSubject();
 
   constructor({ isLayoutColumn$, model }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new ThumbnailBoxComp() });
     this.#isLayoutColumn$ = isLayoutColumn$;
     this.#model = model;
 
@@ -39,67 +33,62 @@ export class ThumbnailBox extends BaseElement {
   #initChilds() {
     const { kinModels, thumbnailModels } = this.#model;
 
-    const pinIcon = new PinIcon2({
+    const $pinIcon = new PinIcon2({
       options: {
         events: {
           onClick: () => this.#toggle(),
         },
       },
-    });
+    }).getEl();
 
-    const kinSelector = new KinSelector({
+    const $kinSelector = new KinSelector({
       items: kinModels,
       isHide$: this.#shrinkDirection$,
-    });
+    }).getEl();
 
-    const thumbnailList = new ThumbnailList({
+    const $thumbnailList = new ThumbnailList({
       models: thumbnailModels,
       isLayoutColumn$: this.#isLayoutColumn$,
       isHide$: this.#isExpanded$,
-    });
+    }).getEl();
 
-    const foldingbar = new FoldingBar({
+    const $foldingbar = new FoldingBar({
       states: {
         isLayoutColumn$: this.#isLayoutColumn$,
         isExpanded$: this.#isExpanded$,
         isPreview$: this.#isPreview$,
         shrinkDirection$: this.#shrinkDirection$,
       },
-      $children: createInnerElement({
-        $options: createOptionsElement([pinIcon, kinSelector]),
-        $thumbnailList: thumbnailList.getEl(),
+      $children: new InnerElement({
+        $options: new OptionsElement([$pinIcon, $kinSelector]),
+        $thumbnailList: $thumbnailList,
       }),
-    });
+    }).getEl();
 
-    this.getEl().appendChild(foldingbar.getEl());
+    this.getEl().appendChild($foldingbar);
   }
 
   #initStates() {
-    this.#isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
-    );
-
-    this.#shrinkDirection$.subscribe((shrinkDirection) =>
-      this.#handleShrinkDirectionChange(shrinkDirection)
-    );
-  }
-
-  // handler
-  #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getEl().classList;
-
-    isLayoutColumn
-      ? rootClassList.add(LayoutClassType.Column)
-      : rootClassList.remove(LayoutClassType.Column);
-  }
-
-  #handleShrinkDirectionChange(shrinkDirection) {
-    const { Vertical } = ShrinkType;
     const $root = this.getEl();
 
-    shrinkDirection === Vertical.value
-      ? $root.classList.add(Vertical.className)
-      : $root.classList.remove(Vertical.className);
+    this.#isLayoutColumn$
+      .pipe(
+        tap((isLayoutColumn) =>
+          $root.setAttribute(LayoutColumnAttr.Key, isLayoutColumn)
+        )
+      )
+      .subscribe();
+
+    this.#shrinkDirection$
+      .pipe(
+        map((shrinkDirection) => shrinkDirection === ShrinkAttr.Vertical),
+        tap((isShrinkVertical) =>
+          isShrinkVertical
+            ? $root.setAttribute(ShrinkAttr.Key, ShrinkAttr.Vertical)
+            : $root.removeAttribute(ShrinkAttr.Key)
+        )
+      )
+      .subscribe();
   }
 
   #toggle() {
@@ -113,20 +102,29 @@ export class ThumbnailBox extends BaseElement {
 }
 
 // =================================================================================================
-const createOptionsElement = (items) => {
-  const template = `
-  <div class="${Selectors.ThumbnailOptions}"></div>
-  `;
-  const $template = createElementFromHTML(template);
+function ThumbnailBoxComp() {
+  return createElementFromHTML(`
+  <div 
+    class="${Selectors.ThumbnailBox}" 
+    draggable="true" 
+    priority="2"
+  ></div>
+  `);
+}
 
-  $template.append(...items.map((it) => it.getEl()));
+function OptionsElement($items) {
+  const $optionsWrapper = createElementFromHTML(
+    `<div class="${Selectors.ThumbnailOptions}"></div>`
+  );
 
-  return $template;
-};
+  $optionsWrapper.append(...$items);
 
-const createInnerElement = ({ $options, $thumbnailList }) => {
+  return $optionsWrapper;
+}
+
+function InnerElement({ $options, $thumbnailList }) {
   const $div = document.createElement("div");
   $div.append(...[$options, $thumbnailList]);
 
   return $div;
-};
+}

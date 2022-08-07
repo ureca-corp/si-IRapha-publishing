@@ -8,7 +8,7 @@
 $color-border: var(--color__border);
 
 @mixin l-thumbnail-box {
-  &.--layout-column {
+  &[layout-column="true"] {
     height: 100%;
 
     .irapha-thumbnail-box__options {
@@ -18,13 +18,11 @@ $color-border: var(--color__border);
 }
 
 @mixin s-thumbnail-box {
-  &.--shrink-v {
-    & {
-      height: fit-content;
+  &[shrink="vertical"] {
+    height: fit-content;
 
-      .irapha-thumbnail-box__options {
-        border: 0;
-      }
+    .irapha-thumbnail-box__options {
+      border: 0;
     }
   }
 }
@@ -56,7 +54,7 @@ $color-border: var(--color__border);
 // =================================================================
 @media (max-width: break-point.$laptop) {
   .irapha-thumbnail-box {
-    &.--layout-column {
+    &[layout-column="true"] {
       .irapha-thumbnail-box__options {
         flex-wrap: wrap;
         align-items: center;
@@ -64,7 +62,7 @@ $color-border: var(--color__border);
       }
     }
 
-    &:not(.--layout-column) {
+    &:not([layout-column="true"]) {
       .irapha-thumbnail-box__options {
         min-width: 100px;
         max-width: 100px;

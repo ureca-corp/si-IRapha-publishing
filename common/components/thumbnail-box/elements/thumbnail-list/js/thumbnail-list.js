@@ -1,7 +1,9 @@
-import { ThumbnailItem } from "./thumbnail-item.js";
-import { Selectors, LayoutClassType } from "../../../common/index.js";
-import { BaseElement } from "../../../../base/base-element.js";
 import { createElementFromHTML } from "../../../../../utils/dom/index.js";
+import { BaseElement } from "../../../../base/base-element.js";
+import { LayoutColumnAttr, Selectors } from "../../../common/index.js";
+import { ThumbnailItem } from "./thumbnail-item.js";
+
+const { map, tap } = rxjs;
 
 /**
  * Constructor types
@@ -19,44 +21,34 @@ import { createElementFromHTML } from "../../../../../utils/dom/index.js";
  * 폴딩 여부
  */
 export class ThumbnailList extends BaseElement {
-  static template = `
-  <ul class="${Selectors.ThumbnailList}"></ul>
-  `;
-
   constructor({ models, isLayoutColumn$, isHide$ }) {
-    super({ $element: createElementFromHTML(ThumbnailList.template) });
+    super({ $element: new ThumbnailListComp() });
+    const $root = this.getEl();
 
     this.#initThumbnailItems({ models });
 
     isLayoutColumn$.subscribe((isLayoutColumn) =>
-      this.#handleLayoutChange(isLayoutColumn)
+      $root.setAttribute(LayoutColumnAttr.Key, isLayoutColumn)
     );
 
-    isHide$.subscribe((isHide) => this.#handleVisibilityChange(isHide));
+    isHide$
+      .pipe(
+        map((isHide) => ({ isHide, rootStyle: $root.style })),
+        tap(({ isHide, rootStyle }) =>
+          isHide ? (rootStyle.display = "none") : (rootStyle.display = "flex")
+        )
+      )
+      .subscribe();
   }
 
   // private
   #initThumbnailItems({ models }) {
-    const items = models.map((model) => new ThumbnailItem({ model }));
-    const $items = items.map((it) => it.getEl());
+    const $items = models.map((model) => new ThumbnailItem({ model }).getEl());
 
     this.getEl().append(...$items);
   }
+}
 
-  // handler
-  #handleLayoutChange(isLayoutColumn) {
-    const rootClassList = this.getEl().classList;
-
-    if (isLayoutColumn) return rootClassList.add(LayoutClassType.Column);
-
-    return rootClassList.remove(LayoutClassType.Column);
-  }
-
-  #handleVisibilityChange(isHide) {
-    const style = this.getEl().style;
-
-    if (isHide) return (style.display = "none");
-
-    return (style.display = "flex");
-  }
+function ThumbnailListComp() {
+  return createElementFromHTML(`<ul class="${Selectors.ThumbnailList}"></ul>`);
 }

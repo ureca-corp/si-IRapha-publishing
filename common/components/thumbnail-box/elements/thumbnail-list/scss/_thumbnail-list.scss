@@ -2,6 +2,13 @@
 @use "../../../../../themes/typography" as typography;
 
 @mixin l-list {
+  &[layout-column="true"] {
+    flex-direction: column;
+
+    overflow-x: hidden;
+    overflow-y: overlay;
+  }
+
   &.--layout-column {
     flex-direction: column;
 

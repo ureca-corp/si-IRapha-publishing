@@ -13,19 +13,10 @@ import { Selectors, TextPositionClassType } from "../../../common/index.js";
  * }
  */
 export class ThumbnailItem extends BaseElement {
-  static template = `
-  <li class="${Selectors.ThumbnailListItem}">
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopLeft}"></div>
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopRight}"></div>
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.BottomLeft}"></div>
-    <canvas class="${Selectors.ThumbnailListItemCanvas}"></canvas>
-  </li>
-  `;
-
   #model;
 
   constructor({ model }) {
-    super({ $element: createElementFromHTML(ThumbnailItem.template) });
+    super({ $element: new ThumbnailItemComp() });
     this.#model = model;
 
     this.#initModel();
@@ -37,9 +28,7 @@ export class ThumbnailItem extends BaseElement {
   }
 
   #initModel() {
-    const $topLeft = this.#getTopLeft();
-    const $topRight = this.#getTopRight();
-    const $bottomLeft = this.#getBottomLeft();
+    const { $topLeft, $topRight, $bottomLeft } = this.#getElements();
 
     const { topLeft, topRight, bottomLeft } = this.#model;
     $topLeft.innerHTML = topLeft;
@@ -47,21 +36,34 @@ export class ThumbnailItem extends BaseElement {
     $bottomLeft.innerHTML = bottomLeft;
   }
 
-  #getTopLeft() {
-    return this.getElementByClassName(
+  #getElements() {
+    const $topLeft = this.getElementByClassName(
       `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopLeft}`
     );
-  }
 
-  #getTopRight() {
-    return this.getElementByClassName(
+    const $topRight = this.getElementByClassName(
       `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopRight}`
     );
-  }
 
-  #getBottomLeft() {
-    return this.getElementByClassName(
+    const $bottomLeft = this.getElementByClassName(
       `${Selectors.ThumbnailListItemText}.${TextPositionClassType.BottomLeft}`
     );
+
+    return {
+      $topLeft,
+      $topRight,
+      $bottomLeft,
+    };
   }
+}
+
+function ThumbnailItemComp() {
+  return createElementFromHTML(`
+  <li class="${Selectors.ThumbnailListItem}">
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopLeft}"></div>
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopRight}"></div>
+    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.BottomLeft}"></div>
+    <canvas class="${Selectors.ThumbnailListItemCanvas}"></canvas>
+  </li>
+  `);
 }
