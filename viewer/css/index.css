@@ -9039,8 +9039,8 @@ button[disabled] {
 }
 
 .irapha-sub-menu .irapha-sub-menu__container {
-  background-color: var(--color__bg-primary);
   border-radius: 4px;
+  background-color: var(--color__bg-primary);
   box-shadow: var(--box-shadow__layer-menu);
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -9403,6 +9403,7 @@ button[disabled] {
   }
 }
 .irapha-kin-selector {
+  border-radius: 4px;
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -9414,7 +9415,6 @@ button[disabled] {
   height: fit-content !important;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-radius: 4px;
   border-color: var(--color__border);
   background-color: transparent;
   color: var(--color__font-secondary);
@@ -9445,19 +9445,14 @@ button[disabled] {
   overflow-x: hidden;
   overflow-y: overlay;
 }
-.irapha-thumbnail-list.--layout-column {
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: overlay;
-}
 
 .irapha-thumbnail-list__item {
+  transition: all 0.3s ease-in-out;
   min-width: 130px;
   min-height: 130px;
   position: relative;
   border: 2px solid var(--color__border);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 @media (max-width: 1440px) {
   .irapha-thumbnail-list__item {
@@ -9465,10 +9460,10 @@ button[disabled] {
     min-height: 100px;
   }
 }
-.irapha-thumbnail-list__item.--active {
+.irapha-thumbnail-list__item[active=true] {
   border: 2px solid var(--color__yellow);
 }
-.irapha-thumbnail-list__item.--active:hover {
+.irapha-thumbnail-list__item[active=true]:hover {
   border: 2px solid var(--color__orange);
 }
 .irapha-thumbnail-list__item:hover {
@@ -9482,15 +9477,15 @@ button[disabled] {
   line-height: 16px;
   font-weight: 700;
 }
-.irapha-thumbnail-list__item__text.--top-left {
+.irapha-thumbnail-list__item__text[text-position=top-left] {
   top: 4px;
   left: 4px;
 }
-.irapha-thumbnail-list__item__text.--top-right {
+.irapha-thumbnail-list__item__text[text-position=top-right] {
   top: 4px;
   right: 4px;
 }
-.irapha-thumbnail-list__item__text.--bottom-left {
+.irapha-thumbnail-list__item__text[text-position=bottom-left] {
   bottom: 4px;
   left: 4px;
 }
@@ -10242,6 +10237,7 @@ button[disabled] {
 }
 
 .irapha-menu-item {
+  transition: all 0.3s ease-in-out;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10249,14 +10245,13 @@ button[disabled] {
   gap: 4px;
   width: 40px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
-.irapha-menu-item.--horizontal {
+.irapha-menu-item[layout-horizontal=true] {
   flex-direction: row;
   gap: 8px;
   width: unset;
 }
-.irapha-menu-item.--horizontal .irapha-menu-item__name {
+.irapha-menu-item[layout-horizontal=true] .irapha-menu-item__name {
   text-align: start;
 }
 .irapha-menu-item:hover .irapha-menu-item__icon {
@@ -10268,20 +10263,20 @@ button[disabled] {
 }
 
 .irapha-menu-item__icon {
-  position: relative;
+  transition: all 0.3s ease-in-out;
   border-radius: 4px;
+  position: relative;
   width: 36px;
   min-width: 24px;
   aspect-ratio: 1;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
-.irapha-menu-item__icon.--oulined {
+.irapha-menu-item__icon[outlined=true] {
   padding: 4px;
   border: 2px solid rgba(238, 238, 238, 0.1333333333);
 }
-.irapha-menu-item__icon.--more::after {
+.irapha-menu-item__icon[more=true]::after {
   content: "▼";
   position: absolute;
   bottom: -4px;
@@ -10292,6 +10287,7 @@ button[disabled] {
 }
 
 .irapha-menu-item__name {
+  transition: all 0.3s ease-in-out;
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -10301,7 +10297,6 @@ button[disabled] {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all 0.3s ease-in-out;
 }
 
 .irapha-popup-appbar {

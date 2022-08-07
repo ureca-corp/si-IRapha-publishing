@@ -1,5 +1,6 @@
 @use "../../styles/common";
 @use "../../themes/typography" as typography;
+@use "../../themes/shape" as shape;
 
 @mixin menu-name {
   @include typography.label-small;
@@ -26,9 +27,8 @@
 
 .irapha-sub-menu {
   .irapha-sub-menu__container {
+    @include shape.small;
     background-color: var(--color__bg-primary);
-
-    border-radius: 4px;
     box-shadow: var(--box-shadow__layer-menu);
 
     width: fit-content;

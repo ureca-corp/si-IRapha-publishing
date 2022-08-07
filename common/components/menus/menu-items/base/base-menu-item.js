@@ -1,22 +1,24 @@
 import { BaseElement } from "../../../base/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
+const { of, filter, tap } = rxjs;
+
 const Selectors = {
   Root: "irapha-menu-item",
   Icon: "irapha-menu-item__icon",
   Name: "irapha-menu-item__name",
 };
 
-const Template = `
-<dl class="${Selectors.Root}"></dl>
-`;
+function BaseMenuItemComp() {
+  return createElementFromHTML(`<dl class="${Selectors.Root}"></dl>`);
+}
 
 export class BaseMenuItem extends BaseElement {
   #data;
   #options;
 
   constructor({ data, options }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new BaseMenuItemComp() });
 
     this.#data = data;
     this.#options = options;
@@ -45,16 +47,30 @@ export class BaseMenuItem extends BaseElement {
   #initOptions() {
     if (!this.#options) return;
 
-    const { outlined, more, horizontal, hidableName = true } = this.#options;
+    const {
+      outlined = false,
+      more = false,
+      horizontal = false,
+      hidableName = true,
+    } = this.#options;
 
     const $root = this.getEl();
     const $icon = this.#getIconElement();
 
-    if (outlined) $icon.classList.add("--oulined");
-    if (more) $icon.classList.add("--more");
-    if (horizontal) $root.classList.add("--horizontal");
+    of($icon)
+      .pipe(
+        filter(($icon) => !!$icon),
+        tap(($icon) => $icon.setAttribute("outlined", outlined)),
+        tap(($icon) => $icon.setAttribute("more", more))
+      )
+      .subscribe();
 
-    $root.setAttribute("hidable-name", hidableName);
+    of($root)
+      .pipe(
+        tap(($root) => $root.setAttribute("layout-horizontal", horizontal)),
+        tap(($root) => $root.setAttribute("hidable-name", hidableName))
+      )
+      .subscribe();
   }
 
   #getIconElement() {

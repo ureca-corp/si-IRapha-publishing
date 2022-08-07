@@ -1,7 +1,9 @@
 @use "../../../themes//typography" as typography;
+@use "../../../themes/shape" as shape;
+@use "../../../styles/anim" as anim;
 
 @mixin s-menu-item {
-  &.--horizontal {
+  &[layout-horizontal="true"] {
     flex-direction: row;
     gap: 8px;
 
@@ -25,6 +27,7 @@
 }
 
 .irapha-menu-item {
+  @include anim.basic-transition;
   position: relative;
 
   display: flex;
@@ -36,20 +39,18 @@
 
   cursor: pointer;
 
-  transition: all 0.3s ease-in-out;
-
   @include s-menu-item;
 }
 
 // menu item icon
 // =================================================================
 @mixin s-menu-icon {
-  &.--oulined {
+  &[outlined="true"] {
     padding: 4px;
     border: 2px solid #eeeeee22;
   }
 
-  &.--more {
+  &[more="true"] {
     &::after {
       content: "▼";
       position: absolute;
@@ -66,8 +67,10 @@
 }
 
 .irapha-menu-item__icon {
+  @include anim.basic-transition;
+  @include shape.small;
+
   position: relative;
-  border-radius: 4px;
 
   width: 36px;
   min-width: 24px;
@@ -76,14 +79,14 @@
   overflow: hidden;
   cursor: pointer;
 
-  transition: all 0.3s ease-in-out;
-
   @include s-menu-icon;
 }
 
 // menu item name
 .irapha-menu-item__name {
+  @include anim.basic-transition;
   @include typography.label-small;
+
   color: var(--color__font-secondary);
 
   text-align: center;
@@ -93,6 +96,4 @@
 
   overflow: hidden;
   text-overflow: ellipsis;
-
-  transition: all 0.3s ease-in-out;
 }

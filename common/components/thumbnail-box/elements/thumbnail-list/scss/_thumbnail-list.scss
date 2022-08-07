@@ -1,15 +1,9 @@
 @use "../../../../../themes/colors" as colors;
 @use "../../../../../themes/typography" as typography;
+@use "../../../../../styles/anim" as anim;
 
 @mixin l-list {
   &[layout-column="true"] {
-    flex-direction: column;
-
-    overflow-x: hidden;
-    overflow-y: overlay;
-  }
-
-  &.--layout-column {
     flex-direction: column;
 
     overflow-x: hidden;
@@ -56,7 +50,7 @@ $floating-text__padding-size: 4px;
 }
 
 @mixin s-list-item {
-  &.--active {
+  &[active="true"] {
     border: 2px solid $color-yellow;
 
     &:hover {
@@ -66,6 +60,7 @@ $floating-text__padding-size: 4px;
 }
 
 .irapha-thumbnail-list__item {
+  @include anim.basic-transition;
   @include responsive-list-item;
   @include s-list-item;
 
@@ -78,8 +73,6 @@ $floating-text__padding-size: 4px;
   &:hover {
     border: 2px solid $color-green;
   }
-
-  transition: all 0.3s ease-in-out;
 }
 
 .irapha-thumbnail-list__item {
@@ -89,15 +82,17 @@ $floating-text__padding-size: 4px;
     color: $color-font;
     @include typography.label-small;
 
-    &.--top-left {
+    &[text-position="top-left"] {
       top: $floating-text__padding-size;
       left: $floating-text__padding-size;
     }
-    &.--top-right {
+
+    &[text-position="top-right"] {
       top: $floating-text__padding-size;
       right: $floating-text__padding-size;
     }
-    &.--bottom-left {
+
+    &[text-position="bottom-left"] {
       bottom: $floating-text__padding-size;
       left: $floating-text__padding-size;
     }

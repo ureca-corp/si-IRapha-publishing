@@ -1,7 +1,7 @@
 import { createElementFromHTML } from "../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../base/base-element.js";
 import { useCustomContextMenu } from "../../../../modals/index.js";
-import { Selectors, TextPositionClassType } from "../../../common/index.js";
+import { Selectors, TextPositionAttr } from "../../../common/index.js";
 
 /**
  * Constructor types
@@ -37,16 +37,18 @@ export class ThumbnailItem extends BaseElement {
   }
 
   #getElements() {
-    const $topLeft = this.getElementByClassName(
-      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopLeft}`
+    const $root = this.getEl();
+
+    const $topLeft = $root.querySelector(
+      `[${TextPositionAttr.Key}=${TextPositionAttr.TopLeft}]`
     );
 
-    const $topRight = this.getElementByClassName(
-      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.TopRight}`
+    const $topRight = $root.querySelector(
+      `[${TextPositionAttr.Key}=${TextPositionAttr.TopRight}]`
     );
 
-    const $bottomLeft = this.getElementByClassName(
-      `${Selectors.ThumbnailListItemText}.${TextPositionClassType.BottomLeft}`
+    const $bottomLeft = $root.querySelector(
+      `[${TextPositionAttr.Key}=${TextPositionAttr.BottomLeft}]`
     );
 
     return {
@@ -60,9 +62,18 @@ export class ThumbnailItem extends BaseElement {
 function ThumbnailItemComp() {
   return createElementFromHTML(`
   <li class="${Selectors.ThumbnailListItem}">
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopLeft}"></div>
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.TopRight}"></div>
-    <div class="${Selectors.ThumbnailListItemText} ${TextPositionClassType.BottomLeft}"></div>
+    <div 
+      class="${Selectors.ThumbnailListItemText}" 
+      ${TextPositionAttr.Key}=${TextPositionAttr.TopLeft}
+    ></div>
+    <div 
+      class="${Selectors.ThumbnailListItemText}"
+      ${TextPositionAttr.Key}=${TextPositionAttr.TopRight}
+    ></div>
+    <div 
+      class="${Selectors.ThumbnailListItemText}"
+      ${TextPositionAttr.Key}=${TextPositionAttr.BottomLeft}
+    ></div>
     <canvas class="${Selectors.ThumbnailListItemCanvas}"></canvas>
   </li>
   `);

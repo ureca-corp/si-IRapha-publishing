@@ -7,3 +7,11 @@ export const ShrinkAttr = {
 
   Vertical: "vertical",
 };
+
+export const TextPositionAttr = {
+  Key: "text-position",
+
+  TopLeft: "top-left",
+  TopRight: "top-right",
+  BottomLeft: "bottom-left",
+};

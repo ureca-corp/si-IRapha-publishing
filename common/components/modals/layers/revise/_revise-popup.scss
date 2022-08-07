@@ -1,4 +1,5 @@
 @use "../../../../themes/typography" as typography;
+@use "../../../../themes/shape" as shape;
 @use "../../../../styles/input" as input;
 
 $color-font1: var(--color__font-secondary);
@@ -15,7 +16,7 @@ $color-border: var(--color__border);
   padding: 16px;
 
   canvas {
-    border-radius: 4px;
+    @include shape.small;
     background-color: #000;
   }
 }
