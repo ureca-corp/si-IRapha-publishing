@@ -1,6 +1,6 @@
-@use "../../../styles/common";
-@use "../../../themes/shape" as shapes;
-@use "../../../themes/typography" as typography;
+@use "../../styles/common";
+@use "../../themes/shape" as shapes;
+@use "../../themes/typography" as typography;
 
 $color-bg: var(--color__black);
 $color-font: var(--color__font-primary);

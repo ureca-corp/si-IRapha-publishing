@@ -134,3 +134,8 @@ document
   .querySelector("#global-popup-group")
   .appendChild(dicomInfoLayerPopup.getEl());
 window.store.dicomInformationsOpen$.next({ x: 400, y: 600 });
+
+// =================================================================
+import { ViewerInfoPopup } from "../../common/components/viewer-info/index.js";
+const $viewerInfoPopup = new ViewerInfoPopup().getEl();
+document.querySelector("#global-popup-group").appendChild($viewerInfoPopup);
