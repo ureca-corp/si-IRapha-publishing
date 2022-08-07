@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 import { DicomViewBox } from "../dicom-viewbox/index.js";
 import { DicomWindow, DicomWindowTabContent } from "../dicom-window/index.js";
-import { Tabs } from "../tabs2/index.js";
+import { Tabs } from "../tabs/index.js";
 import { getViewModel } from "./main-layout.vm.js";
 
 const { map, tap } = rxjs;

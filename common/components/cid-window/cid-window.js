@@ -2,7 +2,7 @@ import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 import { createCheckBox, createLabelWith } from "../kit/index.js";
 import { PopupAppbar } from "../modals/index.js";
-import { Tabs } from "../tabs2/index.js";
+import { Tabs } from "../tabs/index.js";
 import { getViewModel } from "./cid-window.vm.js";
 import { Content } from "./elements/content/content.js";
 import { TabInner } from "./elements/tab-inner/tab-inner.js";

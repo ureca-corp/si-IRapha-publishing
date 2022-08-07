@@ -9795,17 +9795,6 @@ button[disabled] {
 .irapha-tabs__item:hover:not([active=true]) {
   background-color: var(--color__bg-secondary);
 }
-.irapha-tabs__item:hover .irapha-tabs__item__menus {
-  opacity: 1;
-}
-
-.irapha-tabs__item__menus {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
 
 .irapha-tabs {
   display: flex;
@@ -9831,7 +9820,6 @@ button[disabled] {
   flex-direction: column;
   width: 100px;
   min-width: 100px;
-  cursor: pointer;
 }
 
 .irapha-cid-window__tab-inner__title {

@@ -1,9 +1,8 @@
 @use "../../../../themes/typography" as typography;
-@use "../../common/tabs.constant" as constant;
 
-$inactive-bg-color: constant.$inactive-bg-color;
-$active-bg-color: constant.$active-bg-color;
-$hover-bg-color: #eeeeee11;
+$inactive-bg-color: var(--color__inactive-bg-primary);
+$active-bg-color: var(--color__active-bg-primary);
+$hover-bg-color: var(--color__bg-secondary);
 
 // List item
 // =================================================================
@@ -66,7 +65,7 @@ $hover-bg-color: #eeeeee11;
 }
 
 @mixin s-list-item {
-  &.--active {
+  &[active="true"] {
     z-index: 2;
     background-color: $active-bg-color;
 
@@ -81,7 +80,7 @@ $hover-bg-color: #eeeeee11;
   position: relative;
   z-index: 3;
 
-  width: 200px;
+  min-width: fit-content;
   height: 100%;
 
   border-top-left-radius: 8px;
@@ -93,67 +92,8 @@ $hover-bg-color: #eeeeee11;
   background-color: transparent;
 
   &:hover {
-    &:not(.--active) {
+    &:not([active="true"]) {
       background-color: $hover-bg-color;
     }
-
-    .irapha-tabs__item__menus {
-      opacity: 1;
-    }
-  }
-
-  .irapha-tabs__item__title-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .irapha-tabs__item__title {
-    @include typography.label-medium;
-  }
-
-  .irapha-tabs__item__desc {
-    @include typography.caption;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    opacity: 0.8;
-  }
-}
-
-// List items menu
-// =========================================================================
-@mixin menus-item {
-  width: 12px;
-  height: fit-content;
-  aspect-ratio: 1;
-
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.5);
-  }
-}
-
-.irapha-tabs__item__menus {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-
-  .irapha-tabs__cid {
-    @include menus-item;
-  }
-
-  .irapha-tabs__related-study {
-    @include menus-item;
-  }
-
-  .irapha-tabs__close {
-    @include menus-item;
   }
 }
