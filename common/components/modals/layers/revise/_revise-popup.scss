@@ -1,6 +1,5 @@
 @use "../../../../themes/typography" as typography;
 @use "../../../../styles/input" as input;
-@use "../../../../styles/buttons" as buttons;
 
 $color-font1: var(--color__font-secondary);
 $color-border: var(--color__border);
@@ -87,17 +86,4 @@ $color-border: var(--color__border);
   padding: 12px;
 
   border-top: 1px dashed $color-border;
-}
-
-.irapha-revise__cancel {
-  @include buttons.outlined-button;
-
-  &:hover {
-    color: $color-font1;
-  }
-}
-
-.irapha-revise__submit {
-  @include buttons.contained-button;
-  background-color: var(--color__teriary);
 }

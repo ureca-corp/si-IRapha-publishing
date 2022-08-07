@@ -17,14 +17,25 @@ const { BehaviorSubject, fromEvent, tap, map, filter, of } = rxjs;
 export class StickyMenu extends BaseElement {
   #activeDropzonesDummy$ = new BehaviorSubject();
 
+  $top;
+  $left;
+  $right;
+  $bottom;
+  $content;
+
   #dropCallback;
 
-  constructor({ dropCallback }) {
+  constructor({ dropCallback, $top, $left, $right, $bottom, $content }) {
     super({ $element: new StickyMenuComp() });
 
+    this.$top = $top;
+    this.$left = $left;
+    this.$right = $right;
+    this.$bottom = $bottom;
+    this.$content = $content;
     this.#dropCallback = dropCallback;
 
-    this.#initEvents();
+    this.#init();
 
     const { $dropzones } = this.#getElements();
     $dropzones.forEach(
@@ -34,6 +45,28 @@ export class StickyMenu extends BaseElement {
   }
 
   // private
+  #init() {
+    this.#initChilds();
+    this.#initEvents();
+  }
+
+  #initChilds() {
+    const { $top, $left, $right, $bottom, $content } = this;
+    const {
+      $dropzoneTop,
+      $dropzoneLeft,
+      $dropzoneRight,
+      $dropzoneBottom,
+      $contentWrapper,
+    } = this.#getElements();
+
+    $top && $dropzoneTop.appendChild($top);
+    $left && $dropzoneLeft.appendChild($left);
+    $right && $dropzoneRight.appendChild($right);
+    $bottom && $dropzoneBottom.appendChild($bottom);
+    $content && $contentWrapper.appendChild($content);
+  }
+
   #initEvents() {
     const $root = this.getEl();
 
@@ -137,7 +170,6 @@ export class StickyMenu extends BaseElement {
     const $dropzoneBottom = $root.querySelector(
       `[${PositionAttr.Key}='${PositionAttr.Bottom}']`
     );
-
     const $dropzones = [
       $dropzoneTop,
       $dropzoneLeft,
@@ -145,7 +177,7 @@ export class StickyMenu extends BaseElement {
       $dropzoneBottom,
     ];
 
-    const $content = $root.querySelector(`.${Selectors.Content}`);
+    const $contentWrapper = this.getElementByClassName(Selectors.Content);
 
     return {
       $dropzoneTop,
@@ -153,7 +185,7 @@ export class StickyMenu extends BaseElement {
       $dropzoneRight,
       $dropzoneBottom,
       $dropzones,
-      $content,
+      $contentWrapper,
     };
   }
 }
@@ -166,7 +198,7 @@ function StickyMenuComp() {
     <div class="${Selectors.Dropzone}" ${PositionAttr.Key}="${PositionAttr.Left}"></div>
     <div class="${Selectors.Dropzone}" ${PositionAttr.Key}="${PositionAttr.Right}"></div>
     <div class="${Selectors.Dropzone}" ${PositionAttr.Key}="${PositionAttr.Bottom}"></div>
-    <div id="testBBB" class="${Selectors.Content}"></div>
+    <div class="${Selectors.Content}"></div>
   </div>
   `);
 }

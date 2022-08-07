@@ -1,20 +1,26 @@
 import { createElementFromHTML } from "../../../../../../utils/dom/index.js";
+import { Button } from "../../../../../kit/index.js";
 import { Selectors } from "../../common/index.js";
 
 const { fromEvent } = rxjs;
 
 export const createFooter = ({ onCancel, onSubmit }) => {
   const $footer = createElementFromHTML(`
-  <div class="${Selectors.Footer}">
-    <button class="${Selectors.CancelButton}">Cancel</button>
-    <button class="${Selectors.SubmitButton}">Save</button>
-  </div>
+  <div class="${Selectors.Footer}"></div>
   `);
-  const $cancelButton = $footer.querySelector(`.${Selectors.CancelButton}`);
-  const $submitButton = $footer.querySelector(`.${Selectors.SubmitButton}`);
+  const $cancelButton = new Button({
+    label: "Cancel",
+    variant: "outlined",
+    onClick: onCancel,
+  });
 
-  fromEvent($cancelButton, "click").subscribe((e) => onCancel(e));
-  fromEvent($submitButton, "click").subscribe((e) => onSubmit(e));
+  const $submitButton = new Button({
+    label: "Save",
+    variant: "contained",
+    onClick: onSubmit,
+  });
+
+  $footer.append(...[$cancelButton, $submitButton]);
 
   return $footer;
 };

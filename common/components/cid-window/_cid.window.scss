@@ -1,5 +1,5 @@
 @use "../../styles/common";
-@use "../../styles/buttons" as buttons;
+@use "../kit/style" as kit;
 @use "../modals/style" as modals;
 @use "../tabs/style" as tabs;
 
@@ -48,13 +48,5 @@ $color-bg: var(--color__secondary-container);
 
   .irapha-label {
     cursor: pointer;
-  }
-}
-
-.irapha-cid-window__cancel-btn {
-  @include buttons.outlined-button;
-
-  &:hover {
-    color: $color-font1;
   }
 }

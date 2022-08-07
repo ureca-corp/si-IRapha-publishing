@@ -1,67 +1,78 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
 
+const { of, tap, map, filter } = rxjs;
+
 const Selectors = {
   VirtualLayout: "irapha-virtual-layout",
   VirtualLayoutItem: "irapha-virtual-layout__item",
 };
 
 export class VirtualLayout extends BaseElement {
-  static template = `
-  <div class="${Selectors.VirtualLayout}"></div>
-  `;
-
   #children;
 
   constructor({ layout$, children }) {
-    super({ $element: createElementFromHTML(VirtualLayout.template) });
+    super({ $element: new VirtualLayoutComp() });
     this.#children = children;
 
-    const $item = this.#createItemAndSetChildren({ children });
-    this.getEl().appendChild($item);
-
+    this.#init();
     layout$.subscribe(({ layout }) => this.#handleLayoutChange(layout));
+  }
+
+  #init() {
+    const $root = this.getEl();
+    const $children = new VirtualLayoutItem(this.#children.getEl());
+
+    $root.appendChild($children);
   }
 
   #handleLayoutChange(layout) {
     const $root = this.getEl();
-    $root.setAttribute("layout", layout);
 
-    this.#resetLayoutChildren();
+    of(layout)
+      .pipe(
+        tap((layout) => $root.setAttribute("layout", layout)),
+        tap(() => this.#resetLayoutChildren()),
+        map((layout) => layout !== "normal")
+      )
+      .subscribe((isLayoutNotNormal) => {
+        if (isLayoutNotNormal) {
+          const $cloned = this.#children.clone().getEl();
+          const $item = new VirtualLayoutItem($cloned);
 
-    const isLayoutNotNormal = layout !== "normal";
-    if (isLayoutNotNormal) {
-      const cloned = this.#children.clone();
-      const $item = this.#createItemAndSetChildren({ children: cloned });
-
-      $root.appendChild($item);
-    }
+          $root.appendChild($item);
+        }
+      });
   }
 
   #resetLayoutChildren() {
     const $root = this.getEl();
-    const $items = $root.querySelectorAll(`.${Selectors.VirtualLayoutItem}`);
+    const $items = this.getElementsByClassName(Selectors.VirtualLayoutItem);
 
-    if ($items.length > 1) {
-      const $firstChild = $root.children[0];
-      $root.innerHTML = "";
-      $root.appendChild($firstChild);
-    }
-  }
-
-  #createItemAndSetChildren({ children }) {
-    const $item = createVirtualLayoutItem();
-    $item.appendChild(children.getEl());
-
-    return $item;
+    of($items)
+      .pipe(
+        filter(($items) => $items.length > 1),
+        map(() => $root.children[0]),
+        tap(() => ($root.innerHTML = "")),
+        tap(($firstChild) => $root.appendChild($firstChild))
+      )
+      .subscribe();
   }
 }
 
 // =============================================================
-const createVirtualLayoutItem = () => {
-  const template = `
-    <div class="${Selectors.VirtualLayoutItem}"></div>
-    `;
+function VirtualLayoutComp() {
+  return createElementFromHTML(
+    `<div class="${Selectors.VirtualLayout}"></div>`
+  );
+}
 
-  return createElementFromHTML(template);
-};
+function VirtualLayoutItem($children) {
+  const $virutalLayoutItem = createElementFromHTML(
+    `<div class="${Selectors.VirtualLayoutItem}"></div>`
+  );
+
+  $virutalLayoutItem.appendChild($children);
+
+  return $virutalLayoutItem;
+}

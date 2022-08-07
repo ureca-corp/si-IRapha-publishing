@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../utils/dom/index.js";
 import { BaseElement } from "../base/index.js";
-import { createCheckBox, createLabelWith } from "../kit/index.js";
+import { Button, createCheckBox, createLabelWith } from "../kit/index.js";
 import { PopupAppbar } from "../modals/index.js";
 import { Tabs } from "../tabs/index.js";
 import { getViewModel } from "./cid-window.vm.js";
@@ -82,10 +82,14 @@ export class CidWindow extends BaseElement {
 
   #initFooter() {
     const $footer = this.getElementByClassName(Selectors.Footer);
-    const $cancelButton = createElementFromHTML(`
-    <button class="${Selectors.CancelButton}">Cancel</button>
-    `);
-    const { $label: $autoNextLabel } = createLabelWith({
+
+    const $cancelButton = new Button({
+      label: "Cancel",
+      variant: "outlined",
+      onClick: () => {},
+    });
+
+    const $autoNextLabel = createLabelWith({
       title: "Auto Next",
       $input: createCheckBox({}),
     });

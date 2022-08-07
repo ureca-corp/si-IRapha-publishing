@@ -1,3 +1,6 @@
+@use "./anim" as anim;
+@use "../themes/shape" as shape;
+
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
 $color-border-default: var(--color__border);
@@ -10,6 +13,9 @@ $color-bg-focus: #ffffff11;
 }
 
 @mixin input-style {
+  @include anim.basic-transition;
+  @include shape.small;
+
   flex: 1;
 
   height: fit-content !important;
@@ -17,11 +23,8 @@ $color-bg-focus: #ffffff11;
   padding-bottom: 4px;
 
   background-color: transparent;
-
-  border-radius: 4px;
   border: 1px solid $color-border-default;
 
-  transition: all 0.3s ease-in-out;
   color: $color-font2;
 
   &::-webkit-outer-spin-button,

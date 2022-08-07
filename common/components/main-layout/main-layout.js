@@ -77,11 +77,9 @@ export class MainLayout extends BaseElement {
   }
 
   #getElements() {
-    const $root = this.getEl();
-
-    const $tabsWrapper = $root.querySelector(`.${Selectors.TabsWrapper}`);
-    const $dicomWindowWrapper = $root.querySelector(
-      `.${Selectors.DicomWindowWrapper}`
+    const $tabsWrapper = this.getElementByClassName(Selectors.TabsWrapper);
+    const $dicomWindowWrapper = this.getElementByClassName(
+      Selectors.DicomWindowWrapper
     );
 
     return {

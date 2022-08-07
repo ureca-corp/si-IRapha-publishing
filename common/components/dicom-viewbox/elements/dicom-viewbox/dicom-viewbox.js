@@ -1,12 +1,25 @@
-import { Selectors, PositionClassType } from "../../common/index.js";
-import { CinePlayController } from "../../../cineplay-controller/index.js";
-import { BaseElement } from "../../../base/base-element.js";
-import { useCustomContextMenu } from "../../../modals/index.js";
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
+import { BaseElement } from "../../../base/base-element.js";
+import { CinePlayController } from "../../../cineplay-controller/index.js";
+import { useCustomContextMenu } from "../../../modals/index.js";
+import { Selectors } from "../../common/index.js";
 
 const { fromEvent } = rxjs;
 
-const Template = `<div class="${Selectors.ViewBox}"></div>`;
+const PositionAttr = {
+  Key: "position",
+
+  TopLeft: "top-left",
+  TopCenter: "top-center",
+  TopRight: "top-right",
+
+  Left: "left",
+  Right: "right",
+
+  BottomLeft: "bottom-left",
+  BottomCenter: "bottom-center",
+  BottomRight: "bottom-right",
+};
 
 /**
  * Constructor types
@@ -32,7 +45,7 @@ export class DicomViewBox extends BaseElement {
   #options;
 
   constructor(models, states, options) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new DicomViewBoxComp() });
     this.#models = models;
     this.#states = states;
     this.#options = options;
@@ -89,45 +102,45 @@ export class DicomViewBox extends BaseElement {
     } = this.#models;
 
     const $root = this.getEl();
-    const $grid = createGrid();
+    const $grid = new Grid();
 
-    const $topLeft = createDescription({
-      positionClassName: PositionClassType.TopLeft,
+    const $topLeft = new Description({
+      position: PositionAttr.TopLeft,
       data: topLeft,
     });
 
-    const $topCenter = createDescription({
-      positionClassName: PositionClassType.TopCenter,
+    const $topCenter = new Description({
+      position: PositionAttr.TopCenter,
       data: topCenter,
     });
 
-    const $topRight = createDescription({
-      positionClassName: PositionClassType.TopRight,
+    const $topRight = new Description({
+      position: PositionAttr.TopRight,
       data: topRight,
     });
 
-    const $left = createDescription({
-      positionClassName: PositionClassType.Left,
+    const $left = new Description({
+      position: PositionAttr.Left,
       data: left,
     });
 
-    const $right = createDescription({
-      positionClassName: PositionClassType.Right,
+    const $right = new Description({
+      position: PositionAttr.Right,
       data: right,
     });
 
-    const $bottomLeft = createDescription({
-      positionClassName: PositionClassType.BottomLeft,
+    const $bottomLeft = new Description({
+      position: PositionAttr.BottomLeft,
       data: bottomLeft,
     });
 
-    const $bottomCenter = createDescription({
-      positionClassName: PositionClassType.BottomCenter,
+    const $bottomCenter = new Description({
+      position: PositionAttr.BottomCenter,
       data: bottomCenter,
     });
 
-    const $bottomRight = createDescription({
-      positionClassName: PositionClassType.BottomRight,
+    const $bottomRight = new Description({
+      position: PositionAttr.BottomRight,
       data: bottomRight,
     });
 
@@ -165,13 +178,21 @@ export class DicomViewBox extends BaseElement {
 }
 
 // =================================================================
-const createGrid = () =>
-  createElementFromHTML(`<div class="${Selectors.ViewBoxScreen}"></div>`);
+function DicomViewBoxComp() {
+  return createElementFromHTML(`<div class="${Selectors.ViewBox}"></div>`);
+}
 
-const createDescription = ({ data, positionClassName }) => {
-  const $description = createElementFromHTML(
-    `<div class="${Selectors.ViewBoxDesc} ${positionClassName}"></div>`
+function Grid() {
+  return createElementFromHTML(
+    `<div class="${Selectors.ViewBoxScreen}"></div>`
   );
+}
+
+function Description({ data, position }) {
+  const $description = createElementFromHTML(
+    `<div class="${Selectors.ViewBoxDesc}"></div>`
+  );
+  $description.setAttribute(PositionAttr.Key, position);
 
   if (data) {
     const $dataDiv = data.map((it) => createDiv(it));
@@ -179,7 +200,7 @@ const createDescription = ({ data, positionClassName }) => {
   }
 
   return $description;
-};
+}
 
 const createDiv = (children) => {
   const div = document.createElement("div");
