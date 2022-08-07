@@ -9,6 +9,10 @@ export class BaseElement {
     return this.#$root;
   }
 
+  getElementById(id) {
+    return this.#$root.querySelector(`#${id}`);
+  }
+
   getElementByClassName(className) {
     return this.#$root.querySelector(`.${className}`);
   }

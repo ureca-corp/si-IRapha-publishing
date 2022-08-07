@@ -1,5 +1,6 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/index.js";
+import { useCustomContextMenu } from "../../../modals/index.js";
 import { Selectors } from "../../common/index.js";
 
 const { fromEvent, of, tap } = rxjs;
@@ -26,6 +27,11 @@ export class TabItem extends BaseElement {
       .subscribe();
 
     isActive$.subscribe((isActive) => this.#handleActiveChange(isActive));
+
+    useCustomContextMenu({
+      $emitter: this.getEl(),
+      contextMenuOpen$: window.store.tabsContextMenuOpen$,
+    });
   }
 
   // handler

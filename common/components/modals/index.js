@@ -10,6 +10,8 @@ export {
 export {
   AnnotationContextMenu,
   ViewboxContextMenu,
+  TabsContextMenu,
+  ThumbnailContextMenu,
   CustomContextMenu,
   useCustomContextMenu,
 } from "./context-menus/index.js";

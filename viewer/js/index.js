@@ -1,10 +1,10 @@
-import "../../libs/index.js";
 import "../../common/store/store.js";
+import "../../libs/index.js";
 
 const rx = rxjs;
 // =================================================================
-import { Toolbox } from "../../common/components/toolbox/index.js";
 import { ThumbnailBox } from "../../common/components/thumbnail-box/index.js";
+import { Toolbox } from "../../common/components/toolbox/index.js";
 
 const toolboxLayoutColumn$ = new rx.BehaviorSubject();
 const thumbnailboxLayoutColumn$ = new rx.BehaviorSubject();
@@ -50,22 +50,18 @@ document
 
 // =================================================================
 
-import { CustomContextMenu } from "../../common/components/modals/index.js";
-new CustomContextMenu({
-  $element: document.querySelector("#irapha-thumbnail-context-menu"),
-  open$: window.store.thumbnailContextMenuOpen$,
-});
+import {
+  TabsContextMenu,
+  ThumbnailContextMenu,
+} from "../../common/components/modals/index.js";
 
-new CustomContextMenu({
-  $element: document.querySelector("#irapha-tabs-context-menu"),
-  open$: window.store.tabsContextMenuOpen$,
-});
-
+const $thumbnailContextMenu = new ThumbnailContextMenu().getEl();
 document
-  .querySelector("#irapha-export-dicom-menu")
-  .addEventListener("click", (e) => {
-    window.store.exportDicomOpen$.next({ x: e.clientX, y: e.clientY });
-  });
+  .querySelector("#global-popup-group")
+  .appendChild($thumbnailContextMenu);
+
+const $tabsContextMenu = new TabsContextMenu().getEl();
+document.querySelector("#global-popup-group").appendChild($tabsContextMenu);
 
 // =================================================================
 import { ExportDicomLayerPopup } from "../../common/components/modals/index.js";
