@@ -4,7 +4,7 @@
 
 @use "../menu-item/menu-item" as custom-context-menu__item;
 
-$menu-bg: var(--color__secondary-container);
+$menu-bg: var(--color__popup-bg-primary);
 $box-shadow: var(--box-shadow__layer-menu);
 
 .irapha-context-menu {

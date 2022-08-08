@@ -10,8 +10,6 @@ $color-bg: var(--color__bg-primary);
 
 .irapha-related-study__inner {
   @include shape.small;
-
-  background-color: $color-bg;
 }
 
 .irapha-related-study__header {

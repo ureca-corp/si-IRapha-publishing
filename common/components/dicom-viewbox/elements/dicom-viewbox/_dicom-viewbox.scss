@@ -6,13 +6,13 @@
 
 // dicom viewbox
 // =================================================================
-$color-font: var(--color__font-primary);
+$color-font: var(--color__canvas-text-secondary);
 
 $color-green: var(--color__green);
 $color-yellow: var(--color__yellow);
 $color-orange: var(--color__orange);
 
-$color-border-weak: #eeeeee22;
+$color-border-weak: var(--color__viewbox-border-weak);
 
 // viewbox 상태 처리
 @mixin s-viewbox {
@@ -121,6 +121,8 @@ $color-border-weak: #eeeeee22;
 .irapha-dicom-viewbox__desc {
   @include position-desc;
   @include typography.label-small;
+
+  color: $color-font;
 
   display: flex;
   flex-direction: column;

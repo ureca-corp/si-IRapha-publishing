@@ -8987,20 +8987,36 @@ button[disabled] {
   width: fit-content;
 }
 
+.uk-radio {
+  border: 1px solid var(--color__border-weak) !important;
+}
+.uk-radio:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
+}
+
 .uk-checkbox {
   border-radius: 2px;
   margin: 0;
+  border: 1px solid var(--color__border-weak) !important;
+}
+.uk-checkbox:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
+}
+.uk-checkbox:disabled {
+  background-color: unset !important;
 }
 
 .irapha-icon {
+  transition: all 0.3s ease-in-out;
   position: relative;
   width: 24px;
   height: 24px;
-  fill: rgba(238, 238, 238, 0.2);
-  transition: all 0.3s ease-in-out;
+  fill: var(--color__icon-default);
 }
 .irapha-icon:hover {
-  fill: var(--color__font-primary);
+  fill: var(--color__icon-hover);
 }
 .irapha-icon:hover.--active {
   opacity: 0.7;
@@ -9010,7 +9026,7 @@ button[disabled] {
   height: 20px;
 }
 .irapha-icon.--active {
-  fill: var(--color__font-primary);
+  fill: var(--color__icon-active);
 }
 
 :root {
@@ -9018,24 +9034,110 @@ button[disabled] {
   --color__status-warning: #ffcc00;
   --color__status-normal: #34c759;
   --color__primary: #34c759;
+  --color__primary-weak: #34c75999;
   --color__secondary: #5e6a7f;
   --color__secondary-container: #333;
   --color__teriary: #4b8eca;
   --color__teriary-container: #142f56;
-  --color__font-primary: #ddd;
+  --color__accent: #1e87f0;
   --color__border: #eeeeee33;
+  --color__border-weak: #eeeeee66;
   --color__font-primary: #ffffffcc;
   --color__font-secondary: #eeeeee99;
+  --color__inversion-primary: #222;
+  --color__inversion-secondary: #00000099;
   --color__bg-primary: #333;
   --color__bg-secondary: #eeeeee11;
-  --color__active-bg-primary: rgb(54, 54, 58);
-  --color__inactive-bg-primary: rgb(32, 32, 32);
   --color__table-hover: #ffffff33;
+  --color__popup-bg-primary: var(--color__secondary-container);
+  --color__menu-border: #eeeeee22;
+  --color__context-menu-hover-bg: #eeeeee11;
+  --color__tabs-active-bg: rgb(54, 54, 58);
+  --color__tabs-inactive-bg: rgb(32, 32, 32);
+  --color__dicom-window-active: var(--color__accent);
+  --color__viewbox-border-weak: #eeeeee22;
+  --color__canvas-text-primary: #ffffffcc;
+  --color__canvas-text-secondary: #eeeeee99;
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: #fff;
   --color__red: #ff3b30;
   --color__orange: #ff9500;
   --color__yellow: #ffcc00;
   --color__green: #34c759;
   --color__black: #000;
+}
+
+#irapha-app[theme=light-blue] {
+  --color__border: #99999999;
+  --color__border-weak: #ccc;
+  --color__font-primary: #222;
+  --color__font-secondary: #00000099;
+  --color__inversion-primary: #ffffffcc;
+  --color__inversion-secondary: #eeeeee99;
+  --color__bg-primary: #fff;
+  --color__bg-secondary: #eeeeee33;
+  --color__popup-bg-primary: #fff;
+  --color__table-hover: var(--color__accent-alpha);
+  --color__menu-border: #99999966;
+  --color__context-menu-hover-bg: var(--color__accent-alpha);
+  --color__tabs-active-bg: #fff;
+  --color__tabs-inactive-bg: var(--color__accent);
+  --color__dicom-window-active: var(--color__accent);
+  --color__viewbox-border-weak: #fff;
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: var(--color__accent);
+  --color__accent: #5c91e0;
+  --color__accent-alpha: #5c91e033;
+}
+
+#irapha-app[theme=rose] {
+  --color__border: #99999999;
+  --color__border-weak: #ccc;
+  --color__font-primary: #222;
+  --color__font-secondary: #00000099;
+  --color__inversion-primary: #ffffffcc;
+  --color__inversion-secondary: #eeeeee99;
+  --color__bg-primary: #fff;
+  --color__bg-secondary: #eeeeee33;
+  --color__popup-bg-primary: #fff;
+  --color__table-hover: var(--color__accent-alpha);
+  --color__menu-border: #99999966;
+  --color__context-menu-hover-bg: var(--color__accent-alpha);
+  --color__tabs-active-bg: #fff;
+  --color__tabs-inactive-bg: var(--color__accent);
+  --color__dicom-window-active: var(--color__accent);
+  --color__viewbox-border-weak: #fff;
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: var(--color__accent);
+  --color__accent: #e9cbc4;
+  --color__accent-alpha: #e9cbc433;
+}
+
+#irapha-app[theme=sea-foam] {
+  --color__border: #99999999;
+  --color__border-weak: #ccc;
+  --color__font-primary: #222;
+  --color__font-secondary: #00000099;
+  --color__inversion-primary: #ffffffcc;
+  --color__inversion-secondary: #eeeeee99;
+  --color__bg-primary: #fff;
+  --color__bg-secondary: #eeeeee33;
+  --color__popup-bg-primary: #fff;
+  --color__table-hover: var(--color__accent-alpha);
+  --color__menu-border: #99999966;
+  --color__context-menu-hover-bg: var(--color__accent-alpha);
+  --color__tabs-active-bg: #fff;
+  --color__tabs-inactive-bg: var(--color__accent);
+  --color__dicom-window-active: var(--color__accent);
+  --color__viewbox-border-weak: #fff;
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: var(--color__accent);
+  --color__accent: #bbdfde;
+  --color__accent-alpha: #bbdfde33;
 }
 
 .irapha-sub-menu .irapha-sub-menu__container {
@@ -9117,7 +9219,7 @@ button[disabled] {
   height: auto;
   padding: 16px 0;
   margin: 14px 8px 0 8px;
-  background-color: var(--color__border);
+  background-color: var(--color__menu-border);
 }
 .irapha-toolbox__divider[layout=column] {
   width: 75%;
@@ -9318,10 +9420,10 @@ button[disabled] {
 }
 .irapha-folding-bar[shrink=horizontal] {
   min-width: unset;
-  width: 28px;
+  width: 32px;
 }
 .irapha-folding-bar[shrink=vertical] {
-  height: 28px;
+  height: 32px;
 }
 
 .irapha-toolbox {
@@ -9472,7 +9574,7 @@ button[disabled] {
 
 .irapha-thumbnail-list__item__text {
   position: absolute;
-  color: var(--color__font-primary);
+  color: var(--color__canvas-text-secondary);
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -9619,12 +9721,13 @@ button[disabled] {
 }
 .irapha-tabs__item[active=true] {
   z-index: 2;
-  background-color: var(--color__active-bg-primary);
+  background-color: var(--color__tabs-active-bg);
+  color: var(--color__font-primary) !important;
 }
 .irapha-tabs__item[active=true]::before {
   content: "";
   z-index: 1;
-  background-color: var(--color__inactive-bg-primary);
+  background-color: var(--color__tabs-inactive-bg);
   width: 24px;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -9635,7 +9738,7 @@ button[disabled] {
 .irapha-tabs__item[active=true]::after {
   content: "";
   z-index: 1;
-  background-color: var(--color__inactive-bg-primary);
+  background-color: var(--color__tabs-inactive-bg);
   width: 24px;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -9645,7 +9748,7 @@ button[disabled] {
 }
 .irapha-tabs__item[active=true] .irapha-tabs__item__dummy::before {
   content: "";
-  background-color: var(--color__active-bg-primary);
+  background-color: var(--color__tabs-active-bg);
   width: 12px;
   aspect-ratio: 1;
   position: absolute;
@@ -9654,7 +9757,7 @@ button[disabled] {
 }
 .irapha-tabs__item[active=true] .irapha-tabs__item__dummy::after {
   content: "";
-  background-color: var(--color__active-bg-primary);
+  background-color: var(--color__tabs-active-bg);
   width: 12px;
   aspect-ratio: 1;
   position: absolute;
@@ -9665,11 +9768,15 @@ button[disabled] {
   background-color: var(--color__bg-secondary);
 }
 
+#irapha-app[theme=light-blue] .irapha-tabs__item {
+  color: var(--color__inversion-primary);
+}
+
 .irapha-tabs {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--color__inactive-bg-primary);
+  background-color: var(--color__tabs-inactive-bg);
   overflow: hidden;
 }
 
@@ -9679,7 +9786,7 @@ button[disabled] {
   padding: 8px 8px 0 8px;
   width: 100%;
   height: 100%;
-  border-bottom: 4px solid var(--color__active-bg-primary);
+  border-bottom: 4px solid var(--color__tabs-active-bg);
   overflow-x: overlay;
   overflow-y: hidden;
 }
@@ -9690,10 +9797,10 @@ button[disabled] {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 .irapha-dicom-window[layout-active=true] {
-  border: 1px solid var(--color__primary);
+  border: 2px solid var(--color__dicom-window-active);
 }
 
 .irapha-dicom-window__grid {
@@ -9993,13 +10100,13 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
   min-width: 60px;
   max-width: 60px;
-  color: var(--color__font-secondary);
+  color: var(--color__canvas-text-secondary);
   cursor: pointer;
 }
 .irapha-cineplay-controller__play-type::-webkit-outer-spin-button, .irapha-cineplay-controller__play-type::-webkit-inner-spin-button {
@@ -10007,13 +10114,11 @@ button[disabled] {
   margin: 0;
 }
 .irapha-cineplay-controller__play-type:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-cineplay-controller__play-type:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-cineplay-controller__play-type:focus::-webkit-outer-spin-button, .irapha-cineplay-controller__play-type:focus::-webkit-inner-spin-button {
@@ -10021,15 +10126,14 @@ button[disabled] {
   margin: unset;
 }
 .irapha-cineplay-controller__play-type.uk-select:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 
 .irapha-cineplay-controller__nav {
   display: flex;
   align-items: center;
-  fill: var(--color__font-secondary);
+  fill: var(--color__canvas-text-secondary);
 }
 .irapha-cineplay-controller__nav > li {
   transition: all 0.3s ease-in-out;
@@ -10037,13 +10141,14 @@ button[disabled] {
 }
 .irapha-cineplay-controller__nav > li:hover {
   transform: scale(1.2);
-  fill: var(--color__font-primary);
+  fill: var(--color__canvas-text-primary);
 }
 
 .irapha-cineplay-controller__FPS-box {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--color__canvas-text-secondary);
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper {
   font-size: 11px;
@@ -10062,7 +10167,7 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
   width: 68px;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input::-webkit-inner-spin-button {
@@ -10070,13 +10175,11 @@ button[disabled] {
   margin: 0;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-outer-spin-button, .irapha-cineplay-controller__FPS-box__input-wrapper input:focus::-webkit-inner-spin-button {
@@ -10090,7 +10193,7 @@ button[disabled] {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
-  color: var(--color__font-secondary);
+  color: var(--color__canvas-text-secondary);
 }
 
 .irapha-cineplay-controller__loop-box {
@@ -10102,6 +10205,7 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-cineplay-controller__loop-box__item:hover {
+  fill: #fff;
   transform: scale(1.2);
 }
 .irapha-cineplay-controller__loop-box__item[marked=true] svg {
@@ -10113,10 +10217,10 @@ button[disabled] {
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 2px solid rgba(238, 238, 238, 0.1333333333);
+  border: 2px solid var(--color__viewbox-border-weak);
 }
 .irapha-dicom-viewbox[active=true] {
-  color: var(--color__font-primary);
+  color: var(--color__canvas-text-secondary);
   border: 2px solid var(--color__yellow);
 }
 .irapha-dicom-viewbox[active=true]:hover {
@@ -10145,6 +10249,7 @@ button[disabled] {
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
+  color: var(--color__canvas-text-secondary);
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -10274,7 +10379,7 @@ button[disabled] {
 }
 .irapha-menu-item__icon[outlined=true] {
   padding: 4px;
-  border: 2px solid rgba(238, 238, 238, 0.1333333333);
+  border: 2px solid var(--color__menu-border);
 }
 .irapha-menu-item__icon[more=true]::after {
   content: "▼";
@@ -10341,14 +10446,19 @@ button[disabled] {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #333;
+  background-color: var(--color__bg-primary);
 }
 .irapha-related-study__data-grid tbody tr {
   border-color: var(--color__border) !important;
   cursor: pointer;
 }
 .irapha-related-study__data-grid tbody tr:hover {
-  background-color: #ccc;
+  background-color: var(--color__table-hover);
+  color: var(--color__font-secondary);
+}
+.irapha-related-study__data-grid tbody tr td {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .irapha-related-study__user-info {
@@ -10377,12 +10487,11 @@ button[disabled] {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  color: #ccc;
+  color: var(--color__font-secondary);
 }
 
 .irapha-related-study__inner {
   border-radius: 4px;
-  background-color: var(--color__bg-primary);
 }
 
 .irapha-related-study__header {
@@ -10445,20 +10554,18 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
 }
 .irapha-revise__content__section input[type=text]::-webkit-outer-spin-button, .irapha-revise__content__section input[type=text]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 .irapha-revise__content__section input[type=text]:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-revise__content__section input[type=text]:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-revise__content__section input[type=text]:focus::-webkit-outer-spin-button, .irapha-revise__content__section input[type=text]:focus::-webkit-inner-spin-button {
@@ -10503,8 +10610,6 @@ button[disabled] {
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__bg-primary);
 }
 
 .irapha-export-dicom__title {
@@ -10561,7 +10666,7 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
   width: 50%;
   padding: 0px 4px;
   margin-left: 4px;
@@ -10572,13 +10677,11 @@ button[disabled] {
   margin: 0;
 }
 .irapha-export-dicom__content input[type=text]:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-export-dicom__content input[type=text]:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-export-dicom__content input[type=text]:focus::-webkit-outer-spin-button, .irapha-export-dicom__content input[type=text]:focus::-webkit-inner-spin-button {
@@ -10655,7 +10758,7 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
   padding: 8px;
 }
 .irapha-search__input::-webkit-outer-spin-button, .irapha-search__input::-webkit-inner-spin-button {
@@ -10663,13 +10766,11 @@ button[disabled] {
   margin: 0;
 }
 .irapha-search__input:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-search__input:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-search__input:focus::-webkit-outer-spin-button, .irapha-search__input:focus::-webkit-inner-spin-button {
@@ -10707,7 +10808,7 @@ button[disabled] {
   border-radius: 4px;
   padding: 4px 12px;
   cursor: pointer;
-  background-color: var(--color__teriary);
+  background-color: var(--color__accent);
   border: 1px solid transparent;
   cursor: pointer;
 }
@@ -10815,7 +10916,7 @@ button[disabled] {
   transform: scaleX(0.7);
 }
 .irapha-context-menu__item:hover {
-  background-color: rgba(238, 238, 238, 0.0666666667);
+  background-color: var(--color__context-menu-hover-bg);
   color: var(--color__font-primary);
 }
 .irapha-context-menu__item > {
@@ -10829,7 +10930,7 @@ button[disabled] {
   flex-direction: column;
   padding: 4px 0;
   box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__secondary-container);
+  background-color: var(--color__popup-bg-primary);
   z-index: -1;
 }
 
@@ -10860,7 +10961,7 @@ button[disabled] {
   flex-direction: column;
   display: none;
   box-shadow: var(--box-shadow__layer-menu);
-  background-color: var(--color__secondary-container);
+  background-color: var(--color__popup-bg-primary);
 }
 .irapha-context-menu__item__submenu[direction-left=true] {
   left: unset;
@@ -10887,20 +10988,18 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
 }
 .irapha-annotation-cm__input::-webkit-outer-spin-button, .irapha-annotation-cm__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 .irapha-annotation-cm__input:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-annotation-cm__input:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-annotation-cm__input:focus::-webkit-outer-spin-button, .irapha-annotation-cm__input:focus::-webkit-inner-spin-button {
@@ -10919,7 +11018,7 @@ button[disabled] {
   padding-bottom: 4px;
   background-color: transparent;
   border: 1px solid var(--color__border);
-  color: var(--color__font-primary);
+  outline: none;
   width: 100%;
   padding-left: 4px;
 }
@@ -10928,13 +11027,11 @@ button[disabled] {
   margin: 0;
 }
 .irapha-viewbox-cm__menu-zoom:hover {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-viewbox-cm__menu-zoom:focus {
-  color: var(--color__font-primary);
-  border-color: var(--color__font-secondary);
+  border-color: var(--color__border);
   background-color: rgba(255, 255, 255, 0.0666666667);
 }
 .irapha-viewbox-cm__menu-zoom:focus::-webkit-outer-spin-button, .irapha-viewbox-cm__menu-zoom:focus::-webkit-inner-spin-button {

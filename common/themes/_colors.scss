@@ -1,12 +1,3 @@
-// Base Color
-// =================================================================
-
-// 배경 컬러
-$bg-black: #000;
-
-// 폰트 컬러
-$font-white: #fff;
-
 // 테마별 전역 컬러
 // # Default theme
 // =================================================================
@@ -16,7 +7,9 @@ $font-white: #fff;
   --color__status-warning: #ffcc00;
   --color__status-normal: #34c759;
 
+  // base
   --color__primary: #34c759;
+  --color__primary-weak: #34c75999;
 
   --color__secondary: #5e6a7f;
   --color__secondary-container: #333;
@@ -24,21 +17,50 @@ $font-white: #fff;
   --color__teriary: #4b8eca;
   --color__teriary-container: #142f56;
 
-  --color__font-primary: #ddd;
+  --color__accent: #1e87f0;
 
+  //
   --color__border: #eeeeee33;
+  --color__border-weak: #eeeeee66;
 
+  // font
   --color__font-primary: #ffffffcc;
   --color__font-secondary: #eeeeee99;
+  --color__inversion-primary: #222;
+  --color__inversion-secondary: #00000099;
 
+  // bg
   --color__bg-primary: #333;
   --color__bg-secondary: #eeeeee11;
 
-  --color__active-bg-primary: rgb(54, 54, 58);
-
-  --color__inactive-bg-primary: rgb(32, 32, 32);
-
+  // table
   --color__table-hover: #ffffff33;
+
+  // popup
+  --color__popup-bg-primary: var(--color__secondary-container);
+
+  // menu
+  --color__menu-border: #eeeeee22;
+  --color__context-menu-hover-bg: #eeeeee11;
+
+  // tabs
+  --color__tabs-active-bg: rgb(54, 54, 58);
+  --color__tabs-inactive-bg: rgb(32, 32, 32);
+
+  // dicom window
+  --color__dicom-window-active: var(--color__accent);
+
+  // dicom viewbox
+  --color__viewbox-border-weak: #eeeeee22;
+
+  // canvas
+  --color__canvas-text-primary: #ffffffcc;
+  --color__canvas-text-secondary: #eeeeee99;
+
+  // icons
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: #fff;
 
   // common
   --color__red: #ff3b30;
@@ -46,4 +68,67 @@ $font-white: #fff;
   --color__yellow: #ffcc00;
   --color__green: #34c759;
   --color__black: #000;
+}
+
+// light theme
+// =========================================================
+@mixin light-theme {
+  --color__border: #99999999;
+  --color__border-weak: #ccc;
+
+  // font
+  --color__font-primary: #222;
+  --color__font-secondary: #00000099;
+  --color__inversion-primary: #ffffffcc;
+  --color__inversion-secondary: #eeeeee99;
+
+  // bg
+  --color__bg-primary: #fff;
+  --color__bg-secondary: #eeeeee33;
+
+  // popup
+  --color__popup-bg-primary: #fff;
+
+  // table
+  --color__table-hover: var(--color__accent-alpha);
+
+  // menu
+  --color__menu-border: #99999966;
+  --color__context-menu-hover-bg: var(--color__accent-alpha);
+
+  // tabs
+  --color__tabs-active-bg: #fff;
+  --color__tabs-inactive-bg: var(--color__accent);
+
+  // dicom window
+  --color__dicom-window-active: var(--color__accent);
+
+  // dicom viewbox
+  --color__viewbox-border-weak: #fff;
+
+  // icons
+  --color__icon-default: #aaa;
+  --color__icon-hover: var(--color__font-primary);
+  --color__icon-active: var(--color__accent);
+}
+
+#irapha-app[theme="light-blue"] {
+  @include light-theme;
+
+  --color__accent: #5c91e0;
+  --color__accent-alpha: #5c91e033;
+}
+
+#irapha-app[theme="rose"] {
+  @include light-theme;
+
+  --color__accent: #e9cbc4;
+  --color__accent-alpha: #e9cbc433;
+}
+
+#irapha-app[theme="sea-foam"] {
+  @include light-theme;
+
+  --color__accent: #bbdfde;
+  --color__accent-alpha: #bbdfde33;
 }

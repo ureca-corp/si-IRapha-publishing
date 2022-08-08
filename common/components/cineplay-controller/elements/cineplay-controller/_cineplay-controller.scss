@@ -5,8 +5,8 @@
 
 // cineplay-controller
 // =================================================================
-$color-font1: var(--color__font-secondary);
-$color-font2: var(--color__font-primary);
+$color-font1: var(--color__canvas-text-secondary);
+$color-font2: var(--color__canvas-text-primary);
 $color-border: var(--color__border);
 $color-black: var(--color__black);
 $color-orange: var(--color__orange);
@@ -86,6 +86,7 @@ $color-orange: var(--color__orange);
   display: flex;
   align-items: center;
   gap: 8px;
+  color: $color-font1;
 
   &__input-wrapper {
     @include typography.label-small;
@@ -120,6 +121,7 @@ $color-orange: var(--color__orange);
     cursor: pointer;
 
     &:hover {
+      fill: #fff;
       transform: scale(1.2);
     }
 

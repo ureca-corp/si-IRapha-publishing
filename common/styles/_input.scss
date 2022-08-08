@@ -1,14 +1,11 @@
 @use "./anim" as anim;
 @use "../themes/shape" as shape;
 
-$color-font1: var(--color__font-secondary);
-$color-font2: var(--color__font-primary);
 $color-border-default: var(--color__border);
 $color-bg-focus: #ffffff11;
 
 @mixin focus {
-  color: $color-font2;
-  border-color: $color-font1;
+  border-color: $color-border-default;
   background-color: $color-bg-focus;
 }
 
@@ -24,8 +21,7 @@ $color-bg-focus: #ffffff11;
 
   background-color: transparent;
   border: 1px solid $color-border-default;
-
-  color: $color-font2;
+  outline: none;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

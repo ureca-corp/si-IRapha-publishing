@@ -1,11 +1,12 @@
 @use "../../styles/common";
+@use "../../styles/anim" as anim;
 
 // icons
 // =================================================================
 
-$color-default: #eeeeee33;
-$color-focus: var(--color__font-primary);
-$color-active: var(--color__font-primary);
+$color-default: var(--color__icon-default);
+$color-focus: var(--color__icon-hover);
+$color-active: var(--color__icon-active);
 
 @mixin size-icon {
   &.--small {
@@ -21,12 +22,12 @@ $color-active: var(--color__font-primary);
 }
 
 .irapha-icon {
+  @include anim.basic-transition;
+
   position: relative;
   width: 24px;
   height: 24px;
   fill: $color-default;
-
-  transition: all 0.3s ease-in-out;
 
   &:hover {
     fill: $color-focus;

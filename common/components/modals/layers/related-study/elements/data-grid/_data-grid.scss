@@ -1,6 +1,11 @@
 @use "../../../../../../styles/common";
 
 $color-border: var(--color__border);
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-primary: var(--color__bg-primary);
+$color-table-hover: var(--color__table-hover);
+
 $color-bg: #333;
 
 .irapha-related-study__data-grid {
@@ -10,7 +15,7 @@ $color-bg: #333;
   thead {
     position: sticky;
     top: 0;
-    background-color: $color-bg;
+    background-color: $color-bg-primary;
   }
 
   tbody {
@@ -19,7 +24,13 @@ $color-bg: #333;
       cursor: pointer;
 
       &:hover {
-        background-color: #ccc;
+        background-color: $color-table-hover;
+        color: $color-font1;
+      }
+
+      td {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

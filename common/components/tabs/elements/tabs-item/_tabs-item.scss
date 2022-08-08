@@ -1,7 +1,7 @@
 @use "../../../../themes/typography" as typography;
 
-$inactive-bg-color: var(--color__inactive-bg-primary);
-$active-bg-color: var(--color__active-bg-primary);
+$inactive-bg-color: var(--color__tabs-inactive-bg);
+$active-bg-color: var(--color__tabs-active-bg);
 $hover-bg-color: var(--color__bg-secondary);
 
 // List item
@@ -68,6 +68,7 @@ $hover-bg-color: var(--color__bg-secondary);
   &[active="true"] {
     z-index: 2;
     background-color: $active-bg-color;
+    color: var(--color__font-primary) !important;
 
     @include list-item-pseudo;
     @include item-dummy-pseudo;
@@ -95,5 +96,11 @@ $hover-bg-color: var(--color__bg-secondary);
     &:not([active="true"]) {
       background-color: $hover-bg-color;
     }
+  }
+}
+
+#irapha-app[theme="light-blue"] {
+  .irapha-tabs__item {
+    color: var(--color__inversion-primary);
   }
 }

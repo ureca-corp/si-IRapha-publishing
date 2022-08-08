@@ -2,7 +2,7 @@
 @use "../../../../../../../styles/anim" as anim;
 @use "../../../../../../../themes/typography" as typography;
 
-$item-hover-bg: #eeeeee11;
+$item-hover-bg: var(--color__context-menu-hover-bg);
 $color-font1: var(--color__font-secondary);
 $color-font2: var(--color__font-primary);
 

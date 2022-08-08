@@ -1,6 +1,8 @@
 @use "../../../../../../styles/common";
 @use "../../../../../../themes/typography" as typography;
 
+$color-font1: var(--color__font-secondary);
+
 .irapha-related-study__user-info {
   display: flex;
   flex-direction: column;
@@ -25,5 +27,5 @@
 .irapha-related-study__user-info__data {
   @include typography.title-small;
 
-  color: #ccc;
+  color: $color-font1;
 }

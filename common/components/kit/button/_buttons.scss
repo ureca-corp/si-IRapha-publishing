@@ -4,7 +4,7 @@
 @use "../../../themes/shape" as shape;
 
 $color-border: var(--color__border);
-$color-teriary: var(--color__teriary);
+$color-accent: var(--color__accent);
 
 @mixin base-button {
   @include typography.label-large;
@@ -32,7 +32,7 @@ $color-teriary: var(--color__teriary);
 @mixin contained-button {
   @include base-button;
 
-  background-color: $color-teriary;
+  background-color: $color-accent;
   border: 1px solid transparent;
   cursor: pointer;
 

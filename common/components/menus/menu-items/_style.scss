@@ -47,7 +47,7 @@
 @mixin s-menu-icon {
   &[outlined="true"] {
     padding: 4px;
-    border: 2px solid #eeeeee22;
+    border: 2px solid var(--color__menu-border);
   }
 
   &[more="true"] {
