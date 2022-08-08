@@ -6,10 +6,14 @@ export const ThemeAttr = {
   SeaFoam: "sea-foam",
 };
 
-export const useTheme = (theme) => {
+export const useTheme = () => {
   const $app = document.getElementById("irapha-app");
 
-  theme
-    ? $app.setAttribute(ThemeAttr.Key, theme)
-    : $app.removeAttribute(ThemeAttr.Key);
+  const setTheme = (theme) => {
+    theme
+      ? $app.setAttribute(ThemeAttr.Key, theme)
+      : $app.removeAttribute(ThemeAttr.Key);
+  };
+
+  return { setTheme };
 };
