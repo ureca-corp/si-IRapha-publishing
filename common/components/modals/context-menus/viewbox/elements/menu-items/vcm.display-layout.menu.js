@@ -1,6 +1,7 @@
 import { createElementFromHTML } from "../../../../../../utils/dom/index.js";
 import { BaseElement } from "../../../../../base/index.js";
 import {
+  DisplayExtendLayoutMenu,
   DisplayLayoutConfigMenu,
   DisplayLayoutOneByOneMenu,
   DisplayLayoutOneByTwoMenu,
@@ -40,6 +41,7 @@ const createSubMenuItems = () => {
     new DisplayLayoutOneByTwoMenu(),
     new DisplayLayoutTwoByOneMenu(),
     new DisplayLayoutTwoByTwoMenu(),
+    new DisplayExtendLayoutMenu(),
     new DisplayLayoutConfigMenu(),
   ].map((it) => new SubMenuItem({ menuItem: it }));
 };

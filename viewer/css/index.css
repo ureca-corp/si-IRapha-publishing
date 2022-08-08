@@ -10359,17 +10359,16 @@ button[disabled] {
 .irapha-menu-item[layout-horizontal=true] .irapha-menu-item__name {
   text-align: start;
 }
-.irapha-menu-item:hover .irapha-menu-item__icon {
+.irapha-menu-item:hover > .irapha-menu-item__icon {
   transform: scale(1.2);
   opacity: 0.6;
 }
-.irapha-menu-item:hover .irapha-menu-item__name {
+.irapha-menu-item:hover > .irapha-menu-item__name {
   opacity: 0.6;
 }
 
 .irapha-menu-item__icon {
   transition: all 0.3s ease-in-out;
-  border-radius: 4px;
   position: relative;
   width: 36px;
   min-width: 24px;
@@ -10378,8 +10377,9 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-menu-item__icon[outlined=true] {
-  padding: 4px;
+  border-radius: 4px;
   border: 2px solid var(--color__menu-border);
+  padding: 4px;
 }
 .irapha-menu-item__icon[more=true]::after {
   content: "▼";

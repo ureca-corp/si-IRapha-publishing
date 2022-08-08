@@ -26,7 +26,6 @@ export class CustomSwiper extends BaseElement {
     this.#swiper = new Swiper(this.getEl(), {
       direction: "vertical",
       slidesPerView: 1,
-      spaceBetween: 30,
       mousewheel: true,
     });
   }

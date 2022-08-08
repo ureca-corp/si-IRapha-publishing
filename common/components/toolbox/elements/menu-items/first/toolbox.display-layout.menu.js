@@ -1,5 +1,6 @@
 import { BaseElement } from "../../../../base/index.js";
 import {
+  DisplayExtendLayoutMenu,
   DisplayLayoutConfigMenu,
   DisplayLayoutMenu,
   DisplayLayoutOneByOneMenu,
@@ -7,7 +8,7 @@ import {
   DisplayLayoutTwoByOneMenu,
   DisplayLayoutTwoByTwoMenu,
 } from "../../../../menus/menu-items/index.js";
-import { SubMenuItem, SubMenu } from "../../../../sub-menu/index.js";
+import { SubMenu, SubMenuItem } from "../../../../sub-menu/index.js";
 
 export class ToolboxDisplayLayoutMenu extends BaseElement {
   constructor() {
@@ -26,13 +27,14 @@ export class ToolboxDisplayLayoutMenu extends BaseElement {
       new DisplayLayoutOneByTwoMenu(),
       new DisplayLayoutTwoByOneMenu(),
       new DisplayLayoutTwoByTwoMenu(),
+      new DisplayExtendLayoutMenu(),
       new DisplayLayoutConfigMenu(),
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
-    const subMenu = new SubMenu({ subMenuItems });
-    UIkit.drop(subMenu.getEl());
+    const $subMenu = new SubMenu({ subMenuItems }).getEl();
+    UIkit.drop($subMenu);
 
     $root.appendChild(displayLayoutMenu.getEl());
-    $root.appendChild(subMenu.getEl());
+    $root.appendChild($subMenu);
   }
 }

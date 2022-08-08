@@ -19,6 +19,21 @@ export {
   DisplayLayoutTwoByOneMenu,
   DisplayLayoutTwoByTwoMenu,
   DisplayLayoutConfigMenu,
+  DisplayExtendLayoutMenu,
+  DisplayLayoutTypeAMenu,
+  DisplayLayoutTypeBMenu,
+  DisplayLayoutTypeCMenu,
+  DisplayLayoutTypeDMenu,
+  DisplayLayoutTypeEMenu,
+  DisplayLayoutTypeFMenu,
+  DisplayLayoutTypeGMenu,
+  DisplayLayoutTypeHMenu,
+  DisplayLayoutTypeIMenu,
+  DisplayLayoutTypeJMenu,
+  DisplayLayoutTypeKMenu,
+  DisplayLayoutTypeLMenu,
+  DisplayLayoutTypeMMenu,
+  DisplayLayoutTypeNMenu,
 } from "./display-layout/index.js";
 
 export { FullScreenMenu } from "./full-screen/index.js";
