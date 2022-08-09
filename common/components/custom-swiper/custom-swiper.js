@@ -8,20 +8,22 @@ const Selectors = {
   SlideItem: "swiper-slide",
 };
 
-export class CustomSwiper extends BaseElement {
-  static template = `
+function CustomSwiperComp() {
+  return createElementFromHTML(`
   <div 
     class="${Selectors.Root}" 
     style="width: 100%; height: 100%;"
   >
     <div class="${Selectors.Wrapper}"}></div>
   </div>
-  `;
+  `);
+}
 
+export class CustomSwiper extends BaseElement {
   #swiper;
 
   constructor() {
-    super({ $element: createElementFromHTML(CustomSwiper.template) });
+    super({ $element: new CustomSwiperComp() });
 
     this.#swiper = new Swiper(this.getEl(), {
       direction: "vertical",

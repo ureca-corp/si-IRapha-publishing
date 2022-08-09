@@ -11,15 +11,29 @@ const Selectors = {
   Desc: "irapha-dicom-window__tab-content__desc",
 };
 
+/**
+ * Constructor Types
+ *
+ * @type model: {
+ *  id: string,
+ *  title: string,
+ *  topDesc: string,
+ *  bottomDesc: string
+ * }
+ */
 export class DicomWindowTabContent extends BaseElement {
+  #model;
+
   constructor({ model }) {
     super({ $element: new DicomWindowTabContentComp() });
+    this.#model = model;
 
     this.#init();
   }
 
   #init() {
     this.#initMenus();
+    this.#initModel();
   }
 
   #initMenus() {
@@ -29,12 +43,22 @@ export class DicomWindowTabContent extends BaseElement {
     $menuWrapper.appendChild($tabMenus);
   }
 
+  #initModel() {
+    const { title, topDesc, bottomDesc } = this.#model;
+    const { $title, $topDesc, $bottomDesc } = this.#getElements();
+
+    $title.innerHTML = title;
+    $topDesc.innerHTML = topDesc;
+    $bottomDesc.innerHTML = bottomDesc;
+  }
+
   #getElements() {
-    const $root = this.getEl();
+    const $menuWrapper = this.getElementByClassName(Selectors.MenuWrapper);
+    const $title = this.getElementByClassName(Selectors.Title);
 
-    const $menuWrapper = $root.querySelector(`.${Selectors.MenuWrapper}`);
+    const [$topDesc, $bottomDesc] = this.getElementsByClassName(Selectors.Desc);
 
-    return { $menuWrapper };
+    return { $menuWrapper, $title, $topDesc, $bottomDesc };
   }
 }
 
@@ -43,13 +67,13 @@ function DicomWindowTabContentComp() {
   return createElementFromHTML(`
   <div class="${Selectors.Root}">
     <div class="${Selectors.TitleContainer}">
-      <p class="${Selectors.Title}">Patient Name 1</p>
+      <p class="${Selectors.Title}">Title</p>
       <div class="${Selectors.MenuWrapper}"></div>
     </div>
 
     <div class="${Selectors.DescContainer}">
-      <p class="${Selectors.Desc}" index="1">Patient ID / Age / Sex</p>
-      <p class="${Selectors.Desc}" index="2">Study Date / Modality / Study description</p>
+      <p class="${Selectors.Desc}">Desc1</p>
+      <p class="${Selectors.Desc}">Desc2</p>
     </div>
   </div>
   `);

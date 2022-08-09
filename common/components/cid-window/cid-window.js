@@ -17,19 +17,21 @@ const Selectors = {
   CancelButton: "irapha-cid-window__cancel-btn",
 };
 
-const Template = `
-<div class="${Selectors.Root}">
-  <div class="${Selectors.AppbarWrapper}"></div>
-  <div class="${Selectors.ContentContainer}"></div>
-  <div class="${Selectors.Footer}"></div>
-</div>
-`;
+function CidWindowComp() {
+  return createElementFromHTML(`
+  <div class="${Selectors.Root}">
+    <div class="${Selectors.AppbarWrapper}"></div>
+    <div class="${Selectors.ContentContainer}"></div>
+    <div class="${Selectors.Footer}"></div>
+  </div>
+  `);
+}
 
 export class CidWindow extends BaseElement {
   #viewModel = getViewModel();
 
   constructor() {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new CidWindowComp() });
 
     this.#init();
   }
@@ -86,12 +88,14 @@ export class CidWindow extends BaseElement {
     const $cancelButton = new Button({
       label: "Cancel",
       variant: "outlined",
-      onClick: () => {},
+      onClick: () => window.close(),
     });
 
     const $autoNextLabel = createLabelWith({
       title: "Auto Next",
-      $input: createCheckBox({}),
+      $input: createCheckBox({
+        onChange: () => alert("Todo Checkbox Change"),
+      }),
     });
 
     $footer.append(...[$cancelButton, $autoNextLabel]);

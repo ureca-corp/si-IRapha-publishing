@@ -13,13 +13,15 @@ import { createElementFromHTML } from "../../../../utils/dom/index.js";
 
 const { BehaviorSubject, fromEvent } = rxjs;
 
-const Template = `
-<div class="${Selectors.CinePlayController}"></div>
-`;
+function CinePlayControllerComp() {
+  return createElementFromHTML(
+    `<div class="${Selectors.CinePlayController}"></div>`
+  );
+}
 
 export class CinePlayController extends BaseElement {
   constructor({ isHideController$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new CinePlayControllerComp() });
     this.#init();
 
     isHideController$?.subscribe((isHideController) =>

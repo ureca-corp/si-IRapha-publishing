@@ -29,6 +29,8 @@ function FoldingBarComp() {
  *
  * @type shrinkDirection$: BehaviorSubject<ShrinkType>
  * null이 아닌 경우 폴딩 상태를 의미, 접힌 방향 값을 가짐
+ *
+ * @type $children: Element
  */
 export class FoldingBar extends BaseElement {
   #states;

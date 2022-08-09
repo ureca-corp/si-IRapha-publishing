@@ -12,12 +12,14 @@ import {
 
 const { fromEvent } = rxjs;
 
-const Template = `
-<div 
-  class="${Selectors.DicomWindow}" 
-  ${LayoutActiveAttributeType.Key}="${LayoutActiveAttributeType.active}">
-</div>
-`;
+function DicomWindowComp() {
+  return createElementFromHTML(`
+  <div 
+    class="${Selectors.DicomWindow}" 
+    ${LayoutActiveAttributeType.Key}="${LayoutActiveAttributeType.active}">
+  </div>
+  `);
+}
 
 /**
  * Constructor types
@@ -35,7 +37,7 @@ export class DicomWindow extends BaseElement {
   #layout$;
 
   constructor({ $viewBoxes, layout$ }) {
-    super({ $element: createElementFromHTML(Template) });
+    super({ $element: new DicomWindowComp() });
     this.#$windowItems = $viewBoxes.map(($el) => createDicomWindowItem($el));
     this.#layout$ = layout$;
 

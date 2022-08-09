@@ -5,21 +5,23 @@ const store = {};
 
 /**
  * Context Menu Popup
+ * 컨텍스트 메뉴 오픈 상태
  * type of ({ x: number, y: number } || null)
  */
-store.thumbnailContextMenuOpen$ = new BehaviorSubject();
-store.tabsContextMenuOpen$ = new BehaviorSubject();
-store.viewboxContextMenuOpen$ = new BehaviorSubject();
-store.annotationContextMenuOpen$ = new BehaviorSubject();
+store.thumbnailContextMenuOpen$ = new BehaviorSubject(false);
+store.tabsContextMenuOpen$ = new BehaviorSubject(false);
+store.viewboxContextMenuOpen$ = new BehaviorSubject(false);
+store.annotationContextMenuOpen$ = new BehaviorSubject(false);
 
 /**
  * Layer Popup
+ * 레이어 팝업 오픈 상태
  * type of ({ x: number, y: number } || null)
  */
-store.relatedStudyOpen$ = new BehaviorSubject();
-store.exportDicomOpen$ = new BehaviorSubject();
-store.reviseOpen$ = new BehaviorSubject();
-store.dicomInformationsOpen$ = new BehaviorSubject();
+store.relatedStudyOpen$ = new BehaviorSubject(false);
+store.exportDicomOpen$ = new BehaviorSubject(false);
+store.reviseOpen$ = new BehaviorSubject(false);
+store.dicomInformationsOpen$ = new BehaviorSubject(false);
 
 /**
  * DicomWindow Layout Mode
@@ -44,10 +46,12 @@ store.cinePlayControllerHide$ = new BehaviorSubject(false);
  */
 store.virtualLayoutMode$ = new BehaviorSubject({ layout: "normal" });
 
+// Cid Window Popup 오픈
+window.openCidWindow = () =>
+  window.open("./cid.html", "", "width=800, height=800");
+
 //
 window.store = store;
 
 //
-window.openCidWindow = () =>
-  window.open("./cid.html", "", "width=800, height=800");
 export default {};

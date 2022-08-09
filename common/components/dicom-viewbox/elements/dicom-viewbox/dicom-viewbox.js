@@ -35,6 +35,15 @@ const PositionAttr = {
  *  bottomRight: string[],
  * }
  *
+ * @type states: {
+ *  isActive$: BehaviorSubject<boolean>
+ * }
+ *
+ * @type options: {
+ *  hasController: boolean,
+ *  onClick: () => void
+ * }
+ *
  * @type hasController: boolean
  * 현재 뷰박스가 CineController를 보유해야 하는지 여부
  * false인 경우 툴박스에서 Cine 메뉴를 눌러도 해당 뷰박스는 CineController를 보여주지 않음
