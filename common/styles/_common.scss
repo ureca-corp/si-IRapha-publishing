@@ -1,9 +1,11 @@
+@use "../themes/fonts" as fonts;
 @use "./box-shadow";
 @use "./constant";
 
 // default
 html,
 body {
+  font-family: "roboto";
   width: 100%;
   height: 100%;
   overflow: hidden;
