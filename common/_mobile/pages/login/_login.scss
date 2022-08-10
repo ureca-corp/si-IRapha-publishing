@@ -1,8 +1,8 @@
-@use "../../../../styles/common";
-@use "../../../../themes/colors" as colors;
+@use "../../../styles/common";
+@use "../../styles/mobile-common";
+@use "../../../themes/colors" as colors;
 
-@use "../../../icons/style" as icons;
-@use "../../../kit/style" as kit;
+@use "../../../components/kit/style" as kit;
 
 $color-bg: var(--color__secondary-container);
 

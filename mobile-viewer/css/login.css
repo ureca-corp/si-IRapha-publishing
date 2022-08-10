@@ -8936,8 +8936,8 @@ table {
 
 html,
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -8986,31 +8986,24 @@ button[disabled] {
   height: 100%;
 }
 
-.uk-drop {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.uk-radio {
-  border: 1px solid var(--color__border-weak) !important;
-}
-.uk-radio:checked {
-  border-color: transparent !important;
-  background-color: var(--color__accent) !important;
+*::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
 }
 
-.uk-checkbox {
-  border-radius: 2px;
-  margin: 0;
-  border: 1px solid var(--color__border-weak) !important;
+*::-webkit-scrollbar-thumb {
+  display: none;
 }
-.uk-checkbox:checked {
-  border-color: transparent !important;
-  background-color: var(--color__accent) !important;
-}
-.uk-checkbox:disabled {
-  background-color: unset !important;
+
+*::-webkit-scrollbar-corner {
+  display: none;
 }
 
 :root {
@@ -9124,25 +9117,32 @@ button[disabled] {
   --color__accent-alpha: #bbdfde33;
 }
 
-.irapha-icon {
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  width: 24px;
-  height: 24px;
-  fill: var(--color__icon-default);
+.uk-checkbox {
+  border-radius: 2px;
+  margin: 0;
+  border: 1px solid var(--color__border-weak) !important;
 }
-.irapha-icon:hover {
-  fill: var(--color__icon-hover);
+.uk-checkbox:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
 }
-.irapha-icon:hover.--active {
-  opacity: 0.7;
+.uk-checkbox:disabled {
+  background-color: unset !important;
 }
-.irapha-icon.--small {
-  width: 20px;
-  height: 20px;
+
+.uk-radio {
+  border: 1px solid var(--color__border-weak) !important;
 }
-.irapha-icon.--active {
-  fill: var(--color__icon-active);
+.uk-radio:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
+}
+
+.uk-accordion > li {
+  margin: 0 !important;
+}
+.uk-accordion .uk-accordion-content {
+  margin-top: 0;
 }
 
 .irapha-search-container {
@@ -9222,6 +9222,39 @@ button[disabled] {
 }
 .irapha-button[variant=contained]:hover {
   opacity: 0.7;
+}
+
+.irapha-select {
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  width: 100%;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-color: var(--color__border);
+  background-color: transparent;
+  color: var(--color__font-secondary);
+  cursor: pointer;
+}
+.irapha-select:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-select.uk-select:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+
+.uk-drop {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .irapha-mobile__login-page {

@@ -1,0 +1,40 @@
+@use "../../../styles/common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/typography" as typography;
+@use "../../../components/icons/style" as icons;
+
+@use "../appbar-context.menu/appbar-context-menu";
+
+$color-boder: var(--color__border);
+$color-icon-default: var(--color__icon-default);
+
+.irapha-mobile-appbar__inner {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+
+  height: 36px;
+
+  border-bottom: 1px dashed $color-boder;
+}
+
+.irapha-mobile-appbar__title {
+  @include typography.title-medium;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.irapha-mobile-appbar__left-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1;
+  padding: 4px;
+}

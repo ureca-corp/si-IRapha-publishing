@@ -1,12 +1,6 @@
-import { BaseIcon, BaseIcon2 } from "./base/icon.js";
+import { BaseIcon2 } from "./base/icon.js";
 
-export class PinIcon extends BaseIcon {
-  constructor({ element, isActive$, onClick }) {
-    super({ element, isActive$, onClick });
-    element.innerHTML = svgIcon;
-  }
-}
-export class PinIcon2 extends BaseIcon2 {
+export class PinIcon extends BaseIcon2 {
   constructor({ states, options }) {
     super({ states, options });
 

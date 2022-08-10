@@ -1,0 +1,51 @@
+@use "../../../styles/common";
+@use "../../../themes/typography" as typography;
+
+$color-border: var(--color__border);
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-primary: var(--color__bg-primary);
+$color-table-hover: var(--color__table-hover);
+
+.irapha-custom-table {
+  width: 100%;
+}
+
+.irapha-custom-table__head {
+  position: sticky;
+  top: 0;
+  background-color: $color-bg-primary;
+}
+
+.irapha-custom-table__body {
+  padding-bottom: 24px;
+
+  .irapha-custom-table__tr {
+    color: $color-font1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-table-hover;
+      color: $color-font2;
+    }
+  }
+}
+
+.irapha-custom-table__tr {
+  display: flex;
+}
+
+.irapha-custom-table__th {
+  @include typography.label-small;
+  padding: 8px;
+
+  white-space: nowrap;
+}
+
+.irapha-custom-table__td {
+  @include typography.body-small;
+  padding: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

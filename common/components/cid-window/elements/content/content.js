@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/index.js";
-import { createAccordion } from "../../../kit/index.js";
+import { Accordion } from "../../../kit/index.js";
 import { getViewModel } from "../../cid-window.vm.js";
 import { ContentHeader } from "../content-header/content-header.js";
 
@@ -59,7 +59,7 @@ export class Content extends BaseElement {
             $content: createContent(model.answer),
           }))
         ),
-        map((accordionItemModels) => createAccordion(accordionItemModels))
+        map((accordionItemModels) => new Accordion(accordionItemModels))
       )
       .subscribe(($accordion) => $contentList.appendChild($accordion));
   }

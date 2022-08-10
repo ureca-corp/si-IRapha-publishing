@@ -84,13 +84,18 @@ export class CustomContextMenu extends LayerPopup {
 
   // handlers
   #handleOutsideClick(e) {
-    const rootId = this.getEl().id;
+    const $root = this.getEl();
     const open$ = this.#open$;
 
     const parentTree = e.path;
-    const me = parentTree.find(($el) => $el.id === rootId);
-
-    me || open$.next(null);
+    if (!!parentTree) {
+      const me = parentTree.find(($el) => $el.id === $root.id);
+      me || open$.next(null);
+    } else {
+      const $root = this.getEl();
+      const me = $root.querySelector(e.target.classList[0]);
+      me || open$.next(null);
+    }
   }
 
   #handleCurrentPageChange(currentPage) {

@@ -4,7 +4,7 @@ import { ThumbnailList } from "../thumbnail-list/js/thumbnail-list.js";
 
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { PinIcon2 } from "../../../icons/pin.icon.js";
+import { PinIcon } from "../../../icons/pin.icon.js";
 import { LayoutColumnAttr, Selectors, ShrinkAttr } from "../../common/index.js";
 
 const { BehaviorSubject, tap, map } = rxjs;
@@ -33,7 +33,7 @@ export class ThumbnailBox extends BaseElement {
   #initChilds() {
     const { kinModels, thumbnailModels } = this.#model;
 
-    const $pinIcon = new PinIcon2({
+    const $pinIcon = new PinIcon({
       options: {
         events: {
           onClick: () => this.#toggle(),

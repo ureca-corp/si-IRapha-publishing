@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
-import { PinIcon2 } from "../../../icons/pin.icon.js";
+import { PinIcon } from "../../../icons/pin.icon.js";
 import { Selectors, ShrinkType } from "../../common/index.js";
 import { FullScreenToggleButton } from "../fullscreen-toggle-button/fullscreen-toggle-button.js";
 import { NetworkStatus } from "../network-status/network-status.js";
@@ -54,7 +54,7 @@ export class Logo extends BaseElement {
     const { onPinClick } = this.#events;
     const { $logoMenus } = this.#getElements();
 
-    const $pinIcon = new PinIcon2({
+    const $pinIcon = new PinIcon({
       options: { events: { onClick: onPinClick } },
     }).getEl();
 

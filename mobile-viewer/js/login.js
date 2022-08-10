@@ -1,5 +1,5 @@
-import { MobileLoginPage } from "../../common/components/_mobile/pages/login/login.js";
 import "../../libs/index.js";
+import { MobileLoginPage } from "../../common/_mobile/pages/login/login.js";
 
 document
   .querySelector("#irapha-app")

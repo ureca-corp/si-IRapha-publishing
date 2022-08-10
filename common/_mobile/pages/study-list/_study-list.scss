@@ -1,0 +1,95 @@
+@use "../../../styles/common";
+@use "../../styles/mobile-common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/typography" as typography;
+@use "../../../themes/shape" as shape;
+
+@use "../../../components/kit/style" as kit;
+@use "../../components/appbar/appbar";
+@use "../../../components/tables/custom-table/custom-table";
+
+$color-bg: var(--color__secondary-container);
+$color-boder: var(--color__border);
+
+.irapha-mobile__study-list__root {
+  width: 100%;
+  height: 100%;
+
+  background-color: $color-bg;
+}
+
+.irapha-mobile__study-list__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  height: 100%;
+  padding: 16px 12px;
+}
+
+.irapha-mobile__study-list__data {
+  @include typography.label-small;
+  @include shape.small;
+
+  padding: 8px;
+  margin: 8px !important;
+
+  color: var(--color__font-secondary);
+  background-color: var(--color__bg-secondary);
+}
+
+//
+$color-border: var(--color__border);
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-primary: var(--color__bg-primary);
+$color-table-hover: var(--color__table-hover);
+
+.irapha-mobile__study-list__table-wrapper {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: overlay;
+
+  .uk-accordion {
+    .uk-accordion-title {
+      &::before {
+        display: none;
+      }
+    }
+
+    & > li.uk-open {
+      @include shape.small;
+      background-color: var(--color__bg-secondary);
+    }
+  }
+}
+
+//
+@mixin item {
+  &:nth-child(1) {
+    width: 20%;
+  }
+  &:nth-child(2) {
+    width: 25%;
+  }
+
+  &:nth-child(3) {
+    width: 25%;
+  }
+
+  &:nth-child(4) {
+    width: 15%;
+  }
+
+  &:nth-child(5) {
+    width: 15%;
+  }
+}
+
+.irapha-custom-table__th {
+  @include item;
+}
+
+.irapha-custom-table__td {
+  @include item;
+}

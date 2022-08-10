@@ -1,6 +1,6 @@
 import { createElementFromHTML } from "../../../utils/dom/index.js";
 
-export const createAccordion = (models) => {
+export function Accordion(models) {
   const $accordion = createElementFromHTML(
     `<ul uk-accordion="collapsible: false"></ul>`
   );
@@ -12,7 +12,7 @@ export const createAccordion = (models) => {
   $accordion.append(...$items);
 
   return $accordion;
-};
+}
 
 const createAccordionItem = ({ $title, $content }) => {
   const $template = createElementFromHTML(

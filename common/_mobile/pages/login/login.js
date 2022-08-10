@@ -1,6 +1,6 @@
-import { createElementFromHTML } from "../../../../utils/dom/index.js";
-import { BaseElement } from "../../../base/base-element.js";
-import { Button } from "../../../kit/index.js";
+import { createElementFromHTML } from "../../../utils/dom/index.js";
+import { BaseElement } from "../../../components/base/base-element.js";
+import { Button } from "../../../components/kit/index.js";
 
 const Selectors = {
   Root: "irapha-mobile__login-page",
@@ -40,7 +40,7 @@ export class MobileLoginPage extends BaseElement {
 
 function MobileLoginPageComp() {
   const LogoPath = "../../assets/images/logo.svg";
-  const NextDestinationPath = "#";
+  const NextDestinationPath = "./study-list.html";
 
   return createElementFromHTML(`
   <div class="${Selectors.Root}">

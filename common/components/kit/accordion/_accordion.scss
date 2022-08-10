@@ -1,0 +1,9 @@
+.uk-accordion {
+  & > li {
+    margin: 0 !important;
+  }
+
+  .uk-accordion-content {
+    margin-top: 0;
+  }
+}

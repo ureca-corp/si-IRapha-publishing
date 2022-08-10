@@ -1,0 +1,39 @@
+@use "../../../styles/common";
+@use "../../../themes/typography" as typography;
+@use "../../../themes/shape" as shape;
+
+$color-font1: var(--color__font-secondary);
+$color-font2: var(--color__font-primary);
+$color-bg-focus: #ffffff11;
+$color-border-default: var(--color__border);
+
+@mixin focus {
+  color: $color-font2;
+  border-color: $color-font1;
+  background-color: $color-bg-focus;
+}
+
+.irapha-select {
+  @include shape.small;
+  @include typography.label-large;
+
+  width: 100%;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  border-color: $color-border-default;
+
+  background-color: transparent;
+  color: $color-font1;
+
+  cursor: pointer;
+
+  &:hover {
+    @include focus;
+  }
+
+  &.uk-select:focus {
+    @include focus;
+  }
+}

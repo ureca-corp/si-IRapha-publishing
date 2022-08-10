@@ -8,20 +8,20 @@ const store = {};
  * 컨텍스트 메뉴 오픈 상태
  * type of ({ x: number, y: number } || null)
  */
-store.thumbnailContextMenuOpen$ = new BehaviorSubject(false);
-store.tabsContextMenuOpen$ = new BehaviorSubject(false);
-store.viewboxContextMenuOpen$ = new BehaviorSubject(false);
-store.annotationContextMenuOpen$ = new BehaviorSubject(false);
+store.thumbnailContextMenuOpen$ = new BehaviorSubject(null);
+store.tabsContextMenuOpen$ = new BehaviorSubject(null);
+store.viewboxContextMenuOpen$ = new BehaviorSubject(null);
+store.annotationContextMenuOpen$ = new BehaviorSubject(null);
 
 /**
  * Layer Popup
  * 레이어 팝업 오픈 상태
  * type of ({ x: number, y: number } || null)
  */
-store.relatedStudyOpen$ = new BehaviorSubject(false);
-store.exportDicomOpen$ = new BehaviorSubject(false);
-store.reviseOpen$ = new BehaviorSubject(false);
-store.dicomInformationsOpen$ = new BehaviorSubject(false);
+store.relatedStudyOpen$ = new BehaviorSubject(null);
+store.exportDicomOpen$ = new BehaviorSubject(null);
+store.reviseOpen$ = new BehaviorSubject(null);
+store.dicomInformationsOpen$ = new BehaviorSubject(null);
 
 /**
  * DicomWindow Layout Mode

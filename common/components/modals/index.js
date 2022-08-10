@@ -13,5 +13,6 @@ export {
   TabsContextMenu,
   ThumbnailContextMenu,
   CustomContextMenu,
+  CustomContextMenuSelectors,
   useCustomContextMenu,
 } from "./context-menus/index.js";
