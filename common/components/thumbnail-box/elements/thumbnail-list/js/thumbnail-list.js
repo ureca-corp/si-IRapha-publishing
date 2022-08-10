@@ -3,7 +3,7 @@ import { BaseElement } from "../../../../base/base-element.js";
 import { LayoutColumnAttr, Selectors } from "../../../common/index.js";
 import { ThumbnailItem } from "./thumbnail-item.js";
 
-const { map, tap } = rxjs;
+const { map, tap, BehaviorSubject } = rxjs;
 
 /**
  * Constructor types
@@ -21,7 +21,11 @@ const { map, tap } = rxjs;
  * 폴딩 여부
  */
 export class ThumbnailList extends BaseElement {
-  constructor({ models, isLayoutColumn$, isHide$ }) {
+  constructor({
+    models,
+    isLayoutColumn$ = new BehaviorSubject(false),
+    isHide$ = new BehaviorSubject(false),
+  }) {
     super({ $element: new ThumbnailListComp() });
     const $root = this.getEl();
 

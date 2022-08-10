@@ -1,24 +1,20 @@
 import "../../store/store.js";
 
-import { createElementFromHTML } from "../../../utils/dom/index.js";
 import { BaseElement } from "../../../components/base/base-element.js";
-import { MobileAppbar } from "../../components/index.js";
-import { MenuIcon } from "../../../components/icons/index.js";
 import { Accordion, SelectInput } from "../../../components/kit/index.js";
 import {
   CustomTable,
-  Tr,
-  Th,
   Td,
+  Th,
+  Tr,
 } from "../../../components/tables/custom-table/custom-table.js";
-import { getViewModel } from "./study-list.vm.js";
+import { createElementFromHTML } from "../../../utils/dom/index.js";
 import { MobileAppbarWithMenu } from "../../components/appbar/with-menu.js";
+import { getViewModel } from "./study-list.vm.js";
 
 const Selectors = {
   Root: "irapha-mobile__study-list__root",
   HeaderWrapper: "irapha-mobile__study-list__header-wrapper",
-  MainTitle: "irapha-mobile__study-list__main-title",
-  HeaderMenuWrapper: "irapha-mobile__study-list__header__menu-wrapper",
   Content: "irapha-mobile__study-list__content",
   SelectWrapper: "irapha-mobile__study-list__select-wrapper",
   TableWrapper: "irapha-mobile__study-list__table-wrapper",
@@ -87,18 +83,12 @@ export class MobileStudyListPage extends BaseElement {
 
   #getElements() {
     const $headerWrapper = this.getElementByClassName(Selectors.HeaderWrapper);
-    const $mainTitle = this.getElementByClassName(Selectors.MainTitle);
-    const $headerMenuWrapper = this.getElementByClassName(
-      Selectors.HeaderMenuWrapper
-    );
 
     const $selectWrapper = this.getElementByClassName(Selectors.SelectWrapper);
     const $tableWrapper = this.getElementByClassName(Selectors.TableWrapper);
 
     return {
       $headerWrapper,
-      $mainTitle,
-      $headerMenuWrapper,
       $selectWrapper,
       $tableWrapper,
     };

@@ -41,7 +41,7 @@ export class App extends BaseElement {
     const { thumbnailBoxModel } = getViewModel();
 
     const toolboxLayoutColumn$ = new BehaviorSubject();
-    const thumbnailboxLayoutColumn$ = new BehaviorSubject();
+    const thumbnailboxLayoutColumn$ = new BehaviorSubject(true);
 
     const $toolbox = new Toolbox({
       isLayoutColumn$: toolboxLayoutColumn$,

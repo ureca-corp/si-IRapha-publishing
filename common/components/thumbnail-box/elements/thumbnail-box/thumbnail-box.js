@@ -18,15 +18,13 @@ export class ThumbnailBox extends BaseElement {
   #isPreview$ = new BehaviorSubject(false);
   #shrinkDirection$ = new BehaviorSubject();
 
-  constructor({ isLayoutColumn$, model }) {
+  constructor({ isLayoutColumn$ = new BehaviorSubject(false), model }) {
     super({ $element: new ThumbnailBoxComp() });
     this.#isLayoutColumn$ = isLayoutColumn$;
     this.#model = model;
 
     this.#initStates();
     this.#initChilds();
-
-    this.#isLayoutColumn$.next(true);
   }
 
   // private

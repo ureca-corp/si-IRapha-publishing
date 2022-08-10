@@ -1,0 +1,17 @@
+@use "../../../styles/common";
+@use "../../styles/mobile-common";
+@use "../../../themes/colors" as colors;
+@use "../../../themes/typography" as typography;
+@use "../../../themes/shape" as shape;
+
+@use "../../components/appbar/appbar";
+@use "../../../components/thumbnail-box/style" as thumbnail-box;
+
+$color-bg: var(--color__bg-primary);
+
+.irapha-mobile__viewer__root {
+  width: 100%;
+  height: 100%;
+
+  background-color: $color-bg;
+}
