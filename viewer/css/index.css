@@ -8920,6 +8920,36 @@ table {
   border-spacing: 0;
 }
 
+@font-face {
+  font-family: "roboto";
+  font-weight: 100;
+  src: url("../../assets/fonts/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: "roboto";
+  font-weight: 300;
+  src: url("../../assets/fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "roboto";
+  font-weight: 400;
+  src: url("../../assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "roboto";
+  font-weight: 500;
+  src: url("../../assets/fonts/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "roboto";
+  font-weight: 700;
+  src: url("../../assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "roboto";
+  font-weight: 900;
+  src: url("../../assets/fonts/Roboto-Black.ttf") format("truetype");
+}
 :root {
   --box-shadow__layer-menu: 0px 1px 2px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);
@@ -8936,8 +8966,9 @@ table {
 
 html,
 body {
-  width: 100vw;
-  height: 100vh;
+  font-family: "roboto";
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -8981,31 +9012,9 @@ button[disabled] {
   background-color: transparent;
 }
 
-.uk-drop {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.uk-radio {
-  border: 1px solid var(--color__border-weak) !important;
-}
-.uk-radio:checked {
-  border-color: transparent !important;
-  background-color: var(--color__accent) !important;
-}
-
-.uk-checkbox {
-  border-radius: 2px;
-  margin: 0;
-  border: 1px solid var(--color__border-weak) !important;
-}
-.uk-checkbox:checked {
-  border-color: transparent !important;
-  background-color: var(--color__accent) !important;
-}
-.uk-checkbox:disabled {
-  background-color: unset !important;
+#irapha-app {
+  width: 100%;
+  height: 100%;
 }
 
 .irapha-icon {
@@ -9052,8 +9061,8 @@ button[disabled] {
   --color__popup-bg-primary: var(--color__secondary-container);
   --color__menu-border: #eeeeee22;
   --color__context-menu-hover-bg: #eeeeee11;
-  --color__tabs-active-bg: rgb(54, 54, 58);
-  --color__tabs-inactive-bg: rgb(32, 32, 32);
+  --color__tabs-active-bg: #36363a;
+  --color__tabs-inactive-bg: #202020;
   --color__dicom-window-active: var(--color__accent);
   --color__viewbox-border-weak: #eeeeee22;
   --color__canvas-text-primary: #ffffffcc;
@@ -9076,7 +9085,7 @@ button[disabled] {
   --color__inversion-primary: #ffffffcc;
   --color__inversion-secondary: #eeeeee99;
   --color__bg-primary: #fff;
-  --color__bg-secondary: #eeeeee33;
+  --color__bg-secondary: #eeeeee66;
   --color__popup-bg-primary: #fff;
   --color__table-hover: var(--color__accent-alpha);
   --color__menu-border: #99999966;
@@ -9100,7 +9109,7 @@ button[disabled] {
   --color__inversion-primary: #ffffffcc;
   --color__inversion-secondary: #eeeeee99;
   --color__bg-primary: #fff;
-  --color__bg-secondary: #eeeeee33;
+  --color__bg-secondary: #eeeeee66;
   --color__popup-bg-primary: #fff;
   --color__table-hover: var(--color__accent-alpha);
   --color__menu-border: #99999966;
@@ -9124,7 +9133,7 @@ button[disabled] {
   --color__inversion-primary: #ffffffcc;
   --color__inversion-secondary: #eeeeee99;
   --color__bg-primary: #fff;
-  --color__bg-secondary: #eeeeee33;
+  --color__bg-secondary: #eeeeee66;
   --color__popup-bg-primary: #fff;
   --color__table-hover: var(--color__accent-alpha);
   --color__menu-border: #99999966;
@@ -10229,6 +10238,9 @@ button[disabled] {
 .irapha-dicom-viewbox:hover {
   border: 2px solid var(--color__green);
 }
+.irapha-dicom-viewbox canvas {
+  background-color: #000;
+}
 
 .irapha-dicom-viewbox__screen {
   position: relative;
@@ -10737,6 +10749,34 @@ button[disabled] {
   border-top: 1px dashed var(--color__border);
 }
 
+.uk-checkbox {
+  border-radius: 2px;
+  margin: 0;
+  border: 1px solid var(--color__border-weak) !important;
+}
+.uk-checkbox:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
+}
+.uk-checkbox:disabled {
+  background-color: unset !important;
+}
+
+.uk-radio {
+  border: 1px solid var(--color__border-weak) !important;
+}
+.uk-radio:checked {
+  border-color: transparent !important;
+  background-color: var(--color__accent) !important;
+}
+
+.uk-accordion > li {
+  margin: 0 !important;
+}
+.uk-accordion .uk-accordion-content {
+  margin-top: 0;
+}
+
 .irapha-search-container {
   position: relative;
 }
@@ -10814,6 +10854,39 @@ button[disabled] {
 }
 .irapha-button[variant=contained]:hover {
   opacity: 0.7;
+}
+
+.irapha-select {
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  width: 100%;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-color: var(--color__border);
+  background-color: transparent;
+  color: var(--color__font-secondary);
+  cursor: pointer;
+}
+.irapha-select:hover {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+.irapha-select.uk-select:focus {
+  color: var(--color__font-primary);
+  border-color: var(--color__font-secondary);
+  background-color: rgba(255, 255, 255, 0.0666666667);
+}
+
+.uk-drop {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .irapha-dicom-info__inner {
@@ -11005,6 +11078,36 @@ button[disabled] {
 .irapha-annotation-cm__input:focus::-webkit-outer-spin-button, .irapha-annotation-cm__input:focus::-webkit-inner-spin-button {
   -webkit-appearance: auto;
   margin: unset;
+}
+
+.irapha-bottom-sheet__root {
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.irapha-bottom-sheet__root[open=true] {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+}
+
+.irapha-bottom-sheet__inner {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  box-shadow: var(--box-shadow__layer-menu);
 }
 
 .irapha-viewbox-cm__menu-zoom {

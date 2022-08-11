@@ -1,0 +1,50 @@
+@use "../../../styles/anim" as anim;
+@use "../../../themes/typography" as typography;
+
+$color-bg: var(--color__bg-primary);
+
+// viewer bottom
+.irapha-mobile__viewer__bottom__root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  background-color: $color-bg;
+}
+
+.irapha-mobile__viewer__bottom__menu-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  padding: 8px;
+
+  background-color: var(--color__tabs-inactive-bg);
+}
+
+.irapha-mobile__viewer__bottom__menu__left,
+.irapha-mobile__viewer__bottom__menu__right {
+  display: flex;
+  gap: 8px;
+}
+
+.irapha-mobile__viewer__bottom__content-container {
+  @include anim.basic-transition;
+
+  height: 0px;
+
+  &[visible="true"] {
+    height: 400px;
+  }
+}
+
+.irapha-mobile__viewer__bottom__content-tab-inner {
+  @include typography.label-medium;
+  padding: 4px;
+}
+
+.irapha-mobile__viewer__bottom__content-wrapper {
+  height: 100%;
+
+  background-color: var(--color__tabs-active-bg);
+}

@@ -1,0 +1,8 @@
+.uk-radio {
+  border: 1px solid var(--color__border-weak) !important;
+
+  &:checked {
+    border-color: transparent !important;
+    background-color: var(--color__accent) !important;
+  }
+}
