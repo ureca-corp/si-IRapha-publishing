@@ -9039,15 +9039,16 @@ button[disabled] {
 }
 
 :root {
-  --color__status-danger: #ff3b30;
-  --color__status-warning: #ffcc00;
-  --color__status-normal: #34c759;
-  --color__primary: #34c759;
-  --color__primary-weak: #34c75999;
-  --color__secondary: #5e6a7f;
-  --color__secondary-container: #333;
-  --color__teriary: #4b8eca;
-  --color__teriary-container: #142f56;
+  --color__red: #ff3b30;
+  --color__orange: #ff9500;
+  --color__yellow: #ffcc00;
+  --color__green: #34c759;
+  --color__black: #000;
+  --color__status-danger: var(--color__red);
+  --color__status-warning: var(--color__yellow);
+  --color__status-normal: var(--color__green);
+  --color__canvas-text-primary: #ffffffcc;
+  --color__canvas-text-secondary: #eeeeee99;
   --color__accent: #1e87f0;
   --color__border: #eeeeee33;
   --color__border-weak: #eeeeee66;
@@ -9057,24 +9058,17 @@ button[disabled] {
   --color__inversion-secondary: #00000099;
   --color__bg-primary: #333;
   --color__bg-secondary: #eeeeee11;
+  --color__popup-bg-primary: var(--color__bg-primary);
   --color__table-hover: #ffffff33;
-  --color__popup-bg-primary: var(--color__secondary-container);
   --color__menu-border: #eeeeee22;
   --color__context-menu-hover-bg: #eeeeee11;
   --color__tabs-active-bg: #36363a;
   --color__tabs-inactive-bg: #202020;
   --color__dicom-window-active: var(--color__accent);
   --color__viewbox-border-weak: #eeeeee22;
-  --color__canvas-text-primary: #ffffffcc;
-  --color__canvas-text-secondary: #eeeeee99;
   --color__icon-default: #aaa;
   --color__icon-hover: var(--color__font-primary);
   --color__icon-active: #fff;
-  --color__red: #ff3b30;
-  --color__orange: #ff9500;
-  --color__yellow: #ffcc00;
-  --color__green: #34c759;
-  --color__black: #000;
 }
 
 #irapha-app[theme=light-blue] {
@@ -9396,10 +9390,10 @@ button[disabled] {
 }
 .irapha-grid-selector__item {
   border-radius: 4px;
-  background-color: var(--color__secondary);
+  background-color: #5e6a7f;
 }
 .irapha-grid-selector__item[irapha-grid-selector*="active: true"] {
-  background-color: var(--color__teriary);
+  background-color: #4b8eca;
 }
 
 .irapha-grid-selector {
@@ -10399,7 +10393,7 @@ button[disabled] {
   bottom: -4px;
   right: -2px;
   font-size: 14px;
-  color: var(--color__primary);
+  color: var(--color__green);
   transform: scale(0.4);
 }
 

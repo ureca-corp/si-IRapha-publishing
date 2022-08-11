@@ -2,24 +2,26 @@
 // # Default theme
 // =================================================================
 :root {
+  // common
+  --color__red: #ff3b30;
+  --color__orange: #ff9500;
+  --color__yellow: #ffcc00;
+  --color__green: #34c759;
+  --color__black: #000;
+
   // 네트워크 상태 컬러
-  --color__status-danger: #ff3b30;
-  --color__status-warning: #ffcc00;
-  --color__status-normal: #34c759;
+  --color__status-danger: var(--color__red);
+  --color__status-warning: var(--color__yellow);
+  --color__status-normal: var(--color__green);
+
+  // canvas
+  --color__canvas-text-primary: #ffffffcc;
+  --color__canvas-text-secondary: #eeeeee99;
 
   // base
-  --color__primary: #34c759;
-  --color__primary-weak: #34c75999;
-
-  --color__secondary: #5e6a7f;
-  --color__secondary-container: #333;
-
-  --color__teriary: #4b8eca;
-  --color__teriary-container: #142f56;
-
   --color__accent: #1e87f0;
 
-  //
+  // border
   --color__border: #eeeeee33;
   --color__border-weak: #eeeeee66;
 
@@ -33,11 +35,11 @@
   --color__bg-primary: #333;
   --color__bg-secondary: #eeeeee11;
 
+  // popup
+  --color__popup-bg-primary: var(--color__bg-primary);
+
   // table
   --color__table-hover: #ffffff33;
-
-  // popup
-  --color__popup-bg-primary: var(--color__secondary-container);
 
   // menu
   --color__menu-border: #eeeeee22;
@@ -53,26 +55,16 @@
   // dicom viewbox
   --color__viewbox-border-weak: #eeeeee22;
 
-  // canvas
-  --color__canvas-text-primary: #ffffffcc;
-  --color__canvas-text-secondary: #eeeeee99;
-
   // icons
   --color__icon-default: #aaa;
   --color__icon-hover: var(--color__font-primary);
   --color__icon-active: #fff;
-
-  // common
-  --color__red: #ff3b30;
-  --color__orange: #ff9500;
-  --color__yellow: #ffcc00;
-  --color__green: #34c759;
-  --color__black: #000;
 }
 
 // light theme
 // =========================================================
 @mixin light-theme {
+  // border
   --color__border: #99999999;
   --color__border-weak: #ccc;
 

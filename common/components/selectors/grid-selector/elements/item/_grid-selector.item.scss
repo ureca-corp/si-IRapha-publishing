@@ -4,8 +4,8 @@
 // grid item
 // =================================================================
 
-$color-active: var(--color__teriary);
-$color-default: var(--color__secondary);
+$color-active: #4b8eca;
+$color-default: #5e6a7f;
 
 @mixin s-grid-item {
   // 아이템 활성화
