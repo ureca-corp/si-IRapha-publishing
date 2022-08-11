@@ -9140,6 +9140,7 @@ button[disabled] {
   background-color: var(--color__accent);
   border: 1px solid transparent;
   cursor: pointer;
+  color: var(--color__inversion-primary);
 }
 .irapha-button[variant=contained]:hover {
   opacity: 0.7;
