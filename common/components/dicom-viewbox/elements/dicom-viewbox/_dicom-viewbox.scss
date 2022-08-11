@@ -40,6 +40,10 @@ $color-border-weak: var(--color__viewbox-border-weak);
   &:hover {
     border: 2px solid $color-green;
   }
+
+  canvas {
+    background-color: #000;
+  }
 }
 
 // dicom viewbox screen

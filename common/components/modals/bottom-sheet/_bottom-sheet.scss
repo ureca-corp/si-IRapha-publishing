@@ -1,0 +1,40 @@
+@use "../../../styles/common";
+@use "../../../styles/anim" as anim;
+@use "../../../styles/box-shadow" as box-shadow;
+
+@mixin open {
+  &[open="true"] {
+    height: 100%;
+    background-color: #00000080;
+  }
+}
+
+.irapha-bottom-sheet__root {
+  @include anim.basic-transition;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  height: fit-content;
+
+  @include open;
+}
+
+.irapha-bottom-sheet__inner {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: fit-content;
+
+  box-shadow: var(--box-shadow__layer-menu);
+}

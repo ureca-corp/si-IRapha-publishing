@@ -16,3 +16,5 @@ export {
   CustomContextMenuSelectors,
   useCustomContextMenu,
 } from "./context-menus/index.js";
+
+export { BottomSheet } from "./bottom-sheet/bottom-sheet.js";

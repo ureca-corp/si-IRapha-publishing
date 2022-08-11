@@ -17,3 +17,6 @@ export { SearchIcon } from "./search.icon.js";
 export { ClipBoardCopyIcon } from "./clipboard-copy.icon.js";
 
 export { MenuIcon } from "./menu.icon.js";
+export { PanningIcon } from "./panning.icon.js";
+export { WindowLevelIcon } from "./window-level.icon.js";
+export { ReportIcon } from "./report.icon.js";

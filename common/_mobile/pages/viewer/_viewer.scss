@@ -4,14 +4,46 @@
 @use "../../../themes/typography" as typography;
 @use "../../../themes/shape" as shape;
 
+@use "../../../components/kit/style" as kit;
+@use "../../../components/tabs/style" as tabs;
 @use "../../components/appbar/appbar";
 @use "../../../components/thumbnail-box/style" as thumbnail-box;
+@use "../../../components/dicom-viewbox/style" as dicom-viewbox;
+@use "../../../components/modals/style" as modals;
+@use "./viewer.bottom";
 
+$color-font1: var(--color__font-secondary);
 $color-bg: var(--color__bg-primary);
 
 .irapha-mobile__viewer__root {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   height: 100%;
 
   background-color: $color-bg;
+}
+
+.irapha-mobile__viewer__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.irapha-mobile__viewer__viewbox-wrapper {
+  height: 100%;
+}
+
+.irapha-mobile__viewer__bottom-wrapper {
+  min-height: 40px;
+}
+
+// study info
+.irapha-mobile__viewer__study-info {
+  @include typography.body-medium;
+  @include shape.small;
+
+  color: $color-font1;
+  padding: 16px 12px;
 }

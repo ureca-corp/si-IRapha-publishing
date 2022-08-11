@@ -9403,8 +9403,8 @@ button[disabled] {
   --color__popup-bg-primary: var(--color__secondary-container);
   --color__menu-border: #eeeeee22;
   --color__context-menu-hover-bg: #eeeeee11;
-  --color__tabs-active-bg: rgb(54, 54, 58);
-  --color__tabs-inactive-bg: rgb(32, 32, 32);
+  --color__tabs-active-bg: #36363a;
+  --color__tabs-inactive-bg: #202020;
   --color__dicom-window-active: var(--color__accent);
   --color__viewbox-border-weak: #eeeeee22;
   --color__canvas-text-primary: #ffffffcc;
@@ -9811,6 +9811,36 @@ button[disabled] {
 .irapha-annotation-cm__input:focus::-webkit-outer-spin-button, .irapha-annotation-cm__input:focus::-webkit-inner-spin-button {
   -webkit-appearance: auto;
   margin: unset;
+}
+
+.irapha-bottom-sheet__root {
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.irapha-bottom-sheet__root[open=true] {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+}
+
+.irapha-bottom-sheet__inner {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  box-shadow: var(--box-shadow__layer-menu);
 }
 
 .irapha-viewbox-cm__menu-zoom {

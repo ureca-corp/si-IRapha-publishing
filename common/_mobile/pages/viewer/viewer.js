@@ -1,9 +1,19 @@
 import "../../store/store.js";
 
 import { BaseElement } from "../../../components/base/base-element.js";
+import { DicomViewBox } from "../../../components/dicom-viewbox/index.js";
+import {
+  PanningIcon,
+  ReportIcon,
+  WindowLevelIcon,
+} from "../../../components/icons/index.js";
+import { BottomSheet } from "../../../components/modals/index.js";
+import { Tabs } from "../../../components/tabs/index.js";
 import { ThumbnailList } from "../../../components/thumbnail-box/index.js";
 import { createElementFromHTML } from "../../../utils/dom/index.js";
 import { MobileAppbarWithMenu } from "../../components/appbar/with-menu.js";
+import { getViewModel } from "./viewer.vm.js";
+import { MobileViewerBottom } from "./viewer.bottom.js";
 
 const Selectors = {
   Root: "irapha-mobile__viewer__root",
@@ -13,9 +23,14 @@ const Selectors = {
   ThumbnailListWrapper: "irapha-mobile__viewer__thumbnail-list-wrapper",
   ViewBoxWrapper: "irapha-mobile__viewer__viewbox-wrapper",
   BottomWrapper: "irapha-mobile__viewer__bottom-wrapper",
+
+  StudyInfo: "irapha-mobile__viewer__study-info",
+  StudyInfoDesc: "irapha-mobile__viewer__study-info__desc",
 };
 
 export class MobileViewerPage extends BaseElement {
+  #vm = getViewModel();
+
   constructor() {
     super({ $element: new MobileViewerPageComp() });
 
@@ -24,7 +39,10 @@ export class MobileViewerPage extends BaseElement {
 
   #init() {
     this.#initHeader();
+    this.#initStudyInfo();
     this.#initThumbnailBox();
+    this.#initViewBox();
+    this.#initBottom();
   }
 
   #initHeader() {
@@ -35,19 +53,36 @@ export class MobileViewerPage extends BaseElement {
     );
   }
 
+  #initStudyInfo() {
+    const { $studyInfoWrapper } = this.#getElements();
+    const { studyInfoModel } = this.#vm;
+
+    $studyInfoWrapper.appendChild(new StudyInfoComp(studyInfoModel));
+  }
+
   #initThumbnailBox() {
-    const { $content } = this.#getElements();
+    const { $thumbnailListWrapper } = this.#getElements();
+    const { thumbnailModels } = this.#vm;
 
     const $thumbnailBox = new ThumbnailList({
-      models: Array.from({ length: 10 }, (_, index) => ({
-        id: index + 1,
-        topLeft: ["S:0", "#1"],
-        topRight: ["US"],
-        bottomLeft: ["Cardiology"],
-      })),
+      models: thumbnailModels,
     }).getEl();
 
-    $content.appendChild($thumbnailBox);
+    $thumbnailListWrapper.appendChild($thumbnailBox);
+  }
+
+  #initViewBox() {
+    const { $viewBoxWrapper } = this.#getElements();
+    const { dicomViewBoxModel } = this.#vm;
+
+    const $dicomViewBox = new DicomViewBox(dicomViewBoxModel).getEl();
+
+    $viewBoxWrapper.appendChild($dicomViewBox);
+  }
+
+  #initBottom() {
+    const { $bottomWrapper } = this.#getElements();
+    $bottomWrapper.appendChild(new ViewerBottom());
   }
 
   #getElements() {
@@ -87,4 +122,27 @@ function MobileViewerPageComp() {
       <div class="${Selectors.BottomWrapper}"></div>
     </div>
   </div>`);
+}
+
+function StudyInfoComp({ birthDay, sex, age, studyDesc }) {
+  return createElementFromHTML(`
+  <div class="${Selectors.StudyInfo}">
+    <p class="${Selectors.StudyInfoDesc}">Birth: ${birthDay} / Sex: ${sex} / Age: ${age}</p>
+    <p class="${Selectors.StudyInfoDesc}">Study Desc: ${studyDesc}</p>
+  </div>
+  `);
+}
+
+function ViewerBottom() {
+  const open$ = new rxjs.BehaviorSubject(false);
+
+  const $bottomSheet = new BottomSheet({
+    $children: new MobileViewerBottom({
+      onReportClick: () => open$.next(!open$.getValue()),
+      isVisibleContent$: open$,
+    }).getEl(),
+    open$,
+  }).getEl();
+
+  return $bottomSheet;
 }

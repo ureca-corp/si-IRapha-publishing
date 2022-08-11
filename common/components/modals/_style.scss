@@ -1,6 +1,7 @@
 @use "../../styles/input" as input;
 @use "./layers/style" as layers;
 @use "./context-menus/style" as context-menus;
+@use "./bottom-sheet/bottom-sheet";
 
 //
 .irapha-viewbox-cm__menu-zoom {
