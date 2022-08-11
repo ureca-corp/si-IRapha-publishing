@@ -1,5 +1,5 @@
-import { MobileViewerPage } from "../../common/_mobile/pages/viewer/viewer.js";
 import "../../libs/index.js";
+import { MobileViewerPage } from "../../common/mobile/pages/viewer/viewer.js";
 
 document
   .querySelector("#irapha-app")
