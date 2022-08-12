@@ -8,28 +8,26 @@
   --color__yellow: #ffcc00;
   --color__green: #34c759;
   --color__black: #000;
+  --color__white: #fff;
 
   // 네트워크 상태 컬러
   --color__status-danger: var(--color__red);
   --color__status-warning: var(--color__yellow);
   --color__status-normal: var(--color__green);
 
-  // canvas
-  --color__canvas-text-primary: #ffffffcc;
-  --color__canvas-text-secondary: #eeeeee99;
-
   // base
   --color__accent: #1e87f0;
 
   // border
   --color__border: #eeeeee33;
-  --color__border-weak: #eeeeee66;
+  --color__border-secondary: #eeeeee66;
+  --color__border-tertiary: #eeeeee22;
 
   // font
   --color__font-primary: #ffffffcc;
   --color__font-secondary: #eeeeee99;
-  --color__inversion-primary: #222;
-  --color__inversion-secondary: #00000099;
+  --color__font-reverse-primary: #222;
+  --color__font-reverse-secondary: #00000099;
 
   // bg
   --color__bg-primary: #333;
@@ -42,8 +40,8 @@
   --color__table-hover: #ffffff33;
 
   // menu
-  --color__menu-border: #eeeeee22;
-  --color__context-menu-hover-bg: #eeeeee11;
+  --color__menu-border: var(--color__border-tertiary);
+  --color__context-menu-hover-bg: var(--color__bg-secondary);
 
   // tabs
   --color__tabs-active-bg: #36363a;
@@ -58,7 +56,11 @@
   // icons
   --color__icon-default: #aaa;
   --color__icon-hover: var(--color__font-primary);
-  --color__icon-active: #fff;
+  --color__icon-active: var(--color__white);
+
+  // canvas
+  --color__canvas-text-primary: var(--color__font-primary);
+  --color__canvas-text-secondary: var(--color__font-secondary);
 }
 
 // light theme
@@ -66,37 +68,38 @@
 @mixin light-theme {
   // border
   --color__border: #99999999;
-  --color__border-weak: #ccc;
+  --color__border-secondary: #ccc;
+  --color__border-tertiary: #99999966;
 
   // font
   --color__font-primary: #222;
   --color__font-secondary: #00000099;
-  --color__inversion-primary: #ffffffcc;
-  --color__inversion-secondary: #eeeeee99;
+  --color__font-reverse-primary: #ffffffcc;
+  --color__font-reverse-secondary: #eeeeee99;
 
   // bg
-  --color__bg-primary: #fff;
+  --color__bg-primary: var(--color__white);
   --color__bg-secondary: #eeeeee66;
 
   // popup
-  --color__popup-bg-primary: #fff;
+  --color__popup-bg-primary: var(--color__white);
 
   // table
   --color__table-hover: var(--color__accent-alpha);
 
   // menu
-  --color__menu-border: #99999966;
+  --color__menu-border: var(--color__border-tertiary);
   --color__context-menu-hover-bg: var(--color__accent-alpha);
 
   // tabs
-  --color__tabs-active-bg: #fff;
+  --color__tabs-active-bg: var(--color__white);
   --color__tabs-inactive-bg: var(--color__accent);
 
   // dicom window
   --color__dicom-window-active: var(--color__accent);
 
   // dicom viewbox
-  --color__viewbox-border-weak: #fff;
+  --color__viewbox-border-weak: var(--color__white);
 
   // icons
   --color__icon-default: #aaa;
