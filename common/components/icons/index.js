@@ -5,6 +5,8 @@ export { ArrowRightDoubleIcon } from "./arrow-right-double.icon.js";
 export { ArrowPlayIcon } from "./arrow-play.icon.js";
 export { ArrowSkipNextIcon } from "./arrow-skip-next.icon.js";
 export { ArrowSkipPrevIcon } from "./arrow-skip-prev.icon.js";
+export { ArrowDropUpIcon } from "./arrow-drop-up.icon.js";
+export { ArrowDropDownIcon } from "./arrow-drop-down.icon.js";
 
 export { NavigateNextIcon } from "./navigate-next.icon.js";
 export { NavigateBeforeIcon } from "./navigate-before.icon.js";

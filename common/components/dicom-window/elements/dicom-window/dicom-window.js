@@ -1,25 +1,13 @@
 import { createElementFromHTML } from "../../../../utils/dom/index.js";
 import { BaseElement } from "../../../base/base-element.js";
 import {
-  createSwiperSlide,
-  CustomSwiper,
-} from "../../../custom-swiper/index.js";
-import {
-  LayoutAttributeType,
   LayoutActiveAttributeType,
+  LayoutAttributeType,
   Selectors,
 } from "../../common/index.js";
+import { DicomWindowScrollControl } from "../scroll-control/scroll-control.js";
 
-const { fromEvent } = rxjs;
-
-function DicomWindowComp() {
-  return createElementFromHTML(`
-  <div 
-    class="${Selectors.DicomWindow}" 
-    ${LayoutActiveAttributeType.Key}="${LayoutActiveAttributeType.active}">
-  </div>
-  `);
-}
+const { fromEvent, BehaviorSubject } = rxjs;
 
 /**
  * Constructor types
@@ -31,7 +19,6 @@ function DicomWindowComp() {
  */
 
 export class DicomWindow extends BaseElement {
-  #swiper;
   #$windowItems;
 
   #layout$;
@@ -46,9 +33,8 @@ export class DicomWindow extends BaseElement {
 
   // private
   #init() {
+    this.#initScrollbar();
     this.#disableAllLayoutActive();
-
-    this.#initSwiper();
 
     fromEvent(this.getEl(), "click").subscribe(() =>
       this.#handleLayoutActive()
@@ -59,13 +45,16 @@ export class DicomWindow extends BaseElement {
     );
   }
 
-  #initSwiper() {
-    const swiper = new CustomSwiper();
+  #initScrollbar() {
     const $root = this.getEl();
+    const rootWheelEvent$ = fromEvent($root, "wheel");
 
-    $root.append(swiper.getEl());
-
-    this.#swiper = swiper;
+    $root.appendChild(
+      new DicomWindowScrollControl({
+        wheelEvent$: rootWheelEvent$,
+        maxStep: 4,
+      }).getEl()
+    );
   }
 
   // handlers
@@ -201,23 +190,28 @@ export class DicomWindow extends BaseElement {
 
   // Layout Control
   #clearLayoutItems() {
-    this.#swiper.clearItems();
+    const { $dicomWindowWrapper } = this.#getElements();
+    $dicomWindowWrapper.innerHTML = "";
   }
 
   #setLayout({ chunkSize, layoutType }) {
     this.#clearLayoutItems();
 
-    const $swiperSlides = createDicomWindowGrid({
+    const { $dicomWindowWrapper } = this.#getElements();
+
+    const $grids = createDicomWindowGrid({
       $items: this.#$windowItems,
       chunkSize,
       layoutType,
-    }).map((grid) => createSwiperSlide(grid));
+    });
 
-    this.#swiper.append($swiperSlides);
+    $dicomWindowWrapper.append(...$grids);
   }
 
   #setCustomLayout({ row, col }) {
     this.#clearLayoutItems();
+
+    const { $dicomWindowWrapper } = this.#getElements();
 
     const setGridTemplate = ($el) => {
       $el.style.cssText = `
@@ -228,19 +222,36 @@ export class DicomWindow extends BaseElement {
       return $el;
     };
 
-    const $swiperSlides = createDicomWindowGrid({
+    const $grids = createDicomWindowGrid({
       $items: this.#$windowItems,
       chunkSize: row * col,
       layoutType: LayoutAttributeType.Custom,
-    })
-      .map(setGridTemplate)
-      .map((grid) => createSwiperSlide(grid));
+    }).map(setGridTemplate);
 
-    this.#swiper.append($swiperSlides);
+    $dicomWindowWrapper.append(...$grids);
+  }
+
+  #getElements() {
+    const $dicomWindowWrapper = this.getElementByClassName(
+      Selectors.DicomWindowGridWrapper
+    );
+
+    return { $dicomWindowWrapper };
   }
 }
 
 // =================================================================
+function DicomWindowComp() {
+  return createElementFromHTML(`
+  <div 
+    class="${Selectors.DicomWindow}" 
+    ${LayoutActiveAttributeType.Key}="${LayoutActiveAttributeType.active}">
+
+    <div class="${Selectors.DicomWindowGridWrapper}"></div>
+  </div>
+  `);
+}
+
 const createDicomWindowGrid = ({ $items, chunkSize, layoutType }) => {
   const createGrid = () => {
     return createElementFromHTML(

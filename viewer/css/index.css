@@ -9021,7 +9021,7 @@ button[disabled] {
   transition: all 0.2s ease-in-out;
   position: relative;
   width: 24px;
-  height: 24px;
+  aspect-ratio: 1;
   fill: var(--color__icon-default);
 }
 .irapha-icon:hover {
@@ -9816,9 +9816,40 @@ button[disabled] {
   overflow-y: hidden;
 }
 
-.irapha-dicom-window {
+.irapha-dicom-window__scroll-control-root {
   display: flex;
   flex-direction: column;
+  width: 20px;
+}
+
+.irapha-dicom-window__scroll-control__nav-top {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.irapha-dicom-window__scroll-control__nav-bottom {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.irapha-dicom-window__scroll-control__bar-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+  padding: 8px 6px;
+}
+
+.irapha-dicom-window__scroll-control__bar {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color__border-secondary);
+}
+
+.irapha-dicom-window {
+  display: flex;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -9826,6 +9857,14 @@ button[disabled] {
 }
 .irapha-dicom-window[layout-active=true] {
   border: 2px solid var(--color__dicom-window-active);
+}
+
+.irapha-dicom-window__grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .irapha-dicom-window__grid {

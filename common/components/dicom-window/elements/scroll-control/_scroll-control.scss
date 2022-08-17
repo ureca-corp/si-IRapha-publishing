@@ -1,0 +1,34 @@
+@use "../../../../styles/common";
+@use "../../../../themes/shape" as shape;
+@use "../../../../themes/colors" as colors;
+
+.irapha-dicom-window__scroll-control-root {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+}
+.irapha-dicom-window__scroll-control__nav-top {
+  width: 100%;
+  aspect-ratio: 1;
+}
+.irapha-dicom-window__scroll-control__nav-bottom {
+  width: 100%;
+  aspect-ratio: 1;
+}
+.irapha-dicom-window__scroll-control__bar-wrapper {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+
+  padding: 8px 6px;
+}
+.irapha-dicom-window__scroll-control__bar {
+  @include shape.small;
+
+  width: 100%;
+  height: 100%;
+  background-color: var(--color__border-secondary);
+}

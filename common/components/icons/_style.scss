@@ -26,7 +26,7 @@ $color-active: var(--color__icon-active);
 
   position: relative;
   width: 24px;
-  height: 24px;
+  aspect-ratio: 1;
   fill: $color-default;
 
   &:hover {
