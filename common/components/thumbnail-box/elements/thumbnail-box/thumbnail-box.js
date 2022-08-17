@@ -32,6 +32,7 @@ export class ThumbnailBox extends BaseElement {
     const { kinModels, thumbnailModels } = this.#model;
 
     const $pinIcon = new PinIcon({
+      states: { isActive$: this.#shrinkDirection$ },
       options: {
         events: {
           onClick: () => this.#toggle(),

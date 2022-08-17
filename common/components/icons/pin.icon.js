@@ -4,7 +4,16 @@ export class PinIcon extends BaseIcon2 {
   constructor({ states, options }) {
     super({ states, options });
 
-    this.getEl().innerHTML = svgIcon;
+    const $root = this.getEl();
+
+    $root.innerHTML = svgIcon;
+
+    const { isActive$ } = states;
+    isActive$?.subscribe((isActive) => {
+      isActive
+        ? ($root.style.transform = "rotate(-45deg)")
+        : ($root.style.transform = "unset");
+    });
   }
 }
 

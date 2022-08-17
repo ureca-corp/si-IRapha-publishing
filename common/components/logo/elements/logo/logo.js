@@ -51,10 +51,12 @@ export class Logo extends BaseElement {
   }
 
   #initMenus() {
+    const { shrinkDirection$ } = this.#states;
     const { onPinClick } = this.#events;
     const { $logoMenus } = this.#getElements();
 
     const $pinIcon = new PinIcon({
+      states: { isActive$: shrinkDirection$ },
       options: { events: { onClick: onPinClick } },
     }).getEl();
 
