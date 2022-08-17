@@ -104,7 +104,7 @@ function ToolboxComp() {
   return createElementFromHTML(`
     <div 
       class="${Selectors.Toolbox}" 
-      draggable="true"
+      draggable-root
       priority="1"
     ></div>
   `);

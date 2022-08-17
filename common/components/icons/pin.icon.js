@@ -14,6 +14,9 @@ export class PinIcon extends BaseIcon2 {
         ? ($root.style.transform = "rotate(-45deg)")
         : ($root.style.transform = "unset");
     });
+
+    const { draggable } = options;
+    if (draggable) $root.setAttribute("draggable", draggable);
   }
 }
 

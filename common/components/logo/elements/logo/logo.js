@@ -57,7 +57,7 @@ export class Logo extends BaseElement {
 
     const $pinIcon = new PinIcon({
       states: { isActive$: shrinkDirection$ },
-      options: { events: { onClick: onPinClick } },
+      options: { events: { onClick: onPinClick }, draggable: true },
     }).getEl();
 
     const $fullscreenToggleButton = new FullScreenToggleButton().getEl();

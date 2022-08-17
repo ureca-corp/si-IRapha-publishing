@@ -81,7 +81,11 @@ export class StickyMenu extends BaseElement {
     fromEvent($root, "dragstart", false)
       .pipe(
         tap(() => this.#activeDropzonesDummy$.next(true)),
-        map((e) => e.target),
+        map((e) =>
+          [...document.querySelectorAll("[draggable-root]")].find(($el) =>
+            $el.contains(e.target)
+          )
+        ),
         tap(($draggedTarget) => ($draggedTargetTemp = $draggedTarget)),
         tap(({ style }) => (style.opacity = 0.5))
       )
@@ -91,8 +95,7 @@ export class StickyMenu extends BaseElement {
     fromEvent($root, "dragend", false)
       .pipe(
         tap(() => this.#activeDropzonesDummy$.next(false)),
-        map((e) => e.target),
-        tap(({ style }) => (style.opacity = ""))
+        tap(() => ($draggedTargetTemp.style.opacity = ""))
       )
       .subscribe();
 

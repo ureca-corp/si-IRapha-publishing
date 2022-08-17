@@ -37,6 +37,7 @@ export class ThumbnailBox extends BaseElement {
         events: {
           onClick: () => this.#toggle(),
         },
+        draggable: true,
       },
     }).getEl();
 
@@ -105,7 +106,7 @@ function ThumbnailBoxComp() {
   return createElementFromHTML(`
   <div 
     class="${Selectors.ThumbnailBox}" 
-    draggable="true" 
+    draggable-root
     priority="2"
   ></div>
   `);
