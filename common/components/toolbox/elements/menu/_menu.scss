@@ -2,6 +2,7 @@
 @use "../../../../themes/colors" as colors;
 @use "../../../../themes/typography" as typography;
 @use "../../../../themes/shape" as shapes;
+@use "../../../../themes/break-point" as break-point;
 
 @use "../../../sub-menu/style" as sub-menu;
 
@@ -36,4 +37,20 @@
 
   @include l-menu;
   @include s-menu;
+}
+
+// media query - tablet-large
+@media (max-width: break-point.$tablet-large) {
+  .irapha-toolbox__menu {
+    &:not([layout="column-two"]) {
+      .irapha-menu-item {
+        width: fit-content;
+      }
+
+      .irapha-menu-item__icon {
+        width: 2.65vw;
+        min-width: 26.5px;
+      }
+    }
+  }
 }

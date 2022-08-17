@@ -80,4 +80,12 @@ $color-border: var(--color__menu-border);
   @media (max-width: break-point.$laptop) {
     @include align-self-center;
   }
+
+  @media (max-width: break-point.$tablet-large) {
+    &:not([layout="column"]) {
+      opacity: 0;
+      margin: 0;
+      min-width: 2px;
+    }
+  }
 }

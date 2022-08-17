@@ -27,13 +27,14 @@ export class SubMenu extends BaseElement {
   #initOptions() {
     if (!this.#options) return;
 
-    const { padding, isLayoutColumnTwo } = this.#options;
+    const { padding, isLayoutColumnTwo, modal } = this.#options;
 
     const $root = this.getEl();
     const $inner = this.#getContainerInnerEl();
 
     if (padding != undefined) $inner.style.padding = padding;
     if (isLayoutColumnTwo) $root.setAttribute("layout", "column-two");
+    if (modal) UIkit.drop($root, { offset: 0 });
   }
 
   #getContainerInnerEl() {

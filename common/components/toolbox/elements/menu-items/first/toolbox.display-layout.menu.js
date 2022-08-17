@@ -31,8 +31,10 @@ export class ToolboxDisplayLayoutMenu extends BaseElement {
       new DisplayLayoutConfigMenu(),
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
-    const $subMenu = new SubMenu({ subMenuItems }).getEl();
-    UIkit.drop($subMenu);
+    const $subMenu = new SubMenu({
+      subMenuItems,
+      options: { modal: true },
+    }).getEl();
 
     $root.appendChild(displayLayoutMenu.getEl());
     $root.appendChild($subMenu);

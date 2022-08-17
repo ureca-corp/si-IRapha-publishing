@@ -9186,7 +9186,7 @@ button[disabled] {
 }
 
 .irapha-search__input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -9227,7 +9227,7 @@ button[disabled] {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   padding: 4px 12px;
   cursor: pointer;
@@ -9242,7 +9242,7 @@ button[disabled] {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   padding: 4px 12px;
   cursor: pointer;
@@ -9374,7 +9374,7 @@ button[disabled] {
 }
 
 .irapha-icon {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
   width: 24px;
   height: 24px;
@@ -9395,7 +9395,7 @@ button[disabled] {
 }
 
 .irapha-context-menu__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
@@ -9533,7 +9533,6 @@ button[disabled] {
 .irapha-thumbnail-list {
   display: flex;
   flex-direction: row;
-  gap: 8px;
   width: 100%;
   height: 100%;
   overflow-x: overlay;
@@ -9546,7 +9545,7 @@ button[disabled] {
 }
 
 .irapha-thumbnail-list__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   min-width: 130px;
   min-height: 130px;
   position: relative;
@@ -9684,7 +9683,7 @@ button[disabled] {
 }
 
 .irapha-cineplay-controller__play-type {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -9730,7 +9729,7 @@ button[disabled] {
   fill: var(--color__canvas-text-secondary);
 }
 .irapha-cineplay-controller__nav > li {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .irapha-cineplay-controller__nav > li:hover {
@@ -9751,7 +9750,7 @@ button[disabled] {
   position: relative;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -9795,7 +9794,7 @@ button[disabled] {
   align-items: center;
 }
 .irapha-cineplay-controller__loop-box__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .irapha-cineplay-controller__loop-box__item:hover {
@@ -9807,7 +9806,7 @@ button[disabled] {
 }
 
 .irapha-dicom-viewbox {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -10038,7 +10037,7 @@ button[disabled] {
   min-width: 16px;
 }
 .irapha-revise__content__section input[type=text] {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10150,7 +10149,7 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-export-dicom__content input[type=text] {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10313,7 +10312,7 @@ button[disabled] {
 }
 
 .irapha-annotation-cm__input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10343,7 +10342,7 @@ button[disabled] {
 }
 
 .irapha-bottom-sheet__root {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -10373,7 +10372,7 @@ button[disabled] {
 }
 
 .irapha-viewbox-cm__menu-zoom {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10426,7 +10425,7 @@ button[disabled] {
 }
 
 .irapha-mobile__viewer__bottom__content-container {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   height: 0px;
 }
 .irapha-mobile__viewer__bottom__content-container[visible=true] {

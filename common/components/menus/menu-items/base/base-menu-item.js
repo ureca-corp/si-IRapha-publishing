@@ -37,7 +37,11 @@ export class BaseMenuItem extends BaseElement {
 
     const { title, name, icon, subMenu } = this.#data;
 
-    $root.setAttribute("title", title);
+    title &&
+      $root.setAttribute(
+        "uk-tooltip",
+        `title: ${title}; pos: right; offset: 0`
+      );
 
     icon && $root.appendChild(createIconElement(icon));
     name && $root.appendChild(createNameElement(name));

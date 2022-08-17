@@ -1,5 +1,6 @@
 @use "../../../themes//typography" as typography;
 @use "../../../themes/shape" as shape;
+@use "../../../themes/break-point" as break-point;
 @use "../../../styles/anim" as anim;
 
 @mixin s-menu-item {
@@ -17,11 +18,7 @@
   &:hover {
     & > .irapha-menu-item__icon {
       transform: scale(1.2);
-      opacity: 0.6;
-    }
-
-    & > .irapha-menu-item__name {
-      opacity: 0.6;
+      filter: contrast(150%) brightness(1.25);
     }
   }
 }
@@ -73,6 +70,10 @@
 
   position: relative;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 36px;
   min-width: 24px;
   aspect-ratio: 1;
@@ -98,3 +99,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+// 메뉴 아이템 미디어 쿼리 -> toolbox/menus.scss에서 처리

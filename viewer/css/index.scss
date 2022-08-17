@@ -1,5 +1,6 @@
 @use "../../libs/style" as libs;
 
+@use "../../common/themes/break-point" as break-point;
 @use "../../common/components/icons/style" as icons;
 
 @use "../../common/components/toolbox/style" as toolbox;
@@ -20,6 +21,7 @@
 
 // =================================================================
 #irapha-app {
+  min-width: break-point.$min-width;
   width: 100%;
   height: 100%;
 }

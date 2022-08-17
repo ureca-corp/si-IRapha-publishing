@@ -9018,7 +9018,7 @@ button[disabled] {
 }
 
 .irapha-icon {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
   width: 24px;
   height: 24px;
@@ -9203,6 +9203,17 @@ button[disabled] {
   display: none;
 }
 
+@media (max-width: 1280px) {
+  .irapha-toolbox__menu:not([layout=column-two]) .irapha-menu-item {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .irapha-toolbox__menu:not([layout=column-two]) .irapha-menu-item__icon {
+    width: 2.65vw;
+    min-width: 26.5px;
+  }
+}
 .irapha-toolbox__menus-container {
   display: flex;
   align-items: center;
@@ -9244,6 +9255,13 @@ button[disabled] {
   .irapha-toolbox__divider {
     align-self: center;
     margin: 0 8px;
+  }
+}
+@media (max-width: 1280px) {
+  .irapha-toolbox__divider:not([layout=column]) {
+    opacity: 0;
+    margin: 0;
+    min-width: 2px;
   }
 }
 
@@ -9544,7 +9562,6 @@ button[disabled] {
 .irapha-thumbnail-list {
   display: flex;
   flex-direction: row;
-  gap: 8px;
   width: 100%;
   height: 100%;
   overflow-x: overlay;
@@ -9557,7 +9574,7 @@ button[disabled] {
 }
 
 .irapha-thumbnail-list__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   min-width: 130px;
   min-height: 130px;
   position: relative;
@@ -9813,7 +9830,6 @@ button[disabled] {
 
 .irapha-dicom-window__grid {
   display: grid;
-  gap: 8px;
   width: 100%;
   height: 100%;
   min-height: 100%;
@@ -10005,14 +10021,14 @@ button[disabled] {
 }
 
 .irapha-dicom-window__tab-content__menus {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
   gap: 2px;
   opacity: 0;
 }
 .irapha-dicom-window__tab-content__menus .irapha-dicom-window__tab-content__menus__cid {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   width: 12px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -10024,7 +10040,7 @@ button[disabled] {
   transform: scale(1.5);
 }
 .irapha-dicom-window__tab-content__menus .irapha-dicom-window__tab-content__menus__rs {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   width: 12px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -10036,7 +10052,7 @@ button[disabled] {
   transform: scale(1.5);
 }
 .irapha-dicom-window__tab-content__menus .irapha-dicom-window__tab-content__menus__close {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   width: 12px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -10098,7 +10114,7 @@ button[disabled] {
 }
 
 .irapha-cineplay-controller__play-type {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10144,7 +10160,7 @@ button[disabled] {
   fill: var(--color__canvas-text-secondary);
 }
 .irapha-cineplay-controller__nav > li {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .irapha-cineplay-controller__nav > li:hover {
@@ -10165,7 +10181,7 @@ button[disabled] {
   position: relative;
 }
 .irapha-cineplay-controller__FPS-box__input-wrapper input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10209,7 +10225,7 @@ button[disabled] {
   align-items: center;
 }
 .irapha-cineplay-controller__loop-box__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .irapha-cineplay-controller__loop-box__item:hover {
@@ -10221,7 +10237,7 @@ button[disabled] {
 }
 
 .irapha-dicom-viewbox {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -10353,7 +10369,7 @@ button[disabled] {
 }
 
 .irapha-menu-item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10372,15 +10388,15 @@ button[disabled] {
 }
 .irapha-menu-item:hover > .irapha-menu-item__icon {
   transform: scale(1.2);
-  opacity: 0.6;
-}
-.irapha-menu-item:hover > .irapha-menu-item__name {
-  opacity: 0.6;
+  filter: contrast(150%) brightness(1.25);
 }
 
 .irapha-menu-item__icon {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 36px;
   min-width: 24px;
   aspect-ratio: 1;
@@ -10403,7 +10419,7 @@ button[disabled] {
 }
 
 .irapha-menu-item__name {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   font-size: 11px;
   line-height: 16px;
   font-weight: 700;
@@ -10555,7 +10571,7 @@ button[disabled] {
   min-width: 16px;
 }
 .irapha-revise__content__section input[type=text] {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10667,7 +10683,7 @@ button[disabled] {
   cursor: pointer;
 }
 .irapha-export-dicom__content input[type=text] {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10787,7 +10803,7 @@ button[disabled] {
 }
 
 .irapha-search__input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -10828,7 +10844,7 @@ button[disabled] {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   padding: 4px 12px;
   cursor: pointer;
@@ -10843,7 +10859,7 @@ button[disabled] {
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   padding: 4px 12px;
   cursor: pointer;
@@ -10962,7 +10978,7 @@ button[disabled] {
 }
 
 .irapha-context-menu__item {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
@@ -11051,7 +11067,7 @@ button[disabled] {
 }
 
 .irapha-annotation-cm__input {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -11081,7 +11097,7 @@ button[disabled] {
 }
 
 .irapha-bottom-sheet__root {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -11111,7 +11127,7 @@ button[disabled] {
 }
 
 .irapha-viewbox-cm__menu-zoom {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
   flex: 1;
   height: -webkit-fit-content !important;
@@ -11143,6 +11159,7 @@ button[disabled] {
 }
 
 #irapha-app {
+  min-width: 1000px;
   width: 100%;
   height: 100%;
 }

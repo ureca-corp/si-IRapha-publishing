@@ -25,8 +25,7 @@ export class ToolboxNaviMenu extends BaseElement {
       new NaviInterStudyMenu(),
     ].map((it) => new SubMenuItem({ menuItem: it }));
 
-    const subMenu = new SubMenu({ subMenuItems });
-    UIkit.drop(subMenu.getEl());
+    const subMenu = new SubMenu({ subMenuItems, options: { modal: true } });
 
     $root.appendChild(menu.getEl());
     $root.appendChild(subMenu.getEl());

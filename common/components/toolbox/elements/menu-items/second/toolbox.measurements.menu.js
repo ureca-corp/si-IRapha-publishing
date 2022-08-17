@@ -43,9 +43,8 @@ export class ToolboxMeasurementsMenu extends BaseElement {
 
     const subMenu = new SubMenu({
       subMenuItems,
-      options: { isLayoutColumnTwo: true },
+      options: { isLayoutColumnTwo: true, modal: true },
     });
-    UIkit.drop(subMenu.getEl());
 
     $root.appendChild(menu.getEl());
     $root.appendChild(subMenu.getEl());
