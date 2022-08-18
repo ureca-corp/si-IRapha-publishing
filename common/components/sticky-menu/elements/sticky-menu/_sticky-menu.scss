@@ -18,6 +18,13 @@ $bg-sticky-menu: var(--color__bg-primary);
     "left content content right"
     "left content content right"
     "left bottom bottom right";
+
+  .irapha-sticky-menu__dropzone {
+    &[position="left"],
+    &[position="right"] {
+      z-index: 6;
+    }
+  }
 }
 
 // 스티키 메뉴 레이아웃 상태
@@ -53,7 +60,7 @@ $dropzone-min-size: 48px;
   &[position="top"] {
     grid-area: top;
     align-self: flex-start;
-    z-index: 4;
+    z-index: 5;
 
     display: flex;
     flex-direction: column;
@@ -63,7 +70,7 @@ $dropzone-min-size: 48px;
   &[position="left"] {
     grid-area: left;
     justify-self: flex-start;
-    z-index: 5;
+    z-index: 4;
 
     display: flex;
     width: fit-content;
@@ -72,7 +79,7 @@ $dropzone-min-size: 48px;
   &[position="right"] {
     grid-area: right;
     justify-self: flex-end;
-    z-index: 5;
+    z-index: 4;
 
     display: flex;
     flex-direction: row-reverse;
@@ -82,7 +89,7 @@ $dropzone-min-size: 48px;
   &[position="bottom"] {
     grid-area: bottom;
     align-self: flex-end;
-    z-index: 4;
+    z-index: 5;
 
     display: flex;
     flex-direction: column-reverse;

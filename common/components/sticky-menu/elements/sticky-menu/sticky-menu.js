@@ -15,7 +15,7 @@ const { BehaviorSubject, fromEvent, tap, map, filter, of } = rxjs;
  */
 
 export class StickyMenu extends BaseElement {
-  #activeDropzonesDummy$ = new BehaviorSubject();
+  #activeDropzonesDummy$ = new BehaviorSubject(false);
 
   $top;
   $left;
@@ -36,18 +36,13 @@ export class StickyMenu extends BaseElement {
     this.#dropCallback = dropCallback;
 
     this.#init();
-
-    const { $dropzones } = this.#getElements();
-    $dropzones.forEach(
-      ($element) =>
-        new Dropzone({ $element, activeDummy$: this.#activeDropzonesDummy$ })
-    );
   }
 
   // private
   #init() {
     this.#initChilds();
     this.#initEvents();
+    this.#initDropzones();
   }
 
   #initChilds() {
@@ -71,23 +66,38 @@ export class StickyMenu extends BaseElement {
     const $root = this.getEl();
 
     let $draggedTargetTemp;
+    let $oldTargetParentDropzone;
 
     const isTargetIncludedDropzoneDummy = (target) => {
       const targetClassList = [...target.classList];
       return targetClassList.find((it) => it === Selectors.DropzoneDummy);
     };
 
+    const activeDragMode = () => {
+      $draggedTargetTemp.style.opacity = 0.5;
+      $oldTargetParentDropzone.style.zIndex = 10;
+    };
+
+    const inactiveDragMode = () => {
+      $draggedTargetTemp.style.opacity = null;
+      $oldTargetParentDropzone.style.zIndex = null;
+    };
+
+    const findTargetInDraggableRootEls = ($target) =>
+      [...document.querySelectorAll("[draggable-root]")].find(($el) =>
+        $el.contains($target)
+      );
+
     // 드래그 시작시
     fromEvent($root, "dragstart", false)
       .pipe(
         tap(() => this.#activeDropzonesDummy$.next(true)),
-        map((e) =>
-          [...document.querySelectorAll("[draggable-root]")].find(($el) =>
-            $el.contains(e.target)
-          )
-        ),
-        tap(($draggedTarget) => ($draggedTargetTemp = $draggedTarget)),
-        tap(({ style }) => (style.opacity = 0.5))
+        map((e) => findTargetInDraggableRootEls(e.target)),
+        tap(($draggedTarget) => {
+          $draggedTargetTemp = $draggedTarget;
+          $oldTargetParentDropzone = $draggedTarget.parentNode;
+        }),
+        tap(() => activeDragMode())
       )
       .subscribe();
 
@@ -95,7 +105,7 @@ export class StickyMenu extends BaseElement {
     fromEvent($root, "dragend", false)
       .pipe(
         tap(() => this.#activeDropzonesDummy$.next(false)),
-        tap(() => ($draggedTargetTemp.style.opacity = ""))
+        tap(() => inactiveDragMode())
       )
       .subscribe();
 
@@ -139,12 +149,12 @@ export class StickyMenu extends BaseElement {
             dropCallback: this.#dropCallback,
           })
         ),
-        tap((dropzone) => this.#updateLayout({ dropzone }))
+        tap((dropzone) => this.#updateGridLayoutMode({ dropzone }))
       )
       .subscribe();
   }
 
-  #updateLayout({ dropzone }) {
+  #updateGridLayoutMode({ dropzone }) {
     const $root = this.getEl();
 
     const removeLayoutAttr = () => $root.removeAttribute(LayoutAttr.Key);
@@ -156,6 +166,17 @@ export class StickyMenu extends BaseElement {
       .subscribe((dropzone) =>
         dropzone.isTypeVertical() ? setLayoutRowFirstAttr() : removeLayoutAttr()
       );
+  }
+
+  #initDropzones() {
+    const { $dropzones } = this.#getElements();
+    $dropzones.forEach(
+      ($element) =>
+        new Dropzone({
+          $element,
+          activeDummy$: this.#activeDropzonesDummy$,
+        })
+    );
   }
 
   #getElements() {

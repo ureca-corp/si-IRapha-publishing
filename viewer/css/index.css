@@ -9680,11 +9680,14 @@ button[disabled] {
 .irapha-sticky-menu[layout=row-first] {
   grid-template-areas: "left top top right" "left content content right" "left content content right" "left bottom bottom right";
 }
+.irapha-sticky-menu[layout=row-first] .irapha-sticky-menu__dropzone[position=left], .irapha-sticky-menu[layout=row-first] .irapha-sticky-menu__dropzone[position=right] {
+  z-index: 6;
+}
 
 .irapha-sticky-menu__dropzone[position=top] {
   grid-area: top;
   align-self: flex-start;
-  z-index: 4;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -9695,7 +9698,7 @@ button[disabled] {
 .irapha-sticky-menu__dropzone[position=left] {
   grid-area: left;
   justify-self: flex-start;
-  z-index: 5;
+  z-index: 4;
   display: flex;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -9705,7 +9708,7 @@ button[disabled] {
 .irapha-sticky-menu__dropzone[position=right] {
   grid-area: right;
   justify-self: flex-end;
-  z-index: 5;
+  z-index: 4;
   display: flex;
   flex-direction: row-reverse;
   width: -webkit-fit-content;
@@ -9716,7 +9719,7 @@ button[disabled] {
 .irapha-sticky-menu__dropzone[position=bottom] {
   grid-area: bottom;
   align-self: flex-end;
-  z-index: 4;
+  z-index: 5;
   display: flex;
   flex-direction: column-reverse;
   width: 100%;
@@ -10836,6 +10839,8 @@ button[disabled] {
 }
 .irapha-search-container > .irapha-icon {
   position: absolute;
+  width: 24px;
+  height: 24px;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
@@ -10942,6 +10947,10 @@ button[disabled] {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+div.uk-tooltip.uk-active {
+  z-index: 9999;
 }
 
 .irapha-dicom-info__inner {

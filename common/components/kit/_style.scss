@@ -10,3 +10,7 @@
 .uk-drop {
   width: fit-content;
 }
+
+div.uk-tooltip.uk-active {
+  z-index: 9999;
+}

@@ -9180,6 +9180,8 @@ button[disabled] {
 }
 .irapha-search-container > .irapha-icon {
   position: absolute;
+  width: 24px;
+  height: 24px;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
@@ -9286,6 +9288,10 @@ button[disabled] {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+div.uk-tooltip.uk-active {
+  z-index: 9999;
 }
 
 .irapha-mobile__login-page {
